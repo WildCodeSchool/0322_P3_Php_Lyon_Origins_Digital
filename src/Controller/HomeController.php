@@ -13,4 +13,10 @@ class HomeController extends AbstractController
     {
         return $this->render('home/index.html.twig');
     }
+
+    #[Route('/big-thumbnail', name: 'big_thumbnail')]
+    public function bigThumbnail(): Response
+    {
+        return $this->render('shared/big-thumbnail.html.twig');
+    }
 }
