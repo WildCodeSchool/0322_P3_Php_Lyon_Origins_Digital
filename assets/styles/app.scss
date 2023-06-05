@@ -2,3 +2,14 @@
 @import "~bootstrap/scss/bootstrap";
 @import "wcs";
 @import "plyr.scss";
+
+.image-show {
+    width: 90%;
+    height: auto;
+}
+
+.video-container {
+    max-width: 90%;
+    border-radius: 15px;
+    overflow: hidden;
+}

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Video;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,11 +18,11 @@ class VideoController extends AbstractController
         ]);
     }
 
-    #[Route('/show', name: 'show')]
-    public function show(): Response
+    #[Route('/show/{id<^[0-9]+$>}', methods: ['GET'], name: 'show')]
+    public function show(Video $video): Response
     {
         return $this->render('video/show.html.twig', [
-            'controller_name' => 'VideoController',
+            'video' => $video,
         ]);
     }
 }
