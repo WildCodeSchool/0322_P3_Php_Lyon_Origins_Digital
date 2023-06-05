@@ -2,8 +2,6 @@
 .vscode/
 .DS_Store
 /public/uploads
-/assets/videos/
-/assets/images/
 /public/adminer.php
 ###> symfony/framework-bundle ###
 /.env.local
