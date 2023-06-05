@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures;
 
-use DateTime;
+use DateTimeImmutable;
 use App\Entity\Video;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -137,7 +137,7 @@ class VideoFixtures extends Fixture
             $video = new Video();
             $video->setTitle($clip['title']);
             $video->setDescription($clip['description']);
-            $postDate = new DateTime($clip['post_date']);
+            $postDate = new DateTimeImmutable($clip['post_date']);
             $video->setPostDate($postDate);
             $video->setVideoUrl($clip['video_url']);
             $video->setPosterUrl($clip['poster_url']);
