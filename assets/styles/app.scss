@@ -1,4 +1,30 @@
 //start coding by removing this file and adding yours ;)
+
+$primary: #581EA3; // purple
+$info: #CEA8FF; // light purple
+$secondary: #FFE500; // yellow 
+$dark: #241C52; // dark blue
+$light: #FFFFFF; // white
+
 @import "~bootstrap/scss/bootstrap";
-@import "wcs";
 @import "plyr.scss";
+
+.bt .bt-infos .bt-line {
+    width: 75%;
+    height: 1px;
+    background-color: $info;
+}
+
+.bt .bt-poster {
+    max-width: 200px;
+    aspect-ratio: 16/9;
+    background-color: green;
+}
+
+.bt .bt-spacer {
+    height: 200px;
+}
+
+.bt .bt-infos {
+    max-width: 300px;
+}

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% set dot = "<i class='bi bi-dot fs-2'></i>" %}
+
+{% block body %}
+
+<div class="bt bg-dark container-fluid">
+    <div class="bt-poster rounded-4"></div>
+
+    <div class="bt-infos bg-primary rounded-4 p-3">
+
+        <div class="bt-spacer"></div>
+
+        <div class="bt-title text-secondary fs-2">TITRE</div>
+    
+        <div class="bt-stats d-flex justify-content-start align-items-center text-info fs-6">
+            <span class="bt-views">2.2k vues</span>
+            <span>{{dot|raw}}</span>
+            <span class="bt-category">#CAT</span>
+            <span>{{dot|raw}}</span>
+            <span class="bt-post-date">Il y a 10 min</span>
+        </div>
+
+        <div class="bt-creator text-info">CREATEUR</div>
+        <div class="bt-line d-block"></div>
+
+        <div class="bt-description text-info">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum fugiat maiores quibusdam dolorum.</div>
+    </div>
+    
+</div>
+
+{% endblock %}
