@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\VideoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,8 +16,12 @@ class HomeController extends AbstractController
     }
 
     #[Route('/big-thumbnail', name: 'big_thumbnail')]
-    public function bigThumbnail(): Response
+    public function bigThumbnail(VideoRepository $videoRepository): Response
     {
-        return $this->render('shared/big-thumbnail.html.twig');
+        $video = $videoRepository->find(1);
+
+        return $this->render('shared/big-thumbnail.html.twig', [
+            'video' => $video,
+        ]);
     }
 }

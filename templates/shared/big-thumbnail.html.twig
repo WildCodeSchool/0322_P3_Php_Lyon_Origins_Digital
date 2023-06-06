@@ -4,12 +4,14 @@
 
 {% block body %}
 
-<div class="bt bg-dark container-fluid">
-    <div class="bt-poster rounded-4"></div>
+<pre>
+    {{ dump(video) }}
+</pre>
 
-    <div class="bt-infos bg-primary rounded-4 p-3">
+<div class="bg-dark container-fluid">
 
-        <div class="bt-spacer"></div>
+    <div class="bt bg-primary rounded-4 p-3 position-relative">
+        <div class="bt-poster rounded-4 position-absolute top-0 start-0 translate-middle"></div>
 
         <div class="bt-title text-secondary fs-2">TITRE</div>
     
@@ -24,9 +26,12 @@
         <div class="bt-creator text-info">CREATEUR</div>
         <div class="bt-line d-block"></div>
 
-        <div class="bt-description text-info">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum fugiat maiores quibusdam dolorum.</div>
+        <div class="bt-description text-info">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</div>
     </div>
     
 </div>
+
+<img src="{{ asset('build/images/' ~ video.poster_url) }}" alt="">
+{{ "http://#{app.request.host}" }}
 
 {% endblock %}

@@ -4,25 +4,30 @@ $secondary: #FFE500; // yellow
 $dark: #241C52; // dark blue
 $light: #FFFFFF; // white
 
+// custom variables ----------------------------------------
+// -- spacing/sizing --
+
+$btWidth: 300px;
+
 @import "~bootstrap/scss/bootstrap";
 @import "plyr.scss";
 
-.bt .bt-infos .bt-line {
+.bt {
+    max-width: $btWidth;
+}
+
+.bt .bt-line {
     width: 75%;
     height: 1px;
     background-color: $info;
 }
 
 .bt .bt-poster {
-    max-width: 200px;
+    max-width: calc($btWidth * 0.8);
     aspect-ratio: 16/9;
     background-color: green;
 }
 
 .bt .bt-spacer {
     height: 200px;
-}
-
-.bt .bt-infos {
-    max-width: 300px;
 }
