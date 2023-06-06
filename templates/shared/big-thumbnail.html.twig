@@ -6,10 +6,6 @@
 {% set watchLater = "<i class='bi' id='watchLater-icon'></i>" %}
 {% set like = "<i class='bi' id='like-icon'></i>" %}
 
-
-{% set shortDescription = video.description|u.truncate(70, '...') %}
-{% set shortTitle = video.title|u.truncate(22, '...') %}
-
 {% block body %}
 
 <div class="bt bg-dark d-flex justify-content-center align-items-center">
@@ -33,7 +29,7 @@
                 </div>
             </div>
 
-            <div class="bt-title text-secondary fs-2 text-nowrap">{{ shortTitle }}</div>
+            <div class="bt-title text-secondary fs-2 text-nowrap">{{ video.title|u.truncate(22, '...') }}</div>
         
             <div class="bt-stats d-flex justify-content-start align-items-center text-info m-0">
                 <span class="bt-views m-0">2.2k vues</span>
@@ -46,7 +42,7 @@
             <div class="bt-creator text-info">CREATEUR</div>
             <div class="bt-line d-block my-2"></div>
 
-            <div class="bt-description text-info">{{ shortDescription }}</div>
+            <div class="bt-description text-info">{{ video.description|u.truncate(70, '...') }}</div>
         </div>
     </div>
     
