@@ -14,7 +14,7 @@ class VideoController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(VideoRepository $videoRepository): Response
     {
-        $videos = $videoRepository->findByLastPostDate();
+        $videos = $videoRepository->findLatestVideos();
 
         return $this->render('video/index.html.twig', [
             'videos' => $videos

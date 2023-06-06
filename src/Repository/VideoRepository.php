@@ -39,7 +39,7 @@ class VideoRepository extends ServiceEntityRepository
         }
     }
 
-    public function findByLastPostDate(): array
+    public function findLatestVideos(): array
     {
         return $this->createQueryBuilder('v')
             ->orderBy('v.postDate', 'DESC')
