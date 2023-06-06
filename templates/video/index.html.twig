@@ -20,9 +20,10 @@
                         <td>{{ video.title }}</td>
                         <td>{{ video.description }}</td>    
                         <td>{{ video.postDate|date('d/m/Y') }}</td>    
-                        <td><a href="{{ path('video_show', { id: video.id }) }}">
-                            <img src="{{ asset('build/images/' ~ video.posterUrl) }}" alt="" height="300px" width="400px">
-                        </a></td>
+                        <td>
+                            <a href="{{ path('video_show', { id: video.id }) }}">
+                            <img src="{{ asset('build/images/' ~ video.posterUrl) }}" alt="" height="300px" width="400px"></a>
+                        </td>
                     </tr>
                     {% else %}
                         
