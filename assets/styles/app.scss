@@ -11,12 +11,21 @@ $btWidth: 300px;
 
 // -- fonts --
 $titleFont: 'Staatliches', cursive;
+$textFont:  'Inter', sans-serif;
+
+// -- animations --
+$animCurveTwentyToHundred: cubic-bezier(.2,1,0,1);
 
 // ---------------------------------------------------------
 
 @import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-icons/font/bootstrap-icons";
 @import "plyr.scss";
-@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Staatliches&display=swap');
+
+* {
+    transition: 1s $animCurveTwentyToHundred;
+}
 
 .image-show {
     width: 90%;
@@ -38,9 +47,8 @@ body {
 
     width: $btWidth * 1.03;
     aspect-ratio: 1 / 1.02;
-    
+        
     .bt-main {
-
         width: $btWidth;
         transform: translateY(($btWidth * .1)/2);
         background: linear-gradient(135deg, $primary 50%, $secondary)!important;
@@ -62,11 +70,13 @@ body {
             aspect-ratio: 16 / 10;
             top: calc($btWidth * -.1);
             left: calc($btWidth * .04);
+            transform-origin: center;
         }
 
         .bt-socials {
             div:hover {
                 cursor:pointer;
+                color: $secondary!important;
             }
         }
 
@@ -80,8 +90,22 @@ body {
         }
 
         .bt-stats,
-        .bt-creator {
+        .bt-creator,
+        .bt-description {
             font-size: .7rem;
+            font-family: $textFont;
+        }
+    }
+    
+    &:hover {
+
+        .bt-line {
+            width: calc($btWidth * 0.60);
+        }
+
+        .bt-poster {
+            top: calc($btWidth * -.13);
+            transform: rotate(2deg);
         }
     }
 }

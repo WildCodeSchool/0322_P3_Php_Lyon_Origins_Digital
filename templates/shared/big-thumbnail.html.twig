@@ -36,13 +36,14 @@
                 <span>{{dot|raw}}</span>
                 <span class="bt-category m-0">#CAT</span>
                 <span>{{dot|raw}}</span>
-                <span class="bt-post-date m-0">{{ video.postDate|date('d/m/Y') }}</span>
+                <span class="bt-post-date m-0">{{ video.postDate|format_datetime('medium', 'short', locale='fr') }}</span>
+                <span class="bt-post-date m-0">{{ video.postDate|date_diff({'format': 'Only [totalDays] until our event'}) }}</span>
             </div>
 
-            <div class="bt-creator text-info">CREATEUR</div>
+            <div class="bt-creator d-none text-info">CREATEUR</div>
             <div class="bt-line d-block my-2"></div>
 
-            <div class="bt-description text-info">{{ video.description|u.truncate(70, '...') }}</div>
+            <div class="bt-description text-info">{{ video.description|u.truncate(100, '...') }}</div>
         </div>
     </div>
     
