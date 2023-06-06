@@ -30,17 +30,6 @@ $animCurveTwentyToHundred: cubic-bezier(.2,1,0,1);
     font-family: $titleFont;
 }
 
-.image-show {
-    width: 90%;
-    height: auto;
-}
-
-.video-container {
-    max-width: 90%;
-    border-radius: 15px;
-    overflow: hidden;
-}
-
 body {
     background-color: $dark;
 }
