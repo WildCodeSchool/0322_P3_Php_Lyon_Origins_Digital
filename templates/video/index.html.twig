@@ -1,20 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello VideoController!{% endblock %}
+{% block title %}Galerie Vidéo{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <main class="thumbs container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Description</th>
+                    <th>Date de publication</th>
+                    <th>poster</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for video in videos %}
+                    <tr>
+                        <td>{{ video.title }}</td>
+                        <td>{{ video.description }}</td>    
+                        <td>{{ video.postDate|date('d/m/Y') }}</td>    
+                        <td><a href="{{ path('video_show', { id: video.id }) }}">
+                            <img src="{{ asset('build/images/' ~ video.posterUrl) }}" alt="" height="300px" width="400px">
+                        </a></td>
+                    </tr>
+                    {% else %}
+                        
+                        <p>Il n'y a pas de vidéos</p>
+                    
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/account/symfony_projects/projet3/0322_P3_Php_Lyon_Origins_Digital/src/Controller/VideoController.php'|file_link(0) }}">src/Controller/VideoController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/account/symfony_projects/projet3/0322_P3_Php_Lyon_Origins_Digital/templates/video/index.html.twig'|file_link(0) }}">templates/video/index.html.twig</a></code></li>
-    </ul>
-</div>
 {% endblock %}
