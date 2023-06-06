@@ -7,7 +7,6 @@ $light: #FFFFFF; // white
 // -- spacing/sizing --
 $btWidth: 300px;
 @import "~bootstrap/scss/bootstrap";
-@import "~bootstrap-icons/font/bootstrap-icons";
 @import "plyr.scss";
 
 .image-show {
@@ -19,24 +18,4 @@ $btWidth: 300px;
     max-width: 90%;
     border-radius: 15px;
     overflow: hidden;
-}
-
-.bt {
-    max-width: $btWidth;
-}
-
-.bt .bt-line {
-    width: 75%;
-    height: 1px;
-    background-color: $info;
-}
-
-.bt .bt-poster {
-    max-width: calc($btWidth * 0.8);
-    aspect-ratio: 16/9;
-    background-color: green;
-}
-
-.bt .bt-spacer {
-    height: 200px;
 }
