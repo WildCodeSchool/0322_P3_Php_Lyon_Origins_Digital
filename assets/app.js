@@ -14,39 +14,55 @@ import './bootstrap';
 // include bootstrap JS
 require('bootstrap');
 
-const favIcon = document.getElementById('fav-icon');
-const favDiv = document.getElementById('fav-div');
-favIcon.classList.add('bi-heart');
-favDiv.classList.add('text-light');
+const favIcons = document.getElementsByClassName('fav');
+const watchLaterIcons = document.getElementsByClassName('watchLater');
+const likeIcons = document.getElementsByClassName('like');
+const favDivs = document.getElementsByClassName('bt-fav');
+const watchLaterDivs = document.getElementsByClassName('bt-watchlater');
+const likeDivs = document.getElementsByClassName('bt-like');
 
-favDiv.addEventListener('click', function(){
-    favIcon.classList.toggle('bi-heart');
-    favIcon.classList.toggle('bi-heart-fill');
-    favDiv.classList.toggle('text-light');
-    favDiv.classList.toggle('text-secondary');
-})
+for (const favIcon of favIcons) {
+    favIcon.classList.add('bi-heart');
+}
 
-const watchLaterIcon = document.getElementById('watchLater-icon');
-const watchLaterDiv = document.getElementById('watchLater-div');
-watchLaterIcon.classList.add('bi-clock');
-watchLaterDiv.classList.add('text-light');
+for (const favDiv of favDivs) {
+    favDiv.classList.add('text-light');
+    let favIcon = favDiv.firstElementChild;
+    favDiv.addEventListener('click', function(){
+        favIcon.classList.toggle('bi-heart');
+        favIcon.classList.toggle('bi-heart-fill');
+        favDiv.classList.toggle('text-light');
+        favDiv.classList.toggle('text-secondary');
+    })
+}
 
-watchLaterDiv.addEventListener('click', function(){
-    watchLaterIcon.classList.toggle('bi-clock');
-    watchLaterIcon.classList.toggle('bi-clock-fill');
-    watchLaterDiv.classList.toggle('text-light');
-    watchLaterDiv.classList.toggle('text-secondary');
-})
+for (const watchLaterIcon of watchLaterIcons) {
+    watchLaterIcon.classList.add('bi-clock');
+}
 
-const likeIcon = document.getElementById('like-icon');
-const likeDiv = document.getElementById('like-div');
-likeIcon.classList.add('bi-hand-thumbs-up');
-likeDiv.classList.add('text-light');
+for (const watchLaterDiv of watchLaterDivs) {
+    watchLaterDiv.classList.add('text-light');
+    let watchLaterIcon = watchLaterDiv.firstElementChild;
+    watchLaterDiv.addEventListener('click', function(){
+        watchLaterIcon.classList.toggle('bi-clock');
+        watchLaterIcon.classList.toggle('bi-clock-fill');
+        watchLaterDiv.classList.toggle('text-light');
+        watchLaterDiv.classList.toggle('text-secondary');
+    })
+}
 
-likeDiv.addEventListener('click', function(){
-    likeIcon.classList.toggle('bi-hand-thumbs-up');
-    likeIcon.classList.toggle('bi-hand-thumbs-up-fill');
-    likeDiv.classList.toggle('text-light');
-    likeDiv.classList.toggle('text-secondary');
-})
+for (const likeIcon of likeIcons) {
+    likeIcon.classList.add('bi-hand-thumbs-up');
+}
+
+for (const likeDiv of likeDivs) {
+    likeDiv.classList.add('text-light');
+    let likeIcon = likeDiv.firstElementChild;
+    likeDiv.addEventListener('click', function(){
+        likeIcon.classList.toggle('bi-hand-thumbs-up');
+        likeIcon.classList.toggle('bi-hand-thumbs-up-fill');
+        likeDiv.classList.toggle('text-light');
+        likeDiv.classList.toggle('text-secondary');
+    })
+}
 

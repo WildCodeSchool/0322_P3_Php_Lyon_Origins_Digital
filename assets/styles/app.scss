@@ -26,6 +26,10 @@ $animCurveTwentyToHundred: cubic-bezier(.2,1,0,1);
     transition: 1s $animCurveTwentyToHundred;
 }
 
+.title-font {
+    font-family: $titleFont;
+}
+
 .image-show {
     width: 90%;
     height: auto;
@@ -51,6 +55,7 @@ body {
         width: $btWidth;
         transform: translateY(($btWidth * .1)/2);
         background: linear-gradient(135deg, $primary 50%, $secondary)!important;
+        transform-origin: center;
         
         .bt-main-mask {
             transform-origin: center;
@@ -83,10 +88,6 @@ body {
             width: calc($btWidth * 0.75 + $btWidth * .04 + 1rem);
             height: calc(($btWidth * 0.8 / 16 * 10) - $btWidth * .1 - 1rem);
         }
-        
-        .bt-title {
-            font-family: $titleFont;
-        }
 
         .bt-stats,
         .bt-creator,
@@ -98,13 +99,21 @@ body {
     
     &:hover {
 
+        rotate: -2deg;
+        transform: translateY(5px);
+
+        .bt-main {
+            scale: 96%;
+        }
+
         .bt-line {
             width: calc($btWidth * 0.60);
         }
 
         .bt-poster {
             top: calc($btWidth * -.13);
-            transform: rotate(2deg);
+            transform: rotate(4deg);
+            border: 5px solid $secondary;
         }
     }
 }

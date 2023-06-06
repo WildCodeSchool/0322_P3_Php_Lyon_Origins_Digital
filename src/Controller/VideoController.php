@@ -20,4 +20,19 @@ class VideoController extends AbstractController
             'videos' => $videos
         ]);
     }
+
+    #[Route(
+        '/show/{id}/',
+        requirements: ['id' => '\d+'],
+        methods: ['GET'],
+        name: 'show',
+    )]
+    public function show(VideoRepository $videoRepository, int $id = 1): Response
+    {
+        $video = $videoRepository->find($id);
+
+        return $this->render('video/show.html.twig', [
+            'video' => $video,
+        ]);
+    }
 }
