@@ -12,6 +12,17 @@ $btWidth: 300px;
 @import "~bootstrap/scss/bootstrap";
 @import "plyr.scss";
 
+.image-show {
+    width: 90%;
+    height: auto;
+}
+
+.video-container {
+    max-width: 90%;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
 .bt {
     max-width: $btWidth;
 }

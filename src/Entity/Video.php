@@ -14,36 +14,24 @@ class Video
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $title = null;
-
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
-    private ?\DateTimeInterface $post_date = null;
+    #[ORM\Column(length: 255)]
+    private ?string $title = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $postDate = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $video_url = null;
+    private ?string $videoUrl = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $poster_url = null;
+    private ?string $posterUrl = null;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
     }
 
     public function getDescription(): ?string
@@ -58,38 +46,50 @@ class Video
         return $this;
     }
 
-    public function getPostDate(): ?\DateTimeInterface
+    public function getTitle(): ?string
     {
-        return $this->post_date;
+        return $this->title;
     }
 
-    public function setPostDate(\DateTimeInterface $post_date): self
+    public function setTitle(string $title): self
     {
-        $this->post_date = $post_date;
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getPostDate(): ?\DateTimeImmutable
+    {
+        return $this->postDate;
+    }
+
+    public function setPostDate(\DateTimeImmutable $postDate): self
+    {
+        $this->postDate = $postDate;
 
         return $this;
     }
 
     public function getVideoUrl(): ?string
     {
-        return $this->video_url;
+        return $this->videoUrl;
     }
 
-    public function setVideoUrl(string $video_url): self
+    public function setVideoUrl(string $videoUrl): self
     {
-        $this->video_url = $video_url;
+        $this->videoUrl = $videoUrl;
 
         return $this;
     }
 
     public function getPosterUrl(): ?string
     {
-        return $this->poster_url;
+        return $this->posterUrl;
     }
 
-    public function setPosterUrl(string $poster_url): self
+    public function setPosterUrl(string $posterUrl): self
     {
-        $this->poster_url = $poster_url;
+        $this->posterUrl = $posterUrl;
 
         return $this;
     }
