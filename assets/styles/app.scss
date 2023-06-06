@@ -1,6 +1,12 @@
-//start coding by removing this file and adding yours ;)
+$primary: #581EA3; // purple
+$info: #CEA8FF; // light purple
+$secondary: #FFE500; // yellow
+$dark: #241C52; // dark blue
+$light: #FFFFFF; // white
+// custom variables ----------------------------------------
+// -- spacing/sizing --
+$btWidth: 300px;
 @import "~bootstrap/scss/bootstrap";
-@import "wcs";
 @import "plyr.scss";
 
 .image-show {
@@ -12,4 +18,24 @@
     max-width: 90%;
     border-radius: 15px;
     overflow: hidden;
+}
+
+.bt {
+    max-width: $btWidth;
+}
+
+.bt .bt-line {
+    width: 75%;
+    height: 1px;
+    background-color: $info;
+}
+
+.bt .bt-poster {
+    max-width: calc($btWidth * 0.8);
+    aspect-ratio: 16/9;
+    background-color: green;
+}
+
+.bt .bt-spacer {
+    height: 200px;
 }
