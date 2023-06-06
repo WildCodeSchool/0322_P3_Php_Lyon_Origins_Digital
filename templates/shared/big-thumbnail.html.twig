@@ -1,37 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% set dot = "<i class='bi bi-dot fs-2'></i>" %}
+{% set dot = "<i class='bi bi-dot m-0'></i>" %}
+
+{% set fav = "<i class='bi' id='fav-icon'></i>" %}
+{% set watchLater = "<i class='bi' id='watchLater-icon'></i>" %}
+{% set like = "<i class='bi' id='like-icon'></i>" %}
+
+
+{% set shortDescription = video.description|u.truncate(70, '...') %}
+{% set shortTitle = video.title|u.truncate(22, '...') %}
 
 {% block body %}
 
-<pre>
-    {{ dump(video) }}
-</pre>
+<div class="bt bg-dark d-flex justify-content-center align-items-center">
 
-<div class="bg-dark container-fluid">
+    <div class="bt-main rounded-4">
+        <div class="bt-main-mask bg-primary rounded-4 p-3 position-relative">
+            <div>
+                <a href="{{ path('video_show', { id: video.id }) }}">
+                    <img 
+                        src="{{ asset('build/images/' ~ video.posterUrl) }}" 
+                        alt=""
+                        class="bt-poster rounded-4 position-absolute translate-start">
+                </a>
+            </div>
+            <div class="d-flex justify-content-between align-items-start">
+                <div class="bt-spacer"></div>
+                <div class="bt-socials d-flex flex-column justify-content-center fs-5">
+                    <div class="bt-fav" id="fav-div">{{fav|raw}}</div>
+                    <div class="bt-watchlater" id="watchLater-div">{{watchLater|raw}}</div>
+                    <div class="bt-like" id="like-div">{{like|raw}}</div>
+                </div>
+            </div>
 
-    <div class="bt bg-primary rounded-4 p-3 position-relative">
-        <div class="bt-poster rounded-4 position-absolute top-0 start-0 translate-middle"></div>
+            <div class="bt-title text-secondary fs-2 text-nowrap">{{ shortTitle }}</div>
+        
+            <div class="bt-stats d-flex justify-content-start align-items-center text-info m-0">
+                <span class="bt-views m-0">2.2k vues</span>
+                <span>{{dot|raw}}</span>
+                <span class="bt-category m-0">#CAT</span>
+                <span>{{dot|raw}}</span>
+                <span class="bt-post-date m-0">{{ video.postDate|date('d/m/Y') }}</span>
+            </div>
 
-        <div class="bt-title text-secondary fs-2">TITRE</div>
-    
-        <div class="bt-stats d-flex justify-content-start align-items-center text-info fs-6">
-            <span class="bt-views">2.2k vues</span>
-            <span>{{dot|raw}}</span>
-            <span class="bt-category">#CAT</span>
-            <span>{{dot|raw}}</span>
-            <span class="bt-post-date">Il y a 10 min</span>
+            <div class="bt-creator text-info">CREATEUR</div>
+            <div class="bt-line d-block my-2"></div>
+
+            <div class="bt-description text-info">{{ shortDescription }}</div>
         </div>
-
-        <div class="bt-creator text-info">CREATEUR</div>
-        <div class="bt-line d-block"></div>
-
-        <div class="bt-description text-info">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</div>
     </div>
     
 </div>
 
-<img src="{{ asset('build/images/' ~ video.poster_url) }}" alt="">
-{{ "http://#{app.request.host}" }}
+
 
 {% endblock %}

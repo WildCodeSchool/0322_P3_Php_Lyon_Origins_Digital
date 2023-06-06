@@ -5,12 +5,18 @@ $dark: #241C52; // dark blue
 $light: #FFFFFF; // white
 
 // custom variables ----------------------------------------
-// -- spacing/sizing --
 
+// -- spacing/sizing --
 $btWidth: 300px;
+
+// -- fonts --
+$titleFont: 'Staatliches', cursive;
+
+// ---------------------------------------------------------
 
 @import "~bootstrap/scss/bootstrap";
 @import "plyr.scss";
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 
 .image-show {
     width: 90%;
@@ -23,22 +29,55 @@ $btWidth: 300px;
     overflow: hidden;
 }
 
+
 .bt {
-    max-width: $btWidth;
-}
 
-.bt .bt-line {
-    width: 75%;
-    height: 1px;
-    background-color: $info;
-}
+    width: $btWidth * 1.03;
+    aspect-ratio: 1 / 1.02;
+    
+    .bt-main {
 
-.bt .bt-poster {
-    max-width: calc($btWidth * 0.8);
-    aspect-ratio: 16/9;
-    background-color: green;
-}
+        width: $btWidth;
+        transform: translateY(($btWidth * .1)/2);
+        background: linear-gradient(135deg, $primary 50%, $secondary)!important;
+        
+        .bt-main-mask {
+            transform-origin: center;
+            transform: scale(99%);
+            width: $btWidth;
+        }
+        
+        .bt-line {
+            width: calc($btWidth * 0.75);
+            height: 1px;
+            background-color: $info;
+        }
 
-.bt .bt-spacer {
-    height: 200px;
+        .bt-poster {
+            width: calc($btWidth * 0.8);
+            aspect-ratio: 16 / 10;
+            top: calc($btWidth * -.1);
+            left: calc($btWidth * .04);
+        }
+
+        .bt-socials {
+            div:hover {
+                cursor:pointer;
+            }
+        }
+
+        .bt-spacer {
+            width: calc($btWidth * 0.75 + $btWidth * .04 + 1rem);
+            height: calc(($btWidth * 0.8 / 16 * 10) - $btWidth * .1 - 1rem);
+        }
+        
+        .bt-title {
+            font-family: $titleFont;
+        }
+
+        .bt-stats,
+        .bt-creator {
+            font-size: .7rem;
+        }
+    }
 }
