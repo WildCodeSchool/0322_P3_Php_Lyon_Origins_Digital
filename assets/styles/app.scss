@@ -1,4 +1,21 @@
-//start coding by removing this file and adding yours ;)
+$primary: #581EA3; // purple
+$info: #CEA8FF; // light purple
+$secondary: #FFE500; // yellow
+$dark: #241C52; // dark blue
+$light: #FFFFFF; // white
+// custom variables ----------------------------------------
+// -- spacing/sizing --
+$btWidth: 300px;
 @import "~bootstrap/scss/bootstrap";
-@import "wcs";
 @import "plyr.scss";
+
+.image-show {
+    width: 90%;
+    height: auto;
+}
+
+.video-container {
+    max-width: 90%;
+    border-radius: 15px;
+    overflow: hidden;
+}

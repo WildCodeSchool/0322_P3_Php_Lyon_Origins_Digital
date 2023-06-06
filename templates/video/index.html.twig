@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Galerie Vidéo{% endblock %}
+
+{% block body %}
+
+    <main class="thumbs container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Description</th>
+                    <th>Date de publication</th>
+                    <th>Poster</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for video in videos %}
+                    <tr>
+                        <td>{{ video.title }}</td>
+                        <td>{{ video.description }}</td>    
+                        <td>{{ video.postDate|date('d/m/Y') }}</td>    
+                        <td>
+                            <img src="{{ asset('build/images/' ~ video.posterUrl) }}" alt="poster"></a>
+                        </td>
+                    </tr>
+                    {% else %}
+                        
+                        <p>Il n'y a pas de vidéos</p>
+                    
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+
+{% endblock %}
