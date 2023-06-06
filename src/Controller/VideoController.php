@@ -20,12 +20,4 @@ class VideoController extends AbstractController
             'videos' => $videos
         ]);
     }
-
-    #[Route('/show/{id<^[0-9]+$>}', methods: ['GET'], name: 'show')]
-    public function show(Video $video): Response
-    {
-        return $this->render('video/show.html.twig', [
-            'video' => $video,
-        ]);
-    }
 }
