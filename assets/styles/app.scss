@@ -4,6 +4,11 @@ $secondary: #FFE500; // yellow
 $dark: #241C52; // dark blue
 $light: #FFFFFF; // white
 
+// custom plyr variables ----------------------------------------
+:root {
+    --plyr-control-icon-size: 18px;
+}
+
 // custom variables ----------------------------------------
 // -- spacing/sizing --
 
@@ -30,4 +35,9 @@ $btWidth: 300px;
 
 .bt .bt-spacer {
     height: 200px;
+}
+
+.video-container {
+    border-radius: 15px;
+    overflow: hidden;
 }

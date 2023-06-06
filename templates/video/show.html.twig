@@ -5,29 +5,69 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container">
+	{# début partie haute de la page #}
+	<div class="container-fluid">
 		<div>
-			<div class="row">
-				<div class="col-lg-3">
-					<img class="image-show" src="{{ asset('build/images/' ~ video.posterUrl) }}" alt="{{ video.title }} poster">
+			<div
+				class="row mt-4">
+				{# début partie navbar #}
+				<div class="col-md-1">
+					<h5>NavBar Here</h5>
 				</div>
-				<div class="col-lg-3">
-					<h1 class="mt-0">{{ video.title }}</h1>
-					<p>{{ video.description }}</p>
-				</div>
-				<div class="col-lg-6">
-					<h1>{{ video.title }}</h1>
+				{# fin partie navbar #}
+
+				{# début partie player #}
+				<div class="col-md-9">
+					<div class="row">
+						<div class="col-md-8">
+							<h1>{{ video.title }}</h1>
+						</div>
+						<div class="col-md-4 d-flex flex-row-reverse">
+							<h5>#Video Hash Here</h5>
+						</div>
+					</div>
 					<div class="video-container">
-						<video id="player" playsinline controls data-poster="{{ asset('build/images/' ~ video.posterUrl) }}">
+						<video id="player" class="player" playsinline controls data-poster="{{ asset('build/images/' ~ video.posterUrl) }}">
 							<source src="{{ asset('build/videos/' ~ video.videoUrl) }}" type="video/mp4"/>
 						</video>
 					</div>
+					<div class="row">
+						<div class="col-md-2">
+							<h5>UserName</h5>
+						</div>
+						<div class="col-md-10">
+							<p>{{ video.description }}</p>
+						</div>
+					</div>
 				</div>
+				{# fin partie player #}
+
+				{# début partie favoris et hashtags #}
+				<div class="col-md-2 text-center">
+					<div class="row">
+						<h5>MES FAVORIS</h5>
+						<h5>Favorite Here</h5>
+						<h5>Favorite Here</h5>
+						<h5>Favorite Here</h5>
+						<h5>Favorite Here</h5>
+						<h5>Favorite Here</h5>
+					</div>
+					<div class="row">
+						<h5>Hashtags Here</h5>
+					</div>
+				</div>
+				{# fin partie favoris et hashtags #}
 			</div>
 		</div>
 	</div>
-	<script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
-	<script>
-		const player = new Plyr('#player');
-	</script>
+	{# fin partie haute de la page #}
+
+	{# début partie basse de la page #}
+	<div class="container-fluid">
+		<div class="row">
+			A complèter...
+		</div>
+	</div>
+	{# fin partie basse de la page #}
+	<script src="{{ asset('build/app.js') }}"></script>
 {% endblock %}
