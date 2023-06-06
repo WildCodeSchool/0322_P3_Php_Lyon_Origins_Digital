@@ -7,6 +7,7 @@ $light: #FFFFFF; // white
 // -- spacing/sizing --
 $btWidth: 300px;
 @import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-icons/font/bootstrap-icons";
 @import "plyr.scss";
 
 .image-show {
