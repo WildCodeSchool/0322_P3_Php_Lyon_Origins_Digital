@@ -5,9 +5,25 @@ $dark: #241C52; // dark blue
 $light: #FFFFFF; // white
 
 @import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-icons/font/bootstrap-icons";
 @import "~plyr/src/sass/plyr.scss";
+
+body {
+    background-color: $dark;
+}
 
 .video-container {
     border-radius: 15px;
     overflow: hidden;
+}
+
+.sh-uptop {
+
+    .sh-video {
+        // max-width: 70%;
+    }
+
+    .sh-favs {
+
+    }
 }

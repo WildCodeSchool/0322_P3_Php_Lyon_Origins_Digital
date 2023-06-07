@@ -5,12 +5,41 @@
 {% endblock %}
 
 {% block body %}
-	{# début partie haute de la page #}
-	<div class="container-fluid">
+	<section class="sh-uptop container-fluid d-flex justify-content-between align-items-baseline text-light">
+        
+        <div class="sh-menu">
+            {% include "shared/navbar.html.twig" %}
+        </div>
+        
+        <div class="sh-video d-flex flex-column justify-content-start align-items-center">
+            
+            <div class="sh-title-hash w-100 d-flex justify-content-between align-items-baseline">
+                <div class="sh-title title-font text-secondary">{{ video.title }}</div>
+                <div class="sh-hash">#Video Hash Here</div>
+            </div>
+
+            <div class="sh-player video-container">
+                <video id="player" class="player" playsinline controls data-poster="{{ asset('build/images/' ~ video.posterUrl) }}">
+                    <source src="{{ asset('build/videos/' ~ video.videoUrl) }}" type="video/mp4"/>
+                </video>
+            </div>
+
+        </div>
+        <div class="sh-favs bg-primary d-flex flex-column justify-content-start align-items-center">
+            <h5>MES FAVORIS</h5>
+            <h5>Favorite Here</h5>
+            <h5>Favorite Here</h5>
+            <h5>Favorite Here</h5>
+            <h5>Favorite Here</h5>
+            <h5>Favorite Here</h5>
+        </div>
+    </section>
+
+
+	<div class="container-fluid text-light">
 		<div>
 			<div
 				class="row mt-4">
-				{# début partie navbar #}
 				<div class="col-md-1">
 					<h5>NavBar Here</h5>
 				</div>
