@@ -2,7 +2,7 @@ $primary: #581EA3; // purple
 $info: #CEA8FF; // light purple
 $secondary: #FFE500; // yellow
 $dark: #241C52; // dark blue
-$light: #FFFFFF; // white
+$light: #FFFFFF; // whites
 // custom variables ----------------------------------------
 
 // -- spacing/sizing --
@@ -34,7 +34,6 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
 body {
     background-color: $dark;
 }
-
 
 .bt {
 
@@ -76,7 +75,7 @@ body {
         .bt-socials {
             div:hover {
                 cursor: pointer;
-                color: $secondary !important;
+                color: $secondary  !important;
             }
         }
 
