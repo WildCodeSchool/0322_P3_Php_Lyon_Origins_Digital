@@ -5,34 +5,54 @@
 {% endblock %}
 
 {% block body %}
-	<section class="sh-uptop container-fluid d-flex justify-content-between align-items-baseline text-light">
-        
-        <div class="sh-menu">
-            {% include "shared/navbar.html.twig" %}
-        </div>
-        
-        <div class="sh-video d-flex flex-column justify-content-start align-items-center">
+
+	<section>
+		<div class="container-md text-light sh-uptop">
+  			<div class="sh-menu row">
+
+    			<div class="col-1">
+      				{% include "shared/navbar.html.twig" %}
+    			</div>
+
+    			<div class="col-9">
+      				<div class="sh-video d-flex flex-column justify-content-start align-items-center">
             
-            <div class="sh-title-hash w-100 d-flex justify-content-between align-items-baseline">
-                <div class="sh-title title-font text-secondary">{{ video.title }}</div>
-                <div class="sh-hash">#Video Hash Here</div>
-            </div>
+						<div class="sh-title-hash w-100 d-flex justify-content-between align-items-baseline m-4">
+							<div class="sh-title title-font text-secondary">{{ video.title }}</div>
+							<div class="sh-hash">#Video Hash Here</div>
+						</div>
 
-            <div class="sh-player video-container">
-                <video id="player" class="player" playsinline controls data-poster="{{ asset('build/images/' ~ video.posterUrl) }}">
-                    <source src="{{ asset('build/videos/' ~ video.videoUrl) }}" type="video/mp4"/>
-                </video>
-            </div>
+						<div class="sh-player video-container m-4">
+							<video id="player" class="player" playsinline controls data-poster="{{ asset('build/images/' ~ video.posterUrl) }}">
+								<source src="{{ asset('build/videos/' ~ video.videoUrl) }}" type="video/mp4"/>
+							</video>
+						</div>
 
-        </div>
-        <div class="sh-favs bg-primary d-flex flex-column justify-content-start align-items-center">
-            <h5>MES FAVORIS</h5>
-            <h5>Favorite Here</h5>
-            <h5>Favorite Here</h5>
-            <h5>Favorite Here</h5>
-            <h5>Favorite Here</h5>
-            <h5>Favorite Here</h5>
-        </div>
+						<div class="row m-4">
+							<div class="sh-creator col-2">
+								<h5>UserName</h5>
+							</div>
+							<div class="sh-description col">
+								<p>{{ video.description }}</p>
+							</div>
+						</div>
+
+        			</div>
+    			</div>
+    			
+				<div class="col">
+      				<div class="sh-favs bg-primary d-flex flex-column justify-content-start align-items-center m-2">
+						<h5 class="title-font text-secondary">MES FAVORIS</h5>
+						<h5>Favorite Here</h5>
+						<h5>Favorite Here</h5>
+						<h5>Favorite Here</h5>
+						<h5>Favorite Here</h5>
+						<h5>Favorite Here</h5>
+					</div>
+    			</div>
+
+  			</div>
+		</div>
     </section>
 
 
