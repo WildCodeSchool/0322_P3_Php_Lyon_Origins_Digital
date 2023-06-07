@@ -3,31 +3,9 @@ $info: #CEA8FF; // light purple
 $secondary: #FFE500; // yellow
 $dark: #241C52; // dark blue
 $light: #FFFFFF; // white
-// custom variables ----------------------------------------
-// -- spacing/sizing --
-$btWidth: 300px;
+
 @import "~bootstrap/scss/bootstrap";
-@import "~plyr/src/sass/plyr";
-
-.bt {
-    max-width: $btWidth;
-}
-
-.bt .bt-line {
-    width: 75%;
-    height: 1px;
-    background-color: $info;
-}
-
-.bt .bt-poster {
-    max-width: calc($btWidth * 0.8);
-    aspect-ratio: 16/9;
-    background-color: green;
-}
-
-.bt .bt-spacer {
-    height: 200px;
-}
+@import "~plyr/src/sass/plyr.scss";
 
 .video-container {
     border-radius: 15px;
