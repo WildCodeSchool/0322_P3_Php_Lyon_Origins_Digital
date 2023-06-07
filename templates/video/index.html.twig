@@ -2,7 +2,10 @@
 
 {% block title %}Galerie Vidéo{% endblock %}
 
+
 {% block body %}
+
+    {% set offset = 6 %}
 
     <main class="thumbs container">
         <table class="table">
@@ -15,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for video in videos %}
+                {% for video in videos |slice(0, offset) %}
                     <tr>
                         <td>{{ video.title }}</td>
                         <td>{{ video.description }}</td>    
@@ -28,9 +31,13 @@
                         
                         <p>Il n'y a pas de vidéos</p>
                     
-                {% endfor %}
+                    {% endfor %}
+                
             </tbody>
         </table>
+
+        <button id="load-more-button">Load More</button>
+
     </main>
 
 {% endblock %}
