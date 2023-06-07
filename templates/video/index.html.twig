@@ -1,36 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Galerie Vidéo{% endblock %}
+{% block title %}Galerie des Vidéo{% endblock %}
+
+{% set dot = "<i class='bi bi-dot m-0'></i>" %}
+
+{% set fav = "<i class='bi fav' id='fav-icon'></i>" %}
+{% set watchLater = "<i class='bi watchLater' id='watchLater-icon'></i>" %}
+{% set like = "<i class='bi like' id='like-icon'></i>" %}
 
 {% block body %}
 
-    <main class="thumbs container">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Titre</th>
-                    <th>Description</th>
-                    <th>Date de publication</th>
-                    <th>Poster</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for video in videos %}
-                    <tr>
-                        <td>{{ video.title }}</td>
-                        <td>{{ video.description }}</td>    
-                        <td>{{ video.postDate|date('d/m/Y') }}</td>    
-                        <td>
-                            <img src="{{ asset('build/images/' ~ video.posterUrl) }}" alt="poster"></a>
-                        </td>
-                    </tr>
-                    {% else %}
-                        
-                        <p>Il n'y a pas de vidéos</p>
-                    
-                {% endfor %}
-            </tbody>
-        </table>
+    
+    <main class="container">
+
+        <div class="text-secondary d-flex justify-content-start align-items-center">
+            <span class="fs-1">{{ dot|raw }}</span>
+            <h3 class="title-font m-0">Les dernieres sorties</h3>
+        </div>
+
+        <section class="d-flex justify-content-start align-items-center flex-wrap">
+            {% for video in videos %}
+                {{ include('shared/big-thumbnail.html.twig', {item: video}) }}
+            {% else %}
+                <p>Il n'y a pas de vidéos</p>
+            {% endfor %}
+
+        </section>
     </main>
 
 {% endblock %}
