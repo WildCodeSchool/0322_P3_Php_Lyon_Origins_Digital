@@ -21,8 +21,8 @@
         <section class="d-flex justify-content-start align-items-center flex-wrap">
             {% for video in videos %}
                 {{ include('shared/big-thumbnail.html.twig', {item: video}) }}
-            {% else %}         
-                <p>Il n'y a pas de vidéos</p>  
+            {% else %}
+                <p>Il n'y a pas de vidéos</p>
             {% endfor %}
 
         </section>

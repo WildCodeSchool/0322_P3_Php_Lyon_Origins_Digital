@@ -21,48 +21,24 @@ const favDivs = document.getElementsByClassName('bt-fav');
 const watchLaterDivs = document.getElementsByClassName('bt-watchlater');
 const likeDivs = document.getElementsByClassName('bt-like');
 
-for (const favIcon of favIcons) {
-    favIcon.classList.add('bi-heart');
+function addSocialBtns(icons, divs, className, offColor='light', onColor='secondary'){
+    for (let icon of icons){
+        icon.classList.add('bi-'+className);
+    }
+
+    for (let div of divs){
+        div.classList.add('text-'+offColor);
+        let icon = div.firstElementChild;
+        div.addEventListener('click', function(){
+            icon.classList.toggle('bi-'+className);
+            icon.classList.toggle('bi-'+className+'-fill');
+            div.classList.toggle('text-'+offColor);
+            div.classList.toggle('text-'+onColor);
+        })
+    }
 }
 
-for (const favDiv of favDivs) {
-    favDiv.classList.add('text-light');
-    let favIcon = favDiv.firstElementChild;
-    favDiv.addEventListener('click', function(){
-        favIcon.classList.toggle('bi-heart');
-        favIcon.classList.toggle('bi-heart-fill');
-        favDiv.classList.toggle('text-light');
-        favDiv.classList.toggle('text-secondary');
-    })
-}
-
-for (const watchLaterIcon of watchLaterIcons) {
-    watchLaterIcon.classList.add('bi-clock');
-}
-
-for (const watchLaterDiv of watchLaterDivs) {
-    watchLaterDiv.classList.add('text-light');
-    let watchLaterIcon = watchLaterDiv.firstElementChild;
-    watchLaterDiv.addEventListener('click', function(){
-        watchLaterIcon.classList.toggle('bi-clock');
-        watchLaterIcon.classList.toggle('bi-clock-fill');
-        watchLaterDiv.classList.toggle('text-light');
-        watchLaterDiv.classList.toggle('text-secondary');
-    })
-}
-
-for (const likeIcon of likeIcons) {
-    likeIcon.classList.add('bi-hand-thumbs-up');
-}
-
-for (const likeDiv of likeDivs) {
-    likeDiv.classList.add('text-light');
-    let likeIcon = likeDiv.firstElementChild;
-    likeDiv.addEventListener('click', function(){
-        likeIcon.classList.toggle('bi-hand-thumbs-up');
-        likeIcon.classList.toggle('bi-hand-thumbs-up-fill');
-        likeDiv.classList.toggle('text-light');
-        likeDiv.classList.toggle('text-secondary');
-    })
-}
+addSocialBtns(favIcons, favDivs, 'heart');
+addSocialBtns(watchLaterIcons, watchLaterDivs, 'clock');
+addSocialBtns(likeIcons, likeDivs, 'hand-thumbs-up');
 

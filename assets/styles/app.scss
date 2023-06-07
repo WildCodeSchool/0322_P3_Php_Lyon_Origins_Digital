@@ -6,14 +6,15 @@ $light: #FFFFFF; // white
 // custom variables ----------------------------------------
 
 // -- spacing/sizing --
-$btWidth: 300px;
+$btWidth: 280px;
+$btSizeFactor: 100%;
 
 // -- fonts --
 $titleFont: 'Staatliches', cursive;
 $textFont:  'Inter', sans-serif;
 
 // -- animations --
-$animCurveTwentyToHundred: cubic-bezier(.2,1,0,1);
+$animCurveEaseOut: cubic-bezier(.1,1,.8,.8);
 
 // ---------------------------------------------------------
 
@@ -23,7 +24,7 @@ $animCurveTwentyToHundred: cubic-bezier(.2,1,0,1);
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Staatliches&display=swap');
 
 * {
-    transition: 1s $animCurveTwentyToHundred;
+    transition: .7s $animCurveEaseOut;
 }
 
 .title-font {
@@ -39,12 +40,17 @@ body {
 
     width: $btWidth * 1.03;
     aspect-ratio: 1 / 1.02;
+    scale: $btSizeFactor;
         
     .bt-main {
         width: $btWidth;
         transform: translateY(($btWidth * .1)/2);
         background: linear-gradient(135deg, $primary 50%, $secondary)!important;
         transform-origin: center;
+
+        .bt-title {
+            font-size: calc($btWidth * 0.08)!important;
+        }
         
         .bt-main-mask {
             transform-origin: center;
@@ -64,6 +70,7 @@ body {
             top: calc($btWidth * -.1);
             left: calc($btWidth * .04);
             transform-origin: center;
+            border: 0px solid $secondary;
         }
 
         .bt-socials {
@@ -81,7 +88,7 @@ body {
         .bt-stats,
         .bt-creator,
         .bt-description {
-            font-size: .7rem;
+            font-size: calc($btWidth * .04);
             font-family: $textFont;
         }
     }
