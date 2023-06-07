@@ -19,3 +19,9 @@ $btWidth: 300px;
     border-radius: 15px;
     overflow: hidden;
 }
+
+.thumbs {
+    img {
+        max-width: 200px;
+    }
+}

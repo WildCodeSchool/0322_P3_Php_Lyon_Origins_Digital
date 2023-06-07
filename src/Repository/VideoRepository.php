@@ -43,6 +43,8 @@ class VideoRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('v')
             ->orderBy('v.postDate', 'DESC')
+            // limit the number of results
+            ->setMaxResults(15)
             ->getQuery()
             ->getResult();
     }

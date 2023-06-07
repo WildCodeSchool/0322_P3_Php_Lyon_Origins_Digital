@@ -13,3 +13,19 @@ import './bootstrap';
 
 // include bootstrap JS
 require('bootstrap');
+
+function loadMore(idName, btnId)
+{
+    const firstPart = document.getElementById('0-'+idName);
+    const loadMoreBtn = document.getElementById(btnId);
+    firstPart.classList.remove('d-none');
+    let idNbr = 1;
+    
+    loadMoreBtn.addEventListener('click', function() {
+        let part = document.getElementById( idNbr+'-'+idName);
+        part.classList.remove('d-none');
+        idNbr++;
+    })
+}
+
+loadMore('latest', 'load-more-latest');
