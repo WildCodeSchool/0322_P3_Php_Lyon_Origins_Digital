@@ -4,18 +4,13 @@ $secondary: #FFE500; // yellow
 $dark: #241C52; // dark blue
 $light: #FFFFFF; // white
 
-// custom plyr variables ----------------------------------------
-:root {
-    --plyr-control-icon-size: 18px;
-}
-
 // custom variables ----------------------------------------
 // -- spacing/sizing --
 
 $btWidth: 300px;
 
 @import "~bootstrap/scss/bootstrap";
-@import "plyr.scss";
+@import "~plyr/src/sass/plyr";
 
 .bt {
     max-width: $btWidth;
