@@ -1,0 +1,39 @@
+<div class="bt d-flex justify-content-center align-items-center">
+
+    <div class="bt-main rounded-4">
+        <div class="bt-main-mask bg-primary rounded-4 p-3 position-relative">
+            <div>
+                <a href="{{ path('video_show', { id: item.id }) }}">
+                    <img 
+                        src="{{ asset('build/images/' ~ item.posterUrl) }}" 
+                        alt=""
+                        class="bt-poster rounded-4 position-absolute translate-start">
+                </a>
+            </div>
+            <div class="d-flex justify-content-between align-items-start">
+                <div class="bt-spacer"></div>
+                <div class="bt-socials d-none flex-column justify-content-center fs-5">
+                    <div class="bt-fav" id="fav-div">{{fav|raw}}</div>
+                    <div class="bt-watchlater" id="watchLater-div">{{watchLater|raw}}</div>
+                    <div class="bt-like" id="like-div">{{like|raw}}</div>
+                </div>
+            </div>
+
+            <div class="bt-title title-font text-secondary text-nowrap">{{ item.title|u.truncate(30, '...') }}</div>
+        
+            <div class="bt-stats d-flex justify-content-start align-items-center text-info m-0">
+                <span class="bt-views m-0">2.2k vues</span>
+                <span>{{dot|raw}}</span>
+                <span class="bt-category m-0">#CAT</span>
+                <span>{{dot|raw}}</span>
+                <span class="bt-post-date m-0">{{ item.postDate|format_datetime('medium', 'short', locale='fr') }}</span>
+            </div>
+
+            <div class="bt-creator d-none text-info">CREATEUR</div>
+            <div class="bt-line d-block my-2"></div>
+
+            <div class="bt-description text-info">{{ item.description|u.truncate(90, '...') }}</div>
+        </div>
+    </div>
+    
+</div>

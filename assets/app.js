@@ -14,16 +14,51 @@ import './bootstrap';
 // include bootstrap JS
 require('bootstrap');
 
+const favIcons = document.getElementsByClassName('fav');
+const watchLaterIcons = document.getElementsByClassName('watchLater');
+const likeIcons = document.getElementsByClassName('like');
+const favDivs = document.getElementsByClassName('bt-fav');
+const watchLaterDivs = document.getElementsByClassName('bt-watchlater');
+const likeDivs = document.getElementsByClassName('bt-like');
+
+function addSocialBtns(icons, divs, className, offColor='light', onColor='secondary'){
+    for (let icon of icons){
+        icon.classList.add('bi-'+className);
+    }
+
+    for (let div of divs){
+        div.classList.add('text-'+offColor);
+        let icon = div.firstElementChild;
+        div.addEventListener('click', function(){
+            icon.classList.toggle('bi-'+className);
+            icon.classList.toggle('bi-'+className+'-fill');
+            div.classList.toggle('text-'+offColor);
+            div.classList.toggle('text-'+onColor);
+        })
+    }
+}
+
+addSocialBtns(favIcons, favDivs, 'heart');
+addSocialBtns(watchLaterIcons, watchLaterDivs, 'clock');
+addSocialBtns(likeIcons, likeDivs, 'hand-thumbs-up');
+
+
 function loadMore(idName, btnId)
 {
-    const firstPart = document.getElementById('0-'+idName);
+    const firstParts = document.getElementsByClassName('0-'+idName);
     const loadMoreBtn = document.getElementById(btnId);
-    firstPart.classList.remove('d-none');
+
+    for (const firstPart of firstParts) {
+        firstPart.classList.remove('d-none');
+    }
     let idNbr = 1;
     
     loadMoreBtn.addEventListener('click', function() {
-        let part = document.getElementById( idNbr+'-'+idName);
-        part.classList.remove('d-none');
+        let parts = document.getElementsByClassName( idNbr+'-'+idName);
+        for (const part of parts) {
+            part.classList.remove('d-none');
+        }
+        
         idNbr++;
     })
 }
