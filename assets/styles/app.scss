@@ -1,35 +1,117 @@
 $primary: #581EA3; // purple
 $info: #CEA8FF; // light purple
-$secondary: #FFE500; // yellow 
+$secondary: #FFE500; // yellow
 $dark: #241C52; // dark blue
 $light: #FFFFFF; // white
-
 // custom variables ----------------------------------------
-// -- spacing/sizing --
 
-$btWidth: 300px;
+// -- spacing/sizing --
+$btWidth: 280px;
+$btSizeFactor: 100%;
+
+// -- fonts --
+$titleFont: 'Staatliches', cursive;
+$textFont: 'Inter', sans-serif;
+
+// -- animations --
+$animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
+
+// ---------------------------------------------------------
 
 @import "~bootstrap/scss/bootstrap";
 @import "~plyr/src/sass/plyr";
+@import "~bootstrap-icons/font/bootstrap-icons";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Staatliches&display=swap');
+
+* {
+    transition: .7s $animCurveEaseOut;
+}
+
+.title-font {
+    font-family: $titleFont;
+}
+
+body {
+    background-color: $dark;
+}
+
 
 .bt {
-    max-width: $btWidth;
-}
 
-.bt .bt-line {
-    width: 75%;
-    height: 1px;
-    background-color: $info;
-}
+    width: $btWidth * 1.03;
+    aspect-ratio: 1 / 1.02;
+    scale: $btSizeFactor;
 
-.bt .bt-poster {
-    max-width: calc($btWidth * 0.8);
-    aspect-ratio: 16/9;
-    background-color: green;
-}
+    .bt-main {
+        width: $btWidth;
+        transform: translateY(($btWidth * .1)/2);
+        background: linear-gradient(135deg, $primary 50%, $secondary) !important;
+        transform-origin: center;
 
-.bt .bt-spacer {
-    height: 200px;
+        .bt-title {
+            font-size: calc($btWidth * 0.08) !important;
+        }
+
+        .bt-main-mask {
+            transform-origin: center;
+            transform: scale(99%);
+            width: $btWidth;
+        }
+
+        .bt-line {
+            width: calc($btWidth * 0.75);
+            height: 1px;
+            background-color: $info;
+        }
+
+        .bt-poster {
+            width: calc($btWidth * 0.8);
+            aspect-ratio: 16 / 10;
+            top: calc($btWidth * -.1);
+            left: calc($btWidth * .04);
+            transform-origin: center;
+            border: 0px solid $secondary;
+        }
+
+        .bt-socials {
+            div:hover {
+                cursor: pointer;
+                color: $secondary !important;
+            }
+        }
+
+        .bt-spacer {
+            width: calc($btWidth * 0.75 + $btWidth * .04 + 1rem);
+            height: calc(($btWidth * 0.8 / 16 * 10) - $btWidth * .1 - 1rem);
+        }
+
+        .bt-stats,
+        .bt-creator,
+        .bt-description {
+            font-size: calc($btWidth * .04);
+            font-family: $textFont;
+        }
+    }
+
+    &:hover {
+
+        rotate: -2deg;
+        transform: translateY(5px);
+
+        .bt-main {
+            scale: 96%;
+        }
+
+        .bt-line {
+            width: calc($btWidth * 0.60);
+        }
+
+        .bt-poster {
+            top: calc($btWidth * -.13);
+            transform: rotate(4deg);
+            border: 5px solid $secondary;
+        }
+    }
 }
 
 .video-container {

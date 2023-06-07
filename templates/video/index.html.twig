@@ -1,20 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello VideoController!{% endblock %}
+{% block title %}Galerie des Vidéo{% endblock %}
+
+{% set dot = "<i class='bi bi-dot m-0'></i>" %}
+
+{% set fav = "<i class='bi fav' id='fav-icon'></i>" %}
+{% set watchLater = "<i class='bi watchLater' id='watchLater-icon'></i>" %}
+{% set like = "<i class='bi like' id='like-icon'></i>" %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    
+    <main class="container">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/account/symfony_projects/projet3/0322_P3_Php_Lyon_Origins_Digital/src/Controller/VideoController.php'|file_link(0) }}">src/Controller/VideoController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/account/symfony_projects/projet3/0322_P3_Php_Lyon_Origins_Digital/templates/video/index.html.twig'|file_link(0) }}">templates/video/index.html.twig</a></code></li>
-    </ul>
-</div>
+        <div class="text-secondary d-flex justify-content-start align-items-center">
+            <span class="fs-1">{{ dot|raw }}</span>
+            <h3 class="title-font m-0">Les dernieres sorties</h3>
+        </div>
+
+        <section class="d-flex justify-content-start align-items-center flex-wrap">
+            {% for video in videos %}
+                {{ include('shared/big-thumbnail.html.twig', {item: video}) }}
+            {% else %}
+                <p>Il n'y a pas de vidéos</p>
+            {% endfor %}
+
+        </section>
+    </main>
+
 {% endblock %}
