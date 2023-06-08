@@ -13,7 +13,7 @@
     {% set offset = 6 %}
     {% set thumb = 1 %}
 
-    <main class="">
+    <main class="container">
 
         <div class="text-secondary d-flex justify-content-start align-items-center">
             <span class="fs-1">{{ dot|raw }}</span>
@@ -27,12 +27,19 @@
                     <div class="d-none {{i}}-latest">
                         {{ include('shared/big-thumbnail.html.twig', {item: video}) }}
                     </div>
+                    
                 {% endfor %}
+                
             {% endfor %}
-
+            <div class= "btn-load-more-main rounded-4">
+            <div class ="btn-load-more-mask d-flex align-items-center justify-content-center 
+            bg-primary rounded-4 p-3 title-font text-secondary" id="load-more-latest">Voir Plus
+            </div>
+            </div>
+            
         </section>
 
-        <button id="load-more-latest">Voir Plus</button>
+        
     </main>
 
 {% endblock %}
