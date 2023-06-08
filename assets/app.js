@@ -49,13 +49,6 @@ addSocialBtns(watchLaterIcons, watchLaterDivs, 'clock');
 addSocialBtns(likeIcons, likeDivs, 'hand-thumbs-up');
 
 
-//include plyr JS
-import Plyr from 'plyr';
-
-// create an instance of plyr
-const player = new Plyr('#player');
-
-
 function addMenuBtn(iconId, fill=true, device='desktop', offColor='primary', onColor='secondary'){
     
     let icon = document.getElementById(iconId);
