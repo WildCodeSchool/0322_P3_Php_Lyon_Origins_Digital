@@ -39,14 +39,34 @@ $animCurveEaseOut: cubic-bezier(.1,1,.8,.8);
     font-family: $textFont;
 }
 
-.tag-font {
-    font-family: $textFont;
+.tag-bg {
+    max-width: fit-content;
+    
+    .tag-list {
+        font-family: $textFont;
+        font-size: $h6-font-size;
+    }
+    
+    .tag-main {
+        font-family: $textFont;
+        font-size: $h5-font-size;
+    }
 }
 
 body {
     background-color: $dark;
 }
 
+.nav-btns {
+    
+    font-size: $h1-font-size;
+
+    .nav-item {
+        width: 20%;
+        height: 20%;
+    }
+
+}
 
 .bt {
 

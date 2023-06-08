@@ -4,119 +4,96 @@
 	{{ video.title }}
 {% endblock %}
 
+{% set exampleTags = ['lol', 'moba', 'cs', 'dofus', 'thecrew', 'valorant', 'moba', 'cs', 'dofus', 'thecrew', 'valorant'] %}
+{% set mobaTags = ['dota', 'smite', 'downgate'] %}
+
 {% block body %}
 
-	<section>
-		<div class="container-lg text-light sh-uptop">
-  			<div class="sh-menu row">
+	<div class="container-fluid text-light sh-uptop row">
 
-    			<div class="col-1">
-      				{% include "shared/navbar.html.twig" %}
-    			</div>
-
-    			<div class="col-lg-8 col-11">
-      				<div class="sh-video d-flex flex-column justify-content-start align-items-center m-0">
-            
-						<div class="sh-title-hash w-100 d-flex justify-content-between align-items-baseline mt-4">
-							<div class="sh-title title-font text-secondary ms-4 fs-2">{{ video.title }}</div>
-							<div class="sh-hash">{{ include('shared/category-tag.html.twig', {tag: 'lol'}) }}</div>
-						</div>
-
-						<div class="sh-player video-container m-4">
-							<video id="player" class="player" playsinline controls data-poster="{{ asset('build/images/' ~ video.posterUrl) }}">
-								<source src="{{ asset('build/videos/' ~ video.videoUrl) }}" type="video/mp4"/>
-							</video>
-						</div>
-
-						<div class="row m-4">
-							<div class="sh-creator col-xl-2 col-11">
-								<h5>Username</h5>
-							</div>
-							<div class="sh-description col-xl col-11 text-info">
-								<p>{{ video.description }}</p>
-							</div>
-						</div>
-
-        			</div>
-    			</div>
-    			
-				<div class="col-lg-3 d-none d-lg-block">
-      				<div class="sh-favs bg-primary d-flex flex-column justify-content-start align-items-center m-3 p-3 rounded-5">
-						<h5 class="title-font text-secondary">MES FAVORIS</h5>
-							{% for video in videos %}
-								{{ include('shared/small-thumbnail.html.twig', {item: video}) }}
-							{% endfor %}
-						<h5 class="title-font text-secondary mt-3">VOIR PLUS DE FAVORIS</h5>
-						
-					</div>
-    			</div>
-
-  			</div>
+		<div class="col-lg-1 d-lg-block d-none">
+			{% include "shared/navbar-desktop.html.twig" %}
 		</div>
-    </section>
 
-
-	<div class="container-fluid text-light">
-		<div>
-			<div
-				class="row mt-4">
-				<div class="col-md-1">
-					<h5>NavBar Here</h5>
+		<div class="col-lg-8 col-12">
+			<div class="sh-video d-flex flex-column justify-content-start align-items-center m-0">
+	
+				<div class="sh-title-hash row mt-4">
+					<div class="sh-title col-lg-10 title-font text-secondary fs-2">{{ video.title }}</div>
+					<div class="sh-hash d-lg-block d-none col-lg-2">{{ include('shared/category-tag.html.twig', {tag: 'lol', style: 'tag-main'}) }}</div>
 				</div>
-				{# fin partie navbar #}
 
-				{# début partie player #}
-				<div class="col-md-9">
-					<div class="row">
-						<div class="col-md-8">
-							<h1>{{ video.title }}</h1>
-						</div>
-						<div class="col-md-4 d-flex flex-row-reverse">
-							<h5>#Video Hash Here</h5>
-						</div>
+				<div class="sh-player video-container m-4">
+					<video id="player" class="player" playsinline controls data-poster="{{ asset('build/images/' ~ video.posterUrl) }}">
+						<source src="{{ asset('build/videos/' ~ video.videoUrl) }}" type="video/mp4"/>
+					</video>
+				</div>
+
+				<div class="row m-4">
+					<div class="sh-creator col-xl-2 col-11">
+						<h5>Username</h5>
 					</div>
-					<div class="video-container">
-						<video id="player" class="player" playsinline controls data-poster="{{ asset('build/images/' ~ video.posterUrl) }}">
-							<source src="{{ asset('build/videos/' ~ video.videoUrl) }}" type="video/mp4"/>
-						</video>
-					</div>
-					<div class="row">
-						<div class="col-md-2">
-							<h5>UserName</h5>
-						</div>
-						<div class="col-md-10">
-							<p>{{ video.description }}</p>
-						</div>
+					<div class="sh-description col-xl col-11 text-info">
+						<p>{{ video.description }}</p>
 					</div>
 				</div>
-				{# fin partie player #}
 
-				{# début partie favoris et hashtags #}
-				<div class="col-md-2 text-center">
-					<div class="row">
-						<h5>MES FAVORIS</h5>
-						<h5>Favorite Here</h5>
-						<h5>Favorite Here</h5>
-						<h5>Favorite Here</h5>
-						<h5>Favorite Here</h5>
-						<h5>Favorite Here</h5>
-					</div>
-					<div class="row">
-						<h5>Hashtags Here</h5>
-					</div>
-				</div>
-				{# fin partie favoris et hashtags #}
 			</div>
 		</div>
-	</div>
-	{# fin partie haute de la page #}
-
-	{# début partie basse de la page #}
-	<div class="container-fluid">
-		<div class="row">
-			A complèter...
+		
+		<div class="col-lg-3 d-none d-lg-block">
+			<div class="sh-favs bg-primary d-flex flex-column justify-content-start align-items-center m-3 p-3 rounded-5">
+				<h5 class="title-font text-secondary">MES FAVORIS</h5>
+					{% for video in videos |slice(0, 4) %}
+						{{ include('shared/small-thumbnail.html.twig', {item: video}) }}
+					{% endfor %}
+				<h5 class="title-font d-none text-secondary mt-3">VOIR PLUS DE FAVORIS</h5>
+			</div>
 		</div>
+
 	</div>
-	{# fin partie basse de la page #}
+
+	<div class="container-fluid row">
+		<div class="col row d-flex justify-content-start align-items-end">
+
+			<div class="text-secondary col-md-auto d-flex justify-content-start align-items-center flex-wrap">
+				<span class="fs-1">{{ dot|raw }}</span>
+				<h3 class="title-font m-0">PLUS DE</h3>
+				<span class="ms-4">{{ include('shared/category-tag.html.twig', {tag: 'moba', style: 'tag-list'}) }}</span>
+			</div>
+
+			<div class="text-secondary col-auto d-flex justify-content-start align-items-center flex-wrap">
+				<span class="fs-1">{{ dot|raw }}</span>
+				{% for mobaTag in mobaTags %}
+					<span class="m-1">{{ include('shared/category-tag.html.twig', {tag: mobaTag, style: 'tag-list'}) }}</span>
+				{% endfor %}
+			</div>
+
+		</div>
+
+		<div class="col-lg-4 col d-lg-block d-none">
+			<div class="d-flex justify-content-end align-items-end flex-wrap">
+				{% for exampleTag in exampleTags %}
+					<div class="m-1">{{ include('shared/category-tag.html.twig', {tag: exampleTag, style: 'tag-list'}) }}</div>
+				{% endfor %}
+			</div>
+		</div>
+			
+	</div>
+
+	<div class="container-fluid row">
+		<section class="col-auto d-flex justify-content-start align-items-center flex-wrap">
+			{% for video in videos %}
+				{{ include('shared/big-thumbnail.html.twig', {item: video}) }}
+			{% else %}
+				<p>Il n'y a pas de vidéos</p>
+			{% endfor %}
+		</section>
+	</div>
+			
+	<div class="col-lg-1 d-lg-none">
+		{% include "shared/navbar-mobile.html.twig" %}
+	</div>
+
 	<script src="{{ asset('build/app.js') }}"></script>
 {% endblock %}

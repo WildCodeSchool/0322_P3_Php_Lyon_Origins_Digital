@@ -50,11 +50,20 @@ import Plyr from 'plyr';
 const player = new Plyr('#player');
 
 
-function addMenuBtn(iconId, fill=true, offColor='light', onColor='secondary'){
-    const icon = document.getElementById(iconId);
-    const div = document.getElementById('nav-'+iconId);
+function addMenuBtn(iconId, fill=true, device='desktop', offColor='primary', onColor='secondary'){
+    
+    let icon = document.getElementById(iconId);
+    let div = document.getElementById('nav-'+iconId);
+    
+    if (device === 'mobile') {
+        icon = document.getElementById(iconId+'-mobile');
+        div = document.getElementById('nav-'+iconId+'-mobile');
+    }
 
     icon.classList.add('bi-'+iconId);
+    div.classList.add('bg-secondary');
+    div.classList.add('rounded-pill');
+    div.classList.add('p-3');
 
     div.classList.add('text-'+offColor);
     div.addEventListener('click', function(){
@@ -64,9 +73,14 @@ function addMenuBtn(iconId, fill=true, offColor='light', onColor='secondary'){
         }
         div.classList.toggle('text-'+offColor);
         div.classList.toggle('text-'+onColor);
+        div.classList.toggle('bg-dark');
     })
 }
 
 addMenuBtn('house');
 addMenuBtn('play');
 addMenuBtn('hash', false);
+
+addMenuBtn('house', true, 'mobile');
+addMenuBtn('play', true, 'mobile');
+addMenuBtn('hash', false, 'mobile');
