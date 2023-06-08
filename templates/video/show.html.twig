@@ -7,19 +7,19 @@
 {% block body %}
 
 	<section>
-		<div class="container-md text-light sh-uptop">
+		<div class="container-lg text-light sh-uptop">
   			<div class="sh-menu row">
 
     			<div class="col-1">
       				{% include "shared/navbar.html.twig" %}
     			</div>
 
-    			<div class="col-9">
-      				<div class="sh-video d-flex flex-column justify-content-start align-items-center">
+    			<div class="col-lg-8 col-11">
+      				<div class="sh-video d-flex flex-column justify-content-start align-items-center m-0">
             
-						<div class="sh-title-hash w-100 d-flex justify-content-between align-items-baseline m-4">
-							<div class="sh-title title-font text-secondary">{{ video.title }}</div>
-							<div class="sh-hash">#Video Hash Here</div>
+						<div class="sh-title-hash w-100 d-flex justify-content-between align-items-baseline mt-4">
+							<div class="sh-title title-font text-secondary ms-4 fs-2">{{ video.title }}</div>
+							<div class="sh-hash">{{ include('shared/category-tag.html.twig', {tag: 'lol'}) }}</div>
 						</div>
 
 						<div class="sh-player video-container m-4">
@@ -29,10 +29,10 @@
 						</div>
 
 						<div class="row m-4">
-							<div class="sh-creator col-2">
-								<h5>UserName</h5>
+							<div class="sh-creator col-xl-2 col-11">
+								<h5>Username</h5>
 							</div>
-							<div class="sh-description col">
+							<div class="sh-description col-xl col-11 text-info">
 								<p>{{ video.description }}</p>
 							</div>
 						</div>
@@ -40,14 +40,14 @@
         			</div>
     			</div>
     			
-				<div class="col">
-      				<div class="sh-favs bg-primary d-flex flex-column justify-content-start align-items-center m-2">
+				<div class="col-lg-3 d-none d-lg-block">
+      				<div class="sh-favs bg-primary d-flex flex-column justify-content-start align-items-center m-3 p-3 rounded-5">
 						<h5 class="title-font text-secondary">MES FAVORIS</h5>
-						<h5>Favorite Here</h5>
-						<h5>Favorite Here</h5>
-						<h5>Favorite Here</h5>
-						<h5>Favorite Here</h5>
-						<h5>Favorite Here</h5>
+							{% for video in videos %}
+								{{ include('shared/small-thumbnail.html.twig', {item: video}) }}
+							{% endfor %}
+						<h5 class="title-font text-secondary mt-3">VOIR PLUS DE FAVORIS</h5>
+						
 					</div>
     			</div>
 
