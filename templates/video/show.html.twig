@@ -6,6 +6,7 @@
 
 {% set exampleTags = ['lol', 'moba', 'cs', 'dofus', 'thecrew', 'valorant', 'moba', 'cs', 'dofus', 'thecrew', 'valorant'] %}
 {% set mobaTags = ['dota', 'smite', 'downgate'] %}
+{% set offset = 6 %}
 
 {% block body %}
 
@@ -44,8 +45,8 @@
 		<div class="col-lg-3 d-none d-lg-block">
 			<div class="sh-favs bg-primary d-flex flex-column justify-content-start align-items-center m-3 p-3 rounded-5">
 				<h5 class="title-font text-secondary">MES FAVORIS</h5>
-					{% for video in videos |slice(0, 4) %}
-						{{ include('shared/small-thumbnail.html.twig', {item: video}) }}
+					{% for latestVideo in latestVideos |slice(0, 4) %}
+						{{ include('shared/small-thumbnail.html.twig', {item: latestVideo}) }}
 					{% endfor %}
 				<h5 class="title-font d-none text-secondary mt-3">VOIR PLUS DE FAVORIS</h5>
 			</div>
@@ -83,11 +84,21 @@
 
 	<div class="container-fluid row">
 		<section class="col-auto d-flex justify-content-start align-items-center flex-wrap">
-			{% for video in videos %}
-				{{ include('shared/big-thumbnail.html.twig', {item: video}) }}
-			{% else %}
-				<p>Il n'y a pas de vidéos</p>
-			{% endfor %}
+            {% for i in 0.. (latestVideos|length / offset) %}
+                {% for latestVideo in latestVideos |slice(0 + i * offset, offset) %}
+                    <div class="d-none {{i}}-moba">
+                        {{ include('shared/big-thumbnail.html.twig', {item: latestVideo}) }}
+                    </div>
+                    
+                {% endfor %}
+            {% endfor %}
+            <div class= "btn-load-more-main rounded-4">
+            	<div 
+				class="btn-load-more-mask d-flex align-items-center justify-content-center bg-primary rounded-4 p-3 title-font text-secondary" 
+				id="load-more-moba">
+					Voir Plus
+            	</div>
+            </div>
 		</section>
 	</div>
 			

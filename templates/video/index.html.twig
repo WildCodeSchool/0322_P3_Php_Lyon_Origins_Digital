@@ -4,7 +4,8 @@
 
 {% block body %}
 
-    
+    {% set offset = 6 %}
+
     <main class="container">
 
         <div class="text-secondary d-flex justify-content-start align-items-center">
@@ -13,13 +14,25 @@
         </div>
 
         <section class="d-flex justify-content-start align-items-center flex-wrap">
-            {% for video in videos %}
-                {{ include('shared/big-thumbnail.html.twig', {item: video}) }}
-            {% else %}
-                <p>Il n'y a pas de vidéos</p>
-            {% endfor %}
 
+            {% for i in 0.. (latestVideos|length / offset) %}
+                {% for latestVideo in latestVideos |slice(0 + i * offset, offset) %}
+                    <div class="d-none {{i}}-latest">
+                        {{ include('shared/big-thumbnail.html.twig', {item: latestVideo}) }}
+                    </div>
+                    
+                {% endfor %}
+                
+            {% endfor %}
+            <div class= "btn-load-more-main rounded-4">
+            <div class ="btn-load-more-mask d-flex align-items-center justify-content-center 
+            bg-primary rounded-4 p-3 title-font text-secondary" id="load-more-latest">Voir Plus
+            </div>
+            </div>
+            
         </section>
+
+        
     </main>
 
 {% endblock %}
