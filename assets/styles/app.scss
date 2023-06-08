@@ -11,10 +11,10 @@ $btSizeFactor: 100%;
 
 // -- fonts --
 $titleFont: 'Staatliches', cursive;
-$textFont:  'Inter', sans-serif;
+$textFont: 'Inter', sans-serif;
 
 // -- animations --
-$animCurveEaseOut: cubic-bezier(.1,1,.8,.8);
+$animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
 
 // ---------------------------------------------------------
 
@@ -41,23 +41,23 @@ body {
     width: $btWidth * 1.03;
     aspect-ratio: 1 / 1.02;
     scale: $btSizeFactor;
-        
+
     .bt-main {
         width: $btWidth;
         transform: translateY(($btWidth * .1)/2);
-        background: linear-gradient(135deg, $primary 50%, $secondary)!important;
+        background: linear-gradient(135deg, $primary 50%, $secondary) !important;
         transform-origin: center;
 
         .bt-title {
-            font-size: calc($btWidth * 0.08)!important;
+            font-size: calc($btWidth * 0.08) !important;
         }
-        
+
         .bt-main-mask {
             transform-origin: center;
             transform: scale(99%);
             width: $btWidth;
         }
-        
+
         .bt-line {
             width: calc($btWidth * 0.75);
             height: 1px;
@@ -75,8 +75,8 @@ body {
 
         .bt-socials {
             div:hover {
-                cursor:pointer;
-                color: $secondary!important;
+                cursor: pointer;
+                color: $secondary !important;
             }
         }
 
@@ -92,7 +92,7 @@ body {
             font-family: $textFont;
         }
     }
-    
+
     &:hover {
 
         rotate: -2deg;
@@ -111,5 +111,36 @@ body {
             transform: rotate(4deg);
             border: 5px solid $secondary;
         }
+    }
+}
+
+.btn-load-more-main {
+    transition: .7s $animCurveEaseOut;
+    width: $btWidth;
+    aspect-ratio: 1 / 0.94;
+    font-size: calc($btWidth * 0.08);
+    scale: 98%;
+    transform: translateY(($btWidth * .005)/2);
+    background: linear-gradient(135deg, $primary 50%, $secondary) !important;
+    cursor: pointer;
+
+    .btn-load-more-mask {
+        transition: .7s $animCurveEaseOut;
+        width: $btWidth;
+        aspect-ratio: 1 / 0.94;
+        font-size: calc($btWidth * 0.08);
+        scale: 98.5%;
+        transform: translateY(($btWidth * .005)/2);
+        cursor: pointer;
+    }
+
+    &:hover {
+        scale: 95%;
+        rotate: -2deg;
+    }
+
+    &:active,
+    &:focus {
+        scale: 90%;
     }
 }
