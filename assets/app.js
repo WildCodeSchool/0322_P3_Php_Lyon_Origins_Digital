@@ -14,6 +14,12 @@ import './bootstrap';
 // include bootstrap JS
 require('bootstrap');
 
+//include plyr JS
+import Plyr from 'plyr';
+
+// create an instance of plyr
+const player = new Plyr('#player');
+
 const favIcons = document.getElementsByClassName('fav');
 const watchLaterIcons = document.getElementsByClassName('watchLater');
 const likeIcons = document.getElementsByClassName('like');
@@ -21,19 +27,19 @@ const favDivs = document.getElementsByClassName('bt-fav');
 const watchLaterDivs = document.getElementsByClassName('bt-watchlater');
 const likeDivs = document.getElementsByClassName('bt-like');
 
-function addSocialBtns(icons, divs, className, offColor='light', onColor='secondary'){
-    for (let icon of icons){
-        icon.classList.add('bi-'+className);
+function addSocialBtns(icons, divs, className, offColor = 'light', onColor = 'secondary') {
+    for (let icon of icons) {
+        icon.classList.add('bi-' + className);
     }
 
-    for (let div of divs){
-        div.classList.add('text-'+offColor);
+    for (let div of divs) {
+        div.classList.add('text-' + offColor);
         let icon = div.firstElementChild;
-        div.addEventListener('click', function(){
-            icon.classList.toggle('bi-'+className);
-            icon.classList.toggle('bi-'+className+'-fill');
-            div.classList.toggle('text-'+offColor);
-            div.classList.toggle('text-'+onColor);
+        div.addEventListener('click', function () {
+            icon.classList.toggle('bi-' + className);
+            icon.classList.toggle('bi-' + className + '-fill');
+            div.classList.toggle('text-' + offColor);
+            div.classList.toggle('text-' + onColor);
         })
     }
 }

@@ -2,7 +2,7 @@ $primary: #581EA3; // purple
 $info: #CEA8FF; // light purple
 $secondary: #FFE500; // yellow
 $dark: #241C52; // dark blue
-$light: #FFFFFF; // white
+$light: #FFFFFF; // whites
 // custom variables ----------------------------------------
 
 // -- spacing/sizing --
@@ -17,12 +17,14 @@ $titleFont: 'Staatliches', cursive;
 $textFont: 'Inter', sans-serif;
 
 // -- animations --
-$animCurveEaseOut: cubic-bezier(.1,1,.8,.8);
+$animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
 
 // ---------------------------------------------------------
 
 @import "~bootstrap/scss/bootstrap";
+
 @import "~bootstrap-icons/font/bootstrap-icons";
+
 @import "~plyr/src/sass/plyr.scss";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Staatliches&display=swap');
 
@@ -78,20 +80,20 @@ body {
     .bt-main {
         width: $btWidth;
         transform: translateY(($btWidth * .1)/2);
-        background: linear-gradient(135deg, $primary 50%, $secondary)!important;
+        background: linear-gradient(135deg, $primary 50%, $secondary) !important;
         transform-origin: center;
         transition: .7s $animCurveEaseOut;
 
         .bt-title {
-            font-size: calc($btWidth * 0.08)!important;
+            font-size: calc($btWidth * 0.08) !important;
         }
-        
+
         .bt-main-mask {
             transform-origin: center;
             transform: scale(99%);
             width: $btWidth;
         }
-        
+
         .bt-line {
             width: calc($btWidth * 0.75);
             height: 1px;
@@ -111,8 +113,8 @@ body {
 
         .bt-socials {
             div:hover {
-                cursor:pointer;
-                color: $secondary!important;
+                cursor: pointer;
+                color: $secondary  !important;
             }
         }
 
@@ -128,7 +130,7 @@ body {
             font-family: $textFont;
         }
     }
-    
+
     &:hover {
 
         rotate: -2deg;
