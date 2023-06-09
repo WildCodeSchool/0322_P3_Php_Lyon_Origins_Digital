@@ -1,3 +1,110 @@
-{% extends "base.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{# TODO (fred) add video player by id. #}
+{% block title %}
+	{{ video.title }}
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('plyr') }}
+{% endblock %}
+
+{% set exampleTags = ['lol', 'moba', 'cs', 'dofus', 'thecrew', 'valorant', 'moba', 'cs', 'dofus', 'thecrew', 'valorant'] %}
+{% set mobaTags = ['dota', 'smite', 'downgate'] %}
+{% set offset = 6 %}
+
+{% block body %}
+
+	<div class="container-fluid text-light sh-uptop row">
+
+		<div class="col-lg-1 d-lg-block d-none">
+			{% include "shared/navbar-desktop.html.twig" %}
+		</div>
+
+		<div class="col-lg-8 col-12">
+			<div class="sh-video d-flex flex-column justify-content-start align-items-center m-0">
+
+				<div class="sh-title-hash row mt-4">
+					<div class="sh-title col-lg-10 title-font text-secondary fs-2">{{ video.title }}</div>
+					<div class="sh-hash d-lg-block d-none col-lg-2">{{ include('shared/category-tag.html.twig', {tag: 'lol', style: 'tag-main'}) }}</div>
+				</div>
+
+				<div class="sh-player video-container m-4">
+					<video id="player" class="player" playsinline controls data-poster="{{ asset('build/images/' ~ video.posterUrl) }}">
+						<source src="{{ asset('build/videos/' ~ video.videoUrl) }}" type="video/mp4"/>
+					</video>
+				</div>
+
+				<div class="row m-4">
+					<div class="sh-creator col-xl-2 col-11">
+						<h5>Username</h5>
+					</div>
+					<div class="sh-description col-xl col-11 text-info">
+						<p>{{ video.description }}</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="col-lg-3 d-none d-lg-block">
+			<div class="sh-favs bg-primary d-flex flex-column justify-content-start align-items-center m-3 p-3 rounded-5">
+				<h5 class="title-font text-secondary">MES FAVORIS</h5>
+				{% for latestVideo in latestVideos |slice(0, 4) %}
+					{{ include('shared/small-thumbnail.html.twig', {item: latestVideo}) }}
+				{% endfor %}
+				<h5 class="title-font d-none text-secondary mt-3">VOIR PLUS DE FAVORIS</h5>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="container-fluid row">
+		<div class="col row d-flex justify-content-start align-items-end">
+
+			<div class="text-secondary col-md-auto d-flex justify-content-start align-items-center flex-wrap">
+				<span class="fs-1">{{ dot|raw }}</span>
+				<h3 class="title-font m-0">PLUS DE</h3>
+				<span class="ms-4">{{ include('shared/category-tag.html.twig', {tag: 'moba', style: 'tag-list'}) }}</span>
+			</div>
+
+			<div class="text-secondary col-auto d-flex justify-content-start align-items-center flex-wrap">
+				<span class="fs-1">{{ dot|raw }}</span>
+				{% for mobaTag in mobaTags %}
+					<span class="m-1">{{ include('shared/category-tag.html.twig', {tag: mobaTag, style: 'tag-list'}) }}</span>
+				{% endfor %}
+			</div>
+
+		</div>
+
+		<div class="col-lg-4 col d-lg-block d-none">
+			<div class="d-flex justify-content-end align-items-end flex-wrap">
+				{% for exampleTag in exampleTags %}
+					<div class="m-1">{{ include('shared/category-tag.html.twig', {tag: exampleTag, style: 'tag-list'}) }}</div>
+				{% endfor %}
+			</div>
+		</div>
+
+	</div>
+
+	<div class="container-fluid row">
+		<section class="col-auto d-flex justify-content-start align-items-center flex-wrap">
+			{% for i in 0.. (latestVideos|length / offset) %}
+				{% for latestVideo in latestVideos |slice(0 + i * offset, offset) %}
+					<div class="d-none {{i}}-latest">
+						{{ include('shared/big-thumbnail.html.twig', {item: latestVideo}) }}
+					</div>
+
+				{% endfor %}
+			{% endfor %}
+			<div class="btn-load-more-main rounded-4">
+				<div class="btn-load-more-mask d-flex align-items-center justify-content-center bg-primary rounded-4 p-3 title-font text-secondary" id="load-more-latest">
+					Voir Plus
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<div class="col-lg-1 d-lg-none">
+		{% include "shared/navbar-mobile.html.twig" %}
+	</div>
+{% endblock %}

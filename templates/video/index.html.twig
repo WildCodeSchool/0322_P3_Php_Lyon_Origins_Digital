@@ -2,12 +2,6 @@
 
 {% block title %}Galerie des Vidéo{% endblock %}
 
-{% set dot = "<i class='bi bi-dot m-0'></i>" %}
-
-{% set fav = "<i class='bi fav'></i>" %}
-{% set watchLater = "<i class='bi watchLater'></i>" %}
-{% set like = "<i class='bi like'></i>" %}
-
 {% block body %}
 
     {% set offset = 6 %}
@@ -21,10 +15,10 @@
 
         <section class="d-flex justify-content-start align-items-center flex-wrap">
 
-            {% for i in 0.. (videos|length / offset) %}
-                {% for video in videos |slice(0 + i * offset, offset) %}
+            {% for i in 0.. (latestVideos|length / offset) %}
+                {% for latestVideo in latestVideos |slice(0 + i * offset, offset) %}
                     <div class="d-none {{i}}-latest">
-                        {{ include('shared/big-thumbnail.html.twig', {item: video}) }}
+                        {{ include('shared/big-thumbnail.html.twig', {item: latestVideo}) }}
                     </div>
                     
                 {% endfor %}

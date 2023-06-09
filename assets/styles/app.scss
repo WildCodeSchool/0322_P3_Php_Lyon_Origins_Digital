@@ -2,16 +2,19 @@ $primary: #581EA3; // purple
 $info: #CEA8FF; // light purple
 $secondary: #FFE500; // yellow
 $dark: #241C52; // dark blue
-$light: #FFFFFF; // white
+$light: #FFFFFF; // whites
 // custom variables ----------------------------------------
 
 // -- spacing/sizing --
 $btWidth: 280px;
 $btSizeFactor: 100%;
 
+$stWidth: 180px;
+$stSizeFactor: 100%;
+
 // -- fonts --
 $titleFont: 'Staatliches', cursive;
-$textFont: 'Inter', sans-serif;
+$textFont:  'Inter', sans-serif;
 
 // -- animations --
 $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
@@ -20,36 +23,67 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
 
 @import "~bootstrap/scss/bootstrap";
 @import "~bootstrap-icons/font/bootstrap-icons";
-@import "plyr.scss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Staatliches&display=swap');
+@import "~plyr/src/sass/plyr.scss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Staatliches&display=swap');
 
-* {
-    transition: .7s $animCurveEaseOut;
+.video-container {
+    border-radius: 15px;
+    overflow: hidden;
 }
 
 .title-font {
     font-family: $titleFont;
 }
 
+.text-font {
+    font-family: $textFont;
+}
+
+.tag-bg {
+    max-width: fit-content;
+    
+    .tag-list {
+        font-family: $textFont;
+        font-size: $h6-font-size;
+    }
+    
+    .tag-main {
+        font-family: $textFont;
+        font-size: $h5-font-size;
+    }
+}
+
 body {
     background-color: $dark;
 }
 
+.nav-btns {
+    
+    font-size: $h1-font-size;
+
+    .nav-item {
+        width: 20%;
+        height: 20%;
+    }
+
+}
 
 .bt {
 
     width: $btWidth * 1.03;
     aspect-ratio: 1 / 1.02;
     scale: $btSizeFactor;
-
+    transition: .7s $animCurveEaseOut;
+        
     .bt-main {
         width: $btWidth;
         transform: translateY(($btWidth * .1)/2);
-        background: linear-gradient(135deg, $primary 50%, $secondary) !important;
+        background: linear-gradient(135deg, $primary 50%, $secondary)!important;
         transform-origin: center;
+        transition: .7s $animCurveEaseOut;
 
         .bt-title {
-            font-size: calc($btWidth * 0.08) !important;
+            font-size: calc($btWidth * 0.08)!important;
         }
 
         .bt-main-mask {
@@ -57,11 +91,12 @@ body {
             transform: scale(99%);
             width: $btWidth;
         }
-
+        
         .bt-line {
             width: calc($btWidth * 0.75);
             height: 1px;
             background-color: $info;
+            transition: .7s $animCurveEaseOut;
         }
 
         .bt-poster {
@@ -71,12 +106,13 @@ body {
             left: calc($btWidth * .04);
             transform-origin: center;
             border: 0px solid $secondary;
+            transition: .7s $animCurveEaseOut;
         }
 
         .bt-socials {
             div:hover {
                 cursor: pointer;
-                color: $secondary !important;
+                color: $secondary  !important;
             }
         }
 
@@ -92,7 +128,7 @@ body {
             font-family: $textFont;
         }
     }
-
+    
     &:hover {
 
         rotate: -2deg;
@@ -144,3 +180,63 @@ body {
         scale: 90%;
     }
 }
+
+.st {
+
+    width: $stWidth * 1.03;
+    aspect-ratio: 1 / 0.8;
+    scale: $stSizeFactor;
+    transition: .7s $animCurveEaseOut;
+        
+    .st-main {
+        width: $stWidth;
+        transform: translateY(($stWidth * .1)/2);
+        background: linear-gradient(135deg, $primary 50%, $secondary)!important;
+        transform-origin: center;
+        transition: .7s $animCurveEaseOut;
+        
+        .st-main-mask {
+            transform-origin: center;
+            transform: scale(99%);
+            width: 100%;
+
+            background: linear-gradient(135deg, $primary 50%, $dark)!important;
+        }
+
+        .st-title {
+            font-size: calc($stWidth * 0.08)!important;
+        }
+
+        .st-poster {
+            width: calc($stWidth * 1);
+            aspect-ratio: 16 / 10;
+            top: calc($stWidth * -.05);
+            left: calc($stWidth * -.02);
+            transform-origin: center;
+            border: 0px solid $secondary;
+            transition: .7s $animCurveEaseOut;
+        }
+
+        .st-spacer {
+            width: calc($stWidth * 0.75 + $stWidth * .04 + 1rem);
+            height: calc(($stWidth * 0.9 / 16 * 10) - $stWidth * .02);
+        }
+    }
+    
+    &:hover {
+
+        rotate: -2deg;
+        transform: translateY(5px);
+
+        .st-main {
+            scale: 96%;
+        }
+
+        .st-poster {
+            top: calc($stWidth * -.13);
+            transform: rotate(4deg);
+            border: 5px solid $secondary;
+        }
+    }
+}
+

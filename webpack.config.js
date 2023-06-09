@@ -13,7 +13,6 @@ Encore
     .setPublicPath('/build')
     // only needed for CDN's or sub-directory deploy
     // .setManifestKeyPrefix('build/')
-
     .copyFiles({
         from: './assets/images',
         // optional target path, relative to the output dir
@@ -36,6 +35,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+    .addEntry('plyr', './assets/plyr.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
@@ -71,6 +71,9 @@ Encore
     })
     // uncomment if you use TypeScript
     // .enableTypeScriptLoader()
+
+// uncomment if you use React
+// .enableReactPreset()
 
 // uncomment to get integrity="..." attributes on your script & link tags
 // requires WebpackEncoreBundle 1.4 or higher
