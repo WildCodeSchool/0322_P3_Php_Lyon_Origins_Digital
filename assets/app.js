@@ -14,11 +14,6 @@ import './bootstrap';
 // include bootstrap JS
 require('bootstrap');
 
-//include plyr JS
-import Plyr from 'plyr';
-// create an instance of plyr
-const player = new Plyr('#player');
-
 const favIcons = document.getElementsByClassName('fav');
 const watchLaterIcons = document.getElementsByClassName('watchLater');
 const likeIcons = document.getElementsByClassName('like');
