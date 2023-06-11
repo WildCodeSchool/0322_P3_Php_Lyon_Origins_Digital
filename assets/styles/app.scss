@@ -152,10 +152,10 @@ body {
 
 .btn-load-more-main {
     transition: .7s $animCurveEaseOut;
-    width: $btWidth;
+    width: $btWidth * 0.97;
     aspect-ratio: 1 / 0.94;
     font-size: calc($btWidth * 0.08);
-    scale: 98%;
+    scale: 100%;
     transform: translateY(($btWidth * .005)/2);
     background: linear-gradient(135deg, $primary 50%, $secondary) !important;
     cursor: pointer;

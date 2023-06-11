@@ -50,7 +50,7 @@
 			<div class="sh-favs bg-primary d-flex flex-column justify-content-start align-items-center m-3 p-3 rounded-5">
 				<h5 class="title-font text-secondary">MES FAVORIS</h5>
 				{% for latestVideo in latestVideos |slice(0, 4) %}
-					{{ include('shared/small-thumbnail.html.twig', {item: latestVideo}) }}
+					{{ include('shared/thumbnail/small-thumbnail.html.twig', {item: latestVideo}) }}
 				{% endfor %}
 				<h5 class="title-font d-none text-secondary mt-3">VOIR PLUS DE FAVORIS</h5>
 			</div>
@@ -91,7 +91,7 @@
 			{% for i in 0.. (latestVideos|length / offset) %}
 				{% for latestVideo in latestVideos |slice(0 + i * offset, offset) %}
 					<div class="d-none {{i}}-latest">
-						{{ include('shared/big-thumbnail.html.twig', {item: latestVideo}) }}
+						{{ include('shared/thumbnail/big-thumbnail.html.twig', {item: latestVideo}) }}
 					</div>
 
 				{% endfor %}

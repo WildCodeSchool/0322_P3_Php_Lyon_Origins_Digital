@@ -1,0 +1,27 @@
+{% set offset = tCount %}
+
+<section class="container">
+
+    <div class="text-secondary d-flex justify-content-start align-items-center">
+        <span class="fs-1">{{ dot|raw }}</span>
+        <h3 class="title-font m-0">Les dernieres sorties</h3>
+    </div>
+
+    <div class="d-flex justify-content-start align-items-center flex-wrap">
+
+        {% for i in 0.. (latestVideos|length / offset) %}
+            {% for video in tContents |slice(0 + i * offset, offset) %}
+                <div class="d-none {{i}}-latest">
+                    {{ include('shared/thumbnail/big-thumbnail.html.twig', {item: video}) }}
+                </div>
+                
+            {% endfor %}
+            
+        {% endfor %}
+
+        {{ include('shared/thumbnail/load-more.html.twig', {gallery: tBtn}) }}
+        
+    </div>
+
+    
+</section>
