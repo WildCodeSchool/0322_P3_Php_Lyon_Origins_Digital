@@ -150,29 +150,47 @@ body {
     }
 }
 
-.btn-load-more-main {
+.load-more {
+
+    width: $btWidth * 1.03;
+    aspect-ratio: 1 / 1.02;
+    scale: $btSizeFactor;
     transition: .7s $animCurveEaseOut;
-    width: $btWidth * 0.97;
-    aspect-ratio: 1 / 0.94;
-    font-size: calc($btWidth * 0.08);
-    scale: 100%;
-    transform: translateY(($btWidth * .005)/2);
-    background: linear-gradient(135deg, $primary 50%, $secondary) !important;
     cursor: pointer;
 
-    .btn-load-more-mask {
-        transition: .7s $animCurveEaseOut;
+    .load-more-main {
         width: $btWidth;
-        aspect-ratio: 1 / 0.94;
-        font-size: calc($btWidth * 0.08);
-        scale: 98.5%;
-        transform: translateY(($btWidth * .005)/2);
-        cursor: pointer;
+        height: 79%;
+        transform: translateY(($btWidth * .1)/2);
+        background: linear-gradient(135deg, $primary 50%, $secondary)!important;
+        transform-origin: center;
+        transition: .7s $animCurveEaseOut;
+    }
+
+    .load-more-mask {
+        transform-origin: center;
+        transform: scale(99%);
+        width: $btWidth;
+        height: 100%;
+    }
+
+    .load-more-title {
+        font-size: calc($btWidth * 0.08)!important;
+        transition: .7s $animCurveEaseOut;
     }
 
     &:hover {
-        scale: 95%;
+
         rotate: -2deg;
+        transform: translateY(5px);
+
+        .load-more-main {
+            scale: 96%;
+        }
+
+        .load-more-title {
+            font-size: calc($btWidth * 0.1)!important;
+        }
     }
 
     &:active,
@@ -180,6 +198,37 @@ body {
         scale: 90%;
     }
 }
+
+// .btn-load-more-main {
+//     transition: .7s $animCurveEaseOut;
+//     width: $btWidth;
+//     aspect-ratio: 1 / 0.94;
+//     font-size: calc($btWidth * 0.08);
+//     scale: 100%;
+//     transform: translateY(($btWidth * .005)/2);
+//     background: linear-gradient(135deg, $primary 50%, $secondary) !important;
+//     cursor: pointer;
+
+//     .btn-load-more-mask {
+//         transition: .7s $animCurveEaseOut;
+//         width: $btWidth;
+//         aspect-ratio: 1 / 0.94;
+//         font-size: calc($btWidth * 0.08);
+//         scale: 98.5%;
+//         transform: translateY(($btWidth * .005)/2);
+//         cursor: pointer;
+//     }
+
+//     &:hover {
+//         scale: 95%;
+//         rotate: -2deg;
+//     }
+
+//     &:active,
+//     &:focus {
+//         scale: 90%;
+//     }
+// }
 
 .st {
 
