@@ -14,12 +14,55 @@ import './bootstrap';
 // include bootstrap JS
 require('bootstrap');
 
-const favIcons = document.getElementsByClassName('fav');
-const watchLaterIcons = document.getElementsByClassName('watchLater');
-const likeIcons = document.getElementsByClassName('like');
-const favDivs = document.getElementsByClassName('bt-fav');
-const watchLaterDivs = document.getElementsByClassName('bt-watchlater');
-const likeDivs = document.getElementsByClassName('bt-like');
+function loadMore() {
+
+    const loadMoreButtons = document.getElementsByClassName('load-more-btn');
+    
+    for (const loadMoreButton of loadMoreButtons) {
+        
+        const idName = loadMoreButton.id;
+        const firstGroupOfVideos = document.getElementsByClassName('0-' + idName);
+        const loadMoreBtn = document.getElementById(idName);
+
+        
+        for (const videos of firstGroupOfVideos) {
+            videos.classList.remove('d-none');
+        }
+        let idNbr = 1;
+
+        
+        loadMoreBtn.addEventListener('click', function () {
+            let groupOfVideos = document.getElementsByClassName(idNbr + '-' + idName);
+            for (const part of groupOfVideos) {
+                part.classList.remove('d-none');
+            }
+            
+            idNbr++;
+        })
+    }
+    
+}
+
+function addSocialBtn(name, className, offColor = 'light', onColor = 'secondary') {
+    
+    const icons = document.getElementsByClassName(name);
+    const divs = document.getElementsByClassName('bt-'+name);
+    
+    for (const icon of icons) {
+        icon.classList.add('bi-' + className);
+    }
+    
+    for (const div of divs) {
+        div.classList.add('text-' + offColor);
+        const icon = div.firstElementChild;
+        div.addEventListener('click', function () {
+            icon.classList.toggle('bi-' + className);
+            icon.classList.toggle('bi-' + className + '-fill');
+            div.classList.toggle('text-' + offColor);
+            div.classList.toggle('text-' + onColor);
+        })
+    }
+}
 
 function addMenuBtn(iconId, fill = true, device = 'desktop', offColor = 'primary', onColor = 'secondary') {
     let icon = document.getElementById(iconId);
@@ -44,56 +87,11 @@ function addMenuBtn(iconId, fill = true, device = 'desktop', offColor = 'primary
     })
 }
 
-function addSocialBtns(icons, divs, className, offColor = 'light', onColor = 'secondary') {
-    for (let icon of icons) {
-        icon.classList.add('bi-' + className);
-    }
-
-    for (let div of divs) {
-        div.classList.add('text-' + offColor);
-        let icon = div.firstElementChild;
-        div.addEventListener('click', function () {
-            icon.classList.toggle('bi-' + className);
-            icon.classList.toggle('bi-' + className + '-fill');
-            div.classList.toggle('text-' + offColor);
-            div.classList.toggle('text-' + onColor);
-        })
-    }
-}
-
-function loadMore() {
-
-    const loadMoreButtons = document.getElementsByClassName('load-more-btn');
-    
-    for (const loadMoreButton of loadMoreButtons) {
-        
-        const idName = loadMoreButton.id;
-        const firstParts = document.getElementsByClassName('0-' + idName);
-        const loadMoreBtn = document.getElementById('load-more-'+idName);
-        
-        for (const firstPart of firstParts) {
-            firstPart.classList.remove('d-none');
-        }
-        let idNbr = 1;
-    
-        loadMoreBtn.addEventListener('click', function () {
-            let parts = document.getElementsByClassName(idNbr + '-' + idName);
-            for (const part of parts) {
-                part.classList.remove('d-none');
-            }
-    
-            idNbr++;
-        })
-    }
-
-}
-
-
 loadMore();
 
-addSocialBtns(favIcons, favDivs, 'heart');
-addSocialBtns(watchLaterIcons, watchLaterDivs, 'clock');
-addSocialBtns(likeIcons, likeDivs, 'hand-thumbs-up');
+addSocialBtn('fav', 'heart');
+addSocialBtn('watchLater', 'clock');
+addSocialBtn('like', 'hand-thumbs-up');
 
 addMenuBtn('house');
 addMenuBtn('play');
