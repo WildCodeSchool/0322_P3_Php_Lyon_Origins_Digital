@@ -61,26 +61,35 @@ function addSocialBtns(icons, divs, className, offColor = 'light', onColor = 'se
     }
 }
 
-function loadMore(idName, btnId) {
-    const firstParts = document.getElementsByClassName('0-' + idName);
-    const loadMoreBtn = document.getElementById(btnId);
+function loadMore() {
 
-    for (const firstPart of firstParts) {
-        firstPart.classList.remove('d-none');
-    }
-    let idNbr = 1;
-
-    loadMoreBtn.addEventListener('click', function () {
-        let parts = document.getElementsByClassName(idNbr + '-' + idName);
-        for (const part of parts) {
-            part.classList.remove('d-none');
+    const loadMoreButtons = document.getElementsByClassName('load-more-btn');
+    
+    for (const loadMoreButton of loadMoreButtons) {
+        
+        const idName = loadMoreButton.id;
+        const firstParts = document.getElementsByClassName('0-' + idName);
+        const loadMoreBtn = document.getElementById('load-more-'+idName);
+        
+        for (const firstPart of firstParts) {
+            firstPart.classList.remove('d-none');
         }
+        let idNbr = 1;
+    
+        loadMoreBtn.addEventListener('click', function () {
+            let parts = document.getElementsByClassName(idNbr + '-' + idName);
+            for (const part of parts) {
+                part.classList.remove('d-none');
+            }
+    
+            idNbr++;
+        })
+    }
 
-        idNbr++;
-    })
 }
 
-loadMore('latest', 'load-more-latest');
+
+loadMore();
 
 addSocialBtns(favIcons, favDivs, 'heart');
 addSocialBtns(watchLaterIcons, watchLaterDivs, 'clock');

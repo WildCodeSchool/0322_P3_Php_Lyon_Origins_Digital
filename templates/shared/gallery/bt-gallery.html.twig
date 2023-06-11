@@ -15,9 +15,9 @@
 
     <div class="d-flex justify-content-start align-items-center flex-wrap">
 
-        {% for i in 0.. (latestVideos|length / offset) %}
+        {% for i in 0.. (contents|length / offset) %}
             {% for video in contents |slice(0 + i * offset, offset) %}
-                <div class="d-none {{i}}-latest">
+                <div class="d-none {{i}}-{{id}}">
                     {{ include('shared/thumbnail/big-thumbnail.html.twig', {item: video}) }}
                 </div>
                 
@@ -25,7 +25,7 @@
             
         {% endfor %}
 
-        {{ include('shared/thumbnail/load-more.html.twig', {gallery: btn}) }}
+        {{ include('shared/thumbnail/load-more.html.twig', {gallery: id}) }}
         
     </div>
 

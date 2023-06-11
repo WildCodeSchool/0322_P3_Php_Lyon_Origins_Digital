@@ -15,10 +15,12 @@ class VideoController extends AbstractController
     public function show(Video $video, VideoRepository $videoRepository): Response
     {
         $latestVideos = $videoRepository->findLatestVideos();
+        $mobaVideos = $videoRepository->findLatestVideos();
 
         return $this->render('video/show.html.twig', [
             'video' => $video,
-            'latestVideos' => $latestVideos
+            'latestVideos' => $latestVideos,
+            'mobaVideos' => $mobaVideos,
         ]);
     }
 }
