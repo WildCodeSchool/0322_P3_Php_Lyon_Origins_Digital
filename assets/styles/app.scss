@@ -39,8 +39,9 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
     font-family: $textFont;
 }
 
-.tag-bg {
+.tag-item {
     max-width: fit-content;
+    cursor: pointer;
     
     .tag-list {
         font-family: $textFont;
@@ -52,6 +53,18 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
         font-family: $textFont;
         font-size: $h5-font-size;
         font-weight: 900;
+    }
+
+    &:hover {
+        background-color: $primary!important;
+        color: $secondary!important;
+    }
+
+    &:active,
+    &:focus {
+        scale: 99%;
+        background-color: $light!important;
+        color: $dark!important;
     }
 }
 
