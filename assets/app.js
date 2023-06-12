@@ -21,29 +21,27 @@ function loadMore() {
     for (const loadMoreButton of loadMoreButtons) {
         
         const idName = loadMoreButton.id;
-        const firstGroupOfVideos = document.getElementsByClassName('0-' + idName);
+        const firstGroupOfVideos = document.getElementsByClassName(idName + '-0');
         const loadMoreBtn = document.getElementById(idName);
-        const hiddenGroups = document.getElementsByClassName('d-none');
-
-        if (hiddenGroups.id.includes(idName)) {
-            
-        }
-
         
         for (const videos of firstGroupOfVideos) {
             videos.classList.remove('d-none');
         }
         let idNbr = 1;
-
         
         loadMoreBtn.addEventListener('click', function () {
-            let groupOfVideos = document.getElementsByClassName(idNbr + '-' + idName);
+            let groupOfVideos = document.getElementsByClassName(idName + '-' + idNbr);
             for (const part of groupOfVideos) {
                 part.classList.remove('d-none');
             }
             
             idNbr++;
+            
+            if (groupOfVideos.length == 1) { loadMoreBtn.parentElement.classList.add('d-none'); }
+            
         })
+
+
 
 
     }
