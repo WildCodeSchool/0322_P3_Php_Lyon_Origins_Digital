@@ -23,6 +23,11 @@ function loadMore() {
         const idName = loadMoreButton.id;
         const firstGroupOfVideos = document.getElementsByClassName('0-' + idName);
         const loadMoreBtn = document.getElementById(idName);
+        const hiddenGroups = document.getElementsByClassName('d-none');
+
+        if (hiddenGroups.id.includes(idName)) {
+            
+        }
 
         
         for (const videos of firstGroupOfVideos) {
@@ -39,6 +44,8 @@ function loadMore() {
             
             idNbr++;
         })
+
+
     }
     
 }
