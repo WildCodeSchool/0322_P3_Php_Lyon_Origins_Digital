@@ -17,7 +17,7 @@
 
         {% for i in 0.. (contents|length / offset) %}
             {% for video in contents |slice(0 + i * offset, offset) %}
-                <div class="d-none {{id}}-{{i}}">
+                <div class="d-none bt-container {{id}}-{{i}}">
                     {{ include('shared/thumbnail/big-thumbnail.html.twig', {item: video}) }}
                 </div>
                 

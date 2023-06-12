@@ -14,7 +14,7 @@ import './bootstrap';
 // include bootstrap JS
 require('bootstrap');
 
-function loadMore() {
+(function loadMore() {
 
     const loadMoreButtons = document.getElementsByClassName('load-more-btn');
     
@@ -40,13 +40,37 @@ function loadMore() {
             if (groupOfVideos.length == 1) { loadMoreBtn.parentElement.classList.add('d-none'); }
             
         })
+    }
+})();
 
+(function showBts() {
 
+    const hiddenBts = document.querySelectorAll('.d-none.bt-container')
 
+    function animateBt() {
+        for (const hBt of hiddenBts) {
+            hBt.style = 'scale: 100%;'
+        }
 
     }
     
-}
+    function listenToBtClassChange(mutationList, observer) {
+        mutationList.forEach(function(mutation) {
+            if (mutation.attributeName === 'class') {
+                animateBt();
+            }
+        })
+    }
+
+    for (const hBt of hiddenBts) {
+        const observer = new MutationObserver(listenToBtClassChange)
+        observer.observe(hBt, { attributes: true })
+    }
+
+    const appear = new Animation();
+
+})();
+
 
 function addSocialBtn(name, className, offColor = 'light', onColor = 'secondary') {
     
@@ -91,8 +115,6 @@ function addMenuBtn(iconId, fill = true, device = 'desktop', offColor = 'primary
         div.classList.toggle('bg-dark');
     })
 }
-
-loadMore();
 
 addSocialBtn('fav', 'heart');
 addSocialBtn('watchLater', 'clock');
