@@ -24,7 +24,7 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
 @import "~bootstrap/scss/bootstrap";
 @import "~bootstrap-icons/font/bootstrap-icons";
 @import "~plyr/src/sass/plyr.scss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Staatliches&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;900&family=Staatliches&display=swap');
 
 .video-container {
     border-radius: 15px;
@@ -39,17 +39,32 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
     font-family: $textFont;
 }
 
-.tag-bg {
+.tag-item {
     max-width: fit-content;
+    cursor: pointer;
     
     .tag-list {
         font-family: $textFont;
         font-size: $h6-font-size;
+        font-weight: 900;
     }
     
     .tag-main {
         font-family: $textFont;
         font-size: $h5-font-size;
+        font-weight: 900;
+    }
+
+    &:hover {
+        background-color: $primary!important;
+        color: $secondary!important;
+    }
+
+    &:active,
+    &:focus {
+        scale: 99%;
+        background-color: $light!important;
+        color: $dark!important;
     }
 }
 
@@ -122,9 +137,13 @@ body {
         }
 
         .bt-stats,
-        .bt-creator,
-        .bt-description {
+        .bt-creator {
             font-size: calc($btWidth * .04);
+            font-family: $textFont;
+        }
+
+        .bt-description {
+            font-size: calc($btWidth * .05);
             font-family: $textFont;
         }
     }
@@ -150,44 +169,13 @@ body {
     }
 }
 
-.btn-load-more-main {
-    transition: .7s $animCurveEaseOut;
-    width: $btWidth;
-    aspect-ratio: 1 / 0.94;
-    font-size: calc($btWidth * 0.08);
-    scale: 98%;
-    transform: translateY(($btWidth * .005)/2);
-    background: linear-gradient(135deg, $primary 50%, $secondary) !important;
-    cursor: pointer;
-
-    .btn-load-more-mask {
-        transition: .7s $animCurveEaseOut;
-        width: $btWidth;
-        aspect-ratio: 1 / 0.94;
-        font-size: calc($btWidth * 0.08);
-        scale: 98.5%;
-        transform: translateY(($btWidth * .005)/2);
-        cursor: pointer;
-    }
-
-    &:hover {
-        scale: 95%;
-        rotate: -2deg;
-    }
-
-    &:active,
-    &:focus {
-        scale: 90%;
-    }
-}
-
 .st {
-
+    
     width: $stWidth * 1.03;
     aspect-ratio: 1 / 0.8;
     scale: $stSizeFactor;
     transition: .7s $animCurveEaseOut;
-        
+    
     .st-main {
         width: $stWidth;
         transform: translateY(($stWidth * .1)/2);
@@ -202,7 +190,7 @@ body {
 
             background: linear-gradient(135deg, $primary 50%, $dark)!important;
         }
-
+        
         .st-title {
             font-size: calc($stWidth * 0.08)!important;
         }
@@ -216,7 +204,7 @@ body {
             border: 0px solid $secondary;
             transition: .7s $animCurveEaseOut;
         }
-
+        
         .st-spacer {
             width: calc($stWidth * 0.75 + $stWidth * .04 + 1rem);
             height: calc(($stWidth * 0.9 / 16 * 10) - $stWidth * .02);
@@ -224,19 +212,68 @@ body {
     }
     
     &:hover {
-
+        
         rotate: -2deg;
         transform: translateY(5px);
 
         .st-main {
             scale: 96%;
         }
-
+        
         .st-poster {
             top: calc($stWidth * -.13);
             transform: rotate(4deg);
             border: 5px solid $secondary;
         }
+    }
+}
+
+.load-more {
+
+    width: $btWidth * 1.03;
+    aspect-ratio: 1 / 1.02;
+    scale: $btSizeFactor;
+    transition: .7s $animCurveEaseOut;
+    cursor: pointer;
+
+    .load-more-main {
+        width: $btWidth;
+        height: 79%;
+        transform: translateY(($btWidth * .1)/2);
+        background: linear-gradient(135deg, $primary 50%, $secondary)!important;
+        transform-origin: center;
+        transition: .7s $animCurveEaseOut;
+    }
+
+    .load-more-mask {
+        transform-origin: center;
+        transform: scale(99%);
+        width: $btWidth;
+        height: 100%;
+    }
+
+    .load-more-title {
+        font-size: calc($btWidth * 0.08)!important;
+        transition: .7s $animCurveEaseOut;
+    }
+
+    &:hover {
+
+        rotate: -2deg;
+        transform: translateY(5px);
+
+        .load-more-main {
+            scale: 96%;
+        }
+
+        .load-more-title {
+            font-size: calc($btWidth * 0.1)!important;
+        }
+    }
+
+    &:active,
+    &:focus {
+        scale: 90%;
     }
 }
 

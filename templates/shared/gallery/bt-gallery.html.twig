@@ -1,0 +1,33 @@
+{% set offset = count %}
+
+<section class="container">
+
+    {% if title == false %}
+
+    {% else %}
+
+        <div class="text-secondary d-flex justify-content-start align-items-center">
+            <span class="fs-1">{{ dot|raw }}</span>
+            <h3 class="title-font m-0">{{ title }}</h3>
+        </div>
+
+    {% endif %}
+
+    <div class="d-flex justify-content-start align-items-center flex-wrap">
+
+        {% for i in 0.. (contents|length / offset) %}
+            {% for video in contents |slice(0 + i * offset, offset) %}
+                <div class="d-none {{i}}-{{id}}">
+                    {{ include('shared/thumbnail/big-thumbnail.html.twig', {item: video}) }}
+                </div>
+                
+            {% endfor %}
+            
+        {% endfor %}
+
+        {{ include('shared/thumbnail/load-more.html.twig', {gallery: id}) }}
+        
+    </div>
+
+    
+</section>
