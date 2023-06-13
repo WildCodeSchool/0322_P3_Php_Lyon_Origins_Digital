@@ -14,7 +14,7 @@ $stSizeFactor: 100%;
 
 // -- fonts --
 $titleFont: 'Staatliches', cursive;
-$textFont:  'Inter', sans-serif;
+$textFont: 'Inter', sans-serif;
 
 // -- animations --
 $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
@@ -25,6 +25,19 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
 @import "~bootstrap-icons/font/bootstrap-icons";
 @import "~plyr/src/sass/plyr.scss";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;900&family=Staatliches&display=swap');
+
+:root {
+
+    --plyr-color-main: #581EA3;
+
+    --plyr-range-thumb-background: #ffffff;
+
+    --plyr-control-icon-size: 20px;
+
+    --plyr-video-control-color: #ffffff;
+
+    --plyr-video-control-color-hover: #FFE500;
+}
 
 .video-container {
     border-radius: 15px;
@@ -42,13 +55,13 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
 .tag-item {
     max-width: fit-content;
     cursor: pointer;
-    
+
     .tag-list {
         font-family: $textFont;
         font-size: $h6-font-size;
         font-weight: 900;
     }
-    
+
     .tag-main {
         font-family: $textFont;
         font-size: $h5-font-size;
@@ -56,15 +69,15 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
     }
 
     &:hover {
-        background-color: $primary!important;
-        color: $secondary!important;
+        background-color: $primary !important;
+        color: $secondary !important;
     }
 
     &:active,
     &:focus {
         scale: 99%;
-        background-color: $light!important;
-        color: $dark!important;
+        background-color: $light !important;
+        color: $dark !important;
     }
 }
 
@@ -73,7 +86,7 @@ body {
 }
 
 .nav-btns {
-    
+
     font-size: $h1-font-size;
 
     .nav-item {
@@ -177,29 +190,29 @@ body {
 }
 
 .st {
-    
+
     width: $stWidth * 1.03;
     aspect-ratio: 1 / 0.8;
     scale: $stSizeFactor;
     transition: .7s $animCurveEaseOut;
-    
+
     .st-main {
         width: $stWidth;
         transform: translateY(($stWidth * .1)/2);
-        background: linear-gradient(135deg, $primary 50%, $secondary)!important;
+        background: linear-gradient(135deg, $primary 50%, $secondary) !important;
         transform-origin: center;
         transition: .7s $animCurveEaseOut;
-        
+
         .st-main-mask {
             transform-origin: center;
             transform: scale(99%);
             width: 100%;
 
-            background: linear-gradient(135deg, $primary 50%, $dark)!important;
+            background: linear-gradient(135deg, $primary 50%, $dark) !important;
         }
-        
+
         .st-title {
-            font-size: calc($stWidth * 0.08)!important;
+            font-size: calc($stWidth * 0.08) !important;
         }
 
         .st-poster {
@@ -211,22 +224,22 @@ body {
             border: 0px solid $secondary;
             transition: .7s $animCurveEaseOut;
         }
-        
+
         .st-spacer {
             width: calc($stWidth * 0.75 + $stWidth * .04 + 1rem);
             height: calc(($stWidth * 0.9 / 16 * 10) - $stWidth * .02);
         }
     }
-    
+
     &:hover {
-        
+
         rotate: -2deg;
         transform: translateY(5px);
 
         .st-main {
             scale: 96%;
         }
-        
+
         .st-poster {
             top: calc($stWidth * -.13);
             transform: rotate(4deg);
@@ -247,7 +260,7 @@ body {
         width: $btWidth;
         height: 81%;
         transform: translateY(($btWidth * .1)/2);
-        background: linear-gradient(135deg, $primary 50%, $secondary)!important;
+        background: linear-gradient(135deg, $primary 50%, $secondary) !important;
         transform-origin: center;
         transition: .7s $animCurveEaseOut;
     }
@@ -260,7 +273,7 @@ body {
     }
 
     .load-more-title {
-        font-size: calc($btWidth * 0.08)!important;
+        font-size: calc($btWidth * 0.08) !important;
         transition: .7s $animCurveEaseOut;
     }
 
@@ -274,7 +287,7 @@ body {
         }
 
         .load-more-title {
-            font-size: calc($btWidth * 0.1)!important;
+            font-size: calc($btWidth * 0.1) !important;
         }
     }
 
@@ -283,4 +296,3 @@ body {
         scale: 90%;
     }
 }
-
