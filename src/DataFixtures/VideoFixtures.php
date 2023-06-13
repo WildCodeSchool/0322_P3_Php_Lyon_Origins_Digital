@@ -155,7 +155,7 @@ class VideoFixtures extends Fixture
     ];
     public function load(ObjectManager $manager): void
     {
-        for ($i=0; $i < 4; $i++) { 
+        for ($i = 0; $i < 4; $i++) {
             foreach (self::VIDEOS as $clip) {
                 $video = new Video();
                 $video->setTitle($clip['title']);
