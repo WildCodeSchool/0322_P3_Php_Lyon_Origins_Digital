@@ -152,6 +152,16 @@ class VideoFixtures extends Fixture
             'poster_url' => 'poster3-DOFUS.jpg',
         ],
 
+        [
+            'title' => 'DOFUS - GUIDE ULTIME CHASSEUR - EPISODE 0',
+            'description' => 'Bonjour à tous bienvenue dans cette nouvelle série où je vous montre
+             comment up le métier de chasseur dans Dofus! Je vais vous expliquer chaque tranche de zones, 
+             où drop et comment rentabiliser le metier !',
+            'post_date' => '2022-04-14 00:00:00',
+            'video_url' => 'video3-DOFUS.mp4',
+            'poster_url' => 'poster3-DOFUS.jpg',
+        ],
+
     ];
     public function load(ObjectManager $manager): void
     {

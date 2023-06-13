@@ -84,11 +84,9 @@ body {
 }
 
 .bt-container {
-
-    transition: .7s $animCurveEaseOut;
-
-    .d-none.bt-container {
-        scale: 0%;
+    
+    &.d-none {
+        transform-origin: center;
     }
         
     .bt {

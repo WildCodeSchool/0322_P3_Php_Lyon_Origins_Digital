@@ -21,56 +21,34 @@ require('bootstrap');
     for (const loadMoreButton of loadMoreButtons) {
         
         const idName = loadMoreButton.id;
-        const firstGroupOfVideos = document.getElementsByClassName(idName + '-0');
+        const firstGroupOfBts = document.getElementsByClassName(idName + '-0');
         const loadMoreBtn = document.getElementById(idName);
+        let hiddenBts = document.getElementById(idName+"-bt-gallery").querySelectorAll('.bt-hidden');
         
-        for (const videos of firstGroupOfVideos) {
-            videos.classList.remove('d-none');
+        for (const bt of firstGroupOfBts) {
+            bt.classList.remove('d-none');
+            bt.classList.remove('bt-hidden');
+            bt.classList.add('bt-container');
         }
+        
+        
         let idNbr = 1;
         
         loadMoreBtn.addEventListener('click', function () {
-            let groupOfVideos = document.getElementsByClassName(idName + '-' + idNbr);
-            for (const part of groupOfVideos) {
-                part.classList.remove('d-none');
+            let groupOfBts = document.getElementsByClassName(idName + '-' + idNbr);
+            for (const bt of groupOfBts) {
+                bt.classList.remove('bt-hidden');
+                bt.classList.remove('d-none');
+                bt.classList.add('bt-container');
             }
             
             idNbr++;
             
-            if (groupOfVideos.length == 1) { loadMoreBtn.parentElement.classList.add('d-none'); }
-            
+            if (groupOfBts.length == 1) { loadMoreBtn.parentElement.parentElement.remove(); }
+            hiddenBts = document.getElementById(idName+"-bt-gallery").querySelectorAll('.bt-hidden');
         })
     }
 })();
-
-(function showBts() {
-
-    const hiddenBts = document.querySelectorAll('.d-none.bt-container')
-
-    function animateBt() {
-        for (const hBt of hiddenBts) {
-            hBt.style = 'scale: 100%;'
-        }
-
-    }
-    
-    function listenToBtClassChange(mutationList, observer) {
-        mutationList.forEach(function(mutation) {
-            if (mutation.attributeName === 'class') {
-                animateBt();
-            }
-        })
-    }
-
-    for (const hBt of hiddenBts) {
-        const observer = new MutationObserver(listenToBtClassChange)
-        observer.observe(hBt, { attributes: true })
-    }
-
-    const appear = new Animation();
-
-})();
-
 
 function addSocialBtn(name, className, offColor = 'light', onColor = 'secondary') {
     
