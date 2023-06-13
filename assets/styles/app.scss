@@ -97,10 +97,6 @@ body {
 }
 
 .bt-container {
-    
-    &.d-none {
-        transform-origin: center;
-    }
         
     .bt {
 
@@ -167,25 +163,28 @@ body {
             }
         }
         
-        &:hover {
+    }
+    &:hover {
 
+        .bt {
             rotate: -2deg;
             transform: translateY(5px);
-
+    
             .bt-main {
                 scale: 96%;
             }
-
+    
             .bt-line {
                 width: calc($btWidth * 0.60);
             }
-
+    
             .bt-poster {
                 top: calc($btWidth * -.13);
                 transform: rotate(4deg);
                 border: 5px solid $secondary;
             }
         }
+
     }
 }
 
