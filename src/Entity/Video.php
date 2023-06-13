@@ -30,6 +30,7 @@ class Video
 
     #[ORM\Column(length: 255)]
     private ?string $posterUrl = null;
+
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'videos')]
     private Collection $tag;
     public function __construct()

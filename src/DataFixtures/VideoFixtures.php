@@ -5,9 +5,10 @@ namespace App\DataFixtures;
 use DateTimeImmutable;
 use App\Entity\Video;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class VideoFixtures extends Fixture
+class VideoFixtures extends Fixture implements DependentFixtureInterface
 {
     public const VIDEOS = [
         [
@@ -153,6 +154,28 @@ class VideoFixtures extends Fixture
         ],
 
     ];
+
+    public const TAGS = [
+        'lol',
+        'dota',
+        'fortnite',
+        'cs',
+        'overwatch',
+        'rainbowsix',
+        'valorant',
+        'hearthstone',
+        'smite',
+        'apexlegends',
+        'starcraft',
+        'callofduty',
+        'minecraft',
+        'crossfire',
+        'gearsofwar',
+        'worldofwarcraft',
+        'ageofempire',
+        'fifa',
+    ];
+
     public function load(ObjectManager $manager): void
     {
         foreach (self::VIDEOS as $clip) {
@@ -163,8 +186,16 @@ class VideoFixtures extends Fixture
             $video->setPostDate($postDate);
             $video->setVideoUrl($clip['video_url']);
             $video->setPosterUrl($clip['poster_url']);
+
+            $video->addTag($this->getReference('tag_' . self::TAGS[rand(0, count(self::TAGS) - 1)]));
+
             $manager->persist($video);
         }
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return [TagFixtures::class,];
     }
 }
