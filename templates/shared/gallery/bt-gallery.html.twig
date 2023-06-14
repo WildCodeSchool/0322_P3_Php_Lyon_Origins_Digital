@@ -15,13 +15,13 @@
 
     <div class="d-flex justify-content-start align-items-center flex-wrap" id="{{id}}-bt-gallery">
 
-        {% for i in 0.. (contents|length / offset) %}
+        {% for i in 0.. (contents|length / offset)|round(0, 'ceil') %}
 
-        {% if i == 0 %}
-            {% set offset = count - 1 %}
-        {% else %}
-            {% set offset = count %}
-        {% endif %}
+            {% if i == 0 %}
+                {% set offset = count - 1 %}
+            {% else %}
+                {% set offset = count %}
+            {% endif %}
 
             {% for video in contents |slice(0 + i * offset, offset) %}
                 <div class="d-none bt-hidden {{id}}-{{i}}">

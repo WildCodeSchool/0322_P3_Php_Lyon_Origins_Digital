@@ -8,7 +8,7 @@
 	{{ encore_entry_script_tags('plyr') }}
 {% endblock %}
 
-{% set mobaTags = ['dota', 'smite', 'downgate'] %}
+{% set mobaTags = ['dota', 'smite', 'lol'] %}
 {% set offset = 6 %}
 
 {% block body %}
@@ -63,7 +63,7 @@
 			<div class="text-secondary col-md-auto d-flex justify-content-start align-items-center flex-wrap">
 				<span class="fs-1">{{ dot|raw }}</span>
 				<h3 class="title-font m-0">PLUS DE</h3>
-				<span class="ms-4">{{ include('shared/category-tag.html.twig', {tag: 'moba', style: 'tag-list'}) }}</span>
+				<span class="ms-4">{{ include('shared/category-tag.html.twig', {tag: 'lol', style: 'tag-list'}) }}</span>
 			</div>
 
 			<div class="text-secondary col-auto d-flex justify-content-start align-items-center flex-wrap">
