@@ -21,16 +21,8 @@ require('bootstrap');
     for (const loadMoreButton of loadMoreButtons) {
         
         const idName = loadMoreButton.id;
-        const firstGroupOfBts = document.getElementsByClassName(idName + '-0');
         const loadMoreBtn = document.getElementById(idName);
         let hiddenBts = document.getElementById(idName+"-bt-gallery").querySelectorAll('.bt-hidden');
-        
-        for (const bt of firstGroupOfBts) {
-            bt.classList.remove('d-none');
-            bt.classList.remove('bt-hidden');
-            bt.classList.add('bt-container');
-        }
-        
         
         let idNbr = 1;
         
@@ -44,9 +36,11 @@ require('bootstrap');
             
             idNbr++;
             
-            if (groupOfBts.length == 1) { loadMoreBtn.parentElement.parentElement.remove(); }
             hiddenBts = document.getElementById(idName+"-bt-gallery").querySelectorAll('.bt-hidden');
+            if (hiddenBts.length < 1) { loadMoreBtn.parentElement.parentElement.remove(); }
         })
+        
+        if (hiddenBts.length < 1) { loadMoreBtn.parentElement.parentElement.remove(); }
     }
 })();
 

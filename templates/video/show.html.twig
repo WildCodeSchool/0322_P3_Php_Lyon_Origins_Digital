@@ -88,6 +88,7 @@
 	<div class="container-fluid row">
 		{{ include('shared/gallery/bt-gallery.html.twig', {
 			title: false,
+			subtitle: 'Toutes les vidéos sur ' ~ video.tag[0].name|upper ~ ' !',
 			count: 3,
 			contents: mobaVideos,
 			id: 'moba'
