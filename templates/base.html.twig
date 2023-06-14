@@ -19,13 +19,20 @@
 		{% endblock %}
 	</head>
 
-{% set dot = "<i class='bi bi-dot m-0'></i>" %}
+	{% set dot = "<i class='bi bi-dot m-0'></i>" %}
 
-{% set fav = "<i class='bi fav'></i>" %}
-{% set watchLater = "<i class='bi watchLater'></i>" %}
-{% set like = "<i class='bi like'></i>" %}
+	{% set fav = "<i class='bi fav'></i>" %}
+	{% set watchLater = "<i class='bi watchLater'></i>" %}
+	{% set like = "<i class='bi like'></i>" %}
 
 	<body>
+		{% for category, messages in app.flashes %}
+			{% for message in messages %}
+				<div class="alert alert-{{ category }}" id="alertMsg">
+					{{ message }}
+				</div>
+			{% endfor %}
+		{% endfor %}
 		{% block body %}{% endblock %}
 	</body>
 </html>

@@ -1,7 +1,7 @@
 import Dropzone from "dropzone";
 
 document.addEventListener("DOMContentLoaded", function () {
-    var dropzone_default = new Dropzone(".dropzone", {
+    var dropzone_default = new Dropzone("#mydropzone", {
         maxFiles: 1,
         dictMaxFilesExceeded: 'Une seule video à la fois',
         acceptedFiles: 'video/mp4',
@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
         maxFilesize: 256, // in Mb
         addRemoveLinks: false,
         createImageThumbnails: false,
+        //previewTemplate: document.querySelector('#tpl').innerHTML,
         init: function () {
             this.on("maxfilesexceeded", function (file) {
                 this.removeFile(file);

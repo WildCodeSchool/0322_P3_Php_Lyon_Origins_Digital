@@ -299,6 +299,10 @@ body {
 }
 
 .upload-font {
-    font-family: $titleFont;
+    font-family: $textFont;
     color: $secondary;
+
+    .upload-font-title {
+        font-weight: 600;
+    }
 }
