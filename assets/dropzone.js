@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 this.removeFile(file);
             });
             this.on("sending", function (file, xhr, formData) {
-                // send additional data with the file as POST data if needed.
+                // send additional data with the file as POST data if needed :
                 // formData.append("key", "value");
             });
             this.on("success", function (file, response) {
