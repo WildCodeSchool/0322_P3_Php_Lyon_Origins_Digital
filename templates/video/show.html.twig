@@ -8,7 +8,6 @@
 	{{ encore_entry_script_tags('plyr') }}
 {% endblock %}
 
-{% set exampleTags = ['lol', 'moba', 'cs', 'dofus', 'thecrew', 'valorant', 'moba', 'cs', 'dofus', 'thecrew', 'valorant'] %}
 {% set mobaTags = ['dota', 'smite', 'downgate'] %}
 {% set offset = 6 %}
 
@@ -23,9 +22,9 @@
 		<div class="col-lg-8 col-12">
 			<div class="sh-video d-flex flex-column justify-content-start align-items-center m-0">
 
-				<div class="sh-title-hash row mt-4">
-					<div class="sh-title col-lg-10 title-font text-secondary fs-2">{{ video.title }}</div>
-					<div class="sh-hash d-lg-block d-none col-lg-2">{{ include('shared/category-tag.html.twig', {tag: video.tag[0].name , style: 'tag-main'}) }}</div>
+				<div class="sh-title-hash row mt-4 w-100">
+					<div class="sh-title col-lg justify-content-start title-font text-secondary fs-2">{{ video.title }}</div>
+					<div class="sh-hash d-lg-flex d-none col-lg-auto justify-content-end align-items-start">{{ include('shared/category-tag.html.twig', {tag: video.tag[0].name , style: 'tag-main'}) }}</div>
 				</div>
 
 				<div class="sh-player video-container m-4">
@@ -78,8 +77,8 @@
 
 		<div class="col-lg-4 col d-lg-block d-none">
 			<div class="d-flex justify-content-end align-items-end flex-wrap">
-				{% for exampleTag in exampleTags %}
-					<div class="m-1">{{ include('shared/category-tag.html.twig', {tag: exampleTag, style: 'tag-list'}) }}</div>
+				{% for tag in tags |slice(0,10) %}
+					<div class="m-1">{{ include('shared/category-tag.html.twig', {tag: tag.name, style: 'tag-list'}) }}</div>
 				{% endfor %}
 			</div>
 		</div>
