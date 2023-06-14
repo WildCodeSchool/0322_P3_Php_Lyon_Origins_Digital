@@ -1,5 +1,3 @@
-{% set offset = count %}
-
 <section class="container">
 
     {% if title == false %}{% else %}
@@ -21,15 +19,15 @@
 
     <div class="d-flex justify-content-start align-items-center flex-wrap" id="{{id}}-bt-gallery">
 
-        {% for video in contents |slice(0, offset - 1) %}
+        {% for video in contents |slice(0, count - 1) %}
             <div class="{{id}}-0 bt-container">
                 {{ include('shared/thumbnail/big-thumbnail.html.twig', {item: video}) }}
             </div>
         {% endfor %}
         
-        {% for i in 1.. (contents|length / offset)|round(0, 'ceil') %}
+        {% for i in 1.. (contents|length / count)|round(0, 'ceil') %}
 
-            {% for video in contents |slice(i * offset, offset) %}
+            {% for video in contents |slice(i * count, count) %}
                 <div class="d-none bt-hidden {{id}}-{{i}}">
                     {{ include('shared/thumbnail/big-thumbnail.html.twig', {item: video}) }}
                 </div>
