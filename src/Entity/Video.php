@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\VideoRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use DateTimeImmutable as Date;
 
 #[ORM\Entity(repositoryClass: VideoRepository::class)]
 class Video
@@ -26,7 +27,7 @@ class Video
     #[ORM\Column(length: 255)]
     private ?string $videoUrl = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $posterUrl = null;
 
     public function getId(): ?int
@@ -92,5 +93,10 @@ class Video
         $this->posterUrl = $posterUrl;
 
         return $this;
+    }
+
+    public function __construct()
+    {
+        $this->postDate = new Date();
     }
 }

@@ -5,4 +5,4 @@ oneup_uploader:
         gallery:
             frontend: dropzone # or any uploader you use in the frontend
             storage:
-                directory: "%kernel.project_dir%/assets/videos/"
+                directory: "%kernel.project_dir%/assets/temp/"
