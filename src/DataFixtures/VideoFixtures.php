@@ -155,16 +155,19 @@ class VideoFixtures extends Fixture
     ];
     public function load(ObjectManager $manager): void
     {
-        foreach (self::VIDEOS as $clip) {
-            $video = new Video();
-            $video->setTitle($clip['title']);
-            $video->setDescription($clip['description']);
-            $postDate = new DateTimeImmutable($clip['post_date']);
-            $video->setPostDate($postDate);
-            $video->setVideoUrl($clip['video_url']);
-            $video->setPosterUrl($clip['poster_url']);
-            $manager->persist($video);
+        for ($i = 0; $i < 4; $i++) {
+            foreach (self::VIDEOS as $clip) {
+                $video = new Video();
+                $video->setTitle($clip['title']);
+                $video->setDescription($clip['description']);
+                $postDate = new DateTimeImmutable($clip['post_date']);
+                $video->setPostDate($postDate);
+                $video->setVideoUrl($clip['video_url']);
+                $video->setPosterUrl($clip['poster_url']);
+                $manager->persist($video);
+            }
         }
+
         $manager->flush();
     }
 }

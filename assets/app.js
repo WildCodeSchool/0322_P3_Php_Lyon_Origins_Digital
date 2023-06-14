@@ -14,34 +14,41 @@ import './bootstrap';
 // include bootstrap JS
 require('bootstrap');
 
-function loadMore() {
+(function loadMore() {
 
     const loadMoreButtons = document.getElementsByClassName('load-more-btn');
     
     for (const loadMoreButton of loadMoreButtons) {
         
         const idName = loadMoreButton.id;
-        const firstGroupOfVideos = document.getElementsByClassName('0-' + idName);
+        const firstGroupOfBts = document.getElementsByClassName(idName + '-0');
         const loadMoreBtn = document.getElementById(idName);
-
+        let hiddenBts = document.getElementById(idName+"-bt-gallery").querySelectorAll('.bt-hidden');
         
-        for (const videos of firstGroupOfVideos) {
-            videos.classList.remove('d-none');
+        for (const bt of firstGroupOfBts) {
+            bt.classList.remove('d-none');
+            bt.classList.remove('bt-hidden');
+            bt.classList.add('bt-container');
         }
+        
+        
         let idNbr = 1;
-
         
         loadMoreBtn.addEventListener('click', function () {
-            let groupOfVideos = document.getElementsByClassName(idNbr + '-' + idName);
-            for (const part of groupOfVideos) {
-                part.classList.remove('d-none');
+            let groupOfBts = document.getElementsByClassName(idName + '-' + idNbr);
+            for (const bt of groupOfBts) {
+                bt.classList.remove('bt-hidden');
+                bt.classList.remove('d-none');
+                bt.classList.add('bt-container');
             }
             
             idNbr++;
+            
+            if (groupOfBts.length == 1) { loadMoreBtn.parentElement.parentElement.remove(); }
+            hiddenBts = document.getElementById(idName+"-bt-gallery").querySelectorAll('.bt-hidden');
         })
     }
-    
-}
+})();
 
 function addSocialBtn(name, className, offColor = 'light', onColor = 'secondary') {
     
@@ -86,8 +93,6 @@ function addMenuBtn(iconId, fill = true, device = 'desktop', offColor = 'primary
         div.classList.toggle('bg-dark');
     })
 }
-
-loadMore();
 
 addSocialBtn('fav', 'heart');
 addSocialBtn('watchLater', 'clock');
