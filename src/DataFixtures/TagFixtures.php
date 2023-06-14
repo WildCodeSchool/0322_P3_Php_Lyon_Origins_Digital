@@ -37,5 +37,6 @@ class TagFixtures extends Fixture
             $manager->persist($tag);
             $this->addReference('tag_' . $oneTag, $tag);
         }
+        $manager->flush();
     }
 }

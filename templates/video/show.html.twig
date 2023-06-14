@@ -25,7 +25,7 @@
 
 				<div class="sh-title-hash row mt-4">
 					<div class="sh-title col-lg-10 title-font text-secondary fs-2">{{ video.title }}</div>
-					<div class="sh-hash d-lg-block d-none col-lg-2">{{ include('shared/category-tag.html.twig', {tag: video.tag, style: 'tag-main'}) }}</div>
+					<div class="sh-hash d-lg-block d-none col-lg-2">{{ include('shared/category-tag.html.twig', {tag: video.tag[0].name , style: 'tag-main'}) }}</div>
 				</div>
 
 				<div class="sh-player video-container m-4">
