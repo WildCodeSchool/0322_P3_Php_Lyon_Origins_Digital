@@ -8,7 +8,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class TagFixtures extends Fixture
 {
-    public array $tags = [
+    public const TAGS = [
         'lol',
         'dota',
         'fortnite',
@@ -31,13 +31,11 @@ class TagFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        foreach (self::$tags as $oneTag) {
+        foreach (self::TAGS as $oneTag) {
             $tag = new Tag();
             $tag->setName($oneTag);
             $manager->persist($tag);
             $this->addReference('tag_' . $oneTag, $tag);
         }
-
-        $manager->flush();
     }
 }
