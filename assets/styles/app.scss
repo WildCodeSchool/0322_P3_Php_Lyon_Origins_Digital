@@ -24,6 +24,7 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
 @import "~bootstrap/scss/bootstrap";
 @import "~bootstrap-icons/font/bootstrap-icons";
 @import "~plyr/src/sass/plyr.scss";
+@import "~dropzone/dist/dropzone.css";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;900&family=Staatliches&display=swap');
 
 :root {
@@ -69,15 +70,15 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
     }
 
     &:hover {
-        background-color: $primary !important;
-        color: $secondary !important;
+        background-color: $primary  !important;
+        color: $secondary  !important;
     }
 
     &:active,
     &:focus {
         scale: 99%;
-        background-color: $light !important;
-        color: $dark !important;
+        background-color: $light  !important;
+        color: $dark  !important;
     }
 }
 
@@ -97,23 +98,23 @@ body {
 }
 
 .bt-container {
-        
+
     .bt {
 
         width: $btWidth * 1.03;
         aspect-ratio: 1 / 1.02;
         scale: $btSizeFactor;
         transition: .7s $animCurveEaseOut;
-            
+
         .bt-main {
             width: $btWidth;
             transform: translateY(($btWidth * .1)/2);
-            background: linear-gradient(135deg, $primary 50%, $secondary)!important;
+            background: linear-gradient(135deg, $primary 50%, $secondary) !important;
             transform-origin: center;
             transition: .7s $animCurveEaseOut;
 
             .bt-title {
-                font-size: calc($btWidth * 0.08)!important;
+                font-size: calc($btWidth * 0.08) !important;
             }
 
             .bt-main-mask {
@@ -121,7 +122,7 @@ body {
                 transform: scale(99%);
                 width: $btWidth;
             }
-            
+
             .bt-line {
                 width: calc($btWidth * 0.75);
                 height: 1px;
@@ -162,22 +163,23 @@ body {
                 font-family: $textFont;
             }
         }
-        
+
     }
+
     &:hover {
 
         .bt {
             rotate: -2deg;
             transform: translateY(5px);
-    
+
             .bt-main {
                 scale: 96%;
             }
-    
+
             .bt-line {
                 width: calc($btWidth * 0.60);
             }
-    
+
             .bt-poster {
                 top: calc($btWidth * -.13);
                 transform: rotate(4deg);

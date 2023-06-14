@@ -140,6 +140,19 @@
     "ondram/ci-detector": {
         "version": "4.1.0"
     },
+    "oneup/uploader-bundle": {
+        "version": "4.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "2.0",
+            "ref": "b19678d1535b9fe7cdf4647fd3483455e4fca458"
+        },
+        "files": [
+            "config/packages/oneup_uploader.yaml",
+            "config/routes/oneup_uploader.yaml"
+        ]
+    },
     "pdepend/pdepend": {
         "version": "2.10.3"
     },
@@ -616,6 +629,9 @@
             "config/packages/twig.yaml",
             "templates/base.html.twig"
         ]
+    },
+    "symfony/ux-dropzone": {
+        "version": "v2.9.1"
     },
     "symfony/validator": {
         "version": "6.0",
