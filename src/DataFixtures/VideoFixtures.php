@@ -155,27 +155,6 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
 
     ];
 
-    public const TAGS = [
-        'lol',
-        'dota',
-        'fortnite',
-        'cs',
-        'overwatch',
-        'rainbowsix',
-        'valorant',
-        'hearthstone',
-        'smite',
-        'apexlegends',
-        'starcraft',
-        'callofduty',
-        'minecraft',
-        'crossfire',
-        'gearsofwar',
-        'worldofwarcraft',
-        'ageofempire',
-        'fifa',
-    ];
-
     public function load(ObjectManager $manager): void
     {
         $persistedVideos = [];
@@ -198,7 +177,8 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
 
         foreach ($persistedVideos as $persistedVideo) {
-            $persistedVideo->addTag($this->getReference('tag_' . self::TAGS[rand(0, count(self::TAGS) - 1)]));
+            $persistedVideo
+            ->addTag($this->getReference('tag_' . TagFixtures::TAGS[rand(0, count(TagFixtures::TAGS) - 1)]));
             $manager->persist($video);
         }
 
