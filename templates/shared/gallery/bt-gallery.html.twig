@@ -13,15 +13,23 @@
 
     {% endif %}
 
-    <div class="d-flex justify-content-start align-items-center flex-wrap">
+    <div class="d-flex justify-content-start align-items-center flex-wrap" id="{{id}}-bt-gallery">
 
         {% for i in 0.. (contents|length / offset) %}
+
+        {% if i == 0 %}
+            {% set offset = count - 1 %}
+        {% else %}
+            {% set offset = count %}
+        {% endif %}
+
             {% for video in contents |slice(0 + i * offset, offset) %}
-                <div class="d-none {{i}}-{{id}}">
+                <div class="d-none bt-hidden {{id}}-{{i}}">
                     {{ include('shared/thumbnail/big-thumbnail.html.twig', {item: video}) }}
                 </div>
-                
             {% endfor %}
+
+
             
         {% endfor %}
 
