@@ -22,6 +22,7 @@ class UploadController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $session = $requestStack->getSession();
+
             if ($session->has('fileName')) {
                 $fileName = $session->get('fileName');
                 $video = $form->getData();
