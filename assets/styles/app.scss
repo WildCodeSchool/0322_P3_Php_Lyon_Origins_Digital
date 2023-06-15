@@ -24,6 +24,7 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
 @import "~bootstrap/scss/bootstrap";
 @import "~bootstrap-icons/font/bootstrap-icons";
 @import "~plyr/src/sass/plyr.scss";
+@import "~dropzone/dist/dropzone.css";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;900&family=Staatliches&display=swap');
 
 :root {
@@ -164,6 +165,7 @@ body {
 
 .bt-container {
 
+
     .bt {
 
         width: $btWidth * 1.03;
@@ -171,14 +173,17 @@ body {
         scale: $btSizeFactor;
         transition: .7s $animCurveEaseOut;
 
+
         .bt-main {
             width: $btWidth;
             transform: translateY(($btWidth * .1)/2);
+            background: linear-gradient(135deg, $primary 50%, $secondary) !important;
             background: linear-gradient(135deg, $primary 50%, $secondary) !important;
             transform-origin: center;
             transition: .7s $animCurveEaseOut;
 
             .bt-title {
+                font-size: calc($btWidth * 0.08) !important;
                 font-size: calc($btWidth * 0.08) !important;
             }
 
@@ -187,6 +192,7 @@ body {
                 transform: scale(99%);
                 width: $btWidth;
             }
+
 
             .bt-line {
                 width: calc($btWidth * 0.75);
@@ -364,6 +370,15 @@ body {
     }
 }
 
+.upload-font {
+    font-family: $textFont;
+    color: $secondary;
+
+    .upload-font-title {
+        font-weight: 600;
+    }
+}
+
 .load-more-tag {
     font-weight: 900;
     height: 35.2px;
@@ -380,5 +395,9 @@ body {
         background-color: $light !important;
         color: $dark !important;
     }
+}
 
+#mydropzone {
+    border: 2px dashed $secondary;
+    min-height: 325px;
 }
