@@ -22,7 +22,7 @@
 		<div class="col-lg-8 col-12">
 			<div class="sh-video d-flex flex-column justify-content-start align-items-center m-0">
 
-				<div class="sh-title-hash row mt-4 w-100">
+				<div class="sh-title-hash row px-4 mt-4 w-100">
 					<div class="sh-title col-lg justify-content-start title-font text-secondary fs-2">{{ video.title }}</div>
 					<div class="sh-hash d-lg-flex d-none col-lg-auto justify-content-end align-items-start">{{ include('shared/category-tag.html.twig', {tag: video.tag[0].name , style: 'tag-main'}) }}</div>
 				</div>
@@ -33,7 +33,7 @@
 					</video>
 				</div>
 
-				<div class="row m-4">
+				<div class="row px-4 w-100">
 					<div class="sh-creator col-xl-2 col-11">
 						<h5>Username</h5>
 					</div>
@@ -45,8 +45,8 @@
 			</div>
 		</div>
 
-		<div class="col-lg-3 d-none d-lg-block">
-			<div class="sh-favs bg-primary d-flex flex-column justify-content-start align-items-center m-3 p-3 rounded-5">
+		<div class="col-lg-3 d-none d-lg-flex justify-content-center align-items-center">
+			<div class="sh-favs bg-primary d-flex flex-column justify-content-start align-items-center m-3 p-4 rounded-5">
 				<h5 class="title-font text-secondary">MES FAVORIS</h5>
 				{% for latestVideo in latestVideos |slice(0, 4) %}
 					{{ include('shared/thumbnail/small-thumbnail.html.twig', {item: latestVideo}) }}
@@ -77,7 +77,7 @@
 
 		<div class="col-lg-4 col d-lg-block d-none">
 			<div class="d-flex justify-content-end align-items-end flex-wrap">
-				{% for tag in tags |slice(0,10) %}
+				{% for tag in tags |slice(0,5) %}
 					<div class="m-1">{{ include('shared/category-tag.html.twig', {tag: tag.name, style: 'tag-list'}) }}</div>
 				{% endfor %}
 			</div>
