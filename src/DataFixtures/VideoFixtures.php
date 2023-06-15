@@ -161,6 +161,14 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'poster_url' => 'poster3-DOFUS.jpg',
         ],
 
+        [
+            'title' => 'TITRETITRETITRETITRETITRETITRETITRETITRETITRETITRETITRETITRETITRETITRETITRETITRE',
+            'description' => 'DescDescDescDescDescDescDescDescDescDescDescDescDescDescDescDescDescDescDes',
+            'post_date' => '2022-04-14 00:00:00',
+            'video_url' => 'video3-DOFUS.mp4',
+            'poster_url' => 'poster3-DOFUS.jpg',
+        ],
+
     ];
 
     public function load(ObjectManager $manager): void
