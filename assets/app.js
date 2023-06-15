@@ -17,15 +17,15 @@ require('bootstrap');
 (function loadMore() {
 
     const loadMoreButtons = document.getElementsByClassName('load-more-btn');
-    
+
     for (const loadMoreButton of loadMoreButtons) {
-        
+
         const idName = loadMoreButton.id;
         const loadMoreBtn = document.getElementById(idName);
-        let hiddenBts = document.getElementById(idName+"-bt-gallery").querySelectorAll('.bt-hidden');
-        
+        let hiddenBts = document.getElementById(idName + "-bt-gallery").querySelectorAll('.bt-hidden');
+
         let idNbr = 1;
-        
+
         loadMoreBtn.addEventListener('click', function () {
             let groupOfBts = document.getElementsByClassName(idName + '-' + idNbr);
             for (const bt of groupOfBts) {
@@ -33,26 +33,51 @@ require('bootstrap');
                 bt.classList.remove('d-none');
                 bt.classList.add('bt-container');
             }
-            
+
             idNbr++;
-            
-            hiddenBts = document.getElementById(idName+"-bt-gallery").querySelectorAll('.bt-hidden');
+
+            hiddenBts = document.getElementById(idName + "-bt-gallery").querySelectorAll('.bt-hidden');
             if (hiddenBts.length < 1) { loadMoreBtn.parentElement.parentElement.remove(); }
         })
-        
+
         if (hiddenBts.length < 1) { loadMoreBtn.parentElement.parentElement.remove(); }
     }
 })();
 
+(function loadMoreTag() {
+
+    const loadMoreTagButton = document.querySelector('.load-more-tag');
+    let hiddenTagBts = document.querySelectorAll('.tag-hidden');
+    let counter = 0;
+
+    loadMoreTagButton.addEventListener('click', function () {
+        const groupOfBts = Array.from(hiddenTagBts).slice(counter, counter + 2);
+        for (const bt of groupOfBts) {
+            bt.classList.remove('tag-hidden');
+            bt.classList.remove('d-none');
+        }
+
+        counter += 2;
+
+        if (counter >= hiddenTagBts.length) {
+            loadMoreTagButton.remove();
+        }
+    });
+
+    if (hiddenTagBts.length < 1) {
+        loadMoreTagButton.remove();
+    }
+})();
+
 function addSocialBtn(name, className, offColor = 'light', onColor = 'secondary') {
-    
+
     const icons = document.getElementsByClassName(name);
-    const divs = document.getElementsByClassName('bt-'+name);
-    
+    const divs = document.getElementsByClassName('bt-' + name);
+
     for (const icon of icons) {
         icon.classList.add('bi-' + className);
     }
-    
+
     for (const div of divs) {
         div.classList.add('text-' + offColor);
         const icon = div.firstElementChild;

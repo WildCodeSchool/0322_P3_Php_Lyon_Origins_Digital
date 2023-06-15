@@ -1,10 +1,11 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Gaming Gurus{% endblock %}
+    {% set countTag = 6 %}
     {% set playFill = "<i class='bi bi-play-fill'></i>" %}
 
-{% block title %}Gaming Gurus{% endblock %}
-
 {% block body %}
+
     <div class="home-container container-fluid row">
        
         <div class="col-lg-1 d-lg-block d-none">
@@ -12,7 +13,7 @@
 		</div>
              
             <div class="home-header text-center col-lg-11">
-                <div class="home-title text-secondary title-font d-flex d-lg-none justify-content-center align-items-start">
+                <div class="home-title text-secondary title-font d-flex d-lg-none justify-content-start align-items-start">
                     À LA UNE
                 </div>
                     <div class="home-image mt-lg-4 rounded-3 text-center position-relative " alt="cover">
@@ -54,6 +55,48 @@
                     </div>
             </div>
     </div>
+   
+    <section class="container">
+    <div class="tag-list-desktop d-flex justify-content-start align-items-center flex-wrap mx-2 my-4">
+        {% for tag in tags |slice(0,countTag - 1) %}
+            <div class="m-1" >{{ include('shared/category-tag.html.twig', {tag: tag.name, style: 'tag-list'}) }}</div>
+        {% endfor %}
+
+        {% for i in 1.. (tags|length / countTag)|round(0, 'ceil') %}
+
+            {% for tag in tags |slice(i * countTag, countTag) %}
+                <div class="d-none tag-hidden m-1">
+                    {{ include('shared/category-tag.html.twig', {tag: tag.name, style: 'tag-list'}) }}
+                </div>
+            {% endfor %}
+
+        {% endfor %}
+        <div class="load-more-tag text-dark bg-secondary rounded-3 mx-1 p-2 d-flex justify-content-center align-items-center">+<div>
+    </div>
+    </section>
+
+    
+
+    {# <section class="container">
+    <div class="tag-list-mobile d-flex d-md-none justify-content-start align-items-center flex-wrap mx-2 my-4">
+        {% for tag in tags |slice(0,countTagMobile - 1) %}
+            <div class="m-1" >{{ include('shared/category-tag.html.twig', {tag: tag.name, style: 'tag-list'}) }}</div>
+        {% endfor %}
+
+        {% for i in 1.. (tags|length / countTagMobile)|round(0, 'ceil') %}
+
+            {% for tag in tags |slice(i * countTagMobile, countTagMobile) %}
+                <div class="d-none tag-hidden-mobile m-1">
+                    {{ include('shared/category-tag.html.twig', {tag: tag.name, style: 'tag-list'}) }}
+                </div>
+            {% endfor %}
+
+        {% endfor %}
+        <div class="load-more-tag-mobile text-dark bg-secondary rounded-3 mx-1 p-2 d-flex justify-content-center align-items-center">+<div>
+    </div>
+    </section> #}
+
+
 
     {{ include('shared/gallery/bt-gallery.html.twig', {
         title: 'Les dernières sorties',

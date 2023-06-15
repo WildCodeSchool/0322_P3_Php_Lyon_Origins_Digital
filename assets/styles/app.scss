@@ -391,3 +391,45 @@ body {
         scale: 90%;
     }
 }
+
+.load-more-tag {
+    font-family: $textFont;
+    font-size: $h6-font-size;
+    font-weight: 900;
+    cursor: pointer;
+    height: 35.2px;
+
+    &:hover {
+        background-color: $primary !important;
+        color: $secondary !important;
+    }
+
+    &:active,
+    &:focus {
+        scale: 99%;
+        background-color: $light !important;
+        color: $dark !important;
+    }
+
+}
+
+.load-more-tag-mobile {
+    font-family: $textFont;
+    font-size: $h6-font-size;
+    font-weight: 900;
+    cursor: pointer;
+    height: 35.2px;
+
+    &:hover {
+        background-color: $primary !important;
+        color: $secondary !important;
+    }
+
+    &:active,
+    &:focus {
+        scale: 99%;
+        background-color: $light !important;
+        color: $dark !important;
+    }
+
+}
