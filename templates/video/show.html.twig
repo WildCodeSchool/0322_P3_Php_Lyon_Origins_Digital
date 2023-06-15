@@ -26,11 +26,7 @@
 					<div class="sh-hash d-lg-flex d-none col-lg-auto justify-content-end align-items-start">{{ include('shared/category-tag.html.twig', {tag: video.tag[0].name , style: 'tag-main'}) }}</div>
 				</div>
 
-<<<<<<< HEAD
-				<div class="sh-player video-container rounded-4 m-4">
-=======
 				<div class="sh-player video-container m-md-4 my-2 mx-0">
->>>>>>> 54353524cc3ed09dd97923aa08436164cc61a34c
 					<video id="player" class="player" playsinline controls data-poster="{{ asset('build/images/' ~ video.posterUrl) }}">
 						<source src="{{ asset('build/videos/' ~ video.videoUrl) }}" type="video/mp4"/>
 					</video>
