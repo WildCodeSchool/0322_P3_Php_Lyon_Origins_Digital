@@ -16,10 +16,12 @@ class HomeController extends AbstractController
     {
         $latestVideos = $videoRepository->findLatestVideos();
         $tags = $tagRepository->findAll();
+        $headerVideo = $videoRepository->findAll();
 
         return $this->render('home/index.html.twig', [
-            'latestVideos' => $latestVideos,
             'tags' => $tags,
+            'latestVideos' => $latestVideos,
+            'headerVideo' => $headerVideo
         ]);
     }
 }
