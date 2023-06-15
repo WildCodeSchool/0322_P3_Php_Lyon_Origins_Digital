@@ -44,6 +44,37 @@ require('bootstrap');
     }
 })();
 
+(function ShowDescriptionOnMobile(){
+    let description = document.getElementById('sh-description');
+    const descriptionFull = document.getElementById('sh-description').innerText;
+    let maxOnMobile = 100;
+    let descriptionShort = '';
+
+    addEventListener('resize', () => {
+        
+        if (window.screen.width <= 576) {
+    
+            if (description.innerText.length > maxOnMobile) {
+            
+                descriptionShort = description.innerText.slice(0, maxOnMobile) + '...';
+                description.innerText = descriptionShort;
+            }
+    
+        } else {
+            description.innerText = descriptionFull;
+        }
+    })
+    
+    description.addEventListener('click', function(){
+        if (description.innerText == descriptionShort) {
+            description.innerText = descriptionFull;
+        } else if (description.innerText == descriptionFull) {
+            description.innerText = descriptionShort;
+        }
+    })        
+    
+})();
+
 function addSocialBtn(name, className, offColor = 'light', onColor = 'secondary') {
     
     const icons = document.getElementsByClassName(name);
