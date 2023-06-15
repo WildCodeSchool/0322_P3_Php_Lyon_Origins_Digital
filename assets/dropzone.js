@@ -11,14 +11,13 @@ document.addEventListener("DOMContentLoaded", function () {
         maxFilesize: 256, // in Mb
         addRemoveLinks: false,
         createImageThumbnails: false,
-        //previewTemplate: document.querySelector('#tpl').innerHTML,
         init: function () {
             this.on("maxfilesexceeded", function (file) {
                 this.removeFile(file);
             });
             this.on("sending", function (file, xhr, formData) {
-                // send additional data with the file as POST data if needed :
-                // formData.append("key", "value");
+                // send additional data with the file as POST data if needed
+                // code format : formData.append("key", "value");
             });
             this.on("success", function (file, response) {
                 if (response.uploaded)
