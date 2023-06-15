@@ -167,12 +167,10 @@ body {
             height: $btHeight;
             transform: translateY(($btWidth * .1)/2);
             background: linear-gradient(135deg, $primary 50%, $secondary) !important;
-            background: linear-gradient(135deg, $primary 50%, $secondary) !important;
             transform-origin: center;
             transition: .7s $animCurveEaseOut;
 
             .bt-title {
-                font-size: calc($btWidth * 0.08) !important;
                 font-size: calc($btWidth * 0.08) !important;
             }
 
@@ -226,31 +224,32 @@ body {
                 text-overflow: ellipsis;
             }
         }
+    }
 
-        &:hover {
+    &:hover {
 
-            .bt {
-                rotate: -2deg;
-                transform: translateY(5px);
+        .bt {
+            rotate: -2deg;
+            transform: translateY(5px);
 
-                .bt-main {
-                    scale: 96%;
-                }
-
-                .bt-line {
-                    width: calc($btWidth * 0.60);
-                }
-
-                .bt-poster {
-                    top: calc($btWidth * -.13);
-                    transform: rotate(4deg);
-                    border: 5px solid $secondary;
-                }
+            .bt-main {
+                scale: 96%;
             }
 
+            .bt-line {
+                width: calc($btWidth * 0.60);
+            }
+
+            .bt-poster {
+                top: calc($btWidth * -.13);
+                transform: rotate(4deg);
+                border: 5px solid $secondary;
+            }
         }
+
     }
 }
+
 
 .st {
 
