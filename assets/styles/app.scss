@@ -165,6 +165,8 @@ body {
             .bt-description {
                 font-size: calc($btWidth * .05);
                 font-family: $textFont;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
         }
         
