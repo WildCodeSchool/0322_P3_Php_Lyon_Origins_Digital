@@ -1,8 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Page d'accueil{% endblock %}
+    {% set playFill = "<i class='bi bi-play-fill'></i>" %}
+
+{% block title %}Gaming Gurus{% endblock %}
 
 {% block body %}
+    <div class="home-container container-fluid row">
+       
+        <div class="col-lg-1 d-lg-block d-none">
+			{% include "shared/navbar-desktop.html.twig" %}
+		</div>
+             
+            <div class="home-header text-center col-lg-11">
+                <div class="home-title text-secondary title-font d-flex d-lg-none justify-content-center align-items-start">
+                    À LA UNE
+                </div>
+                    <div class="home-image mt-lg-4 rounded-3 text-center position-relative " alt="cover">
+                        <div class="container">
+
+                        <div class="row">
+
+                            <div class="header-logo title-font text-secondary col-3 d-lg-block d-none position-absolute top-0 start-0">
+                            À LA UNE
+                            </div>
+                            
+                            <div class="col d-lg-block d-none">
+                            </div>
+
+
+                            <div class="button-view col-6 col-lg-6 d-flex justify-content-end align-items-end">
+                          
+                                <a class="link-desktop d-none d-sm-flex title-font text-secondary rounded-3 justify-content-center align-items-center" href="">
+                                    <span class="view">REGARDER</span>
+                                    <span class="icon">{{ playFill|raw }}</span>
+                                </a>
+
+                                <a class="link-mobile title-font text-secondary rounded-3 d-flex d-sm-none justify-content-center align-items-center" href="">
+                                    <span class="view">REGARDER</span>
+                                    <span class="icon">{{ playFill|raw }}</span>
+                                </a>
+
+                            </div>
+
+                            <div class="header-infos-desktop d-none d-sm-flex title-font text-dark col-6 col-lg-3 justify-content-start align-items-end">
+                               <div class="title">{{headerVideo.title|u.truncate(30, '...')}}</div>
+                            </div> 
+                            
+                            <div class="header-infos-mobile d-flex d-sm-none title-font text-dark col-6 col-lg-3 justify-content-start align-items-end">
+                               <div class="title">{{headerVideo.title|u.truncate(30, '...')}}</div>
+                            </div>   
+                        </div>
+                        </div>
+                    </div>
+            </div>
+    </div>
 
     {{ include('shared/gallery/bt-gallery.html.twig', {
         title: 'Les dernières sorties',

@@ -14,9 +14,11 @@ class HomeController extends AbstractController
     public function index(VideoRepository $videoRepository): Response
     {
         $latestVideos = $videoRepository->findLatestVideos();
+        $headerVideo = $videoRepository->find(1);
 
         return $this->render('home/index.html.twig', [
-            'latestVideos' => $latestVideos
+            'latestVideos' => $latestVideos,
+            'headerVideo' => $headerVideo
         ]);
     }
 }
