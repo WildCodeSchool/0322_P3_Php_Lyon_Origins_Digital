@@ -75,29 +75,6 @@
     </div>
     </section>
 
-    
-
-    {# <section class="container">
-    <div class="tag-list-mobile d-flex d-md-none justify-content-start align-items-center flex-wrap mx-2 my-4">
-        {% for tag in tags |slice(0,countTagMobile - 1) %}
-            <div class="m-1" >{{ include('shared/category-tag.html.twig', {tag: tag.name, style: 'tag-list'}) }}</div>
-        {% endfor %}
-
-        {% for i in 1.. (tags|length / countTagMobile)|round(0, 'ceil') %}
-
-            {% for tag in tags |slice(i * countTagMobile, countTagMobile) %}
-                <div class="d-none tag-hidden-mobile m-1">
-                    {{ include('shared/category-tag.html.twig', {tag: tag.name, style: 'tag-list'}) }}
-                </div>
-            {% endfor %}
-
-        {% endfor %}
-        <div class="load-more-tag-mobile text-dark bg-secondary rounded-3 mx-1 p-2 d-flex justify-content-center align-items-center">+<div>
-    </div>
-    </section> #}
-
-
-
     {{ include('shared/gallery/bt-gallery.html.twig', {
         title: 'Les dernières sorties',
         subtitle: false,
