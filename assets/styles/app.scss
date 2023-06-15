@@ -43,6 +43,12 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
 .video-container {
     border-radius: 15px;
     overflow: hidden;
+    height:fit-content;
+
+    #player {
+        max-height: 50vh;
+    }
+
 }
 
 .title-font {
