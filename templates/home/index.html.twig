@@ -13,15 +13,15 @@
 		</div>
              
             <div class="home-header text-center col-lg-11">
-                <div class="home-title text-secondary title-font d-flex d-lg-none justify-content-start align-items-start">
+                <div class="home-title fs-4 text-secondary title-font d-flex d-lg-none justify-content-start align-items-start">
                     À LA UNE
                 </div>
-                    <div class="home-image mt-lg-4 rounded-3 text-center position-relative " alt="cover">
+                    <div class="home-image mt-lg-4 mx-auto rounded-3 text-center position-relative " alt="cover">
                         <div class="container">
 
                         <div class="row">
 
-                            <div class="header-logo title-font text-secondary col-3 d-lg-block d-none position-absolute top-0 start-0">
+                            <div class="header-logo rounded-3 rounded-top-0 rounded-start-0 bg-dark title-font text-secondary col-3 d-lg-block d-none position-absolute top-0 start-0">
                             À LA UNE
                             </div>
                             
@@ -29,26 +29,26 @@
                             </div>
 
 
-                            <div class="button-view col-6 col-lg-6 d-flex justify-content-end align-items-end">
+                            <div class="button-view mb-4 z-1 col-6 col-lg-6 d-flex justify-content-end align-items-end">
                           
-                                <a class="link-desktop d-none d-sm-flex title-font text-secondary rounded-3 justify-content-center align-items-center" href="{{ path('video_show', { id: headerVideo[0].id }) }}">
+                                <a class="link-desktop bg-primary fs-3 p-1 text-decoration-none d-none d-sm-flex title-font text-secondary rounded-3 justify-content-center align-items-center" href="{{ path('video_show', { id: headerVideo[0].id }) }}">
                                     <span class="view">REGARDER</span>
-                                    <span class="icon">{{ playFill|raw }}</span>
+                                    <span class="icon fs-1">{{ playFill|raw }}</span>
                                 </a>
 
-                                <a class="link-mobile title-font text-secondary rounded-3 d-flex d-sm-none justify-content-center align-items-center" href="{{ path('video_show', { id: headerVideo[0].id }) }}">
+                                <a class="link-mobile bg-primary fs-6 p-1 text-decoration-none title-font text-secondary rounded-3 d-flex d-sm-none justify-content-center align-items-center" href="{{ path('video_show', { id: headerVideo[0].id }) }}">
                                     <span class="view">REGARDER</span>
-                                    <span class="icon">{{ playFill|raw }}</span>
+                                    <span class="icon fs-2">{{ playFill|raw }}</span>
                                 </a>
 
                             </div>
 
-                            <div class="header-infos-desktop d-none d-sm-flex title-font text-dark col-6 col-lg-3 justify-content-start align-items-end">
-                               <div class="title">{{headerVideo[0].title|u.truncate(30, '...')}}</div>
+                            <div class="header-infos mb-4 fs-4 z-1 d-none d-sm-flex title-font text-dark col-6 col-lg-3 justify-content-start align-items-end">
+                               <div>{{headerVideo[0].title|u.truncate(30, '...')}}</div>
                             </div> 
                             
-                            <div class="header-infos-mobile d-flex d-sm-none title-font text-dark col-6 col-lg-3 justify-content-start align-items-end">
-                               <div class="title">{{headerVideo[0].title|u.truncate(30, '...')}}</div>
+                            <div class="header-infos fs-5 z-1 d-flex d-sm-none title-font text-dark col-6 col-lg-3 justify-content-start align-items-end">
+                               <div>{{headerVideo[0].title|u.truncate(30, '...')}}</div>
                             </div>   
                         </div>
                         </div>
@@ -71,7 +71,7 @@
             {% endfor %}
 
         {% endfor %}
-        <div class="load-more-tag text-dark bg-secondary rounded-3 mx-1 p-2 d-flex justify-content-center align-items-center">+<div>
+        <div class="load-more-tag fs-6 text-font text-dark bg-secondary rounded-3 mx-1 p-2 d-flex justify-content-center align-items-center">+<div>
     </div>
     </section>
 

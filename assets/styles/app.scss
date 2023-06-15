@@ -39,7 +39,6 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
 .home-image {
     background-image: url("/assets/images/poster1-LOL.jpg");
     background-size: cover;
-    margin: auto;
     width: 80vw;
     min-width: 300px;
     min-height: 300px;
@@ -60,27 +59,17 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
 .home-title {
     height: 40px;
     width: 80vw;
-    font-size: $h4-font-size;
 }
 
 .header-logo {
-    background-color: $dark;
     font-size: 45px;
-    border-radius: 0 0 8px 0;
 }
 
 .button-view {
     min-height: 300px;
-    margin-bottom: 20px;
-    z-index: 1;
 
     .link-desktop {
-        background: $primary !important;
-        font-size: $h3-font-size;
-        text-decoration: none;
         width: 200px;
-        padding: 5px;
-
 
         .view {
             margin-left: 20px;
@@ -88,57 +77,33 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
 
         .icon {
             margin-right: 10px;
-            font-size: 35px;
             margin-left: 10px;
 
         }
     }
 
     .link-mobile {
-        background: $primary !important;
-        font-size: $h6-font-size;
-        text-decoration: none;
-        width: calc(0.8*200px);
-        padding: 6px 3px;
-
+        width: 160px;
 
         .view {
-            margin-left: calc(0.8*20px);
-            margin-bottom: 1px;
+            margin-left: 16px;
         }
 
         .icon {
-            margin-right: calc(0.8*10px);
-            font-size: 19px;
-            margin-left: calc(1.2*10px);
-
+            margin-right: 8px;
+            margin-left: 12px;
         }
     }
 }
 
-.header-infos-desktop {
+.header-infos {
     min-height: 300px;
-    z-index: 1;
-
-    .title {
-        font-size: $h4-font-size;
-        margin-bottom: 20px;
-    }
-}
-
-.header-infos-mobile {
-    min-height: 300px;
-    z-index: 1;
-
-    .title {
-        font-size: $h5-font-size;
-    }
 }
 
 .video-container {
-    border-radius: 15px;
     overflow: hidden;
 }
+
 
 .title-font {
     font-family: $titleFont;
@@ -400,32 +365,9 @@ body {
 }
 
 .load-more-tag {
-    font-family: $textFont;
-    font-size: $h6-font-size;
     font-weight: 900;
-    cursor: pointer;
     height: 35.2px;
-
-    &:hover {
-        background-color: $primary !important;
-        color: $secondary !important;
-    }
-
-    &:active,
-    &:focus {
-        scale: 99%;
-        background-color: $light !important;
-        color: $dark !important;
-    }
-
-}
-
-.load-more-tag-mobile {
-    font-family: $textFont;
-    font-size: $h6-font-size;
-    font-weight: 900;
     cursor: pointer;
-    height: 35.2px;
 
     &:hover {
         background-color: $primary !important;
