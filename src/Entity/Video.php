@@ -19,6 +19,12 @@ class Video
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\Length(
+        min: 15,
+        max: 400,
+        minMessage: 'Vous devez saisir au moins {{ limit }} caractères',
+        maxMessage: 'Vous devez saisir au plus {{ limit }} caractères',
+    )]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]

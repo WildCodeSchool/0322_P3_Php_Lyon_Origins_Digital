@@ -306,3 +306,8 @@ body {
         font-weight: 600;
     }
 }
+
+#mydropzone {
+    border: 2px dashed $secondary;
+    min-height: 325px;
+}

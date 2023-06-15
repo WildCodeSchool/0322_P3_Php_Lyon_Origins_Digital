@@ -9,41 +9,20 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container-fluid mt-5">
-		<div class="row justify-content-center upload-font">
-			<div class="col-4">
-				<p class="col-12 control-label mb-3 upload-font-title">Déposez votre video ici:</p>
+	<div class="container-fluid mt-5 upload-font">
+		<div class="col-12 text-center mb-4">
+			<h1 class="upload-font-title">Ajouter du contenu</h1>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-4 mb-4">
+				<p class="col-12 control-label mb-3 upload-font-title">1- Déposez votre video ici:</p>
 				<form action="{{ oneup_uploader_endpoint('gallery') }}" class='dropzone' id="mydropzone"></form>
-
-				<div id="tpl">
-					<div class="dz-preview dz-file-preview well" id="dz-preview-template">
-						<div class="dz-details">
-							<div class="dz-filename">
-								<span data-dz-name></span>
-							</div>
-							<div class="dz-size" data-dz-size></div>
-						</div>
-						<div class="dz-progress">
-							<span class="dz-upload" data-dz-uploadprogress></span>
-						</div>
-						<div class="dz-success-mark">
-							<span></span>
-						</div>
-						<div class="dz-error-mark">
-							<span></span>
-						</div>
-						<div class="dz-error-message">
-							<span data-dz-errormessage></span>
-						</div>
-					</div>
-				</div>
-
 			</div>
-			<div class="col-4">
-				<p class="col-12 control-label mb-3 upload-font-title">Données de la vidéo (obligatoire):</p>
+			<div class="col-12 col-md-4">
+				<p class="col-12 control-label mb-3 upload-font-title">2- Données de la vidéo (obligatoire):</p>
 				{{ form_start(form) }}
 				{{ form_widget(form) }}
-				<button class="btn btn-primary">{{ button|default('Enregistrer') }}</button>
+				<button class="btn btn-primary">{{ button|default('Envoyer') }}</button>
 				{{ form_end(form) }}
 			</div>
 		</div>

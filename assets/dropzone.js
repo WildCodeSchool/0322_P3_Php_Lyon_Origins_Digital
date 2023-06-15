@@ -3,7 +3,8 @@ import Dropzone from "dropzone";
 document.addEventListener("DOMContentLoaded", function () {
     var dropzone_default = new Dropzone("#mydropzone", {
         maxFiles: 1,
-        dictMaxFilesExceeded: 'Une seule video à la fois',
+        dictDefaultMessage: "Déposez votre vidéo ici ou cliquez pour en séléctionner une",
+        dictMaxFilesExceeded: 'Vous ne pouvez ajouter qu\'une seule video à la fois',
         acceptedFiles: 'video/mp4',
         chunking: true,
         forceChunking: false,
