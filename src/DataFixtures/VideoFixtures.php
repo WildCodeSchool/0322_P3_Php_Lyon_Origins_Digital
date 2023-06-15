@@ -187,11 +187,10 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
 
         foreach ($persistedVideos as $persistedVideo) {
-            $persistedVideo
-                ->addTag($this->getReference('tag_' . TagFixtures::TAGS[rand(0, count(TagFixtures::TAGS) - 1)]))
-                ->addTag($this->getReference('tag_' . TagFixtures::TAGS[rand(0, count(TagFixtures::TAGS) - 1)]))
-                ->addTag($this->getReference('tag_' . TagFixtures::TAGS[rand(0, count(TagFixtures::TAGS) - 1)]))
-            ;
+            for ($i = 0; $i < 3; $i++) {
+                $persistedVideo
+                    ->addTag($this->getReference('tag_' . TagFixtures::TAGS[rand(0, count(TagFixtures::TAGS) - 1)]));
+            }
             $manager->persist($video);
         }
 
