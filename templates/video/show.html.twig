@@ -12,7 +12,7 @@
 
 {% block body %}
 
-	<div class="container-fluid text-light sh-uptop row m-0">
+	<div class="container-lg mx-auto text-light sh-uptop row m-0">
 
 		<div class="col-lg-1 d-lg-block d-none">
 			{% include "shared/navbar-desktop.html.twig" %}
@@ -26,7 +26,7 @@
 					<div class="sh-hash d-lg-flex d-none col-lg-auto justify-content-end align-items-start">{{ include('shared/category-tag.html.twig', {tag: video.tag[0].name , style: 'tag-main'}) }}</div>
 				</div>
 
-				<div class="sh-player video-container m-md-4 my-2 mx-0">
+				<div class="sh-player video-container w-100 m-md-4 my-2 mx-0">
 					<video id="player" class="player" playsinline controls data-poster="{{ asset('build/images/' ~ video.posterUrl) }}">
 						<source src="{{ asset('build/videos/' ~ video.videoUrl) }}" type="video/mp4"/>
 					</video>
@@ -56,7 +56,7 @@
 
 	</div>
 
-	<div class="container-fluid row">
+	<div class="container-lg mx-auto row">
 		<div class="col row d-flex justify-content-start align-items-end">
 
 			<div class="text-secondary col-md-auto d-flex justify-content-start align-items-center flex-wrap">
@@ -84,7 +84,7 @@
 
 	</div>
 
-	<div class="container-fluid row">
+	<div class="container-lg mx-auto row">
 		{{ include('shared/gallery/bt-gallery.html.twig', {
 			title: false,
 			subtitle: 'Toutes les vidéos sur ' ~ video.tag[0].name|upper ~ ' !',
