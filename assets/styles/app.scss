@@ -192,6 +192,11 @@ body {
 
 }
 
+.sh-favs {
+
+    width: fit-content;
+}
+
 .bt-container {
 
     .bt {
@@ -256,6 +261,8 @@ body {
             .bt-description {
                 font-size: calc($btWidth * .05);
                 font-family: $textFont;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
         }
 
