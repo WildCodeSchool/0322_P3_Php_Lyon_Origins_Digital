@@ -39,6 +39,7 @@ class UploadController extends AbstractController
             }
             return $this->redirectToRoute('home_index');
         }
+        $saveVideoService->deleteSessionFilename();
         return $this->render('upload/index.html.twig', [
             'form' => $form,
         ]);
