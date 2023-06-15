@@ -21,18 +21,45 @@ setTimeout(() => {
     alert.remove();
 }, 2000);
 
+(function loadMoreTag() {
+
+    const loadMoreTagButton = document.querySelector('.load-more-tag');
+    let hiddenTagBts = document.querySelectorAll('.tag-hidden');
+    let counter = 0;
+
+    loadMoreTagButton.addEventListener('click', function () {
+        const groupOfBts = Array.from(hiddenTagBts).slice(counter, counter + 2);
+        for (const bt of groupOfBts) {
+            bt.classList.remove('tag-hidden');
+            bt.classList.remove('d-none');
+        }
+
+        counter += 2;
+
+        if (counter >= hiddenTagBts.length) {
+            loadMoreTagButton.remove();
+        }
+    });
+
+    if (hiddenTagBts.length < 1) {
+        loadMoreTagButton.remove();
+    }
+})();
 
 (function loadMore() {
 
     const loadMoreButtons = document.getElementsByClassName('load-more-btn');
 
+
     for (const loadMoreButton of loadMoreButtons) {
+
 
         const idName = loadMoreButton.id;
         const loadMoreBtn = document.getElementById(idName);
         let hiddenBts = document.getElementById(idName + "-bt-gallery").querySelectorAll('.bt-hidden');
 
         let idNbr = 1;
+
 
         loadMoreBtn.addEventListener('click', function () {
             let groupOfBts = document.getElementsByClassName(idName + '-' + idNbr);
@@ -42,35 +69,38 @@ setTimeout(() => {
                 bt.classList.add('bt-container');
             }
 
+
             idNbr++;
 
             hiddenBts = document.getElementById(idName + "-bt-gallery").querySelectorAll('.bt-hidden');
+
             if (hiddenBts.length < 1) { loadMoreBtn.parentElement.parentElement.remove(); }
         })
+
 
         if (hiddenBts.length < 1) { loadMoreBtn.parentElement.parentElement.remove(); }
     }
 })();
 
-(function ShowDescriptionOnMobile(){
+(function ShowDescriptionOnMobile() {
     let description = document.getElementById('sh-description');
     const descriptionFull = document.getElementById('sh-description').innerText;
     let maxOnMobile = 100;
     let descriptionShort = '';
 
     addEventListener('resize', () => {
-        
+
         if (window.screen.width <= 576) {
-    
+
             if (description.innerText.length > maxOnMobile) {
-            
+
                 descriptionShort = description.innerText.slice(0, maxOnMobile) + '...';
                 description.innerText = descriptionShort;
             } else {
                 description.innerText = descriptionFull;
             }
-        
-            description.addEventListener('click', function(){
+
+            description.addEventListener('click', function () {
                 if (description.innerText == descriptionShort) {
                     description.innerText = descriptionFull;
                 } else if (description.innerText == descriptionFull) {
@@ -86,12 +116,14 @@ setTimeout(() => {
 
 function addSocialBtn(name, className, offColor = 'light', onColor = 'secondary') {
 
+
     const icons = document.getElementsByClassName(name);
     const divs = document.getElementsByClassName('bt-' + name);
 
     for (const icon of icons) {
         icon.classList.add('bi-' + className);
     }
+
 
     for (const div of divs) {
         div.classList.add('text-' + offColor);

@@ -29,28 +29,70 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;900&family=Staatliches&display=swap');
 
 :root {
-
     --plyr-color-main: #581EA3;
-
-    --plyr-range-thumb-background: #ffffff;
-
+    --plyr-range-thumb-background: #FFFFFF;
     --plyr-control-icon-size: 20px;
-
-    --plyr-video-control-color: #ffffff;
-
+    --plyr-video-control-color: #FFFFFF;
     --plyr-video-control-color-hover: #FFE500;
 }
 
+// header ----------------------------------------------------
+
+.home-image {
+    background-image: url("/assets/images/poster1-LOL.jpg");
+    background-size: cover;
+    width: 80vw;
+    min-width: 300px;
+    min-height: 300px;
+    object-fit: cover;
+    background-position: center;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 25%;
+        background-image: linear-gradient(to bottom, transparent, $secondary);
+    }
+}
+
+.home-title {
+    height: 40px;
+    width: 80vw;
+}
+
+.header-logo {
+    font-size: 45px;
+}
+
+.button-view {
+    min-height: 300px;
+
+    .link-desktop {
+        width: 200px;
+    }
+
+    .link-mobile {
+        width: 160px;
+    }
+}
+
+.header-infos {
+    min-height: 300px;
+}
+
 .video-container {
-    border-radius: 15px;
     overflow: hidden;
-    height:fit-content;
+    height: fit-content;
 
     #player {
         max-height: 50vh;
     }
 
 }
+
 
 .title-font {
     font-family: $titleFont;
@@ -77,15 +119,15 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
     }
 
     &:hover {
-        background-color: $primary  !important;
-        color: $secondary  !important;
+        background-color: $primary !important;
+        color: $secondary !important;
     }
 
     &:active,
     &:focus {
         scale: 99%;
-        background-color: $light  !important;
-        color: $dark  !important;
+        background-color: $light !important;
+        color: $dark !important;
     }
 }
 
@@ -111,12 +153,14 @@ body {
 
 .bt-container {
 
+
     .bt {
 
-        width: $btWidth * 1.03;        
+        width: $btWidth * 1.03;
         aspect-ratio: 1 / 1.02;
         scale: $btSizeFactor;
         transition: .7s $animCurveEaseOut;
+
 
         .bt-main {
             width: $btWidth;
@@ -136,6 +180,7 @@ body {
                 width: $btWidth;
                 height: $btHeight;
             }
+
 
             .bt-line {
                 width: calc($btWidth * 0.75);
@@ -157,7 +202,7 @@ body {
             .bt-socials {
                 div:hover {
                     cursor: pointer;
-                    color: $secondary  !important;
+                    color: $secondary !important;
                 }
             }
 
@@ -179,7 +224,6 @@ body {
                 text-overflow: ellipsis;
             }
         }
-
     }
 
     &:hover {
@@ -205,6 +249,7 @@ body {
 
     }
 }
+
 
 .st {
 
@@ -320,6 +365,24 @@ body {
 
     .upload-font-title {
         font-weight: 600;
+    }
+}
+
+.load-more-tag {
+    font-weight: 900;
+    height: 35.2px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $primary !important;
+        color: $secondary !important;
+    }
+
+    &:active,
+    &:focus {
+        scale: 99%;
+        background-color: $light !important;
+        color: $dark !important;
     }
 }
 
