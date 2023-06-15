@@ -30,12 +30,12 @@
 
                             <div class="button-view col-6 col-lg-6 d-flex justify-content-end align-items-end">
                           
-                                <a class="link-desktop d-none d-sm-flex title-font text-secondary rounded-3 justify-content-center align-items-center" href="">
+                                <a class="link-desktop d-none d-sm-flex title-font text-secondary rounded-3 justify-content-center align-items-center" href="{{ path('video_show', { id: headerVideo[0].id }) }}">
                                     <span class="view">REGARDER</span>
                                     <span class="icon">{{ playFill|raw }}</span>
                                 </a>
 
-                                <a class="link-mobile title-font text-secondary rounded-3 d-flex d-sm-none justify-content-center align-items-center" href="">
+                                <a class="link-mobile title-font text-secondary rounded-3 d-flex d-sm-none justify-content-center align-items-center" href="{{ path('video_show', { id: headerVideo[0].id }) }}">
                                     <span class="view">REGARDER</span>
                                     <span class="icon">{{ playFill|raw }}</span>
                                 </a>
@@ -43,11 +43,11 @@
                             </div>
 
                             <div class="header-infos-desktop d-none d-sm-flex title-font text-dark col-6 col-lg-3 justify-content-start align-items-end">
-                               <div class="title">{{headerVideo.title|u.truncate(30, '...')}}</div>
+                               <div class="title">{{headerVideo[0].title|u.truncate(30, '...')}}</div>
                             </div> 
                             
                             <div class="header-infos-mobile d-flex d-sm-none title-font text-dark col-6 col-lg-3 justify-content-start align-items-end">
-                               <div class="title">{{headerVideo.title|u.truncate(30, '...')}}</div>
+                               <div class="title">{{headerVideo[0].title|u.truncate(30, '...')}}</div>
                             </div>   
                         </div>
                         </div>
@@ -57,9 +57,18 @@
 
     {{ include('shared/gallery/bt-gallery.html.twig', {
         title: 'Les dernières sorties',
-        count: 7,
+        subtitle: false,
+        count: 4,
         contents: latestVideos,
         id: 'latest'
+    }) }}
+
+    {{ include('shared/gallery/bt-gallery.html.twig', {
+        title: 'Les plus vues',
+        subtitle: false,
+        count: 4,
+        contents: latestVideos,
+        id: 'mostViewed'
     }) }}
 
 {% endblock %}

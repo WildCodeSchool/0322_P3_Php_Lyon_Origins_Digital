@@ -5,9 +5,10 @@ namespace App\DataFixtures;
 use DateTimeImmutable;
 use App\Entity\Video;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class VideoFixtures extends Fixture
+class VideoFixtures extends Fixture implements DependentFixtureInterface
 {
     public const VIDEOS = [
         [
@@ -153,18 +154,39 @@ class VideoFixtures extends Fixture
         ],
 
     ];
+
     public function load(ObjectManager $manager): void
     {
-        foreach (self::VIDEOS as $clip) {
-            $video = new Video();
-            $video->setTitle($clip['title']);
-            $video->setDescription($clip['description']);
-            $postDate = new DateTimeImmutable($clip['post_date']);
-            $video->setPostDate($postDate);
-            $video->setVideoUrl($clip['video_url']);
-            $video->setPosterUrl($clip['poster_url']);
-            $manager->persist($video);
+        $persistedVideos = [];
+
+        for ($i = 0; $i < 4; $i++) {
+            foreach (self::VIDEOS as $clip) {
+                $video = new Video();
+                $video->setTitle($clip['title']);
+                $video->setDescription($clip['description']);
+                $postDate = new DateTimeImmutable($clip['post_date']);
+                $video->setPostDate($postDate);
+                $video->setVideoUrl($clip['video_url']);
+                $video->setPosterUrl($clip['poster_url']);
+
+                $manager->persist($video);
+
+                $persistedVideos[] = $video;
+            }
         }
         $manager->flush();
+
+        foreach ($persistedVideos as $persistedVideo) {
+            $persistedVideo
+            ->addTag($this->getReference('tag_' . TagFixtures::TAGS[rand(0, count(TagFixtures::TAGS) - 1)]));
+            $manager->persist($video);
+        }
+
+        $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return [TagFixtures::class,];
     }
 }

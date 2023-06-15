@@ -26,6 +26,13 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
 @import "~plyr/src/sass/plyr.scss";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;900&family=Staatliches&display=swap');
 
+:root {
+    --plyr-color-main: #581EA3;
+    --plyr-range-thumb-background: #FFFFFF;
+    --plyr-control-icon-size: 20px;
+    --plyr-video-control-color: #FFFFFF;
+    --plyr-video-control-color-hover: #FFE500;
+}
 
 // header ----------------------------------------------------
 
@@ -185,88 +192,94 @@ body {
 
 }
 
-.bt {
+.bt-container {
 
-    width: $btWidth * 1.03;
-    aspect-ratio: 1 / 1.02;
-    scale: $btSizeFactor;
-    transition: .7s $animCurveEaseOut;
+    .bt {
 
-    .bt-main {
-        width: $btWidth;
-        transform: translateY(($btWidth * .1)/2);
-        background: linear-gradient(135deg, $primary 50%, $secondary) !important;
-        transform-origin: center;
+        width: $btWidth * 1.03;
+        aspect-ratio: 1 / 1.02;
+        scale: $btSizeFactor;
         transition: .7s $animCurveEaseOut;
 
-        .bt-title {
-            font-size: calc($btWidth * 0.08) !important;
-        }
-
-        .bt-main-mask {
-            transform-origin: center;
-            transform: scale(99%);
+        .bt-main {
             width: $btWidth;
-        }
-
-        .bt-line {
-            width: calc($btWidth * 0.75);
-            height: 1px;
-            background-color: $info;
-            transition: .7s $animCurveEaseOut;
-        }
-
-        .bt-poster {
-            width: calc($btWidth * 0.8);
-            aspect-ratio: 16 / 10;
-            top: calc($btWidth * -.1);
-            left: calc($btWidth * .04);
+            transform: translateY(($btWidth * .1)/2);
+            background: linear-gradient(135deg, $primary 50%, $secondary) !important;
             transform-origin: center;
-            border: 0px solid $secondary;
             transition: .7s $animCurveEaseOut;
-        }
 
-        .bt-socials {
-            div:hover {
-                cursor: pointer;
-                color: $secondary !important;
+            .bt-title {
+                font-size: calc($btWidth * 0.08) !important;
+            }
+
+            .bt-main-mask {
+                transform-origin: center;
+                transform: scale(99%);
+                width: $btWidth;
+            }
+
+            .bt-line {
+                width: calc($btWidth * 0.75);
+                height: 1px;
+                background-color: $info;
+                transition: .7s $animCurveEaseOut;
+            }
+
+            .bt-poster {
+                width: calc($btWidth * 0.8);
+                aspect-ratio: 16 / 10;
+                top: calc($btWidth * -.1);
+                left: calc($btWidth * .04);
+                transform-origin: center;
+                border: 0px solid $secondary;
+                transition: .7s $animCurveEaseOut;
+            }
+
+            .bt-socials {
+                div:hover {
+                    cursor: pointer;
+                    color: $secondary !important;
+                }
+            }
+
+            .bt-spacer {
+                width: calc($btWidth * 0.75 + $btWidth * .04 + 1rem);
+                height: calc(($btWidth * 0.8 / 16 * 10) - $btWidth * .1 - 1rem);
+            }
+
+            .bt-stats,
+            .bt-creator {
+                font-size: calc($btWidth * .04);
+                font-family: $textFont;
+            }
+
+            .bt-description {
+                font-size: calc($btWidth * .05);
+                font-family: $textFont;
             }
         }
 
-        .bt-spacer {
-            width: calc($btWidth * 0.75 + $btWidth * .04 + 1rem);
-            height: calc(($btWidth * 0.8 / 16 * 10) - $btWidth * .1 - 1rem);
-        }
+        &:hover {
 
-        .bt-stats,
-        .bt-creator {
-            font-size: calc($btWidth * .04);
-            font-family: $textFont;
-        }
+            .bt {
+                rotate: -2deg;
+                transform: translateY(5px);
 
-        .bt-description {
-            font-size: calc($btWidth * .05);
-            font-family: $textFont;
-        }
-    }
+                .bt-main {
+                    scale: 96%;
+                }
 
-    &:hover {
+                .bt-line {
+                    width: calc($btWidth * 0.60);
+                }
 
-        rotate: -2deg;
-        transform: translateY(5px);
+                .bt-poster {
+                    top: calc($btWidth * -.13);
+                    transform: rotate(4deg);
+                    border: 5px solid $secondary;
+                }
+            }
 
-        .bt-main {
-            scale: 96%;
-        }
-
-        .bt-line {
-            width: calc($btWidth * 0.60);
-        }
-
-        .bt-poster {
-            top: calc($btWidth * -.13);
-            transform: rotate(4deg);
-            border: 5px solid $secondary;
         }
     }
 }
@@ -340,7 +353,7 @@ body {
 
     .load-more-main {
         width: $btWidth;
-        height: 79%;
+        height: 81%;
         transform: translateY(($btWidth * .1)/2);
         background: linear-gradient(135deg, $primary 50%, $secondary) !important;
         transform-origin: center;
