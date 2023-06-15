@@ -14,14 +14,20 @@ class SaveVideoService extends AbstractController
         $this->requestStack = $requestStack;
     }
 
+    public function deleteSessionFilename(): void
+    {
+        $session = $this->requestStack->getSession();
+        $session->remove('fileName');
+    }
+
     public function getVideoName(): string
     {
         $session = $this->requestStack->getSession();
-        $fileName = null;
+        $fileName = '';
         if ($session->has('fileName')) {
             $fileName = $session->get('fileName');
-            $session->remove('fileName');
         }
+        self::deleteSessionFilename();
         return $fileName;
     }
 
