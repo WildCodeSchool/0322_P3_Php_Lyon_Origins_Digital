@@ -58,21 +58,22 @@ require('bootstrap');
             
                 descriptionShort = description.innerText.slice(0, maxOnMobile) + '...';
                 description.innerText = descriptionShort;
+            } else {
+                description.innerText = descriptionFull;
             }
-    
+        
+            description.addEventListener('click', function(){
+                if (description.innerText == descriptionShort) {
+                    description.innerText = descriptionFull;
+                } else if (description.innerText == descriptionFull) {
+                    description.innerText = descriptionShort;
+                }
+            })
+
         } else {
             description.innerText = descriptionFull;
         }
     })
-    
-    description.addEventListener('click', function(){
-        if (description.innerText == descriptionShort) {
-            description.innerText = descriptionFull;
-        } else if (description.innerText == descriptionFull) {
-            description.innerText = descriptionShort;
-        }
-    })        
-    
 })();
 
 function addSocialBtn(name, className, offColor = 'light', onColor = 'secondary') {
