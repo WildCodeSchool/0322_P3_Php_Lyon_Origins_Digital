@@ -153,6 +153,14 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'poster_url' => 'poster3-DOFUS.jpg',
         ],
 
+        [
+            'title' => 'TITRE',
+            'description' => 'Desc',
+            'post_date' => '2022-04-14 00:00:00',
+            'video_url' => 'video3-DOFUS.mp4',
+            'poster_url' => 'poster3-DOFUS.jpg',
+        ],
+
     ];
 
     public function load(ObjectManager $manager): void
@@ -162,12 +170,14 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         for ($i = 0; $i < 4; $i++) {
             foreach (self::VIDEOS as $clip) {
                 $video = new Video();
-                $video->setTitle($clip['title']);
-                $video->setDescription($clip['description']);
                 $postDate = new DateTimeImmutable($clip['post_date']);
-                $video->setPostDate($postDate);
-                $video->setVideoUrl($clip['video_url']);
-                $video->setPosterUrl($clip['poster_url']);
+                $video
+                    ->setTitle($clip['title'])
+                    ->setDescription($clip['description'])
+                    ->setPostDate($postDate)
+                    ->setVideoUrl($clip['video_url'])
+                    ->setPosterUrl($clip['poster_url'])
+                ;
 
                 $manager->persist($video);
 
@@ -178,7 +188,10 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
 
         foreach ($persistedVideos as $persistedVideo) {
             $persistedVideo
-            ->addTag($this->getReference('tag_' . TagFixtures::TAGS[rand(0, count(TagFixtures::TAGS) - 1)]));
+                ->addTag($this->getReference('tag_' . TagFixtures::TAGS[rand(0, count(TagFixtures::TAGS) - 1)]))
+                ->addTag($this->getReference('tag_' . TagFixtures::TAGS[rand(0, count(TagFixtures::TAGS) - 1)]))
+                ->addTag($this->getReference('tag_' . TagFixtures::TAGS[rand(0, count(TagFixtures::TAGS) - 1)]))
+            ;
             $manager->persist($video);
         }
 
