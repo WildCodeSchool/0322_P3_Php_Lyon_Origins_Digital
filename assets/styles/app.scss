@@ -72,29 +72,10 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
 
     .link-desktop {
         width: 200px;
-
-        .view {
-            margin-left: 20px;
-        }
-
-        .icon {
-            margin-right: 10px;
-            margin-left: 10px;
-
-        }
     }
 
     .link-mobile {
         width: 160px;
-
-        .view {
-            margin-left: 16px;
-        }
-
-        .icon {
-            margin-right: 8px;
-            margin-left: 12px;
-        }
     }
 }
 
@@ -104,7 +85,7 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
 
 .video-container {
     overflow: hidden;
-    height:fit-content;
+    height: fit-content;
 
     #player {
         max-height: 50vh;
@@ -175,7 +156,7 @@ body {
 
     .bt {
 
-        width: $btWidth * 1.03;        
+        width: $btWidth * 1.03;
         aspect-ratio: 1 / 1.02;
         scale: $btSizeFactor;
         transition: .7s $animCurveEaseOut;
