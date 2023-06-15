@@ -3,8 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\VideoRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use DateTimeImmutable as Date;
 
 #[ORM\Entity(repositoryClass: VideoRepository::class)]
 class Video
@@ -15,9 +19,21 @@ class Video
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\Length(
+        min: 15,
+        max: 400,
+        minMessage: 'Vous devez saisir au moins {{ limit }} caractères',
+        maxMessage: 'Vous devez saisir au plus {{ limit }} caractères',
+    )]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(
+        min: 5,
+        max: 255,
+        minMessage: 'Vous devez saisir au moins {{ limit }} caractères',
+        maxMessage: 'Vous devez saisir au plus {{ limit }} caractères',
+    )]
     private ?string $title = null;
 
     #[ORM\Column]
@@ -26,8 +42,17 @@ class Video
     #[ORM\Column(length: 255)]
     private ?string $videoUrl = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $posterUrl = null;
+
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'videos')]
+    private Collection $tag;
+
+    public function __construct()
+    {
+        $this->tag = new ArrayCollection();
+        $this->postDate = new Date();
+    }
 
     public function getId(): ?int
     {
@@ -91,6 +116,29 @@ class Video
     {
         $this->posterUrl = $posterUrl;
 
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Tag>
+     */
+    public function getTag(): Collection
+    {
+        return $this->tag;
+    }
+
+    public function addTag(Tag $tag): static
+    {
+        if (!$this->tag->contains($tag)) {
+            $this->tag->add($tag);
+        }
+
+        return $this;
+    }
+
+    public function removeTag(Tag $tag): static
+    {
+        $this->tag->removeElement($tag);
         return $this;
     }
 }

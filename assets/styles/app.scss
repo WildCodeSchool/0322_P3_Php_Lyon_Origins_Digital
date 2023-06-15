@@ -7,6 +7,7 @@ $light: #FFFFFF; // whites
 
 // -- spacing/sizing --
 $btWidth: 280px;
+$btHeight: 240px;
 $btSizeFactor: 100%;
 
 $stWidth: 180px;
@@ -24,12 +25,74 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
 @import "~bootstrap/scss/bootstrap";
 @import "~bootstrap-icons/font/bootstrap-icons";
 @import "~plyr/src/sass/plyr.scss";
+@import "~dropzone/dist/dropzone.css";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;900&family=Staatliches&display=swap');
 
-.video-container {
-    border-radius: 15px;
-    overflow: hidden;
+:root {
+    --plyr-color-main: #581EA3;
+    --plyr-range-thumb-background: #FFFFFF;
+    --plyr-control-icon-size: 20px;
+    --plyr-video-control-color: #FFFFFF;
+    --plyr-video-control-color-hover: #FFE500;
 }
+
+// header ----------------------------------------------------
+
+.home-image {
+    background-image: url("/assets/images/poster1-LOL.jpg");
+    background-size: cover;
+    width: 80vw;
+    min-width: 300px;
+    min-height: 300px;
+    object-fit: cover;
+    background-position: center;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 25%;
+        background-image: linear-gradient(to bottom, transparent, $secondary);
+    }
+}
+
+.home-title {
+    height: 40px;
+    width: 80vw;
+}
+
+.header-logo {
+    font-size: 45px;
+}
+
+.button-view {
+    min-height: 300px;
+
+    .link-desktop {
+        width: 200px;
+    }
+
+    .link-mobile {
+        width: 160px;
+    }
+}
+
+.header-infos {
+    min-height: 300px;
+}
+
+.video-container {
+    overflow: hidden;
+    height: fit-content;
+
+    #player {
+        max-height: 50vh;
+    }
+
+}
+
 
 .title-font {
     font-family: $titleFont;
@@ -83,91 +146,110 @@ body {
 
 }
 
-.bt {
+.sh-favs {
 
-    width: $btWidth * 1.03;
-    aspect-ratio: 1 / 1.02;
-    scale: $btSizeFactor;
-    transition: .7s $animCurveEaseOut;
+    width: fit-content;
+}
 
-    .bt-main {
-        width: $btWidth;
-        transform: translateY(($btWidth * .1)/2);
-        background: linear-gradient(135deg, $primary 50%, $secondary) !important;
-        transform-origin: center;
+.bt-container {
+
+
+    .bt {
+
+        width: $btWidth * 1.03;
+        aspect-ratio: 1 / 1.02;
+        scale: $btSizeFactor;
         transition: .7s $animCurveEaseOut;
 
-        .bt-title {
-            font-size: calc($btWidth * 0.08) !important;
-        }
 
-        .bt-main-mask {
-            transform-origin: center;
-            transform: scale(99%);
+        .bt-main {
             width: $btWidth;
-        }
-
-        .bt-line {
-            width: calc($btWidth * 0.75);
-            height: 1px;
-            background-color: $info;
-            transition: .7s $animCurveEaseOut;
-        }
-
-        .bt-poster {
-            width: calc($btWidth * 0.8);
-            aspect-ratio: 16 / 10;
-            top: calc($btWidth * -.1);
-            left: calc($btWidth * .04);
+            height: $btHeight;
+            transform: translateY(($btWidth * .1)/2);
+            background: linear-gradient(135deg, $primary 50%, $secondary) !important;
             transform-origin: center;
-            border: 0px solid $secondary;
             transition: .7s $animCurveEaseOut;
-        }
 
-        .bt-socials {
-            div:hover {
-                cursor: pointer;
-                color: $secondary !important;
+            .bt-title {
+                font-size: calc($btWidth * 0.08) !important;
             }
-        }
 
-        .bt-spacer {
-            width: calc($btWidth * 0.75 + $btWidth * .04 + 1rem);
-            height: calc(($btWidth * 0.8 / 16 * 10) - $btWidth * .1 - 1rem);
-        }
+            .bt-main-mask {
+                transform-origin: center;
+                transform: scale(99%);
+                width: $btWidth;
+                height: $btHeight;
+            }
 
-        .bt-stats,
-        .bt-creator {
-            font-size: calc($btWidth * .04);
-            font-family: $textFont;
-        }
 
-        .bt-description {
-            font-size: calc($btWidth * .05);
-            font-family: $textFont;
+            .bt-line {
+                width: calc($btWidth * 0.75);
+                height: 1px;
+                background-color: $info;
+                transition: .7s $animCurveEaseOut;
+            }
+
+            .bt-poster {
+                width: calc($btWidth * 0.8);
+                aspect-ratio: 16 / 10;
+                top: calc($btWidth * -.1);
+                left: calc($btWidth * .04);
+                transform-origin: center;
+                border: 0px solid $secondary;
+                transition: .7s $animCurveEaseOut;
+            }
+
+            .bt-socials {
+                div:hover {
+                    cursor: pointer;
+                    color: $secondary !important;
+                }
+            }
+
+            .bt-spacer {
+                width: calc($btWidth * 0.75 + $btWidth * .04 + 1rem);
+                height: calc(($btWidth * 0.8 / 16 * 10) - $btWidth * .1 - 1rem);
+            }
+
+            .bt-stats,
+            .bt-creator {
+                font-size: calc($btWidth * .04);
+                font-family: $textFont;
+            }
+
+            .bt-description {
+                font-size: calc($btWidth * .05);
+                font-family: $textFont;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
         }
     }
 
     &:hover {
 
-        rotate: -2deg;
-        transform: translateY(5px);
+        .bt {
+            rotate: -2deg;
+            transform: translateY(5px);
 
-        .bt-main {
-            scale: 96%;
+            .bt-main {
+                scale: 96%;
+            }
+
+            .bt-line {
+                width: calc($btWidth * 0.60);
+            }
+
+            .bt-poster {
+                top: calc($btWidth * -.13);
+                transform: rotate(4deg);
+                border: 5px solid $secondary;
+            }
         }
 
-        .bt-line {
-            width: calc($btWidth * 0.60);
-        }
-
-        .bt-poster {
-            top: calc($btWidth * -.13);
-            transform: rotate(4deg);
-            border: 5px solid $secondary;
-        }
     }
 }
+
 
 .st {
 
@@ -238,7 +320,7 @@ body {
 
     .load-more-main {
         width: $btWidth;
-        height: 79%;
+        height: 81%;
         transform: translateY(($btWidth * .1)/2);
         background: linear-gradient(135deg, $primary 50%, $secondary) !important;
         transform-origin: center;
@@ -275,4 +357,36 @@ body {
     &:focus {
         scale: 90%;
     }
+}
+
+.upload-font {
+    font-family: $textFont;
+    color: $secondary;
+
+    .upload-font-title {
+        font-weight: 600;
+    }
+}
+
+.load-more-tag {
+    font-weight: 900;
+    height: 35.2px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $primary !important;
+        color: $secondary !important;
+    }
+
+    &:active,
+    &:focus {
+        scale: 99%;
+        background-color: $light !important;
+        color: $dark !important;
+    }
+}
+
+#mydropzone {
+    border: 2px dashed $secondary;
+    min-height: 325px;
 }
