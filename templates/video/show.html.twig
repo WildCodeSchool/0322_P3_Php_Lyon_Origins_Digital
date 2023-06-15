@@ -12,7 +12,7 @@
 
 {% block body %}
 
-	<div class="container-fluid text-light sh-uptop row">
+	<div class="container-fluid text-light sh-uptop row m-0">
 
 		<div class="col-lg-1 d-lg-block d-none">
 			{% include "shared/navbar-desktop.html.twig" %}
@@ -26,17 +26,17 @@
 					<div class="sh-hash d-lg-flex d-none col-lg-auto justify-content-end align-items-start">{{ include('shared/category-tag.html.twig', {tag: video.tag[0].name , style: 'tag-main'}) }}</div>
 				</div>
 
-				<div class="sh-player video-container m-4">
+				<div class="sh-player video-container m-md-4 my-2 mx-0">
 					<video id="player" class="player" playsinline controls data-poster="{{ asset('build/images/' ~ video.posterUrl) }}">
 						<source src="{{ asset('build/videos/' ~ video.videoUrl) }}" type="video/mp4"/>
 					</video>
 				</div>
 
 				<div class="row px-4 w-100">
-					<div class="sh-creator col-xl-2 col-11">
+					<div class="sh-creator col-xl-2 col-12">
 						<h5>Username</h5>
 					</div>
-					<div class="sh-description col-xl col-11 text-info">
+					<div class="sh-description col-xl col-12 text-info p-0 pb-4" id="sh-description">
 						<p>{{ video.description }}</p>
 					</div>
 				</div>
@@ -94,7 +94,7 @@
 		}) }}
 	</div>
 
-	<div class="col-lg-1 d-lg-none">
+	<div class="col-lg-1 d-lg-none d-none">
 		{% include "shared/navbar-mobile.html.twig" %}
 	</div>
 {% endblock %}
