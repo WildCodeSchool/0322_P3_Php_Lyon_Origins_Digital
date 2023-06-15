@@ -14,7 +14,7 @@ import './bootstrap';
 // include bootstrap JS
 require('bootstrap');
 
-//boostrap css alert auto close
+//boostrap css alert auto-close
 const alert = document.getElementById('alertMsg');
 //close the alert after 2 seconds (2000 milliseconds)
 setTimeout(() => {
