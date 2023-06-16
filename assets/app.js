@@ -21,30 +21,6 @@ setTimeout(() => {
     alert.remove();
 }, 2000);
 
-(function loadMoreTag() {
-
-    const loadMoreTagButton = document.querySelector('.load-more-tag');
-    let hiddenTagBts = document.querySelectorAll('.tag-hidden');
-    let counter = 0;
-
-    loadMoreTagButton.addEventListener('click', function () {
-        const groupOfBts = Array.from(hiddenTagBts).slice(counter, counter + 2);
-        for (const bt of groupOfBts) {
-            bt.classList.remove('tag-hidden');
-            bt.classList.remove('d-none');
-        }
-
-        counter += 2;
-
-        if (counter >= hiddenTagBts.length) {
-            loadMoreTagButton.remove();
-        }
-    });
-
-    if (hiddenTagBts.length < 1) {
-        loadMoreTagButton.remove();
-    }
-})();
 
 (function loadMore() {
 
@@ -79,6 +55,31 @@ setTimeout(() => {
 
 
         if (hiddenBts.length < 1) { loadMoreBtn.parentElement.parentElement.remove(); }
+    }
+})();
+
+(function loadMoreTag() {
+
+    const loadMoreTagButton = document.querySelector('.load-more-tag');
+    let hiddenTagBts = document.querySelectorAll('.tag-hidden');
+    let counter = 0;
+
+    loadMoreTagButton.addEventListener('click', function () {
+        const groupOfBts = Array.from(hiddenTagBts).slice(counter, counter + 2);
+        for (const bt of groupOfBts) {
+            bt.classList.remove('tag-hidden');
+            bt.classList.remove('d-none');
+        }
+
+        counter += 2;
+
+        if (counter >= hiddenTagBts.length) {
+            loadMoreTagButton.remove();
+        }
+    });
+
+    if (hiddenTagBts.length < 1) {
+        loadMoreTagButton.remove();
     }
 })();
 
