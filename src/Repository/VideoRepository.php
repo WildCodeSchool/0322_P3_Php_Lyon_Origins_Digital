@@ -43,6 +43,7 @@ class VideoRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('v')
             ->orderBy('v.postDate', 'DESC')
+            ->setParameter('v.postDate', 'now')
             ->getQuery()
             ->getResult();
     }
