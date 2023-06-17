@@ -80,17 +80,10 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
 }
 
 .header-infos {
-    min-height: 300px;
 }
 
 .video-container {
     overflow: hidden;
-    height: fit-content;
-
-    #player {
-        max-height: 50vh;
-    }
-
 }
 
 
