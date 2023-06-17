@@ -1,10 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Recherche{% endblock %}
+{% block title %}Recherche
+{% endblock %}
 
 {% block body %}
 
-    {{ include('shared/gallery/bt-gallery.html.twig', {
+	{{ include('shared/gallery/bt-gallery.html.twig', {
         title: 'Les videos ' ~ tag.name,
         subtitle: 'Il y a ' ~ tag.videos|length ~ ' resultats correspondants à votre recherche',
         count: 10,
