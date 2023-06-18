@@ -9,13 +9,23 @@
 			</div>
 			<div class="d-flex justify-content-between align-items-start">
 				<div class="bt-spacer"></div>
+				{% if app.user %}
+					
 				<div class="bt-socials flex-column justify-content-center fs-5">
 					<a href="{{ path('fav_add', { idVideo: item.id }) }}">
+						{% set isFav = false %}
+						{% for fav in app.user.favoriteVideos %}
+							{% if fav.id == item.id %}
+								{% set isFav = true %}
+								{% endif %}
+						{% endfor %}
+						{{ dump(isFav) }}
 						<div class="bt-social-btn"><i class='bt-fav bi'></i></div>
 					</a>
 					<div class="bt-social-btn"><i class='bt-watch bi'></i></div>
 					<div class="bt-social-btn"><i class='bt-like bi'></i></div>
 				</div>
+				{% endif %}
 			</div>
 
 			<div class="bt-title title-font text-secondary text-nowrap">{{ item.title|u.truncate(30, '...') }}</div>

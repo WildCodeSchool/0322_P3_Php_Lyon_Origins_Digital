@@ -17,7 +17,12 @@ class FavoriteController extends AbstractController
 
         if ($this->getUser()) {
             $user = $this->getUser();
-            $idVideo->addUserFavorited($user);
+
+            if ($idVideo->getUsersFavorited()->contains($user)) {
+                $idVideo->removeUserFavorited($user);
+            } else {
+                $idVideo->addUserFavorited($user);
+            }
             $videoRepository->save($idVideo, true);
         }
 
