@@ -7,6 +7,7 @@ use App\Entity\Video;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
 
 class VideoFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -173,6 +174,8 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
+
+        $faker = Factory::create('fr_FR');
         $persistedVideos = [];
 
         for ($i = 0; $i < 4; $i++) {
@@ -180,8 +183,8 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
                 $video = new Video();
                 $postDate = new DateTimeImmutable($clip['post_date']);
                 $video
-                    ->setTitle($clip['title'])
-                    ->setDescription($clip['description'])
+                    ->setTitle($faker->sentence(4) . ' - ' . $faker->sentence(4))
+                    ->setDescription($faker->paragraph())
                     ->setPostDate($postDate)
                     ->setVideoUrl($clip['video_url'])
                     ->setPosterUrl($clip['poster_url'])
