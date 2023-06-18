@@ -9,10 +9,12 @@
 			</div>
 			<div class="d-flex justify-content-between align-items-start">
 				<div class="bt-spacer"></div>
-				<div class="bt-socials d-none flex-column justify-content-center fs-5">
-					<div class="bt-fav" id="fav-div">{{fav|raw}}</div>
-					<div class="bt-watchLater" id="watchLater-div">{{watchLater|raw}}</div>
-					<div class="bt-like" id="like-div">{{like|raw}}</div>
+				<div class="bt-socials flex-column justify-content-center fs-5">
+					<a href="{{ path('fav_add', { id: app.user.id, idVideo: item.id }) }}">
+						<div class="bt-social-btn"><i class='bt-fav bi'></i></div>
+					</a>
+					<div class="bt-social-btn"><i class='bt-watch bi'></i></div>
+					<div class="bt-social-btn"><i class='bt-like bi'></i></div>
 				</div>
 			</div>
 

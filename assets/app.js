@@ -23,12 +23,12 @@ setTimeout(() => {
 
 
 (function loadMore() {
-
+    
     const loadMoreButtons = document.getElementsByClassName('load-more-btn');
-
-
+    
+    
     for (const loadMoreButton of loadMoreButtons) {
-
+        
 
         const idName = loadMoreButton.id;
         const loadMoreBtn = document.getElementById(idName);
@@ -44,10 +44,10 @@ setTimeout(() => {
                 bt.classList.remove('d-none');
                 bt.classList.add('bt-container');
             }
-
+            
 
             idNbr++;
-
+            
             hiddenBts = document.getElementById(idName + "-bt-gallery").querySelectorAll('.bt-hidden');
 
             if (hiddenBts.length < 1) { loadMoreBtn.parentElement.parentElement.remove(); }
@@ -58,28 +58,19 @@ setTimeout(() => {
     }
 })();
 
-(function loadMoreTag() {
+(function addSocialBtn(offColor = 'light', onColor = 'secondary') {
 
-    const loadMoreTagButton = document.querySelector('.load-more-tag');
-    let hiddenTagBts = document.querySelectorAll('.tag-hidden');
-    let counter = 0;
-
-    loadMoreTagButton.addEventListener('click', function () {
-        const groupOfBts = Array.from(hiddenTagBts).slice(counter, counter + 2);
-        for (const bt of groupOfBts) {
-            bt.classList.remove('tag-hidden');
-            bt.classList.remove('d-none');
-        }
-
-        counter += 2;
-
-        if (counter >= hiddenTagBts.length) {
-            loadMoreTagButton.remove();
-        }
-    });
-
-    if (hiddenTagBts.length < 1) {
-        loadMoreTagButton.remove();
+    const icons = document.getElementsByClassName('bt-fav');
+    
+    for (const icon of icons) {
+        icon.classList.add('bi-heart')
+        icon.classList.add('text-' + offColor);
+        icon.addEventListener('click', function () {
+            icon.classList.toggle('bi-heart');
+            icon.classList.toggle('bi-heart-fill');
+            icon.classList.toggle('text-' + offColor);
+            icon.classList.toggle('text-' + onColor);
+        })
     }
 })();
 
@@ -88,11 +79,11 @@ setTimeout(() => {
     const descriptionFull = document.getElementById('sh-description').innerText;
     let maxOnMobile = 100;
     let descriptionShort = '';
-
+    
     addEventListener('resize', () => {
 
         if (window.screen.width <= 576) {
-
+            
             if (description.innerText.length > maxOnMobile) {
 
                 descriptionShort = description.innerText.slice(0, maxOnMobile) + '...';
@@ -108,66 +99,10 @@ setTimeout(() => {
                     description.innerText = descriptionShort;
                 }
             })
-
+            
         } else {
             description.innerText = descriptionFull;
         }
     })
 })();
 
-function addSocialBtn(name, className, offColor = 'light', onColor = 'secondary') {
-
-
-    const icons = document.getElementsByClassName(name);
-    const divs = document.getElementsByClassName('bt-' + name);
-
-    for (const icon of icons) {
-        icon.classList.add('bi-' + className);
-    }
-
-
-    for (const div of divs) {
-        div.classList.add('text-' + offColor);
-        const icon = div.firstElementChild;
-        div.addEventListener('click', function () {
-            icon.classList.toggle('bi-' + className);
-            icon.classList.toggle('bi-' + className + '-fill');
-            div.classList.toggle('text-' + offColor);
-            div.classList.toggle('text-' + onColor);
-        })
-    }
-}
-
-function addMenuBtn(iconId, fill = true, device = 'desktop', offColor = 'primary', onColor = 'secondary') {
-    let icon = document.getElementById(iconId);
-    let div = document.getElementById('nav-' + iconId);
-    if (device === 'mobile') {
-        icon = document.getElementById(iconId + '-mobile');
-        div = document.getElementById('nav-' + iconId + '-mobile');
-    }
-    icon.classList.add('bi-' + iconId);
-    div.classList.add('bg-secondary');
-    div.classList.add('rounded-pill');
-    div.classList.add('p-3');
-    div.classList.add('text-' + offColor);
-    div.addEventListener('click', function () {
-        if (fill) {
-            icon.classList.toggle('bi-' + iconId);
-            icon.classList.toggle('bi-' + iconId + '-fill');
-        }
-        div.classList.toggle('text-' + offColor);
-        div.classList.toggle('text-' + onColor);
-        div.classList.toggle('bg-dark');
-    })
-}
-
-addSocialBtn('fav', 'heart');
-addSocialBtn('watchLater', 'clock');
-addSocialBtn('like', 'hand-thumbs-up');
-
-addMenuBtn('house');
-addMenuBtn('play');
-addMenuBtn('hash', false);
-addMenuBtn('house', true, 'mobile');
-addMenuBtn('play', true, 'mobile');
-addMenuBtn('hash', false, 'mobile');
