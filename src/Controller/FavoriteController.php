@@ -2,34 +2,25 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Entity\Video;
-use App\Repository\UserRepository;
 use App\Repository\VideoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Attribute\CurrentUser;
 
 #[Route('/fav', name: 'fav_')]
 class FavoriteController extends AbstractController
 {
-    #[Route('/add/user/{id<\d+>}/video/{idVideo}', name: 'add')]
-    public function index(
-        #[CurrentUser] ?User $user,
-        Request $request,
-        int $idVideo,
-        UserRepository $userRepository,
-        VideoRepository $videoRepository
-    ): Response {
+    #[Route('/{idVideo<^[0-9]+$>}', name: 'add')]
+    public function index(Video $idVideo, VideoRepository $videoRepository): Response
+    {
 
-        // $uri = $request->getUri();
+        if ($this->getUser()) {
+            $user = $this->getUser();
+            $idVideo->addUserFavorited($user);
+            $videoRepository->save($idVideo, true);
+        }
 
-        $video = $videoRepository->find($idVideo);
-        $user->addFavoriteVideo($video);
-        $userRepository->save($user, true);
-
-        return $this->redirect('home_index');
+        return $this->redirectToRoute('home_index');
     }
 }
