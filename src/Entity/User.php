@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -31,6 +33,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'boolean')]
     private ?bool $isVerified = false;
+
+
+    #[ORM\ManyToMany(targetEntity: Video::class, inversedBy: "usersViewed", cascade: ["persist", "remove"])]
+    #[ORM\JoinTable(name: "user_video_viewed")]
+    private ?Collection $viewedVideos = null;
+
+    #[ORM\ManyToMany(targetEntity: Video::class, inversedBy: "usersLiked", cascade: ["persist", "remove"])]
+    #[ORM\JoinTable(name: "user_video_likes")]
+    private ?Collection $likedVideos = null;
+
+    #[ORM\ManyToMany(targetEntity: Video::class, inversedBy: "usersViewLater", cascade: ["persist", "remove"])]
+    #[ORM\JoinTable(name: "user_video_view_later")]
+    private ?Collection $viewLaterVideos = null;
+
+    #[ORM\ManyToMany(targetEntity: Video::class, inversedBy: "usersFavorited", cascade: ["persist", "remove"])]
+    #[ORM\JoinTable(name: "user_video_favorites")]
+    private ?Collection $favoriteVideos = null;
+
+    public function __construct()
+    {
+        $this->viewedVideos = new ArrayCollection();
+        $this->likedVideos = new ArrayCollection();
+        $this->viewLaterVideos = new ArrayCollection();
+        $this->favoriteVideos = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -112,5 +139,89 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->isVerified = $isVerified;
 
         return $this;
+    }
+
+    public function getViewedVideos(): Collection
+    {
+        return $this->viewedVideos;
+    }
+
+    public function addViewedVideo(Video $video): void
+    {
+        if (!$this->viewedVideos->contains($video)) {
+            $this->viewedVideos->add($video);
+            $video->addUserViewed($this);
+        }
+    }
+
+    public function removeViewedVideo(Video $video): void
+    {
+        if ($this->viewedVideos->contains($video)) {
+            $this->viewedVideos->removeElement($video);
+            $video->removeUserViewed($this);
+        }
+    }
+
+    public function getLikedVideos(): Collection
+    {
+        return $this->likedVideos;
+    }
+
+    public function addLikedVideo(Video $video): void
+    {
+        if (!$this->likedVideos->contains($video)) {
+            $this->likedVideos[] = $video;
+            $video->addUserLiked($this);
+        }
+    }
+
+    public function removeLikedVideo(Video $video): void
+    {
+        if ($this->likedVideos->contains($video)) {
+            $this->likedVideos->removeElement($video);
+            $video->removeUserLiked($this);
+        }
+    }
+
+    public function getViewLaterVideos(): Collection
+    {
+        return $this->viewLaterVideos;
+    }
+
+    public function addViewLaterVideo(Video $video): void
+    {
+        if (!$this->viewLaterVideos->contains($video)) {
+            $this->viewLaterVideos[] = $video;
+            $video->addUserViewLater($this);
+        }
+    }
+
+    public function removeViewLaterVideo(Video $video): void
+    {
+        if ($this->viewLaterVideos->contains($video)) {
+            $this->viewLaterVideos->removeElement($video);
+            $video->removeUserViewLater($this);
+        }
+    }
+
+    public function getFavoriteVideos(): Collection
+    {
+        return $this->favoriteVideos;
+    }
+
+    public function addFavoriteVideo(Video $video): void
+    {
+        if (!$this->favoriteVideos->contains($video)) {
+            $this->favoriteVideos[] = $video;
+            $video->addUserFavorited($this);
+        }
+    }
+
+    public function removeFavoriteVideo(Video $video): void
+    {
+        if ($this->favoriteVideos->contains($video)) {
+            $this->favoriteVideos->removeElement($video);
+            $video->removeUserFavorited($this);
+        }
     }
 }
