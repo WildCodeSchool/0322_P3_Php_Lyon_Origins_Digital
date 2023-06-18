@@ -3,7 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Video;
+use DateTimeImmutable;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -41,12 +43,17 @@ class VideoRepository extends ServiceEntityRepository
 
     public function findLatestVideos(): array
     {
+        $now = new DateTimeImmutable();
+
         return $this->createQueryBuilder('v')
             ->orderBy('v.postDate', 'DESC')
-            ->setParameter('v.postDate', 'now')
+            ->setMaxResults(15)
+            ->where('v.postDate < :today')
+            ->setParameter('today', $now, Types::DATETIME_IMMUTABLE)
             ->getQuery()
             ->getResult();
     }
+
     //    /**
     //     * @return Video[] Returns an array of Video objects
     //     */
