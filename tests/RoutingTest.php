@@ -2,6 +2,7 @@
 
 namespace App\Tests;
 
+use Generator;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class RoutingTest extends WebTestCase
@@ -9,7 +10,7 @@ class RoutingTest extends WebTestCase
     /**
      * @dataProvider urlProvider
      */
-    public function testRouteIsSuccessful($url): void
+    public function testRouteIsSuccessful(string $url): void
     {
         $client = static::createClient();
         $client->request('GET', $url);
@@ -17,15 +18,13 @@ class RoutingTest extends WebTestCase
         $this->assertResponseIsSuccessful();
     }
 
-    public function urlProvider()
+    public function urlProvider(): mixed
     {
         yield ['/'];
-        // yield ['/video/show/454'];
-        // yield ['/video/show/471'];
-        yield ['/video/show/505'];
+        yield ['/video/show/1'];
         yield ['/search/dota'];
         yield ['/search/cs'];
         yield ['/search/overwatch'];
-        // yield ['/search/upload'];
+        yield ['/upload'];
     }
 }
