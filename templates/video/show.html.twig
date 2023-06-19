@@ -14,19 +14,15 @@
 
 	<div class="container-lg mx-auto text-light sh-uptop row m-0">
 
-		<div class="col-lg-1 d-lg-block d-none">
-			{% include "shared/navbar-desktop.html.twig" %}
-		</div>
-
 		<div class="col-lg-8 col-12">
 			<div class="sh-video d-flex flex-column justify-content-start align-items-center m-0">
 
 				<div class="sh-title-hash row px-4 mt-4 w-100">
 					<div class="sh-title col-lg justify-content-start title-font text-secondary fs-2">{{ video.title }}</div>
-					<div class="sh-hash d-lg-flex d-none col-lg-auto justify-content-end align-items-start">{{ include('shared/category-tag.html.twig', {tag: video.tag[0].name , style: 'tag-main'}) }}</div>
+					<div class="sh-hash d-lg-flex d-none col-lg-auto justify-content-end align-items-start">{{ include('shared/tag/category-tag.html.twig', {tag: video.tag[0].name , style: 'tag-main'}) }}</div>
 				</div>
 
-				<div class="sh-player video-container w-100 m-md-4 my-2 mx-0">
+				<div class="sh-player video-container w-100 h-50 m-md-4 my-2 mx-0">
 					<video id="player" class="player" playsinline controls data-poster="{{ asset('build/images/' ~ video.posterUrl) }}">
 						<source src="{{ asset('build/videos/' ~ video.videoUrl) }}" type="video/mp4"/>
 					</video>
@@ -62,13 +58,13 @@
 			<div class="text-secondary col-md-auto d-flex justify-content-start align-items-center flex-wrap">
 				<span class="fs-1">{{ dot|raw }}</span>
 				<h3 class="title-font m-0">PLUS DE</h3>
-				<span class="ms-4">{{ include('shared/category-tag.html.twig', {tag: 'lol', style: 'tag-list'}) }}</span>
+				<span class="ms-4">{{ include('shared/tag/category-tag.html.twig', {tag: 'lol', style: 'tag-list'}) }}</span>
 			</div>
 
 			<div class="text-secondary col-auto d-flex justify-content-start align-items-center flex-wrap">
 				<span class="fs-1">{{ dot|raw }}</span>
 				{% for mobaTag in mobaTags %}
-					<span class="m-1">{{ include('shared/category-tag.html.twig', {tag: mobaTag, style: 'tag-list'}) }}</span>
+					<span>{{ include('shared/tag/category-tag.html.twig', {tag: mobaTag, style: 'tag-list'}) }}</span>
 				{% endfor %}
 			</div>
 
@@ -77,14 +73,14 @@
 		<div class="col-lg-4 col d-lg-block d-none">
 			<div class="d-flex justify-content-end align-items-end flex-wrap">
 				{% for tag in tags |slice(0,5) %}
-					<div class="m-1">{{ include('shared/category-tag.html.twig', {tag: tag.name, style: 'tag-list'}) }}</div>
+					<div>{{ include('shared/tag/category-tag.html.twig', {tag: tag.name, style: 'tag-list'}) }}</div>
 				{% endfor %}
 			</div>
 		</div>
 
 	</div>
 
-	<div class="container-lg mx-auto row">
+	<div class="container-lg mx-auto d-flex justify-content-center">
 		{{ include('shared/gallery/bt-gallery.html.twig', {
 			title: false,
 			subtitle: 'Toutes les vidéos sur ' ~ video.tag[0].name|upper ~ ' !',
@@ -92,9 +88,5 @@
 			contents: mobaVideos,
 			id: 'moba'
 		}) }}
-	</div>
-
-	<div class="col-lg-1 d-lg-none d-none">
-		{% include "shared/navbar-mobile.html.twig" %}
 	</div>
 {% endblock %}

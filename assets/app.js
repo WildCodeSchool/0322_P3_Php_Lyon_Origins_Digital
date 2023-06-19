@@ -58,31 +58,6 @@ setTimeout(() => {
     }
 })();
 
-(function loadMoreTag() {
-
-    const loadMoreTagButton = document.querySelector('.load-more-tag');
-    let hiddenTagBts = document.querySelectorAll('.tag-hidden');
-    let counter = 0;
-
-    loadMoreTagButton.addEventListener('click', function () {
-        const groupOfBts = Array.from(hiddenTagBts).slice(counter, counter + 2);
-        for (const bt of groupOfBts) {
-            bt.classList.remove('tag-hidden');
-            bt.classList.remove('d-none');
-        }
-
-        counter += 2;
-
-        if (counter >= hiddenTagBts.length) {
-            loadMoreTagButton.remove();
-        }
-    });
-
-    if (hiddenTagBts.length < 1) {
-        loadMoreTagButton.remove();
-    }
-})();
-
 (function ShowDescriptionOnMobile() {
     let description = document.getElementById('sh-description');
     const descriptionFull = document.getElementById('sh-description').innerText;
@@ -138,36 +113,6 @@ function addSocialBtn(name, className, offColor = 'light', onColor = 'secondary'
     }
 }
 
-function addMenuBtn(iconId, fill = true, device = 'desktop', offColor = 'primary', onColor = 'secondary') {
-    let icon = document.getElementById(iconId);
-    let div = document.getElementById('nav-' + iconId);
-    if (device === 'mobile') {
-        icon = document.getElementById(iconId + '-mobile');
-        div = document.getElementById('nav-' + iconId + '-mobile');
-    }
-    icon.classList.add('bi-' + iconId);
-    div.classList.add('bg-secondary');
-    div.classList.add('rounded-pill');
-    div.classList.add('p-3');
-    div.classList.add('text-' + offColor);
-    div.addEventListener('click', function () {
-        if (fill) {
-            icon.classList.toggle('bi-' + iconId);
-            icon.classList.toggle('bi-' + iconId + '-fill');
-        }
-        div.classList.toggle('text-' + offColor);
-        div.classList.toggle('text-' + onColor);
-        div.classList.toggle('bg-dark');
-    })
-}
-
 addSocialBtn('fav', 'heart');
 addSocialBtn('watchLater', 'clock');
 addSocialBtn('like', 'hand-thumbs-up');
-
-addMenuBtn('house');
-addMenuBtn('play');
-addMenuBtn('hash', false);
-addMenuBtn('house', true, 'mobile');
-addMenuBtn('play', true, 'mobile');
-addMenuBtn('hash', false, 'mobile');

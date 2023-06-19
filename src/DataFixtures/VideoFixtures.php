@@ -169,28 +169,34 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'poster_url' => 'poster3-DOFUS.jpg',
         ],
 
+        [
+            'title' => 'video de juillet',
+            'description' => 'description de video de juillet',
+            'post_date' => '2023-07-14 00:00:00',
+            'video_url' => 'video3-DOFUS.mp4',
+            'poster_url' => 'poster3-DOFUS.jpg',
+        ],
+
     ];
 
     public function load(ObjectManager $manager): void
     {
         $persistedVideos = [];
 
-        for ($i = 0; $i < 4; $i++) {
-            foreach (self::VIDEOS as $clip) {
-                $video = new Video();
-                $postDate = new DateTimeImmutable($clip['post_date']);
-                $video
-                    ->setTitle($clip['title'])
-                    ->setDescription($clip['description'])
-                    ->setPostDate($postDate)
-                    ->setVideoUrl($clip['video_url'])
-                    ->setPosterUrl($clip['poster_url'])
-                ;
+        foreach (self::VIDEOS as $clip) {
+            $video = new Video();
+            $postDate = new DateTimeImmutable($clip['post_date']);
+            $video
+                ->setTitle($clip['title'])
+                ->setDescription($clip['description'])
+                ->setPostDate($postDate)
+                ->setVideoUrl($clip['video_url'])
+                ->setPosterUrl($clip['poster_url'])
+            ;
 
-                $manager->persist($video);
+            $manager->persist($video);
 
-                $persistedVideos[] = $video;
-            }
+            $persistedVideos[] = $video;
         }
         $manager->flush();
 
