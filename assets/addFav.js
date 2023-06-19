@@ -4,7 +4,7 @@ for (const fav of favs) {
 
     const idVid = fav.href.substring(fav.href.lastIndexOf('/') + 1);
 
-    const favTrue = document.getElementById('f' + idVid);
+    const favsTrue = document.getElementsByClassName('f' + idVid);
 
     fav.addEventListener('click', function (event) {
         event.preventDefault();
@@ -14,16 +14,19 @@ for (const fav of favs) {
                 if (response.status != 200) alert("Erreur");
             });
 
-        if (favTrue.classList.contains('bi-heart-fill')) {
-            favTrue.classList.remove('bi-heart-fill');
-            favTrue.classList.remove('text-secondary');
-            favTrue.classList.add('bi-heart');
-            favTrue.classList.add('text-light');
-        } else {
-            favTrue.classList.remove('bi-heart');
-            favTrue.classList.remove('text-light');
-            favTrue.classList.add('bi-heart-fill');
-            favTrue.classList.add('text-secondary')
+        for (const favTrue of favsTrue) {
+
+            if (favTrue.classList.contains('bi-heart-fill')) {
+                favTrue.classList.remove('bi-heart-fill');
+                favTrue.classList.remove('text-secondary');
+                favTrue.classList.add('bi-heart');
+                favTrue.classList.add('text-light');
+            } else {
+                favTrue.classList.remove('bi-heart');
+                favTrue.classList.remove('text-light');
+                favTrue.classList.add('bi-heart-fill');
+                favTrue.classList.add('text-secondary')
+            }
         }
 
     });
