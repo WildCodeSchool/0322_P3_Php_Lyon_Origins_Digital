@@ -15,11 +15,11 @@ class HomeController extends AbstractController
     public function index(VideoRepository $videoRepository, TagRepository $tagRepository): Response
     {
         $latestVideos = $videoRepository->findLatestVideos();
-        $tags = $tagRepository->findAll();
+        $trendingTags = $tagRepository->findAll();
         $headerVideo = $videoRepository->findAll();
 
         return $this->render('home/index.html.twig', [
-            'tags' => $tags,
+            'trendingTags' => $trendingTags,
             'latestVideos' => $latestVideos,
             'headerVideo' => $headerVideo
         ]);
