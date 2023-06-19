@@ -22,9 +22,16 @@
 								{% endif %}
 							</div>
 						</a>
-						<div class="bt-social-btn">
-							<i class='bt-watch bi'></i>
-						</div>
+						<a class="later" href="{{ path('later_add', { idVideo: item.id }) }}">
+							{% set isLater = app.user.viewLaterVideos|filter(video => video.id == item.id )|first %}
+							<div class="bt-social-btn">
+								{% if isLater %}
+									<i class='bt-watch bi bi-clock-fill text-secondary la{{item.id}}'></i>
+								{% else %}
+									<i class='bt-watch bi bi-clock text-light la{{item.id}}'></i>
+								{% endif %}
+							</div>
+						</a>
 						<div class="bt-social-btn">
 							<i class='bt-like bi'></i>
 						</div>

@@ -38,6 +38,7 @@ Encore
     .addEntry('plyr', './assets/plyr.js')
     .addEntry('dropzone', './assets/dropzone.js')
     .addEntry('addFav', './assets/addFav.js')
+    .addEntry('addLater', './assets/addLater.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
