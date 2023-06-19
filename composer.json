@@ -107,6 +107,7 @@
         }
     },
     "require-dev": {
+        "dbrekelmans/bdi": "^1.0",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "phpmd/phpmd": "^2.12",
         "phpro/grumphp": "^1.11",

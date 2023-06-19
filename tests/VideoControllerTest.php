@@ -6,11 +6,11 @@ use Symfony\Component\Panther\PantherTestCase;
 
 class VideoControllerTest extends PantherTestCase
 {
-    public function testSomething(): void
+    public function testVideoController(): void
     {
-        $client = static::createPantherClient();
-        $crawler = $client->request('GET', '/');
+        $client = static::createPantherClient(array_replace(static::$defaultOptions, ['port' => 8001]));
+        $crawler = $client->request('GET', '/video/show/1');
 
-        $this->assertSelectorTextContains('h1', 'Hello World');
+        $this->assertSelectorExists('#player');
     }
 }
