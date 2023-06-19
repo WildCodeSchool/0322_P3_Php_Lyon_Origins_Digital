@@ -14,7 +14,6 @@ class FavoriteController extends AbstractController
     #[Route('/{idVideo<^[0-9]+$>}', name: 'add')]
     public function index(Video $idVideo, VideoRepository $videoRepository): Response
     {
-
         if ($this->getUser()) {
             $user = $this->getUser();
 
@@ -25,7 +24,6 @@ class FavoriteController extends AbstractController
             }
             $videoRepository->save($idVideo, true);
         }
-
-        return $this->redirectToRoute('home_index');
+        return new Response(status: 200);
     }
 }
