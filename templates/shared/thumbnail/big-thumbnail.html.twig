@@ -16,9 +16,9 @@
 							{% set isFav = app.user.favoriteVideos|filter(video => video.id == item.id )|first %}
 							<div class="bt-social-btn">
 								{% if isFav %}
-									<i class='bt-fav bi bi-heart-fill text-secondary f{{item.id}}'></i>
+									<i class='bt-fav bi bi-heart-fill text-secondary fa{{ item.id }}'></i>
 								{% else %}
-									<i class='bt-fav bi bi-heart text-light f{{item.id}}'></i>
+									<i class='bt-fav bi bi-heart text-light fa{{ item.id }}'></i>
 								{% endif %}
 							</div>
 						</a>
@@ -26,15 +26,22 @@
 							{% set isLater = app.user.viewLaterVideos|filter(video => video.id == item.id )|first %}
 							<div class="bt-social-btn">
 								{% if isLater %}
-									<i class='bt-watch bi bi-clock-fill text-secondary la{{item.id}}'></i>
+									<i class='bt-watch bi bi-clock-fill text-secondary la{{ item.id }}'></i>
 								{% else %}
-									<i class='bt-watch bi bi-clock text-light la{{item.id}}'></i>
+									<i class='bt-watch bi bi-clock text-light la{{ item.id }}'></i>
 								{% endif %}
 							</div>
 						</a>
+						<a class="like" href="{{ path('like_add', { idVideo: item.id }) }}">
+						{% set isLiked = app.user.likedVideos|filter(video => video.id == item.id )|first %}
 						<div class="bt-social-btn">
-							<i class='bt-like bi'></i>
+							{% if isLiked %}
+							<i class='bt-like bi bi-hand-thumbs-up-fill text-secondary li{{ item.id }}'></i>
+						{% else %}
+							<i class='bt-like bi bi-hand-thumbs-up text-light li{{ item.id }}'></i>
+						{% endif %}
 						</div>
+						</a>
 					</div>
 				{% endif %}
 			</div>
