@@ -30,7 +30,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $user->setRoles([]);
             $user->setIsVerified(true);
 
-            $maxValue = (count(VideoFixtures::VIDEOS) * 4) - 1;
+            $maxValue = (count(VideoFixtures::VIDEOS)) - 1;
             for ($i = 0; $i < 4; $i++) {
                 $user->addFavoriteVideo($this->getReference('video_' . rand(0, $maxValue)));
                 $user->addViewedVideo($this->getReference('video_' . rand(0, $maxValue)));
