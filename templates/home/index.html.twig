@@ -4,25 +4,19 @@
 	{{ encore_entry_script_tags('addFav') }}
 {% endblock %}
 
-{% block title %}Gaming Gurus
-{% endblock %}
-{% set countTag = 6 %}
-{% set playFill = "<i class='bi bi-play-fill'></i>" %}
+{% block title %}Gaming Gurus{% endblock %}
+    {% set playFill = "<i class='bi bi-play-fill'></i>" %}
 
 {% block body %}
 
-	<div class="home-container container-fluid row">
-
-		<div class="col-lg-1 d-lg-block d-none">
-			{% include "shared/navbar-desktop.html.twig" %}
-		</div>
-
-		<div class="home-header text-center col-lg-11">
-			<div class="home-title fs-4 text-secondary title-font d-flex d-lg-none justify-content-start align-items-start">
-				À LA UNE
-			</div>
-			<div class="home-image mt-lg-4 mx-auto rounded-3 text-center position-relative " alt="cover">
-				<div class="container">
+    <div class="home-container container-fluid row">
+             
+            <div class="home-header text-center col-lg-11">
+                <div class="home-title fs-4 text-secondary title-font d-flex d-lg-none justify-content-start align-items-start">
+                    À LA UNE
+                </div>
+                    <div class="home-image mt-lg-4 mx-auto rounded-3 text-center position-relative " alt="cover">
+                        <div class="container">
 
 					<div class="row">
 
@@ -45,38 +39,31 @@
 								<span class="fs-2">{{ playFill|raw }}</span>
 							</a>
 
-						</div>
+                            </div>
 
-						<div class="header-infos mb-4 fs-4 z-1 d-none d-sm-flex title-font text-dark col-6 col-lg-3 justify-content-start align-items-end">
-							<div>{{headerVideo[0].title|u.truncate(30, '...')}}</div>
-						</div>
-
-						<div class="header-infos fs-5 z-1 d-flex d-sm-none title-font text-dark col-6 col-lg-3 justify-content-start align-items-end">
-							<div>{{headerVideo[0].title|u.truncate(30, '...')}}</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<section class="container">
-		<div class="tag-list-desktop d-flex justify-content-start align-items-center flex-wrap mx-2 my-4">
-			{% for tag in tags |slice(0,countTag - 1) %}
-				<div class="m-1">{{ include('shared/category-tag.html.twig', {tag: tag.name, style: 'tag-list'}) }}</div>
-			{% endfor %}
-
-			{% for i in 1.. (tags|length / countTag)|round(0, 'ceil') %}
-
-				{% for tag in tags |slice(i * countTag, countTag) %}
-					<div class="d-none tag-hidden m-1">
-						{{ include('shared/category-tag.html.twig', {tag: tag.name, style: 'tag-list'}) }}
-					</div>
-				{% endfor %}
-
-			{% endfor %}
-			<div class="load-more-tag fs-6 text-font text-dark bg-secondary rounded-3 mx-1 p-2 d-flex justify-content-center align-items-center">+<div></div>
-			</section>
+                            <div class="header-infos mb-4 fs-4 z-1 d-none d-sm-flex title-font text-dark col-6 col-lg-3 justify-content-start align-items-end">
+                               <div>{{headerVideo[0].title|u.truncate(30, '...')}}</div>
+                            </div> 
+                            
+                            <div class="header-infos fs-5 z-1 d-flex d-sm-none title-font text-dark col-6 col-lg-3 justify-content-start align-items-end">
+                               <div>{{headerVideo[0].title|u.truncate(30, '...')}}</div>
+                            </div>   
+                        </div>
+                        </div>
+                    </div>
+            </div>
+    </div>
+   
+    <section class="container-lg mx-auto">
+        {{ include('shared/tag/tag-list.html.twig', {
+            title: 'Les jeux du moment',
+            startCount: 8,
+            moreCount: 4,
+            contents: trendingTags,
+            styleClass: 'tag-list',
+            id: 'trending'
+        }) }}
+    </section>
 
 			{{ include('shared/gallery/bt-gallery.html.twig', {
         title: 'Les dernières sorties',

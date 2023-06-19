@@ -80,17 +80,10 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
 }
 
 .header-infos {
-    min-height: 300px;
 }
 
 .video-container {
     overflow: hidden;
-    height: fit-content;
-
-    #player {
-        max-height: 50vh;
-    }
-
 }
 
 
@@ -131,23 +124,29 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
     }
 }
 
+.load-more-tag {
+    font-weight: 900;
+    cursor: pointer;
+    max-width: fit-content;
+
+    &:hover {
+        background-color: $primary !important;
+        color: $secondary !important;
+    }
+
+    &:active,
+    &:focus {
+        scale: 99%;
+        background-color: $light !important;
+        color: $dark !important;
+    }
+}
+
 body {
     background-color: $dark;
 }
 
-.nav-btns {
-
-    font-size: $h1-font-size;
-
-    .nav-item {
-        width: 20%;
-        height: 20%;
-    }
-
-}
-
 .sh-favs {
-
     width: fit-content;
 }
 
@@ -249,7 +248,6 @@ body {
 
     }
 }
-
 
 .st {
 
@@ -365,24 +363,6 @@ body {
 
     .upload-font-title {
         font-weight: 600;
-    }
-}
-
-.load-more-tag {
-    font-weight: 900;
-    height: 35.2px;
-    cursor: pointer;
-
-    &:hover {
-        background-color: $primary !important;
-        color: $secondary !important;
-    }
-
-    &:active,
-    &:focus {
-        scale: 99%;
-        background-color: $light !important;
-        color: $dark !important;
     }
 }
 
