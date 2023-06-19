@@ -167,7 +167,8 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'title' => 'Les débuts des Gentle Mates sur Fortnite (FNCS Qualifier Day 1)',
             'description' => 'Les pitchouns de Fortnite ont joué les FNCS pour la première fois sous nos couleurs
              @Gotaga  et @nikof9274 étaient au cast pour vous faire vivre la compétition!
-             Ils doivent terminer dans le top 200 au terme de la soirée pour espérer se qualifier pour les demis finales.',
+             Ils doivent terminer dans le top 200 au terme de la soirée pour espérer se qualifier 
+             pour les demis finales.',
             'post_date' => '2023-04-21 00:00:00',
             'video_url' => 'video3-DOFUS.mp4',
             'poster_url' => 'poster2-FORTNITE.jpg',
@@ -232,7 +233,8 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'title' => 'Nous avons gagné le dernier Major de CS:GO à Paris | Team Vitality vlog',
             'description' => 'Nous sommes entrés dans l\'histoire de Vitality et de CS:GO en remportant le dernier
              Major CS:GO devant nos fans et nos familles à Paris. Revivez le parcours légendaire de dupreeh, Magisk,
-             ZywOo, Spinx et apEX depuis leur arrivée à Paris jusqu\'au trophée dans l\'Accor Arena dans ce vlog présenté par Evnia',
+             ZywOo, Spinx et apEX depuis leur arrivée à Paris jusqu\'au trophée dans l\'Accor Arena dans ce vlog pré
+             senté par Evnia',
             'post_date' => '2023-05-22 00:00:00',
             'video_url' => 'video3-DOFUS.mp4',
             'poster_url' => 'poster2-CS.jpg',
