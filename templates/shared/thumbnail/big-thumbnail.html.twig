@@ -16,9 +16,9 @@
 							{% set isFav = app.user.favoriteVideos|filter(video => video.id == item.id )|first %}
 							<div class="bt-social-btn">
 								{% if isFav %}
-									<i class='bt-fav bi bi-heart-fill text-secondary' id="{{item.id}}"></i>
+									<i class='bt-fav bi bi-heart-fill text-secondary' id="f{{item.id}}"></i>
 								{% else %}
-									<i class='bt-fav bi bi-heart text-light' id="{{item.id}}"></i>
+									<i class='bt-fav bi bi-heart text-light' id="f{{item.id}}"></i>
 								{% endif %}
 							</div>
 						</a>

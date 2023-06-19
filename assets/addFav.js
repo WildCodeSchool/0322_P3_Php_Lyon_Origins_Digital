@@ -4,7 +4,7 @@ for (const fav of favs) {
 
     const idVid = fav.href.substring(fav.href.lastIndexOf('/') + 1);
 
-    const favTrue = document.getElementById(idVid);
+    const favTrue = document.getElementById('f' + idVid);
 
     fav.addEventListener('click', function (event) {
         event.preventDefault();
