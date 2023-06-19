@@ -1,0 +1,36 @@
+<div class="d-flex flex-column justify-content-start align-items-start flex-wrap my-4">
+
+    {% if title == false %}{% else %}
+
+        <div class="text-info ms-4">
+            <p>{{ title }} !</p>
+        </div>
+
+    {% endif %}
+
+    <div id="{{id}}-bt-gallery" class="d-flex justify-content-start align-items-center flex-wrap">
+
+        {% for tag in contents |slice(0,startCount) %}
+            <div class="{{id}}-0 bt-container">
+                {{ include('shared/tag/category-tag.html.twig', {tag: tag.name, style: styleClass}) }}
+            </div>
+        {% endfor %}
+
+        {% for i in 1.. (contents|length / moreCount)|round(0, 'ceil') %}
+
+            {% for tag in contents |slice(i * moreCount, moreCount) %}
+                <div class="d-none bt-hidden {{id}}-{{i}}">
+                    {{ include('shared/tag/category-tag.html.twig', {tag: tag.name, style: styleClass}) }}
+                </div>
+            {% endfor %}
+
+        {% endfor %}
+
+        <div class="load-more-tag text-dark bg-secondary rounded-3 mx-1 px-2 py-1 d-flex justify-content-center align-items-center {{styleClass}}">
+            <div>
+                <div class="load-more-btn" id="{{id}}">...</div>
+            </div>
+        <div>
+
+    </div>
+</div>
