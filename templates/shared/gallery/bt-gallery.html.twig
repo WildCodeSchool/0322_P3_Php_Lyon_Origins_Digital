@@ -1,43 +1,45 @@
 <section class="container">
 
-    {% if title == false %}{% else %}
+	{% if title == false %}
+		{% else %}
 
-        <div class="text-secondary d-flex justify-content-start align-items-center">
-            <span class="fs-1">{{ dot|raw }}</span>
-            <h3 class="title-font m-0">{{ title }}</h3>
-        </div>
+			<div class="text-secondary d-flex justify-content-start align-items-center">
+				<span class="fs-1">{{ dot|raw }}</span>
+				<h3 class="title-font m-0">{{ title }}</h3>
+			</div>
 
-    {% endif %}
+	{% endif %}
 
-    {% if subtitle == false %}{% else %}
+	{% if subtitle == false %}
+		{% else %}
 
-        <div class="text-info ms-4">
-            <p>{{ subtitle }}</p>
-        </div>
+			<div class="text-info ms-4">
+				<p>{{ subtitle }}</p>
+			</div>
 
-    {% endif %}
+	{% endif %}
 
-    <div class="d-flex justify-content-start align-items-center flex-wrap" id="{{id}}-bt-gallery">
+	<div class="d-flex justify-content-start align-items-center flex-wrap" id="{{id}}-bt-gallery">
 
-        {% for video in contents |slice(0, count - 1) %}
-            <div class="{{id}}-0 bt-container">
-                {{ include('shared/thumbnail/big-thumbnail.html.twig', {item: video}) }}
-            </div>
-        {% endfor %}
-        
-        {% for i in 1.. (contents|length / count)|round(0, 'ceil') %}
+		{% for video in contents |slice(0, count - 1) %}
+			<div class="{{id}}-0 bt-container">
+				{{ include('shared/thumbnail/big-thumbnail.html.twig', {item: video}) }}
+			</div>
+		{% endfor %}
 
-            {% for video in contents |slice(i * count, count) %}
-                <div class="d-none bt-hidden {{id}}-{{i}}">
-                    {{ include('shared/thumbnail/big-thumbnail.html.twig', {item: video}) }}
-                </div>
-            {% endfor %}
+		{% for i in 1.. (contents|length / count)|round(0, 'ceil') %}
 
-        {% endfor %}
+			{% for video in contents |slice(i * count, count) %}
+				<div class="d-none bt-hidden {{id}}-{{i}}">
+					{{ include('shared/thumbnail/big-thumbnail.html.twig', {item: video}) }}
+				</div>
+			{% endfor %}
 
-        {{ include('shared/thumbnail/load-more.html.twig', {gallery: id}) }}
-        
-    </div>
+		{% endfor %}
 
-    
+		{{ include('shared/thumbnail/load-more.html.twig', {gallery: id}) }}
+
+	</div>
+
+
 </section>

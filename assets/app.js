@@ -17,9 +17,9 @@ require('bootstrap');
 //boostrap css alert auto-close
 const alert = document.getElementById('alertMsg');
 //close the alert after 2 seconds (2000 milliseconds)
-setTimeout(() => {
-    alert.remove();
-}, 2000);
+// setTimeout(() => {
+//     alert.remove();
+// }, 2000);
 
 
 (function loadMore() {
@@ -58,51 +58,51 @@ setTimeout(() => {
     }
 })();
 
-(function addSocialBtn(offColor = 'light', onColor = 'secondary') {
+// (function addSocialBtn(offColor = 'light', onColor = 'secondary') {
 
-    const icons = document.getElementsByClassName('bt-fav');
+//     const icons = document.getElementsByClassName('bt-fav');
     
-    for (const icon of icons) {
-        icon.classList.add('bi-heart')
-        icon.classList.add('text-' + offColor);
-        icon.addEventListener('click', function () {
-            icon.classList.toggle('bi-heart');
-            icon.classList.toggle('bi-heart-fill');
-            icon.classList.toggle('text-' + offColor);
-            icon.classList.toggle('text-' + onColor);
-        })
-    }
-})();
+//     for (const icon of icons) {
+//         icon.classList.add('bi-heart')
+//         icon.classList.add('text-' + offColor);
+//         icon.addEventListener('click', function () {
+//             icon.classList.toggle('bi-heart');
+//             icon.classList.toggle('bi-heart-fill');
+//             icon.classList.toggle('text-' + offColor);
+//             icon.classList.toggle('text-' + onColor);
+//         })
+//     }
+// })();
 
-(function ShowDescriptionOnMobile() {
-    let description = document.getElementById('sh-description');
-    const descriptionFull = document.getElementById('sh-description').innerText;
-    let maxOnMobile = 100;
-    let descriptionShort = '';
+// (function ShowDescriptionOnMobile() {
+//     let description = document.getElementById('sh-description');
+//     const descriptionFull = document.getElementById('sh-description').innerText;
+//     let maxOnMobile = 100;
+//     let descriptionShort = '';
     
-    addEventListener('resize', () => {
+//     addEventListener('resize', () => {
 
-        if (window.screen.width <= 576) {
+//         if (window.screen.width <= 576) {
             
-            if (description.innerText.length > maxOnMobile) {
+//             if (description.innerText.length > maxOnMobile) {
 
-                descriptionShort = description.innerText.slice(0, maxOnMobile) + '...';
-                description.innerText = descriptionShort;
-            } else {
-                description.innerText = descriptionFull;
-            }
+//                 descriptionShort = description.innerText.slice(0, maxOnMobile) + '...';
+//                 description.innerText = descriptionShort;
+//             } else {
+//                 description.innerText = descriptionFull;
+//             }
 
-            description.addEventListener('click', function () {
-                if (description.innerText == descriptionShort) {
-                    description.innerText = descriptionFull;
-                } else if (description.innerText == descriptionFull) {
-                    description.innerText = descriptionShort;
-                }
-            })
+//             description.addEventListener('click', function () {
+//                 if (description.innerText == descriptionShort) {
+//                     description.innerText = descriptionFull;
+//                 } else if (description.innerText == descriptionFull) {
+//                     description.innerText = descriptionShort;
+//                 }
+//             })
             
-        } else {
-            description.innerText = descriptionFull;
-        }
-    })
-})();
+//         } else {
+//             description.innerText = descriptionFull;
+//         }
+//     })
+// })();
 

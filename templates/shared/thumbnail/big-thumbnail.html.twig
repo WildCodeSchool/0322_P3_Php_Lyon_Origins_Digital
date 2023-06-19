@@ -13,14 +13,13 @@
 
 					<div class="bt-socials flex-column justify-content-center fs-5">
 						<a class="favorite" href="{{ path('fav_add', { idVideo: item.id }) }}">
-							{% set favFound = false %}
 							{% set isFav = app.user.favoriteVideos|filter(video => video.id == item.id )|first %}
-							{% if isFav %}
-								{% set favFound = true %}
-							{% endif %}
-							{{ dump(favFound) }}
 							<div class="bt-social-btn">
-								<i class='bt-fav bi'></i>
+								{% if isFav %}
+									<i class='bt-fav bi bi-heart-fill text-secondary' id="{{item.id}}"></i>
+								{% else %}
+									<i class='bt-fav bi bi-heart text-light' id="{{item.id}}"></i>
+								{% endif %}
 							</div>
 						</a>
 						<div class="bt-social-btn">
@@ -49,5 +48,4 @@
 			<div class="bt-description text-light">{{ item.description|u.truncate(60, '...', false) }}</div>
 		</div>
 	</div>
-
 </div>
