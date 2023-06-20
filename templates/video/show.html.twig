@@ -5,10 +5,10 @@
 {% endblock %}
 {% block javascripts %}
 	{{ parent() }}
-	{{ encore_entry_script_tags('plyr') }}
 	{{ encore_entry_script_tags('addFav') }}
 	{{ encore_entry_script_tags('addLater') }}
 	{{ encore_entry_script_tags('addLike') }}
+	{{ encore_entry_script_tags('playAndCount') }}
 {% endblock %}
 
 {% set mobaTags = ['dota', 'smite', 'lol'] %}
@@ -26,7 +26,7 @@
 				</div>
 
 				<div class="sh-player video-container rounded-5 w-100 h-50 m-md-4 my-2 mx-0">
-					<video id="player" class="player" playsinline controls data-poster="{{ asset('build/images/' ~ video.posterUrl) }}">
+					<video id="player" class="{{ path('video_add', { videoId: video.id }) }}" playsinline controls data-poster="{{ asset('build/images/' ~ video.posterUrl) }}">
 						<source src="{{ asset('build/videos/' ~ video.videoUrl) }}" type="video/mp4"/>
 					</video>
 				</div>

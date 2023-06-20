@@ -47,8 +47,8 @@ class Video
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'videos')]
     private Collection $tag;
 
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: "viewedVideos", cascade: ["persist", "remove"])]
-    private ?Collection $usersViewed = null;
+    // #[ORM\ManyToMany(targetEntity: User::class, mappedBy: "viewedVideos", cascade: ["persist", "remove"])]
+    // private ?Collection $usersViewed = null;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: "likedVideos", cascade: ["persist", "remove"])]
     private ?Collection $usersLiked = null;
@@ -59,13 +59,17 @@ class Video
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: "favoriteVideos", cascade: ["persist", "remove"])]
     private ?Collection $usersFavorited = null;
 
+    #[ORM\OneToMany(mappedBy: 'video', targetEntity: Viewed::class)]
+    private Collection $vieweds;
+
     public function __construct()
     {
         $this->tag = new ArrayCollection();
-        $this->usersViewed = new ArrayCollection();
+        //$this->usersViewed = new ArrayCollection();
         $this->usersLiked = new ArrayCollection();
         $this->usersViewLater = new ArrayCollection();
         $this->usersFavorited = new ArrayCollection();
+        $this->vieweds = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -156,26 +160,26 @@ class Video
         return $this;
     }
 
-    public function getUsersViewed(): Collection
-    {
-        return $this->usersViewed;
-    }
+    // public function getUsersViewed(): Collection
+    // {
+    //     return $this->usersViewed;
+    // }
 
-    public function addUserViewed(User $user): void
-    {
-        if (!$this->usersViewed->contains($user)) {
-            $this->usersViewed->add($user);
-            $user->addViewedVideo($this);
-        }
-    }
+    // public function addUserViewed(User $user): void
+    // {
+    //     if (!$this->usersViewed->contains($user)) {
+    //         $this->usersViewed->add($user);
+    //         $user->addViewedVideo($this);
+    //     }
+    // }
 
-    public function removeUserViewed(User $user): void
-    {
-        if ($this->usersViewed->contains($user)) {
-            $this->usersViewed->removeElement($user);
-            $user->removeViewedVideo($this);
-        }
-    }
+    // public function removeUserViewed(User $user): void
+    // {
+    //     if ($this->usersViewed->contains($user)) {
+    //         $this->usersViewed->removeElement($user);
+    //         $user->removeViewedVideo($this);
+    //     }
+    // }
 
     public function getUsersLiked(): Collection
     {
@@ -238,5 +242,35 @@ class Video
             $this->usersFavorited->removeElement($user);
             $user->removeFavoriteVideo($this);
         }
+    }
+
+    /**
+     * @return Collection<int, Viewed>
+     */
+    public function getVieweds(): Collection
+    {
+        return $this->vieweds;
+    }
+
+    public function addViewed(Viewed $viewed): static
+    {
+        if (!$this->vieweds->contains($viewed)) {
+            $this->vieweds->add($viewed);
+            $viewed->setVideo($this);
+        }
+
+        return $this;
+    }
+
+    public function removeViewed(Viewed $viewed): static
+    {
+        if ($this->vieweds->removeElement($viewed)) {
+            // set the owning side to null (unless already changed)
+            if ($viewed->getVideo() === $this) {
+                $viewed->setVideo(null);
+            }
+        }
+
+        return $this;
     }
 }

@@ -35,11 +35,11 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
-    .addEntry('plyr', './assets/plyr.js')
     .addEntry('dropzone', './assets/dropzone.js')
     .addEntry('addFav', './assets/addFav.js')
     .addEntry('addLater', './assets/addLater.js')
     .addEntry('addLike', './assets/addLike.js')
+    .addEntry('playAndCount', './assets/playAndCount.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')

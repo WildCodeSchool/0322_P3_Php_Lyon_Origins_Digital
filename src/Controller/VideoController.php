@@ -3,11 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Video;
+use App\Entity\Viewed;
 use App\Repository\TagRepository;
 use App\Repository\VideoRepository;
+use App\Repository\ViewedRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 #[Route('/video', name: 'video_')]
 class VideoController extends AbstractController
@@ -25,5 +28,19 @@ class VideoController extends AbstractController
             'mobaVideos' => $mobaVideos,
             'tags' => $tags,
         ]);
+    }
+
+    #[Route('/add/{videoId<^[0-9]+$>}', name: 'add')]
+    #[ParamConverter('video', class: 'App\Entity\Video', options: ['id' => 'videoId'])]
+    public function add(Video $video, ViewedRepository $viewedRepository): Response
+    {
+        $viewed = new Viewed();
+        $user = $this->getUser();
+        $viewed->setUser($user);
+        $viewed->setVideo($video);
+
+        $viewedRepository->save($viewed, true);
+
+        return new Response(status: 200);
     }
 }

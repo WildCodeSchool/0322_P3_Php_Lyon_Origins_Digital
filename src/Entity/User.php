@@ -35,9 +35,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?bool $isVerified = false;
 
 
-    #[ORM\ManyToMany(targetEntity: Video::class, inversedBy: "usersViewed", cascade: ["persist", "remove"])]
-    #[ORM\JoinTable(name: "user_video_viewed")]
-    private ?Collection $viewedVideos = null;
+    // #[ORM\ManyToMany(targetEntity: Video::class, inversedBy: "usersViewed", cascade: ["persist", "remove"])]
+    // #[ORM\JoinTable(name: "user_video_viewed")]
+    // private ?Collection $viewedVideos = null;
 
     #[ORM\ManyToMany(targetEntity: Video::class, inversedBy: "usersLiked", cascade: ["persist", "remove"])]
     #[ORM\JoinTable(name: "user_video_likes")]
@@ -51,12 +51,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\JoinTable(name: "user_video_favorites")]
     private ?Collection $favoriteVideos = null;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Viewed::class)]
+    private Collection $vieweds;
+
     public function __construct()
     {
-        $this->viewedVideos = new ArrayCollection();
+        // $this->viewedVideos = new ArrayCollection();
         $this->likedVideos = new ArrayCollection();
         $this->viewLaterVideos = new ArrayCollection();
         $this->favoriteVideos = new ArrayCollection();
+        $this->vieweds = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -141,26 +145,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getViewedVideos(): Collection
-    {
-        return $this->viewedVideos;
-    }
+    // public function getViewedVideos(): Collection
+    // {
+    //     return $this->viewedVideos;
+    // }
 
-    public function addViewedVideo(Video $video): void
-    {
-        if (!$this->viewedVideos->contains($video)) {
-            $this->viewedVideos->add($video);
-            $video->addUserViewed($this);
-        }
-    }
+    // public function addViewedVideo(Video $video): void
+    // {
+    //     if (!$this->viewedVideos->contains($video)) {
+    //         $this->viewedVideos->add($video);
+    //         $video->addUserViewed($this);
+    //     }
+    // }
 
-    public function removeViewedVideo(Video $video): void
-    {
-        if ($this->viewedVideos->contains($video)) {
-            $this->viewedVideos->removeElement($video);
-            $video->removeUserViewed($this);
-        }
-    }
+    // public function removeViewedVideo(Video $video): void
+    // {
+    //     if ($this->viewedVideos->contains($video)) {
+    //         $this->viewedVideos->removeElement($video);
+    //         $video->removeUserViewed($this);
+    //     }
+    // }
 
     public function getLikedVideos(): Collection
     {
@@ -223,5 +227,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $this->favoriteVideos->removeElement($video);
             $video->removeUserFavorited($this);
         }
+    }
+
+    /**
+     * @return Collection<int, Viewed>
+     */
+    public function getVieweds(): Collection
+    {
+        return $this->vieweds;
+    }
+
+    public function addViewed(Viewed $viewed): static
+    {
+        if (!$this->vieweds->contains($viewed)) {
+            $this->vieweds->add($viewed);
+            $viewed->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeViewed(Viewed $viewed): static
+    {
+        if ($this->vieweds->removeElement($viewed)) {
+            // set the owning side to null (unless already changed)
+            if ($viewed->getUser() === $this) {
+                $viewed->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }
