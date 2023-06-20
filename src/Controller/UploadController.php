@@ -29,7 +29,7 @@ class UploadController extends AbstractController
             if (!empty($fileName)) {
                 $video = $form->getData();
                 $video->setVideoUrl($fileName);
-                $video->setPosterUrl('blank.jpg'); //This line have to be deleted when new videos will have their thumb
+                $video->setPosterUrl('blank.jpg'); //This line needs to be deleted when new videos will have their thumb
 
                 $saveVideoService->saveVideoFile($fileName);
                 $videoRepository->save($video, true);
