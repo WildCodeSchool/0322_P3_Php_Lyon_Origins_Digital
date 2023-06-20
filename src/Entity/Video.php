@@ -48,10 +48,26 @@ class Video
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'videos')]
     private Collection $tag;
 
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: "viewedVideos", cascade: ["persist", "remove"])]
+    private ?Collection $usersViewed = null;
+
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: "likedVideos", cascade: ["persist", "remove"])]
+    private ?Collection $usersLiked = null;
+
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: "viewLaterVideos", cascade: ["persist", "remove"])]
+    private ?Collection $usersViewLater = null;
+
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: "favoriteVideos", cascade: ["persist", "remove"])]
+    private ?Collection $usersFavorited = null;
+
     public function __construct()
     {
         $this->tag = new ArrayCollection();
         $this->postDate = new Date();
+        $this->usersViewed = new ArrayCollection();
+        $this->usersLiked = new ArrayCollection();
+        $this->usersViewLater = new ArrayCollection();
+        $this->usersFavorited = new ArrayCollection();
     }
 
     public function __toString()
@@ -145,5 +161,89 @@ class Video
     {
         $this->tag->removeElement($tag);
         return $this;
+    }
+
+    public function getUsersViewed(): Collection
+    {
+        return $this->usersViewed;
+    }
+
+    public function addUserViewed(User $user): void
+    {
+        if (!$this->usersViewed->contains($user)) {
+            $this->usersViewed->add($user);
+            $user->addViewedVideo($this);
+        }
+    }
+
+    public function removeUserViewed(User $user): void
+    {
+        if ($this->usersViewed->contains($user)) {
+            $this->usersViewed->removeElement($user);
+            $user->removeViewedVideo($this);
+        }
+    }
+
+    public function getUsersLiked(): Collection
+    {
+        return $this->usersLiked;
+    }
+
+    public function addUserLiked(User $user): void
+    {
+        if (!$this->usersLiked->contains($user)) {
+            $this->usersLiked[] = $user;
+            $user->addLikedVideo($this);
+        }
+    }
+
+    public function removeUserLiked(User $user): void
+    {
+        if ($this->usersLiked->contains($user)) {
+            $this->usersLiked->removeElement($user);
+            $user->removeLikedVideo($this);
+        }
+    }
+
+    public function getUsersViewLater(): Collection
+    {
+        return $this->usersViewLater;
+    }
+
+    public function addUserViewLater(User $user): void
+    {
+        if (!$this->usersViewLater->contains($user)) {
+            $this->usersViewLater[] = $user;
+            $user->addViewLaterVideo($this);
+        }
+    }
+
+    public function removeUserViewLater(User $user): void
+    {
+        if ($this->usersViewLater->contains($user)) {
+            $this->usersViewLater->removeElement($user);
+            $user->removeViewLaterVideo($this);
+        }
+    }
+
+    public function getUsersFavorited(): Collection
+    {
+        return $this->usersFavorited;
+    }
+
+    public function addUserFavorited(User $user): void
+    {
+        if (!$this->usersFavorited->contains($user)) {
+            $this->usersFavorited[] = $user;
+            $user->addFavoriteVideo($this);
+        }
+    }
+
+    public function removeUserFavorited(User $user): void
+    {
+        if ($this->usersFavorited->contains($user)) {
+            $this->usersFavorited->removeElement($user);
+            $user->removeFavoriteVideo($this);
+        }
     }
 }

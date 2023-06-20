@@ -1,4 +1,10 @@
 {% extends 'base.html.twig' %}
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('addFav') }}
+    {{ encore_entry_script_tags('addLater') }}
+    {{ encore_entry_script_tags('addLike') }}
+{% endblock %}
 
 {% block title %}Gaming Gurus{% endblock %}
     {% set playFill = "<i class='bi bi-play-fill'></i>" %}
@@ -14,27 +20,26 @@
                     <div class="home-image mt-lg-4 mx-auto rounded-3 text-center position-relative " alt="cover">
                         <div class="container">
 
-                        <div class="row">
+					<div class="row">
 
-                            <div class="header-logo rounded-3 rounded-top-0 rounded-start-0 bg-dark title-font text-secondary col-3 d-lg-block d-none position-absolute top-0 start-0">
-                            À LA UNE
-                            </div>
-                            
-                            <div class="col d-lg-block d-none">
-                            </div>
+						<div class="header-logo rounded-3 rounded-top-0 rounded-start-0 bg-dark title-font text-secondary col-3 d-lg-block d-none position-absolute top-0 start-0">
+							À LA UNE
+						</div>
+
+						<div class="col d-lg-block d-none"></div>
 
 
-                            <div class="button-view mb-4 z-1 col-6 col-lg-6 d-flex justify-content-end align-items-end">
-                          
-                                <a class="link-desktop bg-primary fs-3 p-1 text-decoration-none d-none d-sm-flex title-font text-secondary rounded-3 justify-content-center align-items-center" href="{{ path('video_show', { id: headerVideo[0].id }) }}">
-                                    <span class="">REGARDER</span>
-                                    <span class="fs-1">{{ playFill|raw }}</span>
-                                </a>
+						<div class="button-view mb-4 z-1 col-6 col-lg-6 d-flex justify-content-end align-items-end">
 
-                                <a class="link-mobile bg-primary fs-6 p-1 text-decoration-none title-font text-secondary rounded-3 d-flex d-sm-none justify-content-center align-items-center" href="{{ path('video_show', { id: headerVideo[0].id }) }}">
-                                    <span class="">REGARDER</span>
-                                    <span class="fs-2">{{ playFill|raw }}</span>
-                                </a>
+							<a class="link-desktop bg-primary fs-3 p-1 text-decoration-none d-none d-sm-flex title-font text-secondary rounded-3 justify-content-center align-items-center" href="{{ path('video_show', { id: headerVideo[0].id }) }}">
+								<span class="">REGARDER</span>
+								<span class="fs-1">{{ playFill|raw }}</span>
+							</a>
+
+							<a class="link-mobile bg-primary fs-6 p-1 text-decoration-none title-font text-secondary rounded-3 d-flex d-sm-none justify-content-center align-items-center" href="{{ path('video_show', { id: headerVideo[0].id }) }}">
+								<span class="">REGARDER</span>
+								<span class="fs-2">{{ playFill|raw }}</span>
+							</a>
 
                             </div>
 
@@ -62,7 +67,7 @@
         }) }}
     </section>
 
-    {{ include('shared/gallery/bt-gallery.html.twig', {
+			{{ include('shared/gallery/bt-gallery.html.twig', {
         title: 'Les dernières sorties',
         subtitle: false,
         count: 4,
@@ -70,7 +75,7 @@
         id: 'latest'
     }) }}
 
-    {{ include('shared/gallery/bt-gallery.html.twig', {
+			{{ include('shared/gallery/bt-gallery.html.twig', {
         title: 'Les plus vues',
         subtitle: false,
         count: 4,
@@ -78,4 +83,4 @@
         id: 'mostViewed'
     }) }}
 
-{% endblock %}
+		{% endblock %}
