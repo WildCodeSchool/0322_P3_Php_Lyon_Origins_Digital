@@ -26,9 +26,10 @@ class VideoType extends AbstractType
             ])
             ->add('tag', EntityType::class, [
                 'class' => Tag::class,
-                'label' => 'Tags (choix multipe):',
+                'label' => 'Tags (choix multiples):',
                 'choice_label' => 'name',
                 'multiple' => true,
+                'expanded' => true,
                 'required' => true
             ]);
     }

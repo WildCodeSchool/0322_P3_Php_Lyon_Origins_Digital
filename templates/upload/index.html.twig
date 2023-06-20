@@ -20,11 +20,27 @@
 			</div>
 			<div class="col-12 col-md-4">
 				<p class="col-12 control-label mb-3 upload-font-title">2- Données de la vidéo (obligatoire):</p>
-				{{ form_start(form) }}
-				{{ form_widget(form) }}
+
+				{{ form_start(form) }}		
+       				<div>
+      				      {{ form_row(form.title) }}
+       				</div>
+
+        			<div>
+          				{{ form_row(form.description) }}
+        			</div>
+					
+					<div class="form-tag">
+          		  		{{ form_row(form.tag)}}
+        			</div>
+				
 				<button class="btn btn-primary">{{ button|default('Envoyer') }}</button>
 				{{ form_end(form) }}
 			</div>
+				
+			
 		</div>
 	</div>
-</div>{% endblock %}
+
+{% endblock %}
+ 
