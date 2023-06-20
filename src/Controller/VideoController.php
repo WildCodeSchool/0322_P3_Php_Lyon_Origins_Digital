@@ -23,7 +23,7 @@ class VideoController extends AbstractController
         $tags = $tagRepository->findAll();
 
         return $this->render('video/show.html.twig', [
-            'video' => $video,
+            'videoPlayed' => $video,
             'latestVideos' => $latestVideos,
             'mobaVideos' => $mobaVideos,
             'tags' => $tags,

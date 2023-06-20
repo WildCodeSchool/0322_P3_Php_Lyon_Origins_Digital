@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{{ video.title }}
+	{{ videoPlayed.title }}
 {% endblock %}
 {% block javascripts %}
 	{{ parent() }}
@@ -21,22 +21,56 @@
 			<div class="sh-video d-flex flex-column justify-content-start align-items-center m-0">
 
 				<div class="sh-title-hash row px-4 mt-4 w-100">
-					<div class="sh-title col-lg justify-content-start title-font text-secondary fs-2">{{ video.title }}</div>
-					<div class="sh-hash d-lg-flex d-none col-lg-auto justify-content-end align-items-start">{{ include('shared/tag/category-tag.html.twig', {tag: video.tag[0].name , style: 'tag-main'}) }}</div>
+					<div class="sh-title col-lg justify-content-start title-font text-secondary fs-2">{{ videoPlayed.title }}</div>
+					<div class="sh-hash d-lg-flex d-none col-lg-auto justify-content-end align-items-start">{{ include('shared/tag/category-tag.html.twig', {tag: videoPlayed.tag[0].name , style: 'tag-main'}) }}</div>
 				</div>
 
 				<div class="sh-player video-container rounded-5 w-100 h-50 m-md-4 my-2 mx-0">
-					<video id="player" class="{{ path('video_add', { videoId: video.id }) }}" playsinline controls data-poster="{{ asset('build/images/' ~ video.posterUrl) }}">
-						<source src="{{ asset('build/videos/' ~ video.videoUrl) }}" type="video/mp4"/>
+					<video id="player" class="{{ path('video_add', { videoId: videoPlayed.id }) }}" playsinline controls data-poster="{{ asset('build/images/' ~ videoPlayed.posterUrl) }}">
+						<source src="{{ asset('build/videos/' ~ videoPlayed.videoUrl) }}" type="video/mp4"/>
 					</video>
 				</div>
 
 				<div class="row px-4 w-100">
 					<div class="sh-creator col-xl-2 col-12">
 						<h5>Username</h5>
+						{% if app.user %}
+							<div class="bt-socials flex-column justify-content-center fs-5">
+								<a class="favorite" href="{{ path('fav_add', { idVideo: videoPlayed.id }) }}">
+									{% set isFav = app.user.favoriteVideos|filter(video => video.id == videoPlayed.id )|first %}
+									<div class="bt-social-btn">
+										{% if isFav %}
+											<i class='bt-fav bi bi-heart-fill text-secondary fa{{ videoPlayed.id }}'></i>
+										{% else %}
+											<i class='bt-fav bi bi-heart text-light fa{{ videoPlayed.id }}'></i>
+										{% endif %}
+									</div>
+								</a>
+								<a class="later" href="{{ path('later_add', { idVideo: videoPlayed.id }) }}">
+									{% set isLater = app.user.viewLaterVideos|filter(video => video.id == videoPlayed.id )|first %}
+									<div class="bt-social-btn">
+										{% if isLater %}
+											<i class='bt-watch bi bi-clock-fill text-secondary la{{ videoPlayed.id }}'></i>
+										{% else %}
+											<i class='bt-watch bi bi-clock text-light la{{ videoPlayed.id }}'></i>
+										{% endif %}
+									</div>
+								</a>
+								<a class="like" href="{{ path('like_add', { idVideo: videoPlayed.id }) }}">
+									{% set isLiked = app.user.likedVideos|filter(video => video.id == videoPlayed.id )|first %}
+									<div class="bt-social-btn">
+										{% if isLiked %}
+											<i class='bt-like bi bi-hand-thumbs-up-fill text-secondary li{{ videoPlayed.id }}'></i>
+										{% else %}
+											<i class='bt-like bi bi-hand-thumbs-up text-light li{{ videoPlayed.id }}'></i>
+										{% endif %}
+									</div>
+								</a>
+							</div>
+						{% endif %}
 					</div>
 					<div class="sh-description col-xl col-12 text-info p-0 pb-4" id="sh-description">
-						<p>{{ video.description }}</p>
+						<p>{{ videoPlayed.description }}</p>
 					</div>
 				</div>
 
@@ -86,7 +120,7 @@
 	<div class="container-lg mx-auto d-flex justify-content-center">
 		{{ include('shared/gallery/bt-gallery.html.twig', {
 			title: false,
-			subtitle: 'Toutes les vidéos sur ' ~ video.tag[0].name|upper ~ ' !',
+			subtitle: 'Toutes les vidéos sur ' ~ videoPlayed.tag[0].name|upper ~ ' !',
 			count: 4,
 			contents: mobaVideos,
 			id: 'moba'

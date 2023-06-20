@@ -22,6 +22,7 @@ class RoutingTest extends WebTestCase
     {
         yield ['/'];
         yield ['/video/show/1'];
+        yield ['/video/add/1'];
         yield ['/search/dota'];
         yield ['/search/cs'];
         yield ['/search/overwatch'];
