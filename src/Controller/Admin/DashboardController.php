@@ -2,6 +2,8 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Tag;
+use App\Entity\Video;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -40,7 +42,10 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::linkToDashboard('Dashboard', 'bi bi-gear');
+        yield MenuItem::linkToRoute('Back to the website', 'bi bi-house-fill', 'homepage');
+        yield MenuItem::linkToCrud('Videos', 'bi bi-play-fill', Video::class);
+        yield MenuItem::linkToCrud('Tags', 'bi bi-hash', Tag::class);
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }
