@@ -35,14 +35,14 @@
 					<div class="sh-creator col-xl-2 col-12">
 						<h5>Username</h5>
 						{% if app.user %}
-							<div class="bt-socials flex-column justify-content-center fs-5">
+							<div class="bt-socials flex-row justify-content-center fs-5">
 								<a class="favorite" href="{{ path('fav_add', { idVideo: videoPlayed.id }) }}">
 									{% set isFav = app.user.favoriteVideos|filter(video => video.id == videoPlayed.id )|first %}
 									<div class="bt-social-btn">
 										{% if isFav %}
-											<i class='bt-fav bi bi-heart-fill text-secondary fa{{ videoPlayed.id }}'></i>
+											<i class='bt-fav bi bi-heart-fill text-secondary fa{{ videoPlayed.id }}' title="enlever des favoris"></i>
 										{% else %}
-											<i class='bt-fav bi bi-heart text-light fa{{ videoPlayed.id }}'></i>
+											<i class='bt-fav bi bi-heart text-light fa{{ videoPlayed.id }}' title="ajouter aux favoris"></i>
 										{% endif %}
 									</div>
 								</a>
@@ -50,9 +50,9 @@
 									{% set isLater = app.user.viewLaterVideos|filter(video => video.id == videoPlayed.id )|first %}
 									<div class="bt-social-btn">
 										{% if isLater %}
-											<i class='bt-watch bi bi-clock-fill text-secondary la{{ videoPlayed.id }}'></i>
+											<i class='bt-watch bi bi-clock-fill text-secondary la{{ videoPlayed.id }}' title="enlever de voir plus tard"></i>
 										{% else %}
-											<i class='bt-watch bi bi-clock text-light la{{ videoPlayed.id }}'></i>
+											<i class='bt-watch bi bi-clock text-light la{{ videoPlayed.id }}' title="ajouter à voir plus tard"></i>
 										{% endif %}
 									</div>
 								</a>
@@ -60,9 +60,9 @@
 									{% set isLiked = app.user.likedVideos|filter(video => video.id == videoPlayed.id )|first %}
 									<div class="bt-social-btn">
 										{% if isLiked %}
-											<i class='bt-like bi bi-hand-thumbs-up-fill text-secondary li{{ videoPlayed.id }}'></i>
+											<i class='bt-like bi bi-hand-thumbs-up-fill text-secondary li{{ videoPlayed.id }}' title="ne pas liker"></i>
 										{% else %}
-											<i class='bt-like bi bi-hand-thumbs-up text-light li{{ videoPlayed.id }}'></i>
+											<i class='bt-like bi bi-hand-thumbs-up text-light li{{ videoPlayed.id }}' title="liker"></i>
 										{% endif %}
 									</div>
 								</a>
