@@ -7,22 +7,24 @@ use App\Repository\VideoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 #[Route('/fav', name: 'fav_')]
 class FavoriteController extends AbstractController
 {
     #[Route('/{idVideo<^[0-9]+$>}', name: 'add')]
-    public function index(Video $idVideo, VideoRepository $videoRepository): Response
+    #[ParamConverter('video', class: 'App\Entity\Video', options: ['id' => 'idVideo'])]
+    public function index(Video $video, VideoRepository $videoRepository): Response
     {
         if ($this->getUser()) {
             $user = $this->getUser();
 
-            if ($idVideo->getUsersFavorited()->contains($user)) {
-                $idVideo->removeUserFavorited($user);
+            if ($video->getUsersFavorited()->contains($user)) {
+                $video->removeUserFavorited($user);
             } else {
-                $idVideo->addUserFavorited($user);
+                $video->addUserFavorited($user);
             }
-            $videoRepository->save($idVideo, true);
+            $videoRepository->save($video, true);
         }
         return new Response(status: 200);
     }

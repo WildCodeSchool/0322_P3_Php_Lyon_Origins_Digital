@@ -7,22 +7,24 @@ use App\Repository\VideoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 #[Route('/like', name: 'like_')]
 class LikeController extends AbstractController
 {
     #[Route('/{idVideo<^[0-9]+$>}', name: 'add')]
-    public function index(Video $idVideo, VideoRepository $videoRepository): Response
+    #[ParamConverter('video', class: 'App\Entity\Video', options: ['id' => 'idVideo'])]
+    public function index(Video $video, VideoRepository $videoRepository): Response
     {
         if ($this->getUser()) {
             $user = $this->getUser();
 
-            if ($idVideo->getUsersLiked()->contains($user)) {
-                $idVideo->removeUserLiked($user);
+            if ($video->getUsersLiked()->contains($user)) {
+                $video->removeUserLiked($user);
             } else {
-                $idVideo->addUserLiked($user);
+                $video->addUserLiked($user);
             }
-            $videoRepository->save($idVideo, true);
+            $videoRepository->save($video, true);
         }
         return new Response(status: 200);
     }
