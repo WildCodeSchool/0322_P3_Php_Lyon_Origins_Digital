@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Tag;
 use App\Entity\Video;
+use App\Repository\TagRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -15,36 +16,45 @@ use Symfony\UX\Chartjs\Model\Chart;
 
 class DashboardController extends AbstractDashboardController
 {
-    public function __construct(private ChartBuilderInterface $chartBuilder)
-    {
+    public function __construct(
+        private ChartBuilderInterface $chartBuilder,
+        private TagRepository $tagRepository,
+    ) {
+        $tagRepository = $this->tagRepository;
     }
 
     #[Route('/admin', name: 'admin_dashboard')]
     public function index(): Response
     {
 
-        $chart = $this->chartBuilder->createChart(Chart::TYPE_LINE);
+        $chart = $this->chartBuilder->createChart(Chart::TYPE_BAR);
+        $tags = $this->tagRepository->findAll();
+        $tagNames = [];
+        $tagVideoCount = [];
+        foreach ($tags as $tag) {
+            $tagNames[] = $tag->getName();
+            $tagVideoCount[] = count($tag->getVideos());
+        }
 
         $chart->setData([
-            'labels' => ['label 1', 'label 2', 'label 3'],
+            'labels' => $tagNames,
             'datasets' => [
                 [
-                    'label' => 'My First dataset',
-                    'backgroundColor' => 'rgb(255, 99, 132)',
-                    'borderColor' => 'rgb(255, 99, 132)',
-                    'data' => [0,1,2,3,4,5,6,7,8,9],
+                    'label' => 'Videos by Tag',
+                    'backgroundColor' => '#241C52',
+                    'data' => $tagVideoCount,
                 ],
             ],
         ]);
 
-        // $chart->setOptions([
-        //     'scales' => [
-        //         'y' => [
-        //             'suggestedMin' => 0,
-        //             'suggestedMax' => 100,
-        //         ]
-        //     ]
-        // ]);
+        $chart->setOptions([
+            'scales' => [
+                'y' => [
+                    'suggestedMin' => 0,
+                    'suggestedMax' => 10,
+                ]
+            ]
+        ]);
 
         return $this->render('admin/dashboard.html.twig', [
             'chart' => $chart,

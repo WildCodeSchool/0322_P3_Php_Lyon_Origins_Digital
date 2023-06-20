@@ -79,9 +79,6 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
     }
 }
 
-.header-infos {
-}
-
 .video-container {
     overflow: hidden;
 }
@@ -145,6 +142,16 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
 body {
     background-color: $dark;
 }
+
+body#admin-dashboard {
+    
+    background-color: $light;
+    
+    section .content-header {
+        background-color: $light;
+    }
+}
+
 
 .sh-favs {
     width: fit-content;

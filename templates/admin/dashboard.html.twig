@@ -1,9 +1,23 @@
-{% extends '@EasyAdmin/page/content.html.twig' %}
+{% extends '@!EasyAdmin/layout.html.twig' %}
 
-{% block title %}Gaming Gurus{% endblock %}
+{% block head_stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
 
-{% block body %}
-hello
-{{ render_chart(chart, {'class': 'my-chart'}) }}
-hello
+{% block head_javascript %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+
+{% block content_title %}Admin Dashboard{% endblock %}
+
+{% block page_actions %}
+    <a class="btn btn-primary" href="...">Some Action</a>
+{% endblock %}
+
+{% block body_id %}admin-dashboard{% endblock %}
+
+{% block main %}
+    {{ render_chart(chart, {'class': 'text-light'}) }}
 {% endblock %}
