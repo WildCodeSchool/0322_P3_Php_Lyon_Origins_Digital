@@ -10,38 +10,45 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
+use Symfony\UX\Chartjs\Model\Chart;
 
 class DashboardController extends AbstractDashboardController
 {
-    public function __construct()
+    public function __construct(private ChartBuilderInterface $chartBuilder)
     {
     }
 
     #[Route('/admin', name: 'admin_dashboard')]
     public function index(): Response
     {
-        // return parent::index();
 
-        // $routeBuilder = $this->container->get(AdminUrlGenerator::class);
-        // $url = $routeBuilder->setController(VideoCrudController::class)->generateUrl();
+        $chart = $this->chartBuilder->createChart(Chart::TYPE_LINE);
 
-        // return $this->redirect($url);
+        $chart->setData([
+            'labels' => ['label 1', 'label 2', 'label 3'],
+            'datasets' => [
+                [
+                    'label' => 'My First dataset',
+                    'backgroundColor' => 'rgb(255, 99, 132)',
+                    'borderColor' => 'rgb(255, 99, 132)',
+                    'data' => [0,1,2,3,4,5,6,7,8,9],
+                ],
+            ],
+        ]);
 
-        // Option 1. You can make your dashboard redirect to some common page of your backend
-        //
-        // $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        // return $this->redirect($adminUrlGenerator->setController(OneOfYourCrudController::class)->generateUrl());
+        // $chart->setOptions([
+        //     'scales' => [
+        //         'y' => [
+        //             'suggestedMin' => 0,
+        //             'suggestedMax' => 100,
+        //         ]
+        //     ]
+        // ]);
 
-        // Option 2. You can make your dashboard redirect to different pages depending on the user
-        //
-        // if ('jane' === $this->getUser()->getUsername()) {
-        //     return $this->redirect('...');
-        // }
-
-        // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
-        // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
-        //
-        return $this->render('admin/dashboard.html.twig');
+        return $this->render('admin/dashboard.html.twig', [
+            'chart' => $chart,
+        ]);
     }
 
     public function configureDashboard(): Dashboard
