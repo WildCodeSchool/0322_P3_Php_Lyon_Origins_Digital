@@ -23,12 +23,12 @@ setTimeout(() => {
 
 
 (function loadMore() {
-
+    
     const loadMoreButtons = document.getElementsByClassName('load-more-btn');
-
-
+    
+    
     for (const loadMoreButton of loadMoreButtons) {
-
+        
 
         const idName = loadMoreButton.id;
         const loadMoreBtn = document.getElementById(idName);
@@ -44,10 +44,10 @@ setTimeout(() => {
                 bt.classList.remove('d-none');
                 bt.classList.add('bt-container');
             }
-
+            
 
             idNbr++;
-
+            
             hiddenBts = document.getElementById(idName + "-bt-gallery").querySelectorAll('.bt-hidden');
 
             if (hiddenBts.length < 1) { loadMoreBtn.parentElement.parentElement.remove(); }
@@ -58,61 +58,4 @@ setTimeout(() => {
     }
 })();
 
-(function ShowDescriptionOnMobile() {
-    let description = document.getElementById('sh-description');
-    const descriptionFull = document.getElementById('sh-description').innerText;
-    let maxOnMobile = 100;
-    let descriptionShort = '';
 
-    addEventListener('resize', () => {
-
-        if (window.screen.width <= 576) {
-
-            if (description.innerText.length > maxOnMobile) {
-
-                descriptionShort = description.innerText.slice(0, maxOnMobile) + '...';
-                description.innerText = descriptionShort;
-            } else {
-                description.innerText = descriptionFull;
-            }
-
-            description.addEventListener('click', function () {
-                if (description.innerText == descriptionShort) {
-                    description.innerText = descriptionFull;
-                } else if (description.innerText == descriptionFull) {
-                    description.innerText = descriptionShort;
-                }
-            })
-
-        } else {
-            description.innerText = descriptionFull;
-        }
-    })
-})();
-
-function addSocialBtn(name, className, offColor = 'light', onColor = 'secondary') {
-
-
-    const icons = document.getElementsByClassName(name);
-    const divs = document.getElementsByClassName('bt-' + name);
-
-    for (const icon of icons) {
-        icon.classList.add('bi-' + className);
-    }
-
-
-    for (const div of divs) {
-        div.classList.add('text-' + offColor);
-        const icon = div.firstElementChild;
-        div.addEventListener('click', function () {
-            icon.classList.toggle('bi-' + className);
-            icon.classList.toggle('bi-' + className + '-fill');
-            div.classList.toggle('text-' + offColor);
-            div.classList.toggle('text-' + onColor);
-        })
-    }
-}
-
-addSocialBtn('fav', 'heart');
-addSocialBtn('watchLater', 'clock');
-addSocialBtn('like', 'hand-thumbs-up');

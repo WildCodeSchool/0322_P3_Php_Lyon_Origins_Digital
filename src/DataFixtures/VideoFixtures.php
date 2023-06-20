@@ -262,6 +262,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $persistedVideos = [];
+        $videoCount = 0;
 
         foreach (self::VIDEOS as $clip) {
             $video = new Video();
@@ -273,11 +274,12 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
                 ->setVideoUrl($clip['video_url'])
                 ->setPosterUrl($clip['poster_url']);
 
-            $manager->persist($video);
-
-            $persistedVideos[] = $video;
+                $manager->persist($video);
+                $this->addReference('video_' . $videoCount, $video);
+                $videoCount++;
+                $persistedVideos[] = $video;
         }
-        $manager->flush();
+
 
         foreach ($persistedVideos as $persistedVideo) {
             for ($i = 0; $i < 3; $i++) {
@@ -290,8 +292,8 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
-        return [TagFixtures::class,];
+        return [TagFixtures::class];
     }
 }
