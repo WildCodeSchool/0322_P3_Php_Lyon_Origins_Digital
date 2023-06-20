@@ -147,6 +147,10 @@ body#admin-dashboard {
     
     background-color: $light;
     
+    a {
+        text-decoration: none;
+    }
+    
     section .content-header {
         background-color: $light;
     }

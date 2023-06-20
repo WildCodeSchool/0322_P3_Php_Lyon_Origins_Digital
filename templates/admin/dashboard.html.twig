@@ -13,11 +13,26 @@
 {% block content_title %}Admin Dashboard{% endblock %}
 
 {% block page_actions %}
-    <a class="btn btn-primary" href="...">Some Action</a>
 {% endblock %}
 
 {% block body_id %}admin-dashboard{% endblock %}
 
+{% set charts = [
+    chartVideosByTag,
+    chartFavoritesByVideo,
+    chartViewsByVideo,
+    chartLikesByVideo,
+] %}
+
 {% block main %}
-    {{ render_chart(chart, {'class': 'text-light'}) }}
+
+    <section class="container-fluid row">
+        {% for chart in charts %}
+            <div class="col-lg-6 col-md-10 mb-5 mx-lg-auto">
+                {{ render_chart(chart) }}
+            </div>
+        {% endfor %}
+    </section>
+
+
 {% endblock %}
