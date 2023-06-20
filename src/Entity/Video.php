@@ -54,6 +54,11 @@ class Video
         $this->postDate = new Date();
     }
 
+    public function __toString()
+    {
+        return $this->title;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

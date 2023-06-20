@@ -601,6 +601,15 @@
     "symfony/service-contracts": {
         "version": "v3.0.1"
     },
+    "symfony/stimulus-bundle": {
+        "version": "2.9",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.8",
+            "ref": "9e33a8a3794b603fb4be6c04ee5ecab901ce549e"
+        }
+    },
     "symfony/stopwatch": {
         "version": "v6.0.5"
     },
@@ -650,6 +659,9 @@
         "files": [
             "./config/packages/uid.yaml"
         ]
+    },
+    "symfony/ux-chartjs": {
+        "version": "v2.9.1"
     },
     "symfony/validator": {
         "version": "6.0",
