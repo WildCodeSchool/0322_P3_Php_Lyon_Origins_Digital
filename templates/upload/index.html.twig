@@ -1,6 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends '@!EasyAdmin/layout.html.twig' %}
 
-{% block title %}Poster une video
+{% block head_stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block head_javascript %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+
+{% block content_title %}Poster une video
 {% endblock %}
 
 {% block javascripts %}
@@ -8,7 +18,7 @@
 	{{ encore_entry_script_tags('dropzone') }}
 {% endblock %}
 
-{% block body %}
+{% block main %}
 	<div class="container-fluid mt-5 upload-font">
 		<div class="col-12 text-center mb-4">
 			<h1 class="upload-font-title">AJOUTER DU CONTENU</h1>

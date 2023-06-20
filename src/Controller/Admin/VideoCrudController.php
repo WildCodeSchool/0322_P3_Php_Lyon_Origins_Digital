@@ -35,8 +35,15 @@ class VideoCrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
-        return $actions->add(Crud::PAGE_INDEX, Action::NEW('Add Video'), function(Action $action) {
-            return $action->linkToRoute('/upload');
-        });
+        $uploadVideo = Action::new('videoUpload', 'Upload Video', 'fa-solid fa-upload')
+            ->displayAsButton()
+            ->setCssClass('btn btn-primary')
+            ->linkToRoute('/upload')
+            ;
+
+        return $actions
+            // ->remove(Crud::PAGE_INDEX, Action::NEW)
+            // ->add(Crud::PAGE_INDEX, $uploadVideo)
+            ;
     }
 }
