@@ -31,17 +31,6 @@ class TagCrudController extends AbstractCrudController
         ;
     }
 
-    // In the future, this could be used when 'game styles' will be implemented.
-    /*
-    public function configureFilters(Filters $filters): Filters
-    {
-        return $filters
-            ->add(EntityFilter::new('video'))
-        ;
-    }
-    */
-
-
     public function configureFields(string $pageName): iterable
     {
         yield IdField::new('id');

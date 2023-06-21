@@ -31,8 +31,6 @@ class DashboardController extends AbstractDashboardController
         $tags = $this->tagRepository->findAll();
         $videos = $this->videoRepository->findAll();
 
-        // --------------------------------------------------------
-
         $tagNames = [];
         $tagVideoCount = [];
 
@@ -42,12 +40,10 @@ class DashboardController extends AbstractDashboardController
         }
 
         $chartVideosByTag = $this->chartManager->createBarChartBy(
+            'Videos by Tag',
             $tagNames,
             $tagVideoCount,
-            'Videos by Tag'
         );
-
-        // --------------------------------------------------------
 
         $videoTitles = [];
         $favCount = [];
@@ -62,24 +58,22 @@ class DashboardController extends AbstractDashboardController
         }
 
         $chartFavsByVideo = $this->chartManager->createBarChartBy(
+            'Favorites by Video',
             $videoTitles,
             $favCount,
-            'Favorites by Video'
         );
 
         $chartViewsByVideo = $this->chartManager->createBarChartBy(
+            'Views by Video',
             $videoTitles,
             $viewsCount,
-            'Views by Video'
         );
 
         $chartLikesByVideo = $this->chartManager->createBarChartBy(
+            'Likes by Video',
             $videoTitles,
             $likesCount,
-            'Likes by Video'
         );
-
-        // --------------------------------------------------------
 
         return $this->render('admin/dashboard.html.twig', [
             'chartVideosByTag' => $chartVideosByTag,

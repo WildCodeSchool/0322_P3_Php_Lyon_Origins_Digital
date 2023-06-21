@@ -2,11 +2,10 @@
 
 namespace App\Service;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\UX\Chartjs\Model\Chart;
 
-class ChartManager extends AbstractController
+class ChartManager
 {
     public function __construct(
         private ChartBuilderInterface $chartBuilder,
@@ -14,9 +13,9 @@ class ChartManager extends AbstractController
     }
 
     public function createBarChartBy(
+        string $title,
         array $labels = [],
         array $data = [],
-        string $title = 'Change Me',
         string $bgColor = '#9b9b9b',
         int $yMax = null,
         int $yMin = null,
