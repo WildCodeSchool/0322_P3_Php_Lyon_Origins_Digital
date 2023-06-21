@@ -4,24 +4,70 @@
 
 {% block body %}
 
+<section class="ud-header container-lg p-4 m-auto">
+    <h1 class="title-font text-center text-secondary py-3">
+        Hello {{ user.username }}
+    </h1>
+    <p class="text-info text-center">Voici vos stats</p>
+
+    {% set userStats = [
+        {
+            'title': 'Favorites',
+            'stat': user.favoriteVideos,
+        },
+        {
+            'title': 'Vues',
+            'stat': user.viewedVideos,
+        },
+        {
+            'title': 'Aimées',
+            'stat': user.likedVideos,
+        },
+        {
+            'title': 'À regarder',
+            'stat': user.viewLaterVideos,
+        },
+    ] %}
+
+    <div class="row text-dark m-auto">
+        
+        {% for userStat in userStats %}
+
+            <div class="col-md col-sm-6 col-12 p-2 rounded rounded-3 border border-primary border-2 bg-secondary">
+
+                <div class="title-font fs-2 text-center">
+                    {{ userStat['title'] }}
+                </div>
+
+                <div class="fs-1 text-font text-center">
+                    {{ userStat['stat']|length }}
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+</section>
+
 <section class="user-dashboard container-lg mt-2">
 
-    <ul class="ud-menu nav nav-tabs" id="myTab" role="tablist">
+    <ul class="ud-menu nav nav-tabs justify-content-center" id="userDashboards" role="tablist">
 
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Home</button>
+        <li class="nav-item title-font fs-4" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Favorites</button>
         </li>
 
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Profile</button>
+        <li class="nav-item title-font fs-4" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Historique</button>
         </li>
 
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Contact</button>
+        <li class="nav-item title-font fs-4" role="presentation">
+            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Aimées</button>
         </li>
 
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false" disabled>Disabled</button>
+        <li class="nav-item title-font fs-4" role="presentation">
+            <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false" disabled>A regarder</button>
         </li>
 
     </ul>
