@@ -79,8 +79,7 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
     }
 }
 
-.header-infos {
-}
+.header-infos {}
 
 .video-container {
     overflow: hidden;
@@ -369,4 +368,10 @@ body {
 #mydropzone {
     border: 2px dashed $secondary;
     min-height: 325px;
+}
+
+.form-tag #video_tag {
+    overflow: scroll;
+    max-height: 100px;
+    text-transform: uppercase;
 }

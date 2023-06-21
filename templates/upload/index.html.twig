@@ -14,17 +14,40 @@
 			<h1 class="upload-font-title">AJOUTER DU CONTENU</h1>
 		</div>
 		<div class="row justify-content-center">
-			<div class="col-12 col-md-4 mb-4">
+			<div class="col-12 col-md-6 col-lg-5 mb-4">
 				<p class="col-12 control-label mb-3 upload-font-title">1- Déposez votre video ici:</p>
-				<form action="{{ oneup_uploader_endpoint('gallery') }}" class='dropzone' id="mydropzone"></form>
+				<form action="{{ oneup_uploader_endpoint('gallery') }}" class='dropzone' id="mydropzone">
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+				</form>
 			</div>
 			<div class="col-12 col-md-4">
 				<p class="col-12 control-label mb-3 upload-font-title">2- Données de la vidéo (obligatoire):</p>
-				{{ form_start(form) }}
-				{{ form_widget(form) }}
+
+				{{ form_start(form) }}		
+       				<div>
+      				      {{ form_row(form.title) }}
+       				</div>
+
+        			<div>
+          				{{ form_row(form.description) }}
+        			</div>
+
+					<div>
+						{{form_row(form.postDate)}}
+					</div>
+					
+					<div class="form-tag">
+						{{ form_row(form.tag) }}
+					</div>
+
+				
 				<button class="btn btn-primary">{{ button|default('Envoyer') }}</button>
 				{{ form_end(form) }}
 			</div>
+				
+			
 		</div>
 	</div>
-</div>{% endblock %}
+
+{% endblock %}
+ 

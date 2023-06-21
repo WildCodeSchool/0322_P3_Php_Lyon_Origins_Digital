@@ -9,11 +9,41 @@
 			</div>
 			<div class="d-flex justify-content-between align-items-start">
 				<div class="bt-spacer"></div>
-				<div class="bt-socials d-none flex-column justify-content-center fs-5">
-					<div class="bt-fav" id="fav-div">{{fav|raw}}</div>
-					<div class="bt-watchLater" id="watchLater-div">{{watchLater|raw}}</div>
-					<div class="bt-like" id="like-div">{{like|raw}}</div>
-				</div>
+				{% if app.user %}
+
+					<div class="bt-socials flex-column justify-content-center fs-5">
+						<a class="favorite" href="{{ path('fav_add', { idVideo: item.id }) }}">
+							{% set isFav = app.user.favoriteVideos|filter(video => video.id == item.id )|first %}
+							<div class="bt-social-btn">
+								{% if isFav %}
+									<i class='bt-fav bi bi-heart-fill text-secondary fa{{ item.id }}'></i>
+								{% else %}
+									<i class='bt-fav bi bi-heart text-light fa{{ item.id }}'></i>
+								{% endif %}
+							</div>
+						</a>
+						<a class="later" href="{{ path('later_add', { idVideo: item.id }) }}">
+							{% set isLater = app.user.viewLaterVideos|filter(video => video.id == item.id )|first %}
+							<div class="bt-social-btn">
+								{% if isLater %}
+									<i class='bt-watch bi bi-clock-fill text-secondary la{{ item.id }}'></i>
+								{% else %}
+									<i class='bt-watch bi bi-clock text-light la{{ item.id }}'></i>
+								{% endif %}
+							</div>
+						</a>
+						<a class="like" href="{{ path('like_add', { idVideo: item.id }) }}">
+						{% set isLiked = app.user.likedVideos|filter(video => video.id == item.id )|first %}
+						<div class="bt-social-btn">
+							{% if isLiked %}
+							<i class='bt-like bi bi-hand-thumbs-up-fill text-secondary li{{ item.id }}'></i>
+						{% else %}
+							<i class='bt-like bi bi-hand-thumbs-up text-light li{{ item.id }}'></i>
+						{% endif %}
+						</div>
+						</a>
+					</div>
+				{% endif %}
 			</div>
 
 			<div class="bt-title title-font text-secondary text-nowrap">{{ item.title|u.truncate(30, '...') }}</div>
@@ -32,5 +62,4 @@
 			<div class="bt-description text-light">{{ item.description|u.truncate(60, '...', false) }}</div>
 		</div>
 	</div>
-
 </div>
