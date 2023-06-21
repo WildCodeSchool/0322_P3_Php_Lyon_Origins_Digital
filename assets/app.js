@@ -22,6 +22,7 @@ setTimeout(() => {
 }, 2000);
 
 
+
 (function loadMore() {
     
     const loadMoreButtons = document.getElementsByClassName('load-more-btn');
