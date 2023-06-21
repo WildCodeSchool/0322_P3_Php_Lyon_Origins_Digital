@@ -9,6 +9,7 @@
 	{{ encore_entry_script_tags('addLater') }}
 	{{ encore_entry_script_tags('addLike') }}
 	{{ encore_entry_script_tags('playAndCount') }}
+	{{ encore_entry_script_tags('displayViewCount') }}
 {% endblock %}
 
 {% set mobaTags = ['dota', 'smite', 'lol'] %}
@@ -68,6 +69,11 @@
 								</a>
 							</div>
 						{% endif %}
+						<div class="bt-stats d-flex justify-content-start align-items-center text-info m-0" data-info="{{ path('app_viewed', { videoId: videoPlayed.id }) }}">
+							<span class="bt-views m-0"></span>
+							<span>{{dot|raw}}</span>
+							<span class="bt-post-date m-0">{{ videoPlayed.postDate|format_datetime('medium', 'short', locale='fr', timezone='Europe/Paris') }}</span>
+						</div>
 					</div>
 					<div class="sh-description col-xl col-12 text-info p-0 pb-4" id="sh-description">
 						<p>{{ videoPlayed.description }}</p>

@@ -9,8 +9,11 @@ for (const element of elements) {
             return response.json();
         })
         .then(data => {
-            const value = data;
-            // Utilisez les données JSON récupérées (data) comme vous le souhaitez
+            const viewedValue = data[0][1];
+            let textForView = ' vue';
+            if (viewedValue > 1) textForView = ' vues';
+            const viewsElement = element.querySelector('.bt-views');
+            viewsElement.textContent = viewedValue + textForView;
         })
         .catch(function (error) {
             alert(error);
