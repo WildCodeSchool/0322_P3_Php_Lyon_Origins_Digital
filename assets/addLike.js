@@ -11,24 +11,27 @@ for (const like of likes) {
 
         fetch(like.getAttribute('href'))
             .then(response => {
-                if (response.status != 200) alert("Erreur");
+                if (response.status != 200) alert("Erreur lors du like de cette vidéo.");
+            })
+            .then(function () {
+                for (const likeTrue of likesTrue) {
+
+                    if (likeTrue.classList.contains('bi-hand-thumbs-up-fill')) {
+                        likeTrue.classList.remove('bi-hand-thumbs-up-fill');
+                        likeTrue.classList.remove('text-secondary');
+                        likeTrue.classList.add('bi-hand-thumbs-up');
+                        likeTrue.classList.add('text-light');
+                    } else {
+                        likeTrue.classList.remove('bi-hand-thumbs-up');
+                        likeTrue.classList.remove('text-light');
+                        likeTrue.classList.add('bi-hand-thumbs-up-fill');
+                        likeTrue.classList.add('text-secondary')
+                    }
+                }
+            })
+            .catch(function (error) {
+                alert(error);
             });
-
-        for (const likeTrue of likesTrue) {
-
-            if (likeTrue.classList.contains('bi-hand-thumbs-up-fill')) {
-                likeTrue.classList.remove('bi-hand-thumbs-up-fill');
-                likeTrue.classList.remove('text-secondary');
-                likeTrue.classList.add('bi-hand-thumbs-up');
-                likeTrue.classList.add('text-light');
-            } else {
-                likeTrue.classList.remove('bi-hand-thumbs-up');
-                likeTrue.classList.remove('text-light');
-                likeTrue.classList.add('bi-hand-thumbs-up-fill');
-                likeTrue.classList.add('text-secondary')
-            }
-        }
-
     });
 }
 
