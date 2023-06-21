@@ -3,15 +3,17 @@
 namespace App\Service;
 
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-class SaveVideoService extends AbstractController
+class SaveVideoService
 {
     private RequestStack $requestStack;
+    private ParameterBagInterface $params;
 
-    public function __construct(RequestStack $requestStack)
+    public function __construct(RequestStack $requestStack, ParameterBagInterface $params)
     {
         $this->requestStack = $requestStack;
+        $this->params = $params;
     }
 
     public function deleteSessionFilename(): void
@@ -33,8 +35,8 @@ class SaveVideoService extends AbstractController
 
     public function saveVideoFile(string $fileName): void
     {
-        $source = $this->getParameter('temp_directory') . '/' . $fileName;
-        $destination = $this->getParameter('video_directory') . '/' . $fileName;
+        $source = $this->params->get('temp_directory') . '/' . $fileName;
+        $destination = $this->params->get('video_directory') . '/' . $fileName;
         rename($source, $destination);
     }
 }
