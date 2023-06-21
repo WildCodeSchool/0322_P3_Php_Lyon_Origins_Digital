@@ -154,19 +154,100 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         ],
 
         [
-            'title' => 'TITRE',
-            'description' => 'Desc',
-            'post_date' => '2022-04-14 00:00:00',
+            'title' => 'Fortnite Champion Series 2023 | Major 2 | Grand Finals | N. America | Day 1',
+            'description' => 'The Fortnite Champion Series is an open tournament in which the best players
+             each season rise to the top and claim the title of champion in their region. Any Duo who makes
+             it to the Elite Division in their region can participate!',
+            'post_date' => '2023-05-14 00:00:00',
             'video_url' => 'video3-DOFUS.mp4',
-            'poster_url' => 'poster3-DOFUS.jpg',
+            'poster_url' => 'poster1-FORTNITE.jpg',
         ],
 
         [
-            'title' => 'TITRETITRETITRETITRETITRETITRETITRETITRETITRETITRETITRETITRETITRETITRETITRETITRE',
-            'description' => 'DescDescDescDescDescDescDescDescDescDescDescDescDescDescDescDescDescDescDes',
-            'post_date' => '2022-04-14 00:00:00',
+            'title' => 'Les débuts des Gentle Mates sur Fortnite (FNCS Qualifier Day 1)',
+            'description' => 'Les pitchouns de Fortnite ont joué les FNCS pour la première fois sous nos couleurs
+             @Gotaga  et @nikof9274 étaient au cast pour vous faire vivre la compétition!
+             Ils doivent terminer dans le top 200 au terme de la soirée pour espérer se qualifier 
+             pour les demis finales.',
+            'post_date' => '2023-04-21 00:00:00',
             'video_url' => 'video3-DOFUS.mp4',
-            'poster_url' => 'poster3-DOFUS.jpg',
+            'poster_url' => 'poster2-FORTNITE.jpg',
+        ],
+
+        [
+            'title' => 'I Reached Fortnite’s #1 Rank In 24 Hours! (Unreal)',
+            'description' => 'Today, I challenged myself again in the most intense Fortnite competition ever!
+             the FIRST Unreal Rank in Fortnite which is the #1 rank in Fortnite because of the NEW Ranked Mode! 
+             The new ranked mode features so many different ranks that you have to climb in order to hit Unreal rank. ',
+            'post_date' => '2023-05-20 00:00:00',
+            'video_url' => 'video3-DOFUS.mp4',
+            'poster_url' => 'poster3-FORTNITE.jpg',
+        ],
+
+        [
+            'title' => 'Being a TOP 0.1% Horizon Main (Apex Legends)',
+            'description' => 'JTolerance (me) showing what being a top 0.1% apex predator horizon main in apex 
+             legends season 17 looks like. Best Controller Settings in season 17(Apex Legends Arsenal)',
+            'post_date' => '2023-06-18 00:00:00',
+            'video_url' => 'video3-DOFUS.mp4',
+            'poster_url' => 'poster1-APEX.jpg',
+        ],
+
+        [
+            'title' => 'Fuse, but I Drop 6,000 Damage',
+            'description' => 'Dropping 6,000 Damage while using Fuse...Dropping 6,000 Damage while using Fuse...
+             Dropping 6,000 Damage while using Fuse...Dropping 6,000 Damage while using Fuse...',
+            'post_date' => '2023-05-25 00:00:00',
+            'video_url' => 'video3-DOFUS.mp4',
+            'poster_url' => 'poster2-APEX.jpg',
+        ],
+
+        [
+            'title' => 'Journey Trailer | Wrath of the Lich King Classic | World of Warcraft',
+            'description' => 'See Northrend through the eyes of community content creator Hurricane in 
+             the official Wrath of the Lich King Classic™ Journey Trailer.',
+            'post_date' => '2022-09-22 00:00:00',
+            'video_url' => 'video3-DOFUS.mp4',
+            'poster_url' => 'poster1-WOW.jpg',
+        ],
+
+        [
+            'title' => 'Journey Trailer | Wrath of the Lich King Classic | World of Warcraft',
+            'description' => 'Dans cette vidéo, je pars à la découverte de l extension DragonFlight sur le jeu
+             World of Waracraft ! ',
+            'post_date' => '2022-11-29 00:00:00',
+            'video_url' => 'video3-DOFUS.mp4',
+            'poster_url' => 'poster2-WOW.jpg',
+        ],
+
+        [
+            'title' => 'BLAST.tv Major GRAND FINAL - Vitality vs GamerLegion',
+            'description' => 'We are crowning the WINNER of the BLAST.tv Paris Major, 
+             the very last Major winners of CS:GO. Watch all the action in 4K and ad free on BLAST.tv!',
+            'post_date' => '2023-05-21 00:00:00',
+            'video_url' => 'video3-DOFUS.mp4',
+            'poster_url' => 'poster1-CS.jpg',
+        ],
+
+        [
+            'title' => 'Nous avons gagné le dernier Major de CS:GO à Paris | Team Vitality vlog',
+            'description' => 'Nous sommes entrés dans l\'histoire de Vitality et de CS:GO en remportant le dernier
+             Major CS:GO devant nos fans et nos familles à Paris. Revivez le parcours légendaire de dupreeh, Magisk,
+             ZywOo, Spinx et apEX depuis leur arrivée à Paris jusqu\'au trophée dans l\'Accor Arena dans ce vlog pré
+             senté par Evnia',
+            'post_date' => '2023-05-22 00:00:00',
+            'video_url' => 'video3-DOFUS.mp4',
+            'poster_url' => 'poster2-CS.jpg',
+        ],
+
+        [
+            'title' => 'BLAST Paris MAJOR 2023 - CS:GO Fragmovie (BEST PLAYS)',
+            'description' => 'The best csgo plays from the major legends & champions stage
+             FREE 2$ for the first 100 people, prmo code "virre2" at the deposit page. 
+             Also use my referal code "VIRRE" for 5% deposit bonus',
+            'post_date' => '2023-05-22 00:00:00',
+            'video_url' => 'video3-DOFUS.mp4',
+            'poster_url' => 'poster3-CS.jpg',
         ],
 
         [
@@ -174,14 +255,14 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'description' => 'description de video de juillet',
             'post_date' => '2023-07-14 00:00:00',
             'video_url' => 'video3-DOFUS.mp4',
-            'poster_url' => 'poster3-DOFUS.jpg',
+            'poster_url' => 'poster2-CS.jpg',
         ],
-
     ];
 
     public function load(ObjectManager $manager): void
     {
         $persistedVideos = [];
+        $videoCount = 0;
 
         foreach (self::VIDEOS as $clip) {
             $video = new Video();
@@ -191,14 +272,14 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
                 ->setDescription($clip['description'])
                 ->setPostDate($postDate)
                 ->setVideoUrl($clip['video_url'])
-                ->setPosterUrl($clip['poster_url'])
-            ;
+                ->setPosterUrl($clip['poster_url']);
 
-            $manager->persist($video);
-
-            $persistedVideos[] = $video;
+                $manager->persist($video);
+                $this->addReference('video_' . $videoCount, $video);
+                $videoCount++;
+                $persistedVideos[] = $video;
         }
-        $manager->flush();
+
 
         foreach ($persistedVideos as $persistedVideo) {
             for ($i = 0; $i < 3; $i++) {
@@ -211,8 +292,8 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
-        return [TagFixtures::class,];
+        return [TagFixtures::class];
     }
 }

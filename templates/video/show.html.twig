@@ -6,6 +6,9 @@
 {% block javascripts %}
 	{{ parent() }}
 	{{ encore_entry_script_tags('plyr') }}
+	{{ encore_entry_script_tags('addFav') }}
+	{{ encore_entry_script_tags('addLater') }}
+	{{ encore_entry_script_tags('addLike') }}
 {% endblock %}
 
 {% set mobaTags = ['dota', 'smite', 'lol'] %}
@@ -22,7 +25,7 @@
 					<div class="sh-hash d-lg-flex d-none col-lg-auto justify-content-end align-items-start">{{ include('shared/tag/category-tag.html.twig', {tag: video.tag[0].name , style: 'tag-main'}) }}</div>
 				</div>
 
-				<div class="sh-player video-container w-100 h-50 m-md-4 my-2 mx-0">
+				<div class="sh-player video-container rounded-5 w-100 h-50 m-md-4 my-2 mx-0">
 					<video id="player" class="player" playsinline controls data-poster="{{ asset('build/images/' ~ video.posterUrl) }}">
 						<source src="{{ asset('build/videos/' ~ video.videoUrl) }}" type="video/mp4"/>
 					</video>
