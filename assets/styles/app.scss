@@ -143,16 +143,17 @@ body {
     background-color: $dark;
 }
 
-body#admin-dashboard {
+body#admin {
     
-    background-color: $light;
+    background-color: #222222;
     
     a {
         text-decoration: none;
     }
     
     section .content-header {
-        background-color: $light;
+        background-color: #222222;
+        color: #FFFFFF;
     }
 }
 
@@ -368,16 +369,7 @@ body#admin-dashboard {
     }
 }
 
-.upload-font {
-    font-family: $textFont;
-    color: $secondary;
-
-    .upload-font-title {
-        font-weight: 600;
-    }
-}
-
 #mydropzone {
-    border: 2px dashed $secondary;
     min-height: 325px;
+    border-style: dashed!important;
 }

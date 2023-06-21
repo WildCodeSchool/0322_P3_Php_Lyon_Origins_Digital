@@ -33,17 +33,13 @@ class VideoCrudController extends AbstractCrudController
         yield AssociationField::new('tag');
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud->setDefaultSort(['postDate' => 'DESC']);
+    }
+
     public function configureActions(Actions $actions): Actions
     {
-        $uploadVideo = Action::new('videoUpload', 'Upload Video', 'fa-solid fa-upload')
-            ->displayAsButton()
-            ->setCssClass('btn btn-primary')
-            ->linkToRoute('/upload')
-            ;
-
-        return $actions
-            // ->remove(Crud::PAGE_INDEX, Action::NEW)
-            // ->add(Crud::PAGE_INDEX, $uploadVideo)
-            ;
+        return $actions->remove(Crud::PAGE_INDEX, Action::NEW);
     }
 }

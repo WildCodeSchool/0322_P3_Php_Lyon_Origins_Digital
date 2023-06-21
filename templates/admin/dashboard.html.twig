@@ -15,11 +15,11 @@
 {% block page_actions %}
 {% endblock %}
 
-{% block body_id %}admin-dashboard{% endblock %}
+{% block body_id %}admin{% endblock %}
 
 {% set charts = [
     chartVideosByTag,
-    chartFavoritesByVideo,
+    chartFavsByVideo,
     chartViewsByVideo,
     chartLikesByVideo,
 ] %}
@@ -28,7 +28,7 @@
 
     <section class="container-fluid row">
         {% for chart in charts %}
-            <div class="col-lg-6 col-md-10 mb-5 mx-lg-auto">
+            <div class="col-xl-6 col-10 mb-5 mx-xl-auto">
                 {{ render_chart(chart) }}
             </div>
         {% endfor %}

@@ -10,19 +10,17 @@ class ChartManager extends AbstractController
 {
     public function __construct(
         private ChartBuilderInterface $chartBuilder,
-    )
-    {
+    ) {
     }
 
     public function createBarChartBy(
         array $labels = [],
         array $data = [],
         string $title = 'Change Me',
-        string $bgColor = '#241C52',
+        string $bgColor = '#9b9b9b',
         int $yMax = null,
         int $yMin = null,
-    )
-    {
+    ): Chart {
         $chart = $this->chartBuilder->createChart(Chart::TYPE_BAR);
 
         $chart->setData([
@@ -36,8 +34,12 @@ class ChartManager extends AbstractController
             ],
         ]);
 
-        if(!isset($yMax)) $yMax = max($data);
-        if(!isset($yMin)) $yMin = min($data);
+        if (!isset($yMax)) {
+            $yMax = max($data);
+        }
+        if (!isset($yMin)) {
+            $yMin = min($data);
+        }
 
         $chart->setOptions([
             'scales' => [

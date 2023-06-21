@@ -3,25 +3,20 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Tag;
+use App\Entity\User;
 use App\Entity\Video;
 use App\Repository\TagRepository;
 use App\Repository\VideoRepository;
 use App\Service\ChartManager;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
-use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
-use Symfony\UX\Chartjs\Model\Chart;
 
 class DashboardController extends AbstractDashboardController
 {
     public function __construct(
-        private ChartBuilderInterface $chartBuilder,
         private TagRepository $tagRepository,
         private VideoRepository $videoRepository,
         private ChartManager $chartManager,
@@ -34,56 +29,53 @@ class DashboardController extends AbstractDashboardController
     public function index(): Response
     {
         $tags = $this->tagRepository->findAll();
+        $videos = $this->videoRepository->findAll();
+
+        // --------------------------------------------------------
+
+        $tagNames = [];
+        $tagVideoCount = [];
+
         foreach ($tags as $tag) {
             $tagNames[] = $tag->getName();
             $tagVideoCount[] = count($tag->getVideos());
         }
 
         $chartVideosByTag = $this->chartManager->createBarChartBy(
-            $tagNames, 
+            $tagNames,
             $tagVideoCount,
             'Videos by Tag'
         );
 
         // --------------------------------------------------------
-        
-        $videos = $this->videoRepository->findAll();
+
+        $videoTitles = [];
+        $favCount = [];
+        $viewsCount = [];
+        $likesCount = [];
+
         foreach ($videos as $video) {
             $videoTitles[] = substr($video->getTitle(), 0, 10) . '...';
             $favCount[] = count($video->getUsersFavorited());
+            $viewsCount[] = count($video->getUsersViewed());
+            $likesCount[] = count($video->getUsersLiked());
         }
 
-        $chartFavoritesByVideo = $this->chartManager->createBarChartBy(
-            $videoTitles, 
+        $chartFavsByVideo = $this->chartManager->createBarChartBy(
+            $videoTitles,
             $favCount,
             'Favorites by Video'
         );
 
-        // --------------------------------------------------------
-        
-        $videos = $this->videoRepository->findAll();
-        foreach ($videos as $video) {
-            $videoTitles[] = substr($video->getTitle(), 0, 10) . '...';
-            $ViewsCount[] = count($video->getUsersViewed());
-        }
-
         $chartViewsByVideo = $this->chartManager->createBarChartBy(
-            $videoTitles, 
-            $ViewsCount,
+            $videoTitles,
+            $viewsCount,
             'Views by Video'
         );
 
-        // --------------------------------------------------------
-        
-        $videos = $this->videoRepository->findAll();
-        foreach ($videos as $video) {
-            $videoTitles[] = substr($video->getTitle(), 0, 10) . '...';
-            $LikesCount[] = count($video->getUsersLiked());
-        }
-
         $chartLikesByVideo = $this->chartManager->createBarChartBy(
-            $videoTitles, 
-            $LikesCount,
+            $videoTitles,
+            $likesCount,
             'Likes by Video'
         );
 
@@ -91,7 +83,7 @@ class DashboardController extends AbstractDashboardController
 
         return $this->render('admin/dashboard.html.twig', [
             'chartVideosByTag' => $chartVideosByTag,
-            'chartFavoritesByVideo' => $chartFavoritesByVideo,
+            'chartFavsByVideo' => $chartFavsByVideo,
             'chartViewsByVideo' => $chartViewsByVideo,
             'chartLikesByVideo' => $chartLikesByVideo,
         ]);
@@ -110,7 +102,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Manage Videos', 'fa-solid fa-play', Video::class);
         yield MenuItem::linkToRoute('Upload Videos', 'fa-solid fa-play', 'upload_video');
         yield MenuItem::linkToCrud('Manage Tags', 'fa-solid fa-hashtag', Tag::class);
+        yield MenuItem::linkToCrud('Manage Users', 'fa-solid fa-user', User::class);
     }
-
-
 }
