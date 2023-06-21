@@ -53,7 +53,7 @@ class DashboardController extends AbstractDashboardController
         foreach ($videos as $video) {
             $videoTitles[] = substr($video->getTitle(), 0, 10) . '...';
             $favCount[] = count($video->getUsersFavorited());
-            $viewsCount[] = count($video->getUsersViewed());
+            $viewsCount[] = count($video->getVieweds());
             $likesCount[] = count($video->getUsersLiked());
         }
 
