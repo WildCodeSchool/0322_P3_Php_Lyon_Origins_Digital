@@ -9,3 +9,7 @@ kernel:
 oneup_uploader:
     resource: .
     type: uploader
+
+dashboard:
+    path: /admin
+    controller: App\Controller\Admin\DashboardController::index
