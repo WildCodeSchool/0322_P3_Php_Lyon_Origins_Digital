@@ -6,6 +6,7 @@ use App\Entity\Video;
 use App\Form\VideoType;
 use App\Repository\VideoRepository;
 use App\Service\SaveVideoService;
+use App\Service\UploadService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +18,8 @@ class UploadController extends AbstractController
     public function index(
         Request $request,
         VideoRepository $videoRepository,
-        SaveVideoService $saveVideoService
+        SaveVideoService $saveVideoService,
+        UploadService $uploadService,
     ): Response {
 
         $video = new Video();
@@ -27,10 +29,10 @@ class UploadController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $fileName = $saveVideoService->getVideoName();
             if (!empty($fileName)) {
+                $fileNameThumb = $uploadService->extractThumbnail($fileName);
                 $video = $form->getData();
                 $video->setVideoUrl($fileName);
-                $video->setPosterUrl('blank.jpg'); //This line have to be deleted when new videos will have their thumb
-
+                $video->setPosterUrl($fileNameThumb);
                 $saveVideoService->saveVideoFile($fileName);
                 $videoRepository->save($video, true);
                 $this->addFlash('success', 'Vidéo ajoutée avec succès');
