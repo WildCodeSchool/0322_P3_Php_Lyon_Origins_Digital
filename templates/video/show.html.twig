@@ -26,7 +26,7 @@
 				</div>
 
 				<div class="sh-player video-container rounded-5 w-100 h-50 m-md-4 my-2 mx-0">
-					<video id="player" class="{{ path('video_add', { videoId: videoPlayed.id }) }}" playsinline controls data-poster="{{ asset('build/images/' ~ videoPlayed.posterUrl) }}">
+					<video id="player" data-info="{{ path('video_add', { videoId: videoPlayed.id }) }}" playsinline controls data-poster="{{ asset('build/images/' ~ videoPlayed.posterUrl) }}">
 						<source src="{{ asset('build/videos/' ~ videoPlayed.videoUrl) }}" type="video/mp4"/>
 					</video>
 				</div>

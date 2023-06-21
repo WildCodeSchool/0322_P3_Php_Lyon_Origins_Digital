@@ -47,9 +47,6 @@ class Video
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'videos')]
     private Collection $tag;
 
-    // #[ORM\ManyToMany(targetEntity: User::class, mappedBy: "viewedVideos", cascade: ["persist", "remove"])]
-    // private ?Collection $usersViewed = null;
-
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: "likedVideos", cascade: ["persist", "remove"])]
     private ?Collection $usersLiked = null;
 
@@ -65,7 +62,6 @@ class Video
     public function __construct()
     {
         $this->tag = new ArrayCollection();
-        //$this->usersViewed = new ArrayCollection();
         $this->usersLiked = new ArrayCollection();
         $this->usersViewLater = new ArrayCollection();
         $this->usersFavorited = new ArrayCollection();
@@ -159,27 +155,6 @@ class Video
         $this->tag->removeElement($tag);
         return $this;
     }
-
-    // public function getUsersViewed(): Collection
-    // {
-    //     return $this->usersViewed;
-    // }
-
-    // public function addUserViewed(User $user): void
-    // {
-    //     if (!$this->usersViewed->contains($user)) {
-    //         $this->usersViewed->add($user);
-    //         $user->addViewedVideo($this);
-    //     }
-    // }
-
-    // public function removeUserViewed(User $user): void
-    // {
-    //     if ($this->usersViewed->contains($user)) {
-    //         $this->usersViewed->removeElement($user);
-    //         $user->removeViewedVideo($this);
-    //     }
-    // }
 
     public function getUsersLiked(): Collection
     {

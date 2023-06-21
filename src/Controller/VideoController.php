@@ -36,8 +36,7 @@ class VideoController extends AbstractController
     {
         $viewed = new Viewed();
         $user = $this->getUser();
-        $viewed->setUser($user);
-        $viewed->setVideo($video);
+        $viewed->setUser($user)->setVideo($video);
 
         $viewedRepository->save($viewed, true);
 

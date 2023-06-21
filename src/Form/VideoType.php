@@ -30,7 +30,8 @@ class VideoType extends AbstractType
                 'label' => 'Date de publication:',
                 'input' => 'datetime_immutable',
                 'view_timezone' => 'Europe/Paris',
-                'data' => new DateTimeImmutable()
+                'data' => new DateTimeImmutable(),
+                'required' => true
             ])
             ->add('tag', EntityType::class, [
                 'class' => Tag::class,

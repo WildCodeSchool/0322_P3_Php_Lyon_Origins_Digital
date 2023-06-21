@@ -34,11 +34,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private ?bool $isVerified = false;
 
-
-    // #[ORM\ManyToMany(targetEntity: Video::class, inversedBy: "usersViewed", cascade: ["persist", "remove"])]
-    // #[ORM\JoinTable(name: "user_video_viewed")]
-    // private ?Collection $viewedVideos = null;
-
     #[ORM\ManyToMany(targetEntity: Video::class, inversedBy: "usersLiked", cascade: ["persist", "remove"])]
     #[ORM\JoinTable(name: "user_video_likes")]
     private ?Collection $likedVideos = null;
@@ -56,7 +51,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
-        // $this->viewedVideos = new ArrayCollection();
         $this->likedVideos = new ArrayCollection();
         $this->viewLaterVideos = new ArrayCollection();
         $this->favoriteVideos = new ArrayCollection();
@@ -144,27 +138,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
-    // public function getViewedVideos(): Collection
-    // {
-    //     return $this->viewedVideos;
-    // }
-
-    // public function addViewedVideo(Video $video): void
-    // {
-    //     if (!$this->viewedVideos->contains($video)) {
-    //         $this->viewedVideos->add($video);
-    //         $video->addUserViewed($this);
-    //     }
-    // }
-
-    // public function removeViewedVideo(Video $video): void
-    // {
-    //     if ($this->viewedVideos->contains($video)) {
-    //         $this->viewedVideos->removeElement($video);
-    //         $video->removeUserViewed($this);
-    //     }
-    // }
 
     public function getLikedVideos(): Collection
     {
