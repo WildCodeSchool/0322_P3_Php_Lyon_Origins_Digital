@@ -51,6 +51,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\JoinTable(name: "user_video_favorites")]
     private ?Collection $favoriteVideos = null;
 
+    #[ORM\Column(length: 100)]
+    private ?string $username = null;
+
     public function __construct()
     {
         $this->viewedVideos = new ArrayCollection();
@@ -223,5 +226,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $this->favoriteVideos->removeElement($video);
             $video->removeUserFavorited($this);
         }
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): static
+    {
+        $this->username = $username;
+
+        return $this;
     }
 }
