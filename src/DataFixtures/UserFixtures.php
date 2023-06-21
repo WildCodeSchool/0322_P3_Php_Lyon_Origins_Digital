@@ -10,7 +10,6 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends Fixture implements DependentFixtureInterface
 {
-
     public const USERS = [
         [
             'email' => 'user1@user.fr',
