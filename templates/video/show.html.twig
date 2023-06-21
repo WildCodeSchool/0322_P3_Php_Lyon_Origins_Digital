@@ -33,10 +33,9 @@
 				</div>
 
 				<div class="row px-4 w-100">
-					<div class="sh-creator col-xl-2 col-12">
-						<h5>Username</h5>
+					<div class="sh-creator col-xl-3 col-12">
 						{% if app.user %}
-							<div class="bt-socials flex-row justify-content-center fs-5">
+							<div class="bt-socials row row-cols-4 fs-5">
 								<a class="favorite" href="{{ path('fav_add', { idVideo: videoPlayed.id }) }}">
 									{% set isFav = app.user.favoriteVideos|filter(video => video.id == videoPlayed.id )|first %}
 									<div class="bt-social-btn">
@@ -69,11 +68,12 @@
 								</a>
 							</div>
 						{% endif %}
-						<div class="bt-stats d-flex justify-content-start align-items-center text-info m-0" data-info="{{ path('app_viewed', { videoId: videoPlayed.id }) }}">
-							<span class="bt-views m-0"></span>
-							<span>{{dot|raw}}</span>
-							<span class="bt-post-date m-0">{{ videoPlayed.postDate|format_datetime('medium', 'short', locale='fr', timezone='Europe/Paris') }}</span>
+
+						<div class="bt-stats d-flex flex-column justify-content-center align-items-start text-info m-0" data-info="{{ path('app_viewed', { videoId: videoPlayed.id }) }}">
+							<div class="bt-views m-0"></div>
+							<div class="bt-post-date m-0">{{ videoPlayed.postDate|format_datetime('medium', 'short', locale='fr', timezone='Europe/Paris') }}</div>
 						</div>
+
 					</div>
 					<div class="sh-description col-xl col-12 text-info p-0 pb-4" id="sh-description">
 						<p>{{ videoPlayed.description }}</p>

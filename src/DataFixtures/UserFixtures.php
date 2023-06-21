@@ -20,6 +20,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
+        $count = 0;
         foreach (self::USERS as $userEmail) {
             $user = new User();
             $user->setEmail($userEmail);
@@ -36,9 +37,9 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
                 $user->addLikedVideo($this->getReference('video_' . rand(0, $maxValue)));
                 $user->addViewLaterVideo($this->getReference('video_' . rand(0, $maxValue)));
             }
-
             $manager->persist($user);
-            $this->addReference('user_' . $i, $user);
+            $this->addReference('user_' . $count, $user);
+            $count++;
         }
         $manager->flush();
     }
