@@ -372,4 +372,11 @@ body#admin {
 #mydropzone {
     min-height: 325px;
     border-style: dashed!important;
+} 
+
+.form-tag #video_tag {
+    overflow: scroll;
+    max-height: 100px;
+    text-transform: uppercase;
+    color: $dark;
 }

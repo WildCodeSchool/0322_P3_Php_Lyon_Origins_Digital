@@ -8,7 +8,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
-use DateTimeImmutable as Date;
 
 #[ORM\Entity(repositoryClass: VideoRepository::class)]
 class Video
@@ -63,7 +62,6 @@ class Video
     public function __construct()
     {
         $this->tag = new ArrayCollection();
-        $this->postDate = new Date();
         $this->usersViewed = new ArrayCollection();
         $this->usersLiked = new ArrayCollection();
         $this->usersViewLater = new ArrayCollection();
