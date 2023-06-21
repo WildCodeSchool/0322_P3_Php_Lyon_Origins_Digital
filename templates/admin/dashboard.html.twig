@@ -1,0 +1,38 @@
+{% extends '@!EasyAdmin/layout.html.twig' %}
+
+{% block head_stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block head_javascript %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+
+{% block content_title %}Admin Dashboard{% endblock %}
+
+{% block page_actions %}
+{% endblock %}
+
+{% block body_id %}admin{% endblock %}
+
+{% set charts = [
+    chartVideosByTag,
+    chartFavsByVideo,
+    chartViewsByVideo,
+    chartLikesByVideo,
+] %}
+
+{% block main %}
+
+    <section class="container-fluid row">
+        {% for chart in charts %}
+            <div class="col-xl-6 col-10 mb-5 mx-xl-auto">
+                {{ render_chart(chart) }}
+            </div>
+        {% endfor %}
+    </section>
+
+
+{% endblock %}

@@ -143,6 +143,21 @@ body {
     background-color: $dark;
 }
 
+body#admin {
+    
+    background-color: #222222;
+    
+    a {
+        text-decoration: none;
+    }
+    
+    section .content-header {
+        background-color: #222222;
+        color: #FFFFFF;
+    }
+}
+
+
 .sh-favs {
     width: fit-content;
 }
@@ -354,22 +369,14 @@ body {
     }
 }
 
-.upload-font {
-    font-family: $textFont;
-    color: $secondary;
-
-    .upload-font-title {
-        font-weight: 600;
-    }
-}
-
 #mydropzone {
-    border: 2px dashed $secondary;
     min-height: 325px;
-}
+    border-style: dashed!important;
+} 
 
 .form-tag #video_tag {
     overflow: scroll;
     max-height: 100px;
     text-transform: uppercase;
+    color: $dark;
 }
