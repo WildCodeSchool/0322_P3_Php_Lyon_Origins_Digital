@@ -379,3 +379,9 @@ body {
         color: $secondary;
     }
 }
+
+.form-tag #video_tag {
+    overflow: scroll;
+    max-height: 100px;
+    text-transform: uppercase;
+}

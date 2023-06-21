@@ -6,6 +6,7 @@
 parameters:
     temp_directory: '%kernel.project_dir%/assets/temp'
     video_directory: '%kernel.project_dir%/assets/videos'
+    image_directory: '%kernel.project_dir%/assets/images'
 
 services:
     # default configuration for services in *this* file

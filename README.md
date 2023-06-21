@@ -46,6 +46,13 @@ It's symfony website-skeleton project with some additional library (webpack, fix
 3. Run `php ./vendor/bin/phpmd src text phpmd.xml` to launch PHP Mess Detector
 4. Run `./node_modules/.bin/eslint assets/js` to launch ESLint JS linter
 
+### FFMPEG librairy 
+
+Go to `https://packagist.org/packages/php-ffmpeg/php-ffmpeg`
+
+1. Run `composer require php-ffmpeg/php-ffmpeg`
+2. Click on `FFMpeg install` (don't forget to change your PATH in system environment variables!) 
+
 ### Windows Users
 
 If you develop on Windows, you should edit you git configuration to change your end of line rules with this command:
