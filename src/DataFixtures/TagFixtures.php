@@ -9,7 +9,7 @@ use Doctrine\Persistence\ObjectManager;
 class TagFixtures extends Fixture
 {
     public const TAGS = [
-        'LOL',
+        'lol',
         'DOTA',
         'FORTNITE',
         'CS',
