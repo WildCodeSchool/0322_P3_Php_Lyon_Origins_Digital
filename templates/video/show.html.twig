@@ -46,8 +46,8 @@
 		<div class="col-lg-3 d-none d-lg-flex justify-content-center align-items-center">
 			<div class="sh-favs bg-primary d-flex flex-column justify-content-start align-items-center m-3 p-4 rounded-5">
 				<h5 class="title-font text-secondary">MES FAVORIS</h5>
-				{% for latestVideo in latestVideos |slice(0, 4) %}
-					{{ include('shared/thumbnail/small-thumbnail.html.twig', {item: latestVideo}) }}
+				{% for video in user.favoriteVideos |slice(0, 4) %}
+					{{ include('shared/thumbnail/small-thumbnail.html.twig', {item: video}) }}
 				{% endfor %}
 				<h5 class="title-font d-none text-secondary mt-3">VOIR PLUS DE FAVORIS</h5>
 			</div>
