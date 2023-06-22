@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Dashboard {{ user.username }}{% endblock %}
+{% block title %}Dashboard {{ app.user.username }}{% endblock %}
 
 {% block javascripts %}
 	{{ parent() }}
@@ -13,29 +13,29 @@
 
 <section class="ud-header container-lg p-4 m-auto">
     <h1 class="title-font text-center text-secondary py-3">
-        Hello {{ user.username }}
+        Hello {{ app.user.username }}
     </h1>
     <p class="text-info text-center">Voici vos stats</p>
 
     {% set userStats = [
         {
             'title': 'Favorites',
-            'stat': user.favoriteVideos,
+            'stat': app.user.favoriteVideos,
             'id': 'fav',
         },
         {
             'title': 'Vues',
-            'stat': user.viewedVideos,
+            'stat': app.user.viewedVideos,
             'id': 'viewed',
         },
         {
             'title': 'Aimées',
-            'stat': user.likedVideos,
+            'stat': app.user.likedVideos,
             'id': 'liked',
         },
         {
             'title': 'À regarder',
-            'stat': user.viewLaterVideos,
+            'stat': app.user.viewLaterVideos,
             'id': 'towatch',
         },
     ] %}
