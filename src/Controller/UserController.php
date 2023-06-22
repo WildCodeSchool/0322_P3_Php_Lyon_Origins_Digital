@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/user', name: 'user_')]
 class UserController extends AbstractController
 {
-    #[Route('/{id<\d+>}', name: 'dashboard')]
+    #[Route('/{id<\d+>}/dashboard', name: 'dashboard')]
     public function index(
         User $user
     ): Response {

@@ -15,7 +15,6 @@ class VideoController extends AbstractController
 {
     #[Route('/show/{id<^[0-9]+$>}', methods: ['GET'], name: 'show')]
     public function show(
-        User $user,
         Video $video,
         VideoRepository $videoRepository,
         TagRepository $tagRepository
@@ -29,7 +28,6 @@ class VideoController extends AbstractController
             'latestVideos' => $latestVideos,
             'mobaVideos' => $mobaVideos,
             'tags' => $tags,
-            'user' => $user
         ]);
     }
 }
