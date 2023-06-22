@@ -67,20 +67,28 @@
         }) }}
     </section>
 
-			{{ include('shared/gallery/bt-gallery.html.twig', {
-        title: 'Les dernières sorties',
-        subtitle: false,
-        count: 4,
-        contents: latestVideos,
-        id: 'latest'
-    }) }}
+		{{ include('shared/gallery/bt-gallery.html.twig', {
+            title: 'Les dernières sorties',
+            subtitle: false,
+            count: 4,
+            contents: latestVideos,
+            id: 'latest'
+        }) }}
 
-			{{ include('shared/gallery/bt-gallery.html.twig', {
-        title: 'Les plus vues',
-        subtitle: false,
-        count: 4,
-        contents: latestVideos,
-        id: 'mostViewed'
-    }) }}
+		{{ include('shared/gallery/bt-gallery.html.twig', {
+            title: 'Les plus vues',
+            subtitle: false,
+            count: 4,
+            contents: latestVideos,
+            id: 'mostViewed'
+        }) }}
+
+		{{ include('shared/gallery/bt-gallery.html.twig', {
+            title: 'Les videos LOL',
+            subtitle: false,
+            count: 4,
+            contents: lolVideos,
+            id: 'lolVideos'
+        }) }}
 
 		{% endblock %}

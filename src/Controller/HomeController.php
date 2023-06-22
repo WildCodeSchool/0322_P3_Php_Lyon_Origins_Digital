@@ -18,10 +18,14 @@ class HomeController extends AbstractController
         $trendingTags = $tagRepository->findAll();
         $headerVideo = $videoRepository->findAll();
 
+        $lolVideos = $videoRepository->findVideosBy('postDate', 'tag', 'name', 'lol');
+        // $mostViewed = $videoRepository->findVideosBy('usersViewed');
+
         return $this->render('home/index.html.twig', [
             'trendingTags' => $trendingTags,
             'latestVideos' => $latestVideos,
-            'headerVideo' => $headerVideo
+            'headerVideo' => $headerVideo,
+            'lolVideos' => $lolVideos,
         ]);
     }
 }

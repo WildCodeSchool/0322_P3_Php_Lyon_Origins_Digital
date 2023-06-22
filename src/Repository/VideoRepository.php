@@ -44,14 +44,54 @@ class VideoRepository extends ServiceEntityRepository
     public function findLatestVideos(): array
     {
         $now = new DateTimeImmutable();
-
+        
         return $this->createQueryBuilder('v')
-            ->orderBy('v.postDate', 'DESC')
-            ->setMaxResults(15)
-            ->where('v.postDate < :today')
-            ->setParameter('today', $now, Types::DATETIME_IMMUTABLE)
-            ->getQuery()
-            ->getResult();
+        ->orderBy('v.postDate', 'DESC')
+        ->setMaxResults(15)
+        ->where('v.postDate < :today')
+        ->setParameter('today', $now, Types::DATETIME_IMMUTABLE)
+        ->getQuery()
+        ->getResult();
+    }
+    
+    public function findVideosBy(
+        string $order,
+        string $filterEntity = null,
+        string $filterName = null,
+        string $filterValue = null,
+        string $orderBy = 'DESC',
+        int $maxResult = 15,
+    ) :array
+    {
+        $now = new DateTimeImmutable();
+        
+        $filtered = $this->createQueryBuilder('v')
+
+        ->join('v.'.$filterEntity, 'f', 'WITH', 'f.' . $filterName . ' = :filterValue')
+        ->setParameter('filterValue', $filterValue)
+        
+        ->where('v.postDate < :today')
+        ->setParameter('today', $now, Types::DATETIME_IMMUTABLE)
+        
+        ->orderBy('v.'.$order, $orderBy)
+        ->setMaxResults($maxResult)
+        
+        ->getQuery()
+        ;
+
+        $unfiltered = $this->createQueryBuilder('v')
+
+        ->where('v.postDate < :today')
+        ->setParameter('today', $now, Types::DATETIME_IMMUTABLE)
+        
+        ->orderBy('v.'.$order, $orderBy)
+        ->setMaxResults($maxResult)
+        
+        ->getQuery()
+        ;
+
+        if ($filterEntity == null) return $unfiltered->getResult();
+        return $filtered->getResult();
     }
 
     //    /**
