@@ -12,7 +12,7 @@ class ViewedFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $maxValue = (count(VideoFixtures::VIDEOS)) - 1;
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 500; $i++) {
             $viewed = new Viewed();
             $viewed->setUser($this->getReference('user_' . rand(0, 3)));
             $viewed->setVideo($this->getReference('video_' . rand(0, $maxValue)));
