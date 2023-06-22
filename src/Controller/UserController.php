@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/user', name: 'user_')]
 class UserController extends AbstractController
 {
-    #[Route('/{id<\d+>}/dashboard', name: 'dashboard')]
+    #[Route('/dashboard', name: 'dashboard')]
     public function index(): Response
     {
         return $this->render('user/index.html.twig');
