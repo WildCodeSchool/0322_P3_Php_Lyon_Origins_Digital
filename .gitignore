@@ -1,6 +1,7 @@
 .idea/
 .vscode/
 .DS_Store
+.env.test*
 /public/uploads
 /public/adminer.php
 ###> symfony/framework-bundle ###
