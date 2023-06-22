@@ -2,9 +2,10 @@
 
     {% if title == false %}{% else %}
 
-        <div class="text-info ms-4">
-            <p>{{ title }} !</p>
-        </div>
+        <div class="text-secondary d-flex justify-content-start align-items-center">
+				<span class="fs-1">{{ dot|raw }}</span>
+				<h3 class="title-font fs-3 m-0">{{ title }}</h3>
+		</div>
 
     {% endif %}
 
