@@ -40,6 +40,11 @@
         },
     ] %}
 
+    {% set active = {
+        'tab': 'active',
+        'content': 'show active'
+    }%}
+
     <div class="row text-dark m-auto">
         
         {% for userStat in userStats %}
@@ -67,11 +72,19 @@
         {% for userStat in userStats %}
 
             <li class="nav-item title-font fs-4" role="presentation">
-                {% if userStat['id'] == 'fav' %}
-                    <button class="nav-link active" id="{{ userStat['id'] }}-tab" data-bs-toggle="tab" data-bs-target="#{{ userStat['id'] }}-tab-pane" type="button" role="tab" aria-controls="{{ userStat['id'] }}-tab-pane" aria-selected="true">{{ userStat['title'] }}</button>    
-                {% else %}
-                    <button class="nav-link" id="{{ userStat['id'] }}-tab" data-bs-toggle="tab" data-bs-target="#{{ userStat['id'] }}-tab-pane" type="button" role="tab" aria-controls="{{ userStat['id'] }}-tab-pane" aria-selected="true">{{ userStat['title'] }}</button>    
-                {% endif %}
+                
+                <button 
+                    class="nav-link {% if userStat['id'] == 'fav' %} {{ active['tab'] }} {% endif %}" 
+                    id="{{ userStat['id'] }}-tab" 
+                    data-bs-toggle="tab" 
+                    data-bs-target="#{{ userStat['id'] }}-tab-pane" 
+                    type="button" role="tab" 
+                    aria-controls="{{ userStat['id'] }}-tab-pane" 
+                    aria-selected="true">
+
+                        {{ userStat['title'] }}
+
+                </button>    
             </li>
 
         {% endfor %}
@@ -82,12 +95,13 @@
 
     {% for userStat in userStats %}
     
-        {% if userStat['id'] == 'fav' %} 'show active'
-            <div class="tab-pane fade show active" id="{{ userStat['id'] }}-tab-pane" role="tabpanel" aria-labelledby="{{ userStat['id'] }}-tab" tabindex="0"> 
-        {% else %}
-            <div class="tab-pane fade" id="{{ userStat['id'] }}-tab-pane" role="tabpanel" aria-labelledby="{{ userStat['id'] }}-tab" tabindex="0"> 
-        {% endif %}
-        
+        <div 
+        class="tab-pane fade {% if userStat['id'] == 'fav' %} {{ active['content'] }} {% endif %}" 
+        id="{{ userStat['id'] }}-tab-pane" 
+        role="tabpanel" 
+        aria-labelledby="{{ userStat['id'] }}-tab" 
+        tabindex="0"> 
+
         <div class="container-lg m-auto d-flex justify-content-center align-items-start mt-3">
 
             {{ include('shared/gallery/bt-gallery.html.twig', {
@@ -97,6 +111,7 @@
                 contents: userStat['stat'],
                 id: 'user' ~ userStat['id']
             }) }}
+            
         </div>
     </div>  
 
