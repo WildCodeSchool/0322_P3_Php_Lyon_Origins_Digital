@@ -28,5 +28,13 @@ class RoutingTest extends WebTestCase
         yield ['/search/overwatch'];
         yield ['/upload'];
         yield ['/viewed/1'];
+        yield ['/fav/1'];
+        yield ['/later/1'];
+        yield ['/like/1'];
+        yield ['/login'];
+        yield ['/logout'];
+        yield ['/admin'];
+        yield ['/register'];
+        yield ['/verify/email'];
     }
 }
