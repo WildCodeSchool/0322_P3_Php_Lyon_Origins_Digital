@@ -11,52 +11,69 @@
 
 {% block body %}
 
-    <div class="home-container container-fluid row">
+    <div class="home-container">
              
-            <div class="home-header text-center col-lg-11">
-                <div class="home-title fs-4 text-secondary title-font d-flex d-lg-none justify-content-start align-items-start">
+            <div class="home-header-desktop d-sm-inline d-none ">
+                <div class="home-title ms-4 fs-4 text-secondary title-font d-flex d-lg-none justify-content-start align-items-center">
                     À LA UNE
                 </div>
-                    <div class="home-image mt-lg-4 mx-auto rounded-3 text-center position-relative " alt="cover">
-                        <div class="container">
+                    <div class="home-image-desktop mt-lg-4 rounded-4 mx-auto text-center position-relative">
+                      <div class="container">
+					    <div class="row">
 
-					<div class="row">
-
-						<div class="header-logo rounded-3 rounded-top-0 rounded-start-0 bg-dark title-font text-secondary col-3 d-lg-block d-none position-absolute top-0 start-0">
+                            <div class="header-logo rounded-3 rounded-top-0 rounded-start-0 bg-dark title-font text-secondary col-3 d-lg-block d-none position-absolute top-0 start-0">
 							À LA UNE
-						</div>
+						    </div>
 
-						<div class="col d-lg-block d-none"></div>
+                              <div class="col d-lg-block d-none"></div>
+
+                                <div class="button-view-desktop mb-4 z-1 col-6 col-lg-6 d-flex justify-content-end align-items-end">                                	
+                                    <a class="link-desktop bg-primary fs-3 p-1 text-decoration-none d-none d-sm-flex title-font text-secondary rounded-3 justify-content-center align-items-center" href="{{ path('video_show', { id: headerVideo[0].id }) }}">
+								        <span class="">REGARDER</span>
+								        <span class="fs-1">{{ playFill|raw }}</span>
+							        </a>
+                                </div>
+
+                                <div class="header-infos mb-4 fs-4 z-1 d-none d-sm-flex title-font text-dark col-6 col-lg-3 justify-content-start align-items-end">
+                                    <div>{{headerVideo[0].title|u.truncate(30, '...')}}</div>
+                                </div> 
+                        </div>
+                      </div>
+                    </div>
+            </div>
 
 
-						<div class="button-view mb-4 z-1 col-6 col-lg-6 d-flex justify-content-end align-items-end">
+            <div class="home-header-mobile d-sm-inline d-sm-none">
+                <div class="home-title ms-4 fs-4 text-secondary title-font d-flex d-lg-none justify-content-start align-items-center">
+                    À LA UNE
+                </div>
+                    <div class="home-image-mobile mt-lg-4 mx-auto rounded-4 text-center position-relative">
+                      <div class="container">
+                        <div class="row">
 
-							<a class="link-desktop bg-primary fs-3 p-1 text-decoration-none d-none d-sm-flex title-font text-secondary rounded-3 justify-content-center align-items-center" href="{{ path('video_show', { id: headerVideo[0].id }) }}">
-								<span class="">REGARDER</span>
-								<span class="fs-1">{{ playFill|raw }}</span>
-							</a>
+						    <div class="header-logo rounded-3 rounded-top-0 rounded-start-0 bg-dark title-font text-secondary col-3 d-lg-block d-none position-absolute top-0 start-0">
+							À LA UNE
+						    </div>
 
-							<a class="link-mobile bg-primary fs-6 p-1 text-decoration-none title-font text-secondary rounded-3 d-flex d-sm-none justify-content-center align-items-center" href="{{ path('video_show', { id: headerVideo[0].id }) }}">
-								<span class="">REGARDER</span>
-								<span class="fs-2">{{ playFill|raw }}</span>
-							</a>
+						      <div class="col d-lg-block d-none"></div>
 
-                            </div>
-
-                            <div class="header-infos mb-4 fs-4 z-1 d-none d-sm-flex title-font text-dark col-6 col-lg-3 justify-content-start align-items-end">
-                               <div>{{headerVideo[0].title|u.truncate(30, '...')}}</div>
-                            </div> 
+						        <div class="button-view-mobile mb-4 z-1 col-6 col-lg-6 d-flex justify-content-end align-items-end">
+                                    <a class="link-mobile bg-primary fs-6 p-1 text-decoration-none title-font text-secondary rounded-3 d-flex d-sm-none justify-content-center align-items-center" href="{{ path('video_show', { id: headerVideo[0].id }) }}">
+                                        <span class="">REGARDER</span>
+                                        <span class="fs-2 ms-2 mt-1">{{ playFill|raw }}</span>
+                                    </a>
+                                </div>
                             
-                            <div class="header-infos fs-5 z-1 d-flex d-sm-none title-font text-dark col-6 col-lg-3 justify-content-start align-items-end">
-                               <div>{{headerVideo[0].title|u.truncate(30, '...')}}</div>
-                            </div>   
+                                <div class="header-infos fs-5 z-1 d-flex d-sm-none title-font text-dark col-6 col-lg-3 justify-content-start align-items-end">
+                                    <div>{{headerVideo[0].title|u.truncate(30, '...')}}</div>
+                                </div>   
                         </div>
-                        </div>
+                      </div>
                     </div>
             </div>
     </div>
    
-    <section class="container-lg mx-auto">
+    <section class="container-lg d-sm-flex d-none mx-auto">
         {{ include('shared/tag/tag-list.html.twig', {
             title: 'Les jeux du moment',
             startCount: 8,
@@ -64,6 +81,17 @@
             contents: trendingTags,
             styleClass: 'tag-list',
             id: 'trending'
+        }) }}
+    </section>
+
+    <section class="container-lg d-sm-flex d-sm-none mx-auto">
+        {{ include('shared/tag/tag-list.html.twig', {
+            title: 'Les jeux du moment',
+            startCount: 5,
+            moreCount: 2,
+            contents: trendingTags,
+            styleClass: 'tag-list',
+            id: 'trending-mobile'
         }) }}
     </section>
 
