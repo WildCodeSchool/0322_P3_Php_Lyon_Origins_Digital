@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard {{ app.user.username }}{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('addFav') }}
+    {{ encore_entry_script_tags('addLater') }}
+    {{ encore_entry_script_tags('addLike') }}
+{% endblock %}
+
+{% block body %}
+
+<section class="ud-header container-lg p-4 m-auto">
+    <h1 class="title-font text-center text-secondary py-3">
+        Hello {{ app.user.username }}
+    </h1>
+    <p class="text-info text-center">Voici vos stats</p>
+
+    {% set userStats = [
+        {
+            'title': 'Favorites',
+            'stat': app.user.favoriteVideos,
+            'id': 'fav',
+        },
+        {
+            'title': 'Vues',
+            'stat': app.user.viewedVideos,
+            'id': 'viewed',
+        },
+        {
+            'title': 'Aimées',
+            'stat': app.user.likedVideos,
+            'id': 'liked',
+        },
+        {
+            'title': 'À regarder',
+            'stat': app.user.viewLaterVideos,
+            'id': 'towatch',
+        },
+    ] %}
+
+    {% set active = {
+        'tab': 'active',
+        'content': 'show active'
+    }%}
+
+    <div class="row text-dark m-auto">
+        
+        {% for userStat in userStats %}
+
+            <div class="col-md col-sm-6 col-12 p-2 rounded rounded-3 border border-primary border-2 bg-secondary">
+
+                <div class="title-font fs-2 text-center">
+                    {{ userStat['title'] }}
+                </div>
+
+                <div class="fs-1 text-font text-center">
+                    {{ userStat['stat']|length }}
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+</section>
+
+<section class="user-dashboard container-lg mt-2">
+    <ul class="ud-menu nav nav-tabs justify-content-center" id="userDashboards" role="tablist">
+
+        {% for userStat in userStats %}
+
+            <li class="nav-item title-font fs-4" role="presentation">
+                
+                <button 
+                    class="nav-link {% if userStat['id'] == 'fav' %} {{ active['tab'] }} {% endif %}" 
+                    id="{{ userStat['id'] }}-tab" 
+                    data-bs-toggle="tab" 
+                    data-bs-target="#{{ userStat['id'] }}-tab-pane" 
+                    type="button" role="tab" 
+                    aria-controls="{{ userStat['id'] }}-tab-pane" 
+                    aria-selected="true">
+
+                        {{ userStat['title'] }}
+
+                </button>    
+            </li>
+
+        {% endfor %}
+
+    </ul>
+
+<div class="tab-content" id="myTabContent">
+
+    {% for userStat in userStats %}
+    
+        <div 
+            class="tab-pane fade {% if userStat['id'] == 'fav' %} {{ active['content'] }} {% endif %}" 
+            id="{{ userStat['id'] }}-tab-pane" 
+            role="tabpanel" 
+            aria-labelledby="{{ userStat['id'] }}-tab" 
+            tabindex="0"> 
+
+        <div class="container-lg m-auto d-flex justify-content-center align-items-start mt-3">
+
+            {{ include('shared/gallery/bt-gallery.html.twig', {
+                title: false,
+                subtitle: false,
+                count: 7,
+                contents: userStat['stat'],
+                id: 'user' ~ userStat['id']
+            }) }}
+
+        </div>
+    </div>  
+
+    {% endfor %}
+
+</div>
+
+</section>
+
+{% endblock %}

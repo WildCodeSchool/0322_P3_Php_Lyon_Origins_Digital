@@ -29,14 +29,12 @@ setTimeout(() => {
     
     
     for (const loadMoreButton of loadMoreButtons) {
-        
 
         const idName = loadMoreButton.id;
         const loadMoreBtn = document.getElementById(idName);
         let hiddenBts = document.getElementById(idName + "-bt-gallery").querySelectorAll('.bt-hidden');
 
         let idNbr = 1;
-
 
         loadMoreBtn.addEventListener('click', function () {
             let groupOfBts = document.getElementsByClassName(idName + '-' + idNbr);
@@ -45,17 +43,15 @@ setTimeout(() => {
                 bt.classList.remove('d-none');
                 bt.classList.add('bt-container');
             }
-            
 
             idNbr++;
             
             hiddenBts = document.getElementById(idName + "-bt-gallery").querySelectorAll('.bt-hidden');
 
-            if (hiddenBts.length < 1) { loadMoreBtn.parentElement.parentElement.remove(); }
+            if (hiddenBts.length == 0) { loadMoreBtn.parentElement.parentElement.remove(); }
         })
 
-
-        if (hiddenBts.length < 1) { loadMoreBtn.parentElement.parentElement.remove(); }
+        if (hiddenBts.length == 0) { loadMoreBtn.parentElement.parentElement.remove(); }
     }
 })();
 
