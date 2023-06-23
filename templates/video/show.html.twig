@@ -1,14 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{{ video.title }}
+	{{ videoPlayed.title }}
 {% endblock %}
 {% block javascripts %}
 	{{ parent() }}
-	{{ encore_entry_script_tags('plyr') }}
 	{{ encore_entry_script_tags('addFav') }}
 	{{ encore_entry_script_tags('addLater') }}
 	{{ encore_entry_script_tags('addLike') }}
+	{{ encore_entry_script_tags('playAndCount') }}
+	{{ encore_entry_script_tags('displayViewCount') }}
 {% endblock %}
 
 {% set mobaTags = ['dota', 'smite', 'lol'] %}
@@ -24,22 +25,61 @@
 			<div class="sh-video d-flex flex-column justify-content-start align-items-center m-0">
 
 				<div class="sh-title-hash row px-4 mt-4 w-100">
-					<div class="sh-title col-lg justify-content-start title-font text-secondary fs-2">{{ video.title }}</div>
-					<div class="sh-hash d-lg-flex d-none col-lg-auto justify-content-end align-items-start">{{ include('shared/tag/category-tag.html.twig', {tag: video.tag[0].name , style: 'tag-main'}) }}</div>
+					<div class="sh-title col-lg justify-content-start title-font text-secondary fs-2">{{ videoPlayed.title }}</div>
+					<div class="sh-hash d-lg-flex d-none col-lg-auto justify-content-end align-items-start">{{ include('shared/tag/category-tag.html.twig', {tag: videoPlayed.tag[0].name , style: 'tag-main'}) }}</div>
 				</div>
 
 				<div class="sh-player video-container rounded-5 w-100 h-50 m-md-4 my-2 mx-0">
-					<video id="player" class="player" playsinline controls data-poster="{{ asset('build/images/' ~ video.posterUrl) }}">
-						<source src="{{ asset('build/videos/' ~ video.videoUrl) }}" type="video/mp4"/>
+					<video id="player" data-info="{{ path('video_add', { videoId: videoPlayed.id }) }}" playsinline controls data-poster="{{ asset('build/images/' ~ videoPlayed.posterUrl) }}">
+						<source src="{{ asset('build/videos/' ~ videoPlayed.videoUrl) }}" type="video/mp4"/>
 					</video>
 				</div>
 
 				<div class="row px-4 w-100">
-					<div class="sh-creator col-xl-2 col-12">
-						<h5>Username</h5>
+					<div class="sh-creator col-xl-3 col-12">
+						{% if app.user %}
+							<div class="bt-socials row row-cols-4 fs-5">
+								<a class="favorite" href="{{ path('fav_add', { idVideo: videoPlayed.id }) }}">
+									{% set isFav = app.user.favoriteVideos|filter(video => video.id == videoPlayed.id )|first %}
+									<div class="bt-social-btn">
+										{% if isFav %}
+											<i class='bt-fav bi bi-heart-fill text-secondary fa{{ videoPlayed.id }}' title="enlever des favoris"></i>
+										{% else %}
+											<i class='bt-fav bi bi-heart text-light fa{{ videoPlayed.id }}' title="ajouter aux favoris"></i>
+										{% endif %}
+									</div>
+								</a>
+								<a class="later" href="{{ path('later_add', { idVideo: videoPlayed.id }) }}">
+									{% set isLater = app.user.viewLaterVideos|filter(video => video.id == videoPlayed.id )|first %}
+									<div class="bt-social-btn">
+										{% if isLater %}
+											<i class='bt-watch bi bi-clock-fill text-secondary la{{ videoPlayed.id }}' title="enlever de voir plus tard"></i>
+										{% else %}
+											<i class='bt-watch bi bi-clock text-light la{{ videoPlayed.id }}' title="ajouter à voir plus tard"></i>
+										{% endif %}
+									</div>
+								</a>
+								<a class="like" href="{{ path('like_add', { idVideo: videoPlayed.id }) }}">
+									{% set isLiked = app.user.likedVideos|filter(video => video.id == videoPlayed.id )|first %}
+									<div class="bt-social-btn">
+										{% if isLiked %}
+											<i class='bt-like bi bi-hand-thumbs-up-fill text-secondary li{{ videoPlayed.id }}' title="ne pas liker"></i>
+										{% else %}
+											<i class='bt-like bi bi-hand-thumbs-up text-light li{{ videoPlayed.id }}' title="liker"></i>
+										{% endif %}
+									</div>
+								</a>
+							</div>
+						{% endif %}
+
+						<div class="bt-stats d-flex flex-column justify-content-center align-items-start text-info m-0" data-info="{{ path('app_viewed', { videoId: videoPlayed.id }) }}">
+							<div class="bt-views m-0"></div>
+							<div class="bt-post-date m-0">{{ videoPlayed.postDate|format_datetime('medium', 'short', locale='fr', timezone='Europe/Paris') }}</div>
+						</div>
+
 					</div>
 					<div class="sh-description col-xl col-12 text-info p-0 pb-4" id="sh-description">
-						<p>{{ video.description }}</p>
+						<p>{{ videoPlayed.description }}</p>
 					</div>
 				</div>
 
@@ -92,7 +132,7 @@
 	<div class="container-lg mx-auto d-flex justify-content-center">
 		{{ include('shared/gallery/bt-gallery.html.twig', {
 			title: false,
-			subtitle: 'Toutes les vidéos sur ' ~ video.tag[0].name|upper ~ ' !',
+			subtitle: 'Toutes les vidéos sur ' ~ videoPlayed.tag[0].name|upper ~ ' !',
 			count: 4,
 			contents: mobaVideos,
 			id: 'moba'
