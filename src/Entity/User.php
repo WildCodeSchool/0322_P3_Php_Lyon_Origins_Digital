@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -47,6 +48,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?Collection $favoriteVideos = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\Length(
+        min: 5,
+        max: 100,
+        minMessage: 'Vous devez saisir au moins {{ limit }} caractères',
+        maxMessage: 'Vous devez saisir au plus {{ limit }} caractères',
+    )]
     private ?string $username = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Viewed::class)]

@@ -21,7 +21,6 @@ class VideoCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield IdField::new('id');
         yield TextField::new('title');
         yield DateTimeField::new('postDate');
         yield TextField::new('videoUrl');
