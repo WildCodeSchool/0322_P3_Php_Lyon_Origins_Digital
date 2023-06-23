@@ -374,6 +374,18 @@ body#admin {
     border-style: dashed!important;
 } 
 
+#userDashboards {
+
+    [aria-selected = true] {
+        background-color: $secondary;
+        color: $primary;
+    }
+    [aria-selected = false] {
+        background-color: $primary;
+        color: $secondary;
+    }
+}
+
 .form-tag #video_tag {
     overflow: scroll;
     max-height: 100px;

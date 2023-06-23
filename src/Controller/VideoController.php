@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Video;
 use App\Entity\Viewed;
 use App\Repository\TagRepository;
@@ -16,8 +17,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class VideoController extends AbstractController
 {
     #[Route('/show/{id<^[0-9]+$>}', methods: ['GET'], name: 'show')]
-    public function show(Video $video, VideoRepository $videoRepository, TagRepository $tagRepository): Response
-    {
+    public function show(
+        Video $video,
+        VideoRepository $videoRepository,
+        TagRepository $tagRepository
+    ): Response {
         $latestVideos = $videoRepository->findLatestVideos();
         $mobaVideos = $videoRepository->findLatestVideos();
         $tags = $tagRepository->findAll();

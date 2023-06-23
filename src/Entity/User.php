@@ -46,6 +46,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\JoinTable(name: "user_video_favorites")]
     private ?Collection $favoriteVideos = null;
 
+    #[ORM\Column(length: 100)]
+    private ?string $username = null;
+
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Viewed::class)]
     private Collection $vieweds;
 
@@ -200,6 +203,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $this->favoriteVideos->removeElement($video);
             $video->removeUserFavorited($this);
         }
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): static
+    {
+        $this->username = $username;
+
+        return $this;
     }
 
     /**

@@ -36,5 +36,6 @@ class RoutingTest extends WebTestCase
         yield ['/admin'];
         yield ['/register'];
         yield ['/verify/email'];
+        yield ['/user/dashboard'];
     }
 }

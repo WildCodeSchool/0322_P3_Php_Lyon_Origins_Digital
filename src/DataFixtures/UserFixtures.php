@@ -11,7 +11,22 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class UserFixtures extends Fixture implements DependentFixtureInterface
 {
     public const USERS = [
-        'user1@user.fr', 'user2@user.fr', 'user3@user.fr', 'user4@user.fr'
+        [
+            'email' => 'user1@user.fr',
+            'username' => 'Max'
+        ],
+        [
+            'email' => 'user2@user.fr',
+            'username' => 'Fred'
+        ],
+        [
+            'email' => 'user3@user.fr',
+            'username' => 'Valentin'
+        ],
+        [
+            'email' => 'user4@user.fr',
+            'username' => 'Thomas'
+        ],
     ];
 
     public function __construct(private UserPasswordHasherInterface $userPasswordHasher)
@@ -21,9 +36,10 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $count = 0;
-        foreach (self::USERS as $userEmail) {
+        foreach (self::USERS as $userItem) {
             $user = new User();
-            $user->setEmail($userEmail);
+            $user->setEmail($userItem['email']);
+            $user->setUsername($userItem['username']);
             $user->setPassword($this->userPasswordHasher->hashPassword(
                 $user,
                 'password'
@@ -37,6 +53,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
                 $user->addLikedVideo($this->getReference('video_' . rand(0, $maxValue)));
                 $user->addViewLaterVideo($this->getReference('video_' . rand(0, $maxValue)));
             }
+
             $manager->persist($user);
             $this->addReference('user_' . $count, $user);
             $count++;

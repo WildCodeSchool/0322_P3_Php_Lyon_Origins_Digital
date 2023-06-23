@@ -17,8 +17,11 @@
 {% block body %}
 
 	<div class="container-lg mx-auto text-light sh-uptop row m-0">
-
-		<div class="col-lg-8 col-12">
+		{% if app.user %}
+		<div class="col-lg-9 col-12">
+		{% else %}
+		<div class="col-12">
+		{% endif %}
 			<div class="sh-video d-flex flex-column justify-content-start align-items-center m-0">
 
 				<div class="sh-title-hash row px-4 mt-4 w-100">
@@ -83,15 +86,18 @@
 			</div>
 		</div>
 
+				{% if app.user %}
 		<div class="col-lg-3 d-none d-lg-flex justify-content-center align-items-center">
 			<div class="sh-favs bg-primary d-flex flex-column justify-content-start align-items-center m-3 p-4 rounded-5">
 				<h5 class="title-font text-secondary">MES FAVORIS</h5>
-				{% for latestVideo in latestVideos |slice(0, 4) %}
-					{{ include('shared/thumbnail/small-thumbnail.html.twig', {item: latestVideo}) }}
+				
+				{% for video in app.user.favoriteVideos |slice(0, 4) %}
+					{{ include('shared/thumbnail/small-thumbnail.html.twig', {item: video}) }}
 				{% endfor %}
 				<h5 class="title-font d-none text-secondary mt-3">VOIR PLUS DE FAVORIS</h5>
 			</div>
 		</div>
+				{% endif %}
 
 	</div>
 
