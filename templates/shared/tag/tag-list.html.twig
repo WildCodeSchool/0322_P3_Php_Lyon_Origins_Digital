@@ -19,7 +19,7 @@
 
         {% for i in 1.. (contents|length / moreCount)|round(0, 'ceil') %}
 
-            {% for tag in contents |slice(i * moreCount, moreCount) %}
+            {% for tag in contents |slice(i * startCount, moreCount) %}
                 <div class="d-none bt-hidden {{id}}-{{i}}">
                     {{ include('shared/tag/category-tag.html.twig', {tag: tag.name, style: styleClass}) }}
                 </div>
