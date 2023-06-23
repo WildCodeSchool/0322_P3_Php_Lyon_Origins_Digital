@@ -11,7 +11,22 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class UserFixtures extends Fixture implements DependentFixtureInterface
 {
     public const USERS = [
-        'user1@user.fr', 'user2@user.fr', 'user3@user.fr', 'user4@user.fr'
+        [
+            'email' => 'user1@user.fr',
+            'username' => 'Max'
+        ],
+        [
+            'email' => 'user2@user.fr',
+            'username' => 'Fred'
+        ],
+        [
+            'email' => 'user3@user.fr',
+            'username' => 'Valentin'
+        ],
+        [
+            'email' => 'user4@user.fr',
+            'username' => 'Thomas'
+        ],
     ];
 
     public function __construct(private UserPasswordHasherInterface $userPasswordHasher)
@@ -20,9 +35,11 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
-        foreach (self::USERS as $userEmail) {
+        $count = 0;
+        foreach (self::USERS as $userItem) {
             $user = new User();
-            $user->setEmail($userEmail);
+            $user->setEmail($userItem['email']);
+            $user->setUsername($userItem['username']);
             $user->setPassword($this->userPasswordHasher->hashPassword(
                 $user,
                 'password'
@@ -33,12 +50,13 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $maxValue = (count(VideoFixtures::VIDEOS)) - 1;
             for ($i = 0; $i < 4; $i++) {
                 $user->addFavoriteVideo($this->getReference('video_' . rand(0, $maxValue)));
-                $user->addViewedVideo($this->getReference('video_' . rand(0, $maxValue)));
                 $user->addLikedVideo($this->getReference('video_' . rand(0, $maxValue)));
                 $user->addViewLaterVideo($this->getReference('video_' . rand(0, $maxValue)));
             }
 
             $manager->persist($user);
+            $this->addReference('user_' . $count, $user);
+            $count++;
         }
         $manager->flush();
     }
