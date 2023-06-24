@@ -30,7 +30,6 @@ class RoutingTest extends WebTestCase
         yield ['/viewed/1'];
         yield ['/fav/1'];
         yield ['/later/1'];
-        yield ['/like/1'];
         yield ['/login'];
         yield ['/logout'];
         yield ['/admin'];

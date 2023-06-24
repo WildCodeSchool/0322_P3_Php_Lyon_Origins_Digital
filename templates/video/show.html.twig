@@ -7,7 +7,6 @@
 	{{ parent() }}
 	{{ encore_entry_script_tags('addFav') }}
 	{{ encore_entry_script_tags('addLater') }}
-	{{ encore_entry_script_tags('addLike') }}
 	{{ encore_entry_script_tags('playAndCount') }}
 {% endblock %}
 
@@ -55,16 +54,6 @@
 											<i class='bt-watch bi bi-clock-fill text-secondary la{{ videoPlayed.id }}' title="enlever de voir plus tard"></i>
 										{% else %}
 											<i class='bt-watch bi bi-clock text-light la{{ videoPlayed.id }}' title="ajouter à voir plus tard"></i>
-										{% endif %}
-									</div>
-								</a>
-								<a class="like" href="{{ path('like_add', { idVideo: videoPlayed.id }) }}">
-									{% set isLiked = app.user.likedVideos|filter(video => video.id == videoPlayed.id )|first %}
-									<div class="bt-social-btn">
-										{% if isLiked %}
-											<i class='bt-like bi bi-hand-thumbs-up-fill text-secondary li{{ videoPlayed.id }}' title="ne pas liker"></i>
-										{% else %}
-											<i class='bt-like bi bi-hand-thumbs-up text-light li{{ videoPlayed.id }}' title="liker"></i>
 										{% endif %}
 									</div>
 								</a>
