@@ -17,17 +17,17 @@ require('bootstrap');
 //boostrap css alert auto-close
 const alert = document.getElementById('alertMsg');
 //close the alert after 2 seconds (2000 milliseconds)
-setTimeout(() => {
-    alert.remove();
-}, 2000);
+// setTimeout(() => {
+//     alert.remove();
+// }, 2000);
 
 
 
 (function loadMore() {
-    
+
     const loadMoreButtons = document.getElementsByClassName('load-more-btn');
-    
-    
+
+
     for (const loadMoreButton of loadMoreButtons) {
 
         const idName = loadMoreButton.id;
@@ -45,7 +45,7 @@ setTimeout(() => {
             }
 
             idNbr++;
-            
+
             hiddenBts = document.getElementById(idName + "-bt-gallery").querySelectorAll('.bt-hidden');
 
             if (hiddenBts.length == 0) { loadMoreBtn.parentElement.parentElement.remove(); }

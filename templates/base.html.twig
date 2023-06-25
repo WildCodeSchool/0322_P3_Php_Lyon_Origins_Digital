@@ -16,6 +16,7 @@
 
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
+			{{ encore_entry_script_tags('navbar') }}
 		{% endblock %}
 	</head>
 
@@ -25,7 +26,30 @@
 	{% set watchLater = "<i class='bi watchLater'></i>" %}
 	{% set like = "<i class='bi like'></i>" %}
 
-	<body>
+	{% set navItems = [
+		{
+			'name':'home',
+			'iconClass':'house',
+			'link': 'home_index',
+		},
+		{
+			'name':'user',
+			'iconClass':'person',
+			'link': 'user_dashboard',
+		},
+		{
+			'name':'show',
+			'iconClass':'play',
+			'link': '',
+		},
+		{
+			'name':'admin',
+			'iconClass':'gear',
+			'link': 'admin_dashboard',
+		}
+	] %}
+
+	<body class="row">
 		{% for category, messages in app.flashes %}
 			{% for message in messages %}
 				<div class="alert alert-{{ category }}" id="alertMsg">
@@ -33,6 +57,10 @@
 				</div>
 			{% endfor %}
 		{% endfor %}
+
+		<nav class="text-light col-1">{% include "shared/navigation/desktop-navbar.html.twig" %}</nav>
+
 		{% block body %}{% endblock %}
+
 	</body>
 </html>
