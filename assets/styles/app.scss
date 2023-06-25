@@ -19,6 +19,7 @@ $textFont: 'Inter', sans-serif;
 
 // -- animations --
 $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
+$animMenuItemEaseOut: cubic-bezier(0,1,0,1);
 
 // ---------------------------------------------------------
 
@@ -426,14 +427,63 @@ body#admin {
     color: $dark;
 }
 
-// .nav-group {
+@keyframes animateActiveMenuItem {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
 
-//     .nav-item {
+@keyframes animateInactiveMenuItem {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
 
-//         [aria-selected=false] {
+#nav-group {
 
-//         }
+    position: relative;
 
-//     }
+    .nav-item {
+        aspect-ratio: 1/1;
+    }
 
-// }
+    .nav-item-link-active {
+
+        animation-name: animateActiveMenuItem;
+        animation-duration: 1s;
+        animation-timing-function: $animMenuItemEaseOut;
+
+        &::before, &::after {
+            display: block;
+            position: absolute;
+            content: '';
+            width: 50%;
+            aspect-ratio: 1/1;
+            background-color: transparent;
+            left: 100%;
+            border-radius: 100%;
+        }
+
+        &::before {
+        translate: -100% -100%;
+        box-shadow: 25px 25px 0px $dark;
+        }
+
+        &::after {
+        translate: -100% 0%;
+        box-shadow: 25px -25px 0px $dark;
+        }
+    }
+
+    .nav-item-link-inactive {
+        animation-name: animateInactiveMenuItem;
+        animation-duration: 1s;
+        animation-timing-function: $animMenuItemEaseOut;
+    }
+}

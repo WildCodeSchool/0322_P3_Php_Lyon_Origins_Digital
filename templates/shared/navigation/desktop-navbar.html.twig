@@ -1,4 +1,4 @@
-<div id="nav-group" class="bg-secondary rounded-end-5 d-flex flex-column justify-content-center align-items-center">
+<div id="nav-group" class="bg-secondary rounded-end-5 d-flex flex-column justify-content-center align-items-center overflow-hidden mt-5">
 
 	{% for navItem in navItems %}
 		{% if navItem['name'] == 'show' %}
@@ -7,7 +7,7 @@
 				<a class="w-100" href="{{ path(navItem['link']) }}">
 				{% endif %}
 
-				<div class="nav-item fs-1 text-primary" aria-selected="false" id="nav-btn-{{ navItem['name'] }}" aria-controls="{{ navItem['name'] }}">
+				<div class="nav-item fs-1 text-primary text-center d-flex justify-content-center align-items-center" aria-selected="false" id="nav-btn-{{ navItem['name'] }}" aria-controls="{{ navItem['name'] }}">
 
 					<i class="bi bi-{{ navItem['iconClass'] }}" id="{{ navItem['iconClass'] }}"></i>
 
