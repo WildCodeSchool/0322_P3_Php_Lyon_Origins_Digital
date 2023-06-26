@@ -1,7 +1,12 @@
 (function selectActiveNavbarItem(){
     const navGroup = document.getElementById('nav-group');
     const navItems = navGroup.getElementsByClassName('nav-item');
+    const navItemShow = navGroup.querySelector('[aria-controls="show"]')
     const activePage = document.querySelector('main');
+    const activeNavItem = navGroup.querySelector('[aria-selected="true"]');
+
+    if(navItemShow.getAttribute('aria-selected') == 'false' && activePage.id !== navItemShow.getAttribute('aria-controls'))
+    {navItemShow.parentElement.remove()}
 
 
     for (const navItem of navItems) {
@@ -33,14 +38,27 @@
             navItem.setAttribute('aria-selected', 'true')
         }
 
-        if (activePage.id !== navItem.getAttribute('aria-controls')) {
+        if (navItem.getAttribute('aria-selected') == 'false') {
             navItem.parentElement.classList.add('nav-item-link-inactive');
         }
+    }
 
-        if (navItem.getAttribute('aria-controls') == 'show' && navItem.getAttribute('aria-selected') == 'false') {
-            navItem.remove();
-        }
+    const inactiveNavItems = navGroup.getElementsByClassName('nav-item-link-inactive');
 
+    for (const inactiveNavItem of inactiveNavItems) {
+
+        const icon = inactiveNavItem.getElementsByTagName('i')[0];
+        const iconId = icon.id;
+        inactiveNavItem.classList.add('z-1')
+
+        inactiveNavItem.addEventListener('mouseover', function(){
+            icon.classList.remove('bi-'+iconId);
+            icon.classList.add('bi-'+iconId+'-fill');
+        })
+        inactiveNavItem.addEventListener('mouseout', function(){
+            icon.classList.add('bi-'+iconId);
+            icon.classList.remove('bi-'+iconId+'-fill');
+        })
     }
 
 

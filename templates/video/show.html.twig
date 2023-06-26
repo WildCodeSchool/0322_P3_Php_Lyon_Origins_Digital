@@ -15,7 +15,7 @@
 
 {% block body %}
 
-	<main class="col" aria-labelledby="nav-btn-{{ navItems[2]['name'] }}" id="{{ navItems[2]['name'] }}">
+	<main class="col" aria-labelledby="nav-btn-{{ navItems.show['name'] }}" id="{{ navItems.show['name'] }}">
 
 		<div class="container-lg mx-auto text-light sh-uptop row m-0">
 			{% if app.user %}

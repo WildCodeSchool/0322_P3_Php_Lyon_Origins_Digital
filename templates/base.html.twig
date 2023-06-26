@@ -26,28 +26,28 @@
 	{% set watchLater = "<i class='bi watchLater'></i>" %}
 	{% set like = "<i class='bi like'></i>" %}
 
-	{% set navItems = [
-		{
+	{% set navItems = {
+		home: {
 			'name':'home',
 			'iconClass':'house',
 			'link': 'home_index',
 		},
-		{
+		user : {
 			'name': app.user ? 'user' : 'login',
 			'iconClass': app.user ? 'person' : 'person-add',
 			'link': app.user ? 'user_dashboard' : 'app_login',
 		},
-		{
+		show: {
 			'name':'show',
 			'iconClass':'play',
 			'link': '',
 		},
-		{
+		admin: {
 			'name':'admin',
 			'iconClass':'gear',
 			'link': 'admin_dashboard',
 		}
-	] %}
+	} %}
 
 	<body class="row">
 		{% for category, messages in app.flashes %}
