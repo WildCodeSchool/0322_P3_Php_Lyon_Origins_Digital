@@ -1,9 +1,8 @@
-(function selectActiveNavbarItem(){
-    const navGroup = document.getElementById('nav-group');
+function selectActiveNavbarItem(group){
+    const navGroup = document.getElementById(group);
     const navItems = navGroup.getElementsByClassName('nav-item');
     const navItemShow = navGroup.querySelector('[aria-controls="show"]')
     const activePage = document.querySelector('main');
-    const activeNavItem = navGroup.querySelector('[aria-selected="true"]');
 
     if(navItemShow.getAttribute('aria-selected') == 'false' && activePage.id !== navItemShow.getAttribute('aria-controls'))
     {navItemShow.parentElement.remove()}
@@ -19,12 +18,19 @@
             activePage.id == navItem.getAttribute('aria-controls')
         ) {
             navItem.parentElement.classList.add('nav-item-link-active');
-            navItem.parentElement.classList.add('ps-3');
+            navItem.parentElement.classList.add('position-relative');
             navItem.classList.add('nav-item-active');
-            navItem.classList.add('rounded-start-pill');
             navItem.classList.add('text-secondary');
             navItem.classList.remove('text-primary');
             navItem.classList.toggle('bg-dark');
+
+            if (group == 'nav-group-mb') {
+                navItem.parentElement.classList.add('pb-3')
+                navItem.classList.add('rounded-bottom-pill');
+            } else {
+                navItem.parentElement.classList.add('ps-3');
+                navItem.classList.add('rounded-start-pill');
+            }
 
             if (icon.classList.contains('bi-person-add')) {
                 icon.classList.remove('bi-person-add')
@@ -63,4 +69,7 @@
 
 
 
-})();
+}
+
+selectActiveNavbarItem('nav-group');
+selectActiveNavbarItem('nav-group-mb');

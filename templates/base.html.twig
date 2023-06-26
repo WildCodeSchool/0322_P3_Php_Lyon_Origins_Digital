@@ -49,7 +49,7 @@
 		}
 	} %}
 
-	<body class="row">
+	<body class="row" id="all-bodies">
 		{% for category, messages in app.flashes %}
 			{% for message in messages %}
 				<div class="alert alert-{{ category }}" id="alertMsg">
@@ -58,7 +58,8 @@
 			{% endfor %}
 		{% endfor %}
 
-		<nav class="col-1">{% include "shared/navigation/desktop-navbar.html.twig" %}</nav>
+		<nav class="col-1 d-md-block d-none" id="desktop-navbar">{% include "shared/navigation/desktop-navbar.html.twig" %}</nav>
+		<nav class="d-flex justify-content-center d-md-none fixed-bottom" id="mobile-navbar">{% include "shared/navigation/mobile-navbar.html.twig" %}</nav>
 
 		{% block body %}{% endblock %}
 

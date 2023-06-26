@@ -427,7 +427,7 @@ body#admin {
     color: $dark;
 }
 
-@keyframes animateActiveMenuItem {
+@keyframes animateDesktopActiveMenuItem {
     0% {
         transform: translateX(100%);
     }
@@ -436,7 +436,7 @@ body#admin {
     }
 }
 
-@keyframes animateInactiveMenuItem {
+@keyframes animateDesktopInactiveMenuItem {
     0% {
         transform: translateX(-50%);
     }
@@ -445,10 +445,31 @@ body#admin {
     }
 }
 
+@keyframes animateMobileActiveMenuItem {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+@keyframes animateMobileInactiveMenuItem {
+    0% {
+        transform: translateY(50%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+
 
 $dtNavWidth: 100px;
 $dtNavHeight: fit-content;
-$dtRoundedFactor: 1.3;
+$RoundedFactor: 1.3;
+
+$mbNavWidth: fit-content;
+$mbNavHeight: 100px;
 
 #nav-group {
 
@@ -464,7 +485,7 @@ $dtRoundedFactor: 1.3;
 
     .nav-item-link-active {
 
-        animation-name: animateActiveMenuItem;
+        animation-name: animateDesktopActiveMenuItem;
         animation-duration: 1s;
         animation-timing-function: $animMenuItemEaseOut;
 
@@ -472,7 +493,7 @@ $dtRoundedFactor: 1.3;
             display: block;
             position: absolute;
             content: '';
-            width: calc($dtNavWidth / $dtRoundedFactor);
+            width: calc($dtNavWidth / $RoundedFactor);
             aspect-ratio: 1/1;
             background-color: transparent;
             left: 100%;
@@ -481,17 +502,17 @@ $dtRoundedFactor: 1.3;
 
         &::before {
         translate: -100% -100%;
-        box-shadow: calc($dtNavWidth / ($dtRoundedFactor * 2)) calc($dtNavWidth / ($dtRoundedFactor * 2)) 0px $dark;
+        box-shadow: calc($dtNavWidth / ($RoundedFactor * 2)) calc($dtNavWidth / ($RoundedFactor * 2)) 0px $dark;
         }
 
         &::after {
         translate: -100% 0%;
-        box-shadow: calc($dtNavWidth / ($dtRoundedFactor * 2)) calc($dtNavWidth / ($dtRoundedFactor * -2)) 0px $dark;
+        box-shadow: calc($dtNavWidth / ($RoundedFactor * 2)) calc($dtNavWidth / ($RoundedFactor * -2)) 0px $dark;
         }
     }
 
     .nav-item-link-inactive {
-        animation-name: animateInactiveMenuItem;
+        animation-name: animateDesktopInactiveMenuItem;
         animation-duration: 1s;
         animation-timing-function: $animMenuItemEaseOut;
         transition: $animCurveEaseOut;
@@ -504,7 +525,71 @@ $dtRoundedFactor: 1.3;
         &:hover .nav-item{
             scale: 130%;
             rotate: 360deg;
+        }
 
+        &:focus {
+            .nav-item {
+                scale: 90%;
+            }
+        }
+    }
+}
+
+#nav-group-mb {
+
+    position: relative;
+    height: $mbNavHeight;
+    width: $mbNavWidth;
+
+    .nav-item {
+        height: $mbNavHeight;
+        aspect-ratio: 1/1;
+        font-size: calc($mbNavHeight / 3);
+    }
+
+    .nav-item-link-active {
+
+        animation-name: animateMobileActiveMenuItem;
+        animation-duration: 1s;
+        animation-timing-function: $animMenuItemEaseOut;
+
+        &::before, &::after {
+            display: block;
+            position: absolute;
+            content: '';
+            height: calc($mbNavHeight / $RoundedFactor);
+            aspect-ratio: 1/1;
+            border-radius: 100%;
+            top: 0%;
+        }
+
+        &::before {
+            translate: -100% 0%;
+            left: 0%;
+            box-shadow: calc($mbNavHeight / ($RoundedFactor * 2)) calc($mbNavHeight / ($RoundedFactor * -2)) 0px $dark;
+        }
+
+        &::after {
+            left: 100%;
+            translate: 0% 0%;
+            box-shadow: calc($mbNavHeight / ($RoundedFactor * -2)) calc($mbNavHeight / ($RoundedFactor * -2)) 0px $dark;
+        }
+    }
+
+    .nav-item-link-inactive {
+        animation-name: animateMobileInactiveMenuItem;
+        animation-duration: 1s;
+        animation-timing-function: $animMenuItemEaseOut;
+        transition: $animMenuItemEaseOut;
+
+        .nav-item {
+
+            transition: .5s $animMenuItemEaseOut;
+        }
+
+        &:hover .nav-item{
+            scale: 130%;
+            rotate: 360deg;
         }
     }
 }

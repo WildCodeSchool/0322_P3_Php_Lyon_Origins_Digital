@@ -21,8 +21,6 @@ const alert = document.getElementById('alertMsg');
 //     alert.remove();
 // }, 2000);
 
-
-
 (function loadMore() {
 
     const loadMoreButtons = document.getElementsByClassName('load-more-btn');
