@@ -40,6 +40,8 @@ function selectActiveNavbarItem(group){
                 icon.classList.add('bi-'+iconId+'-fill');
             }
 
+            //to do: show logout only on /user/dashboard
+            //fix login icon on hover
 
             navItem.setAttribute('aria-selected', 'true')
         }
@@ -58,12 +60,22 @@ function selectActiveNavbarItem(group){
         inactiveNavItem.classList.add('z-1')
 
         inactiveNavItem.addEventListener('mouseover', function(){
-            icon.classList.remove('bi-'+iconId);
-            icon.classList.add('bi-'+iconId+'-fill');
+            if (icon.classList.contains('bi-person-add')) {
+                icon.classList.remove('bi-person-add')
+                icon.classList.add('bi-person-fill-add')
+            } else {
+                icon.classList.remove('bi-'+iconId);
+                icon.classList.add('bi-'+iconId+'-fill');
+            }
         })
         inactiveNavItem.addEventListener('mouseout', function(){
-            icon.classList.add('bi-'+iconId);
-            icon.classList.remove('bi-'+iconId+'-fill');
+            if (icon.classList.contains('bi-person-fill-add')) {
+                icon.classList.add('bi-person-add')
+                icon.classList.remove('bi-person-fill-add')
+            } else {
+                icon.classList.add('bi-'+iconId);
+                icon.classList.remove('bi-'+iconId+'-fill');
+            }
         })
     }
 

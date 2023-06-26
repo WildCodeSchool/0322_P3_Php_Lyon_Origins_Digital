@@ -26,6 +26,8 @@
 	{% set watchLater = "<i class='bi watchLater'></i>" %}
 	{% set like = "<i class='bi like'></i>" %}
 
+	{# to do show logout only when on /user/dashboard #}
+
 	{% set navItems = {
 		home: {
 			'name':'home',
@@ -36,6 +38,11 @@
 			'name': app.user ? 'user' : 'login',
 			'iconClass': app.user ? 'person' : 'person-add',
 			'link': app.user ? 'user_dashboard' : 'app_login',
+		},
+		logout : {
+			'name': 'logout',
+			'iconClass': 'box-arrow-right',
+			'link': 'app_logout',
 		},
 		show: {
 			'name':'show',
