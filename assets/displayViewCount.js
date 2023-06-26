@@ -19,7 +19,7 @@ if (videosId && videosId.length) {
                 return response.text();
             } else {
                 // Request failed
-                throw new Error('Request failed with status ' + response.status);
+                throw new Error('La requête a échouée avec un statut ' + response.status);
             }
         })
         .then(function (datas) {
@@ -32,9 +32,9 @@ if (videosId && videosId.length) {
 
                     let textForView = ' vue';
                     if (value > 1) textForView = ' vues';
-                    let matchingDataInfo = document.querySelectorAll('[data-info="' + key + '"]');
+                    const matchingDataInfo = document.querySelectorAll('[data-info="' + key + '"]');
                     matchingDataInfo.forEach(function(thisDataInfo) {
-                        let matchingBtViews = thisDataInfo.querySelector('.bt-views');
+                        const matchingBtViews = thisDataInfo.querySelector('.bt-views');
                         matchingBtViews.textContent = value + textForView;
                     })
                 });
