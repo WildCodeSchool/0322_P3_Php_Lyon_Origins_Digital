@@ -466,7 +466,7 @@ body#admin {
 
 $dtNavWidth: 100px;
 $dtNavHeight: fit-content;
-$RoundedFactor: 1.3;
+$RoundedFactor: 1.35;
 
 $mbNavWidth: fit-content;
 $mbNavHeight: 100px;
@@ -520,11 +520,11 @@ $mbNavHeight: 100px;
         .nav-item {
 
             transition: .5s $animMenuItemEaseOut;
+            transform-origin: center;
         }
 
         &:hover .nav-item{
-            scale: 130%;
-            rotate: 360deg;
+            transform: translateX(10px);
         }
 
         &:focus {
@@ -583,13 +583,12 @@ $mbNavHeight: 100px;
         transition: $animMenuItemEaseOut;
 
         .nav-item {
-
+            transform-origin: center;
             transition: .5s $animMenuItemEaseOut;
         }
 
         &:hover .nav-item{
-            scale: 130%;
-            rotate: 360deg;
+            transform: translateY(-10px);
         }
     }
 }
