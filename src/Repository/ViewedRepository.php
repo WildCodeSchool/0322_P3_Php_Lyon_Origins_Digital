@@ -50,6 +50,18 @@ class ViewedRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    //get the number of view for all videos ordered desc (no parameter)
+    public function findAllViews(): array
+    {
+        return $this->createQueryBuilder('viewed')
+            ->select('video.id, COUNT(viewed.id) as viewCount')
+            ->leftJoin('viewed.video', 'video')
+            ->groupBy('video.id')
+            ->orderBy('viewCount', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
     //get the x most viewed videos (x set as parameter)
     public function findMostViewed(int $limit): array
     {
