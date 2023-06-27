@@ -54,6 +54,16 @@ class DeleteController extends AbstractController
             $video->removeViewed($viewed);
         }
 
+        $viewedLaterVideos = $video->getUsersViewLater();
+        foreach ($viewedLaterVideos as $viewedLaterVideo) {
+            $viewedLaterVideo->removeViewLaterVideo($video);
+        }
+
+            $favoriteVideos = $video->getUsersFavorited();
+        foreach ($favoriteVideos as $favoriteVideo) {
+            $favoriteVideo->removeFavoriteVideo($video);
+        }
+
             $this->entityManager->remove($video);
             $this->entityManager->flush();
             $this->addFlash('success', 'Vidéo supprimée avec succès');

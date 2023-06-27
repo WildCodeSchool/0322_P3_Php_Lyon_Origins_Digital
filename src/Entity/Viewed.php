@@ -20,6 +20,7 @@ class Viewed
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'vieweds')]
+    #[JoinColumn(name: 'video_id', referencedColumnName: 'id')]
     private ?Video $video = null;
 
     #[ORM\Column]
