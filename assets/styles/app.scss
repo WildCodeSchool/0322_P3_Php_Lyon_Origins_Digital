@@ -19,6 +19,7 @@ $textFont: 'Inter', sans-serif;
 
 // -- animations --
 $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
+$animMenuItemEaseOut: cubic-bezier(0,1,0,1);
 
 // ---------------------------------------------------------
 
@@ -36,7 +37,7 @@ $animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
     --plyr-video-control-color-hover: #FFE500;
 }
 
-// header ----------------------------------------------------
+// header ---------------------------------------------------
 
 .home-image-mobile {
     background-image: url("/assets/images/poster1-LOL.jpg");
@@ -424,4 +425,175 @@ body#admin {
     max-height: 100px;
     text-transform: uppercase;
     color: $dark;
+}
+
+@keyframes animateDesktopActiveMenuItem {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes animateDesktopInactiveMenuItem {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes animateMobileActiveMenuItem {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+@keyframes animateMobileInactiveMenuItem {
+    0% {
+        transform: translateY(50%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+
+$dtNavWidth: 100px;
+$dtNavHeight: fit-content;
+
+$mbNavWidth: fit-content;
+$mbNavHeight: 100px;
+
+$RoundedFactor: 1.35;
+$dtActiveItemBg: linear-gradient(270deg, $dark 0%, $primary 50%, $secondary 100%) !important;
+$mbActiveItemBg: linear-gradient(180deg, $dark 0%, $primary 50%, $secondary 100%) !important;
+
+#nav-group {
+
+    position: relative;
+    height: $dtNavHeight;
+    width: $dtNavWidth;
+
+    .nav-item {
+        width: $dtNavWidth;
+        aspect-ratio: 1/1;
+        font-size: calc($dtNavWidth / 3);
+    }
+
+    .nav-item-link-active {
+
+        animation-name: animateDesktopActiveMenuItem;
+        animation-duration: 1s;
+        animation-timing-function: $animMenuItemEaseOut;
+        background: $dtActiveItemBg;
+
+        &::before, &::after {
+            display: block;
+            position: absolute;
+            content: '';
+            width: calc($dtNavWidth / $RoundedFactor);
+            aspect-ratio: 1/1;
+            background-color: transparent;
+            left: 100%;
+            border-radius: 100%;
+        }
+
+        &::before {
+        translate: -100% -100%;
+        box-shadow: calc($dtNavWidth / ($RoundedFactor * 2)) calc($dtNavWidth / ($RoundedFactor * 2)) 0px $dark;
+    }
+
+    &::after {
+        translate: -100% 0%;
+        box-shadow: calc($dtNavWidth / ($RoundedFactor * 2)) calc($dtNavWidth / ($RoundedFactor * -2)) 0px $dark;
+    }
+}
+
+.nav-item-link-inactive {
+    animation-name: animateDesktopInactiveMenuItem;
+    animation-duration: 1s;
+    animation-timing-function: $animMenuItemEaseOut;
+    transition: $animCurveEaseOut;
+
+    .nav-item {
+
+        transition: .5s $animMenuItemEaseOut;
+        transform-origin: center;
+    }
+
+        &:hover .nav-item{
+            transform: translateX(10px);
+        }
+
+        &:focus {
+            .nav-item {
+                scale: 90%;
+            }
+        }
+    }
+}
+
+#nav-group-mb {
+
+    position: relative;
+    height: $mbNavHeight;
+    width: $mbNavWidth;
+
+    .nav-item {
+        height: $mbNavHeight;
+        aspect-ratio: 1/1;
+        font-size: calc($mbNavHeight / 3);
+    }
+
+    .nav-item-link-active {
+
+        animation-name: animateMobileActiveMenuItem;
+        animation-duration: 1s;
+        animation-timing-function: $animMenuItemEaseOut;
+        background: $mbActiveItemBg;
+
+        &::before, &::after {
+            display: block;
+            position: absolute;
+            content: '';
+            height: calc($mbNavHeight / $RoundedFactor);
+            aspect-ratio: 1/1;
+            border-radius: 100%;
+            top: 0%;
+        }
+
+        &::before {
+            translate: -100% 0%;
+            left: 0%;
+            box-shadow: calc($mbNavHeight / ($RoundedFactor * 2)) calc($mbNavHeight / ($RoundedFactor * -2)) 0px $dark;
+        }
+
+        &::after {
+            left: 100%;
+            translate: 0% 0%;
+            box-shadow: calc($mbNavHeight / ($RoundedFactor * -2)) calc($mbNavHeight / ($RoundedFactor * -2)) 0px $dark;
+        }
+    }
+
+    .nav-item-link-inactive {
+        animation-name: animateMobileInactiveMenuItem;
+        animation-duration: 1s;
+        animation-timing-function: $animMenuItemEaseOut;
+        transition: $animMenuItemEaseOut;
+
+        .nav-item {
+            transform-origin: center;
+            transition: .5s $animMenuItemEaseOut;
+        }
+
+        &:hover .nav-item{
+            transform: translateY(-10px);
+        }
+    }
 }
