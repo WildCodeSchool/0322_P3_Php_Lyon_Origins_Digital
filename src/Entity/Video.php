@@ -56,6 +56,9 @@ class Video
     #[ORM\OneToMany(mappedBy: 'video', targetEntity: Viewed::class)]
     private Collection $vieweds;
 
+    #[ORM\Column]
+    private ?bool $isHeader = null;
+
     public function __construct()
     {
         $this->tag = new ArrayCollection();
@@ -225,6 +228,18 @@ class Video
                 $viewed->setVideo(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isIsHeader(): ?bool
+    {
+        return $this->isHeader;
+    }
+
+    public function setIsHeader(bool $isHeader): static
+    {
+        $this->isHeader = $isHeader;
 
         return $this;
     }
