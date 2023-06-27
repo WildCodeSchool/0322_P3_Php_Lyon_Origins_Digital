@@ -2,20 +2,23 @@
 
 namespace App\Controller;
 
-use App\Entity\Video;
 use App\Repository\ViewedRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class ViewedController extends AbstractController
 {
-    #[Route('/viewed/{videoId<^[0-9]+$>}', name: 'app_viewed')]
-    #[ParamConverter('video', class: 'App\Entity\Video', options: ['id' => 'videoId'])]
-    public function viewed(Video $video, ViewedRepository $viewedRepository): JsonResponse
+    #[Route('/viewed', name: 'app_viewed', methods: ['POST'])]
+    public function viewed(Request $request, ViewedRepository $viewedRepository): JsonResponse
     {
-        $viewed = $viewedRepository->findView($video->getId());
-        return new JsonResponse($viewed);
+        $datas = $request->toArray();
+        $response = [];
+        foreach ($datas as $data) {
+            $viewed = $viewedRepository->findView((int)$data);
+            $response[] = [$data => strval($viewed[0][1])];
+        }
+        return $this->json($response);
     }
 }

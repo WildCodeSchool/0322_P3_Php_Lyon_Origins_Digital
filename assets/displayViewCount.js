@@ -1,21 +1,48 @@
-const elements = document.querySelectorAll('.bt-stats');
+let videosId = [];
+const elements = document.querySelectorAll('.bt-stats')
+
 for (const element of elements) {
-    const videoId = element.getAttribute('data-info');
-    fetch(videoId)
-        .then(response => {
-            if (response.status !== 200) {
-                throw new Error("Impossible de compter cette vue");
+    videosId.push(element.getAttribute('data-info'));
+}
+
+if (videosId && videosId.length) {
+    const url = '/viewed';
+    const body = videosId;
+    
+    fetch(url, {
+        method: "POST",
+        body: JSON.stringify(body)
+    })
+        .then(function (response) {
+            if (response.ok) {
+                // Request was successful
+                return response.text();
+            } else {
+                // Request failed
+                throw new Error('La requête a échouée avec un statut ' + response.status);
             }
-            return response.json();
         })
-        .then(data => {
-            const viewedValue = data[0][1];
-            let textForView = ' vue';
-            if (viewedValue > 1) textForView = ' vues';
-            const viewsElement = element.querySelector('.bt-views');
-            viewsElement.textContent = viewedValue + textForView;
+        .then(function (datas) {
+            const datasArray = JSON.parse(datas);
+            datasArray.forEach(function (data) {
+                const entries = Object.entries(data);
+                entries.forEach(function (entry) {
+                    const key = entry[0];
+                    const value = entry[1];
+
+                    let textForView = ' vue';
+                    if (value > 1) textForView = ' vues';
+                    const matchingDataInfo = document.querySelectorAll('[data-info="' + key + '"]');
+                    matchingDataInfo.forEach(function(thisDataInfo) {
+                        const matchingBtViews = thisDataInfo.querySelector('.bt-views');
+                        matchingBtViews.textContent = value + textForView;
+                    })
+                });
+            });
         })
         .catch(function (error) {
-            alert(error);
+            // Handle any errors that occurred during the fetch operation
+            alert('Error:', error);
         });
+
 }

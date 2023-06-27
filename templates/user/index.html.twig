@@ -8,7 +8,6 @@
 	{{ parent() }}
 	{{ encore_entry_script_tags('addFav') }}
 	{{ encore_entry_script_tags('addLater') }}
-	{{ encore_entry_script_tags('addLike') }}
 {% endblock %}
 
 {% block body %}
@@ -27,11 +26,6 @@
             'title': 'Favorites',
             'stat': app.user.favoriteVideos,
             'id': 'fav',
-        },
-        {
-            'title': 'Aimées',
-            'stat': app.user.likedVideos,
-            'id': 'liked',
         },
         {
             'title': 'À regarder',

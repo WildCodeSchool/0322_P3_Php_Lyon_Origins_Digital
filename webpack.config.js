@@ -38,7 +38,6 @@ Encore
     .addEntry('dropzone', './assets/dropzone.js')
     .addEntry('addFav', './assets/addFav.js')
     .addEntry('addLater', './assets/addLater.js')
-    .addEntry('addLike', './assets/addLike.js')
     .addEntry('playAndCount', './assets/playAndCount.js')
     .addEntry('displayViewCount', './assets/displayViewCount.js')
     .addEntry('navbar', './assets/navbar.js')

@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Tag;
 use App\Entity\Video;
+use App\Repository\TagRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -35,6 +36,9 @@ class VideoType extends AbstractType
             ])
             ->add('tag', EntityType::class, [
                 'class' => Tag::class,
+                'query_builder' => function (TagRepository $tagRepository) {
+                    return $tagRepository->createQueryBuilder('u')->orderBy('u.name', 'ASC');
+                },
                 'label' => 'Tags (choix multiples):',
                 'choice_label' => 'name',
                 'multiple' => true,
