@@ -50,7 +50,6 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $maxValue = (count(VideoFixtures::VIDEOS)) - 1;
             for ($i = 0; $i < 4; $i++) {
                 $user->addFavoriteVideo($this->getReference('video_' . rand(0, $maxValue)));
-                $user->addLikedVideo($this->getReference('video_' . rand(0, $maxValue)));
                 $user->addViewLaterVideo($this->getReference('video_' . rand(0, $maxValue)));
             }
 

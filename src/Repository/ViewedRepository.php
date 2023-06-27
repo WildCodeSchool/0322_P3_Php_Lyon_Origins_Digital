@@ -39,6 +39,7 @@ class ViewedRepository extends ServiceEntityRepository
         }
     }
 
+    //Count views with video_id set as parameter
     public function findView(int $videoId): array
     {
         return $this->createQueryBuilder('viewed')
@@ -47,5 +48,32 @@ class ViewedRepository extends ServiceEntityRepository
             ->setParameter('id', $videoId)
             ->getQuery()
             ->getResult();
+    }
+
+    //get the x most viewed videos (x set as parameter)
+    public function findMostViewed(int $limit): array
+    {
+        return $this->createQueryBuilder('viewed')
+            ->select('video.id, COUNT(viewed.id) as viewCount')
+            ->leftJoin('viewed.video', 'video')
+            ->groupBy('video.id')
+            ->orderBy('viewCount', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
+    //get unique videos viewed by a user, sorted antichronologically (user_id as parameter)
+    public function findVideosViewedByUser(int $userId): array
+    {
+        $queryBuilder = $this->createQueryBuilder('viewed')
+            ->select('video.id')
+            ->join('viewed.video', 'video')
+            ->andWhere('viewed.user = :userId')
+            ->setParameter('userId', $userId)
+            ->groupBy('video.id')
+            ->orderBy('MAX(viewed.viewDate)', 'DESC');
+
+        return $queryBuilder->getQuery()->getResult();
     }
 }

@@ -32,23 +32,13 @@
 								{% endif %}
 							</div>
 						</a>
-						<a class="like" href="{{ path('like_add', { idVideo: item.id }) }}">
-						{% set isLiked = app.user.likedVideos|filter(video => video.id == item.id )|first %}
-						<div class="bt-social-btn">
-							{% if isLiked %}
-							<i class='bt-like bi bi-hand-thumbs-up-fill text-secondary li{{ item.id }}' title="ne pas liker"></i>
-						{% else %}
-							<i class='bt-like bi bi-hand-thumbs-up text-light li{{ item.id }}' title="liker"></i>
-						{% endif %}
-						</div>
-						</a>
 					</div>
 				{% endif %}
 			</div>
 
 			<div class="bt-title title-font text-secondary text-nowrap">{{ item.title|u.truncate(30, '...') }}</div>
 
-			<div class="bt-stats d-flex justify-content-start align-items-center text-info m-0" data-info="{{ path('app_viewed', { videoId: item.id }) }}">
+			<div class="bt-stats d-flex justify-content-start align-items-center text-info m-0" data-info="{{ item.id }}">
 				<span class="bt-views m-0"></span>
 				<span>{{dot|raw}}</span>
 				<span class="bt-category m-0">#CAT</span>
