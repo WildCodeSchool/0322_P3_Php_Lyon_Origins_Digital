@@ -1,3 +1,28 @@
-{% for comment in comments %}
-	{{ comment.content }}
+{% for comment in comments |slice(0, 5) %}
+	<div>
+		<span class="title-font text-secondary fs-4">
+			{{ comment.user.username }}
+		</span>
+
+		<span class="text-font text-info">
+			- le
+			{{ comment.postDate|format_datetime('medium', 'short', locale='fr', timezone='Europe/Paris') }}
+		</span>
+	</div>
+	<div class="text-font">
+		<span class="fs-3 align-middle">
+			{{ dot|raw }}
+		</span>
+		<span>
+			{{ comment.content }}
+		</span>
+	</div>
+
+
+{% else %}
+
+	<div class="text-font text-info">
+		Soyez le premier à poster un commentaire !
+	</div>
+
 {% endfor %}
