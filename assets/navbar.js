@@ -1,4 +1,9 @@
 const activePage = document.querySelector('main');
+(function setUpActivePage(){
+    activePage.classList.add('ps-md-4')
+    activePage.classList.add('ps-0')
+    activePage.classList.add('overflow-hidden')
+})();
 
 (function filterNavItems(){
 
