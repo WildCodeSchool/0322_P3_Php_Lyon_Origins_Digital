@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\User;
 use App\Entity\Video;
+use App\Repository\ViewedRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 class DeleteService
@@ -34,7 +35,7 @@ class DeleteService
             $this->entityManager->flush();
     }
 
-    public function deleteVideo(Video $video): void
+    public function deleteVideo(Video $video, ViewedRepository $viewedRepository): void
     {
         foreach ($video->getVieweds() as $viewed) {
             $user = $viewed->getUser();
@@ -56,5 +57,6 @@ class DeleteService
 
             $this->entityManager->remove($video);
             $this->entityManager->flush();
+            $viewedRepository->deleteNullUserAndNullVideo();
     }
 }
