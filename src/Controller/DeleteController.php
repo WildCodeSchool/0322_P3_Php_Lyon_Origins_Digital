@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/delete', name: 'delete_')]
 class DeleteController extends AbstractController
 {
     public function __construct(private EntityManagerInterface $entityManager)
@@ -18,7 +19,7 @@ class DeleteController extends AbstractController
     }
 
     //route to delete a user by id
-    #[Route('/delete/user/{idUser<^[0-9]+$>}', name: 'user_delete')]
+    #[Route('/user/{idUser<^[0-9]+$>}', name: 'user')]
     #[ParamConverter('user', class: 'App\Entity\User', options: ['id' => 'idUser'])]
     public function deleteUser(User $user): Response
     {
@@ -44,7 +45,7 @@ class DeleteController extends AbstractController
     }
 
     //route to delete a video by id
-    #[Route('/delete/video/{idVideo<^[0-9]+$>}', name: 'video_delete')]
+    #[Route('/video/{idVideo<^[0-9]+$>}', name: 'video')]
     #[ParamConverter('video', class: 'App\Entity\Video', options: ['id' => 'idVideo'])]
     public function deleteVideo(Video $video): Response
     {
