@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ViewedRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 #[ORM\Entity(repositoryClass: ViewedRepository::class)]
 class Viewed
@@ -15,6 +16,7 @@ class Viewed
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'vieweds')]
+    #[JoinColumn(name: 'user_id', referencedColumnName: 'id')]
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'vieweds')]
