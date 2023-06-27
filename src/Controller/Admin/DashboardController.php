@@ -48,13 +48,11 @@ class DashboardController extends AbstractDashboardController
         $videoTitles = [];
         $favCount = [];
         $viewsCount = [];
-        $likesCount = [];
 
         foreach ($videos as $video) {
             $videoTitles[] = substr($video->getTitle(), 0, 10) . '...';
             $favCount[] = count($video->getUsersFavorited());
             $viewsCount[] = count($video->getVieweds());
-            $likesCount[] = count($video->getUsersLiked());
         }
 
         $chartFavsByVideo = $this->chartManager->createBarChartBy(
@@ -69,17 +67,10 @@ class DashboardController extends AbstractDashboardController
             $viewsCount,
         );
 
-        $chartLikesByVideo = $this->chartManager->createBarChartBy(
-            'Likes by Video',
-            $videoTitles,
-            $likesCount,
-        );
-
         return $this->render('admin/dashboard.html.twig', [
             'chartVideosByTag' => $chartVideosByTag,
             'chartFavsByVideo' => $chartFavsByVideo,
             'chartViewsByVideo' => $chartViewsByVideo,
-            'chartLikesByVideo' => $chartLikesByVideo,
         ]);
     }
 

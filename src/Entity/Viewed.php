@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ViewedRepository;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ViewedRepository::class)]
@@ -18,6 +19,14 @@ class Viewed
 
     #[ORM\ManyToOne(inversedBy: 'vieweds')]
     private ?Video $video = null;
+
+    #[ORM\Column]
+    private ?DateTimeImmutable $viewDate = null;
+
+    public function __construct()
+    {
+        $this->viewDate = new DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -44,6 +53,18 @@ class Viewed
     public function setVideo(?Video $video): static
     {
         $this->video = $video;
+
+        return $this;
+    }
+
+    public function getViewDate(): ?DateTimeImmutable
+    {
+        return $this->viewDate;
+    }
+
+    public function setViewDate(DateTimeImmutable $viewDate): static
+    {
+        $this->viewDate = $viewDate;
 
         return $this;
     }
