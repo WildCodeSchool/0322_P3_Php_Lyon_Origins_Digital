@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Video;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Service\DeleteService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,33 +13,13 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/delete', name: 'delete_')]
 class DeleteController extends AbstractController
 {
-    public function __construct(private EntityManagerInterface $entityManager)
-    {
-        $this->entityManager = $entityManager;
-    }
-
     //route to delete a user by id
     #[Route('/user/{idUser<^[0-9]+$>}', name: 'user')]
     #[ParamConverter('user', class: 'App\Entity\User', options: ['id' => 'idUser'])]
-    public function deleteUser(User $user): Response
+    public function deleteUser(User $user, DeleteService $deleteService): Response
     {
-        foreach ($user->getVieweds() as $viewed) {
-            $viewed->setUser(null);
-        }
-
-            $viewedLaterVideos = $user->getViewLaterVideos();
-        foreach ($viewedLaterVideos as $viewedLaterVideo) {
-            $user->removeViewLaterVideo($viewedLaterVideo);
-        }
-
-            $favoriteVideos = $user->getFavoriteVideos();
-        foreach ($favoriteVideos as $favoriteVideo) {
-            $user->removeFavoriteVideo($favoriteVideo);
-        }
-
-            $this->entityManager->remove($user);
-            $this->entityManager->flush();
-            $this->addFlash('success', 'Utilisateur supprimé avec succès');
+        $deleteService->deleteUser($user);
+        $this->addFlash('success', 'Utilisateur supprimé avec succès');
 
         return $this->redirectToRoute('admin_dashboard');
     }
@@ -47,27 +27,10 @@ class DeleteController extends AbstractController
     //route to delete a video by id
     #[Route('/video/{idVideo<^[0-9]+$>}', name: 'video')]
     #[ParamConverter('video', class: 'App\Entity\Video', options: ['id' => 'idVideo'])]
-    public function deleteVideo(Video $video): Response
+    public function deleteVideo(Video $video, DeleteService $deleteService): Response
     {
-        foreach ($video->getVieweds() as $viewed) {
-            $user = $viewed->getUser();
-            $user->removeViewed($viewed);
-            $video->removeViewed($viewed);
-        }
-
-        $viewedLaterVideos = $video->getUsersViewLater();
-        foreach ($viewedLaterVideos as $viewedLaterVideo) {
-            $viewedLaterVideo->removeViewLaterVideo($video);
-        }
-
-            $favoriteVideos = $video->getUsersFavorited();
-        foreach ($favoriteVideos as $favoriteVideo) {
-            $favoriteVideo->removeFavoriteVideo($video);
-        }
-
-            $this->entityManager->remove($video);
-            $this->entityManager->flush();
-            $this->addFlash('success', 'Vidéo supprimée avec succès');
+        $deleteService->deleteVideo($video);
+        $this->addFlash('success', 'Vidéo supprimée avec succès');
 
         return $this->redirectToRoute('admin_dashboard');
     }
