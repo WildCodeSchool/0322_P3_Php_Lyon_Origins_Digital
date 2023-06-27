@@ -73,10 +73,14 @@
 					</div>
 
 				</div>
+
+				{{ include('shared/comment/add.html.twig') }}
+				{{ include('shared/comment/list.html.twig') }}
+
 			</div>
 
-			{% if app.user %}
-				<div class="col-lg-3 d-none d-lg-flex justify-content-center align-items-center">
+			<div class="col-lg-3 d-none d-lg-flex flex-column justify-content-center align-items-center">
+				{% if app.user %}
 					<div class="sh-favs bg-primary d-flex flex-column justify-content-start align-items-center m-3 p-4 rounded-5">
 						<h5 class="title-font text-secondary">MES FAVORIS</h5>
 
@@ -85,10 +89,20 @@
 						{% endfor %}
 						<h5 class="title-font d-none text-secondary mt-3">VOIR PLUS DE FAVORIS</h5>
 					</div>
+				{% endif %}
+				<div class="d-lg-block d-none">
+					<div class="d-flex justify-content-end align-items-end flex-wrap">
+						{% for tag in tags |slice(0,5) %}
+							<div>{{ include('shared/tag/category-tag.html.twig', {tag: tag.name, style: 'tag-list'}) }}</div>
+						{% endfor %}
+					</div>
 				</div>
-			{% endif %}
+			</div>
+
 
 		</div>
+
+		{# Common galleries content start here #}
 
 		<div class="container-lg mx-auto row">
 			<div class="col row d-flex justify-content-start align-items-end">
@@ -107,15 +121,6 @@
 				</div>
 
 			</div>
-
-			<div class="col-lg-4 col d-lg-block d-none">
-				<div class="d-flex justify-content-end align-items-end flex-wrap">
-					{% for tag in tags |slice(0,5) %}
-						<div>{{ include('shared/tag/category-tag.html.twig', {tag: tag.name, style: 'tag-list'}) }}</div>
-					{% endfor %}
-				</div>
-			</div>
-
 		</div>
 
 		<div class="container-lg mx-auto d-flex justify-content-center">
