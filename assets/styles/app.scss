@@ -466,10 +466,13 @@ body#admin {
 
 $dtNavWidth: 100px;
 $dtNavHeight: fit-content;
-$RoundedFactor: 1.35;
 
 $mbNavWidth: fit-content;
 $mbNavHeight: 100px;
+
+$RoundedFactor: 1.35;
+$dtActiveItemBg: linear-gradient(270deg, $dark 0%, $primary 50%, $secondary 100%) !important;
+$mbActiveItemBg: linear-gradient(180deg, $dark 0%, $primary 50%, $secondary 100%) !important;
 
 #nav-group {
 
@@ -488,6 +491,7 @@ $mbNavHeight: 100px;
         animation-name: animateDesktopActiveMenuItem;
         animation-duration: 1s;
         animation-timing-function: $animMenuItemEaseOut;
+        background: $dtActiveItemBg;
 
         &::before, &::after {
             display: block;
@@ -503,25 +507,25 @@ $mbNavHeight: 100px;
         &::before {
         translate: -100% -100%;
         box-shadow: calc($dtNavWidth / ($RoundedFactor * 2)) calc($dtNavWidth / ($RoundedFactor * 2)) 0px $dark;
-        }
-
-        &::after {
-        translate: -100% 0%;
-        box-shadow: calc($dtNavWidth / ($RoundedFactor * 2)) calc($dtNavWidth / ($RoundedFactor * -2)) 0px $dark;
-        }
     }
 
-    .nav-item-link-inactive {
-        animation-name: animateDesktopInactiveMenuItem;
-        animation-duration: 1s;
-        animation-timing-function: $animMenuItemEaseOut;
-        transition: $animCurveEaseOut;
+    &::after {
+        translate: -100% 0%;
+        box-shadow: calc($dtNavWidth / ($RoundedFactor * 2)) calc($dtNavWidth / ($RoundedFactor * -2)) 0px $dark;
+    }
+}
 
-        .nav-item {
+.nav-item-link-inactive {
+    animation-name: animateDesktopInactiveMenuItem;
+    animation-duration: 1s;
+    animation-timing-function: $animMenuItemEaseOut;
+    transition: $animCurveEaseOut;
 
-            transition: .5s $animMenuItemEaseOut;
-            transform-origin: center;
-        }
+    .nav-item {
+
+        transition: .5s $animMenuItemEaseOut;
+        transform-origin: center;
+    }
 
         &:hover .nav-item{
             transform: translateX(10px);
@@ -552,6 +556,7 @@ $mbNavHeight: 100px;
         animation-name: animateMobileActiveMenuItem;
         animation-duration: 1s;
         animation-timing-function: $animMenuItemEaseOut;
+        background: $mbActiveItemBg;
 
         &::before, &::after {
             display: block;

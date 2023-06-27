@@ -5,18 +5,22 @@
 {% block javascripts %}
 	{{ parent() }}
 	{{ encore_entry_script_tags('addFav') }}
-    {{ encore_entry_script_tags('addLater') }}
-    {{ encore_entry_script_tags('addLike') }}
+	{{ encore_entry_script_tags('addLater') }}
+	{{ encore_entry_script_tags('addLike') }}
 {% endblock %}
 
 {% block body %}
 
-	{{ include('shared/gallery/bt-gallery.html.twig', {
+	<main class="col ms-md-4 ms-0" aria-labelledby="nav-btn-{{ navItems.search['name'] }}" id="{{ navItems.search['name'] }}">
+
+		{{ include('shared/gallery/bt-gallery.html.twig', {
         title: 'Les videos ' ~ tag.name,
         subtitle: 'Il y a ' ~ tag.videos|length ~ ' resultats correspondants à votre recherche',
         count: 10,
         contents: tag.videos,
         id: tag.name
     }) }}
+
+	</main>
 
 {% endblock %}
