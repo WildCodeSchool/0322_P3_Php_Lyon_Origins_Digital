@@ -409,11 +409,12 @@ body#admin {
 
 #userDashboards {
 
-    [aria-selected = true] {
+    [aria-selected=true] {
         background-color: $secondary;
         color: $primary;
     }
-    [aria-selected = false] {
+
+    [aria-selected=false] {
         background-color: $primary;
         color: $secondary;
     }
