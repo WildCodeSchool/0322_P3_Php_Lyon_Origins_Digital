@@ -16,6 +16,7 @@
 
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
+			{{ encore_entry_script_tags('navbar') }}
 		{% endblock %}
 	</head>
 
@@ -25,7 +26,47 @@
 	{% set watchLater = "<i class='bi watchLater'></i>" %}
 	{% set like = "<i class='bi like'></i>" %}
 
-	<body>
+	{# to do show logout only when on /user/dashboard #}
+
+	{% set navItems = {
+		home: {
+			'name':'home',
+			'iconClass':'house',
+			'link': 'home_index',
+		},
+		user : {
+			'name': app.user ? 'user' : 'login',
+			'iconClass': app.user ? 'person-check' : 'person-up',
+			'link': app.user ? 'user_dashboard' : 'app_login',
+		},
+		logout : {
+			'name': 'logout',
+			'iconClass': 'person-slash',
+			'link': 'app_logout',
+		},
+		register : {
+			'name': 'register',
+			'iconClass': 'person-add',
+			'link': 'app_register',
+		},
+		show: {
+			'name':'show',
+			'iconClass':'play',
+			'link': '',
+		},
+		search: {
+			'name':'search',
+			'iconClass':'search',
+			'link': '',
+		},
+		admin: {
+			'name':'admin',
+			'iconClass':'gear',
+			'link': 'admin_dashboard',
+		}
+	} %}
+
+	<body class="row" id="all-bodies">
 		{% for category, messages in app.flashes %}
 			{% for message in messages %}
 				<div class="alert alert-{{ category }}" id="alertMsg">
@@ -33,6 +74,11 @@
 				</div>
 			{% endfor %}
 		{% endfor %}
+
+		<nav class="col-1 d-md-block d-none" id="desktop-navbar">{% include "shared/navigation/desktop-navbar.html.twig" %}</nav>
+		<nav class="d-flex justify-content-center d-md-none fixed-bottom" id="mobile-navbar">{% include "shared/navigation/mobile-navbar.html.twig" %}</nav>
+
 		{% block body %}{% endblock %}
+
 	</body>
 </html>

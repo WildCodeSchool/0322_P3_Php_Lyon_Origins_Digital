@@ -1,0 +1,23 @@
+<div id="nav-group" class="rounded-end-5 d-flex flex-column justify-content-around align-items-center overflow-hidden mt-5 position-fixed">
+
+	{% for navItem in navItems %}
+		{% if navItem['name'] == 'show' or navItem['name'] == 'search' %}
+			<div class="w-100">
+			{% else %}
+				<a class="w-100" href="{{ path(navItem['link']) }}">
+				{% endif %}
+
+				<div class="nav-item text-dark text-center d-flex justify-content-center align-items-center" aria-selected="false" id="nav-btn-{{ navItem['name'] }}" aria-controls="{{ navItem['name'] }}">
+
+					<i class="bi bi-{{ navItem['iconClass'] }}" id="{{ navItem['iconClass'] }}"></i>
+
+				</div>
+				{% if navItem['name'] == 'show' or navItem['name'] == 'search' %}
+				</div>
+		{% else %}
+			</a>
+		{% endif %}
+
+	{% endfor %}
+
+</div>
