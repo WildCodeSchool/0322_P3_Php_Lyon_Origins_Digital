@@ -32,7 +32,7 @@ class VideoController extends AbstractController
         $tags = $tagRepository->findAll();
 
         $commentForm = $commentManager->postComment($request, $commentRepository, $video);
-        $comments = $commentRepository->findAll();
+        $comments = $commentRepository->findLatestComments($video);
 
         return $this->render('video/show.html.twig', [
             'videoPlayed' => $video,
@@ -53,6 +53,27 @@ class VideoController extends AbstractController
         $viewed->setUser($user)->setVideo($video);
 
         $viewedRepository->save($viewed, true);
+
+        return new Response(status: 200);
+    }
+
+    #[Route('/show/{id<^[0-9]+$>}/add/comment', name: 'add_comment')]
+    // #[ParamConverter('video', class: 'App\Entity\Video', options: ['id' => 'idVideo'])]
+    public function addVideoComment(
+        Video $video,
+        VideoRepository $videoRepository,
+        CommentRepository $commentRepository): Response
+    {
+        $user = $this->getUser();
+
+        $comment = $commentRepository->findOneBy([
+            'user' => $user,
+            'video' => $video,
+        ]);
+
+        $video->addComment($comment);
+
+        $videoRepository->save($video, true);
 
         return new Response(status: 200);
     }

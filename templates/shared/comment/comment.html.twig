@@ -1,0 +1,42 @@
+<div class="row">
+
+	<div class="fs-3 col-auto text-info d-flex align-items-center border border-end-0 border-1 border-info rounded-start-3 position-relative">
+		<span class="position-absolute top-0 start-100 translate-middle">
+			{{ dot|raw }}
+		</span>
+		<span class="position-absolute top-100 start-100 translate-middle">
+			{{ dot|raw }}
+		</span>
+	</div>
+
+	<div class="col">
+
+		<div class="d-flex align-items-center justify-content-start">
+
+			<span class="title-font text-secondary fs-4">
+				{{ dot|raw }}
+			</span>
+
+			<span class="title-font text-secondary fs-4 me-3">
+				{{ comment.user.username }}
+			</span>
+
+			<span class="text-font text-info align-middle">
+				{{ dot|raw }}
+				{{ comment.postDate|format_datetime('medium', 'short', locale='fr', timezone='Europe/Paris') }}
+			</span>
+
+		</div>
+
+		<div class="text-font row">
+
+
+			<div class="col d-flex align-items-center">
+				<span class="mb-3">
+					{{ comment.content }}
+				</span>
+			</div>
+
+		</div>
+	</div>
+</div>

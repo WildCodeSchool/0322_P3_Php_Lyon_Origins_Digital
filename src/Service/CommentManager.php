@@ -2,17 +2,15 @@
 
 namespace App\Service;
 
-use App\Entity\Comment;
 use App\Entity\User;
 use App\Entity\Video;
+use DateTimeImmutable;
+use App\Entity\Comment;
 use App\Form\CommentType;
 use App\Repository\CommentRepository;
-use DateTimeImmutable;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CommentManager extends AbstractController
 {
@@ -35,6 +33,7 @@ class CommentManager extends AbstractController
         $commentForm->handleRequest($request);
         if ($commentForm->isSubmitted() && $commentForm->isValid()) {
             $commentRepository->save($comment, true);
+            $this->redirectToRoute($request->attributes->get('_route'), ['id' => $video->getId()]);
         }
 
         return $commentForm;

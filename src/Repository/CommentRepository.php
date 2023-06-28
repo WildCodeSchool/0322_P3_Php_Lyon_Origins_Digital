@@ -3,7 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Comment;
+use App\Entity\Video;
+use DateTimeImmutable;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -37,6 +40,18 @@ class CommentRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findLatestComments(Video $video): array
+    {
+        $now = new DateTimeImmutable();
+
+        return $this->createQueryBuilder('c')
+            ->where('c.video = :videoId')
+            ->setParameter('videoId', $video)
+            ->orderBy('c.postDate', 'DESC')
+            ->getQuery()
+            ->getResult();
     }
 
 //    /**

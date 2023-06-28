@@ -83,15 +83,21 @@
 					{% if app.user %}
 
 						<div class="sh-add-comment d-none" id="comment-field">
-
 							<div class="mt-3">
 								{{ include('shared/comment/add.html.twig') }}
 							</div>
 						</div>
-						<div class="mt-3">
-							{{ include('shared/comment/list.html.twig') }}
-						</div>
+
 					{% endif %}
+
+					<div class="mt-3">
+						{{ include('shared/comment/list.html.twig', {
+							id: 'comment-list',
+							contents: comments,
+							startCount: 3,
+							moreCount: 3,
+						}) }}
+					</div>
 				</div>
 
 				<div class="col-lg-3 d-none d-lg-flex flex-column justify-content-center align-items-center">
@@ -107,13 +113,6 @@
 							</div>
 						</div>
 					{% endif %}
-					<div class="d-lg-block d-none">
-						<div class="d-flex justify-content-end align-items-end flex-wrap">
-							{% for tag in tags |slice(0,5) %}
-								<div>{{ include('shared/tag/category-tag.html.twig', {tag: tag.name, style: 'tag-list'}) }}</div>
-							{% endfor %}
-						</div>
-					</div>
 				</div>
 
 
