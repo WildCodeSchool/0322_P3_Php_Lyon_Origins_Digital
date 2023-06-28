@@ -55,7 +55,6 @@ class Video
 
     #[ORM\OneToMany(mappedBy: 'video', targetEntity: Viewed::class)]
     private Collection $vieweds;
-
     #[ORM\Column]
     private ?bool $isHeader = null;
 
@@ -240,7 +239,6 @@ class Video
     public function setIsHeader(bool $isHeader): static
     {
         $this->isHeader = $isHeader;
-
         return $this;
     }
 }
