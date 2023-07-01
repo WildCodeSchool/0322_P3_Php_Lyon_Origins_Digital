@@ -73,9 +73,15 @@
 							<div class="sh-description col-xl col-12 text-info p-0 pb-4" id="sh-description">
 								<p>{{ videoPlayed.description }}</p>
 							</div>
-							<button class="btn btn-secondary col-auto" id="add-comment">
-								<i class='bi bi-chat-left-text-fill text-primary'></i>
-							</button>
+							{% if app.user %}
+								<button class="btn btn-secondary col-auto" id="add-comment">
+									<i class='bi bi-chat-left-text-fill text-primary'></i>
+								</button>
+							{% else %}
+								<a href="/login" class="btn btn-secondary col-auto" id="add-comment">
+									<i class='bi bi-chat-left-text-fill text-primary'></i>
+								</a>
+							{% endif %}
 						</div>
 
 					</div>

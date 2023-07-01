@@ -31,9 +31,10 @@ class CommentManager extends AbstractController
         $commentForm = $this->createForm(CommentType::class, $comment);
 
         $commentForm->handleRequest($request);
+
         if ($commentForm->isSubmitted() && $commentForm->isValid()) {
             $commentRepository->save($comment, true);
-            $this->redirectToRoute($request->attributes->get('_route'), ['id' => $video->getId()]);
+            // $this->redirectToRoute($request->attributes->get('_route'), ['id' => $video->getId()]);
         }
 
         return $commentForm;

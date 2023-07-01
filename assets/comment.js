@@ -1,4 +1,5 @@
 const addComment = document.getElementById('add-comment');
+const addCommentNoUser = document.getElementById('add-comment-nouser');
 const form = document.getElementById('comment-field');
 const commentBlock = document.getElementById('comment');
 const writeBlock = commentBlock.children[0];
@@ -35,18 +36,3 @@ postBlock.classList.add('align-items-end');
 // 1. ajax controller
 // 2. ajax route in btn href
 // 3. js fetch
-
-const commentSave = document.getElementById('comment_save');
-
-
-commentSave.addEventListener('click', function (event) {
-    event.preventDefault();
-
-    fetch(commentSave.getAttribute('href'))
-    .then(response => {
-        if(response.status != 200 ) alert("Erreur");
-
-        console.log('ça marche !')
-    })
-    ;
-});

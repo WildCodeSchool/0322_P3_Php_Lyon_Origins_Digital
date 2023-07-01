@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 #[Route('/video', name: 'video_')]
@@ -57,24 +58,19 @@ class VideoController extends AbstractController
         return new Response(status: 200);
     }
 
-    #[Route('/show/{id<^[0-9]+$>}/add/comment', name: 'add_comment')]
-    // #[ParamConverter('video', class: 'App\Entity\Video', options: ['id' => 'idVideo'])]
-    public function addVideoComment(
-        Video $video,
-        VideoRepository $videoRepository,
-        CommentRepository $commentRepository): Response
-    {
-        $user = $this->getUser();
+    // #[Route('/show/{id<^[0-9]+$>}/add-comment', methods: ['GET', 'POST'], name: 'add_comment')]
+    // public function insertComment(
+    //     Video $video,
+    //     CommentManager $commentManager,
+    //     Request $request,
+    //     CommentRepository $commentRepository
+    // ): JsonResponse {
 
-        $comment = $commentRepository->findOneBy([
-            'user' => $user,
-            'video' => $video,
-        ]);
+    //     $commentForm = $commentManager->postComment($request, $commentRepository, $video);
+    //     $comments = $commentRepository->findLatestComments($video);
 
-        $video->addComment($comment);
-
-        $videoRepository->save($video, true);
-
-        return new Response(status: 200);
-    }
+    //     return $this->json([
+    //         'commentForm' => $commentForm
+    //     ]);
+    // }
 }
