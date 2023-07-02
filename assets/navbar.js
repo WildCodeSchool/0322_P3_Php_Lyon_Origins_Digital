@@ -1,4 +1,6 @@
 const activePage = document.querySelector('main');
+const activeBody = document.getElementById('all-bodies');
+
 (function setUpActivePage(){
     activePage.classList.add('ps-md-4')
     activePage.classList.add('ps-0')
@@ -39,6 +41,7 @@ const activePage = document.querySelector('main');
     for (const navGroup of groups) {
         navGroup.classList.add('bg-secondary');
         const navItems = navGroup.getElementsByClassName('nav-item');
+        const modalOpener = navGroup.querySelector('[data-bs-toggle="modal"]');
 
         for (const navItem of navItems) {
 
@@ -110,6 +113,7 @@ const activePage = document.querySelector('main');
                 fillIcons(icon,'person-slash', 'person-fill-slash')
                 fillIcons(icon,'play', 'play-fill')
                 fillIcons(icon,'gear', 'gear-fill')
+                fillIcons(icon,'search', 'search-heart-fill')
             })
 
             inactiveNavItem.addEventListener('mouseout', function(){
@@ -120,6 +124,7 @@ const activePage = document.querySelector('main');
                 emptyIcons(icon,'person-slash', 'person-fill-slash')
                 emptyIcons(icon,'play', 'play-fill')
                 emptyIcons(icon,'gear', 'gear-fill')
+                emptyIcons(icon,'search', 'search-heart-fill')
             })
         }
     }

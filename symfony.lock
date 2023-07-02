@@ -131,6 +131,15 @@
     "egulias/email-validator": {
         "version": "3.1.2"
     },
+    "friendsofsymfony/jsrouting-bundle": {
+        "version": "3.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "2.3",
+            "ref": "a9f2e49180f75cdc71ae279a929c4b2e0638de84"
+        }
+    },
     "gitonomy/gitlib": {
         "version": "v1.3.4"
     },
