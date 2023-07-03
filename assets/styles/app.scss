@@ -39,6 +39,10 @@ $animMenuItemEaseOut: cubic-bezier(0,1,0,1);
 
 // header ---------------------------------------------------
 
+body {
+    overflow-x: hidden;
+}
+
 .home-image-mobile {
     background-image: url("/assets/images/poster1-LOL.jpg");
     background-size: cover;
