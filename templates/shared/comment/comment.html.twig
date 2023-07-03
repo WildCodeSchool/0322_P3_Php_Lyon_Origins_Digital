@@ -10,33 +10,25 @@
 	</div>
 
 	<div class="col">
-
 		<div class="d-flex align-items-center justify-content-start">
-
 			<span class="title-font text-secondary fs-4">
 				{{ dot|raw }}
 			</span>
-
 			<span class="title-font text-secondary fs-4 me-3">
 				{{ comment.user.username }}
 			</span>
-
 			<span class="text-font text-info align-middle">
 				{{ dot|raw }}
 				{{ comment.postDate|format_datetime('medium', 'short', locale='fr', timezone='Europe/Paris') }}
 			</span>
-
 		</div>
 
 		<div class="text-font row">
-
-
 			<div class="col d-flex align-items-center">
 				<span class="mb-3">
-					{{ comment.content }}
+					{{ comment.content|slice(1, comment.content|length - 2)|raw }}
 				</span>
 			</div>
-
 		</div>
 	</div>
 </div>

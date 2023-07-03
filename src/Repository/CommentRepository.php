@@ -44,8 +44,6 @@ class CommentRepository extends ServiceEntityRepository
 
     public function findLatestComments(Video $video): array
     {
-        $now = new DateTimeImmutable();
-
         return $this->createQueryBuilder('c')
             ->where('c.video = :videoId')
             ->setParameter('videoId', $video)
