@@ -1,1 +1,11 @@
-{{ form(commentForm) }}
+<form name="comment">
+	<div id="comment">
+		<div class="mb-3">
+			<label for="comment_content" class="form-label required">Content</label>
+			<textarea id="comment_content" name="comment[content]" required="required" class="form-control"></textarea>
+		</div>
+		<div class="mb-3">
+			<button type="submit" id="comment_save" name="comment[save]" class="btn-primary btn">Commenter</button>
+		</div>
+	</div>
+</form>

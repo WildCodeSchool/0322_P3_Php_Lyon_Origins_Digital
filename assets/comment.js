@@ -38,7 +38,8 @@ const saveCommentBtn = document.getElementById('comment_save');
 saveCommentBtn.addEventListener('click', function (event) {
     event.preventDefault();
     const commentArea = document.getElementById('comment_content');
-    const commentValue = commentArea.value;
+    let commentValue = commentArea.value;
+    commentValue = commentValue.replace(/\n/g, '<br>');
     const url = '/comment/' + videoId;
     if (videoId && videoId.length && commentValue && commentValue.length) {
         fetch(url, {
