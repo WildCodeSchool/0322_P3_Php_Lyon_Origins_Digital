@@ -19,9 +19,7 @@ class AjaxController extends AbstractController
         $searchResults = [];
 
         foreach ($searchVideos as $searchVideo) {
-
             foreach ($searchVideo->getTag() as $videoTag) {
-
                 $searchResults[] = [
                     'id' => $searchVideo->getId(),
                     'title' => $searchVideo->getTitle(),
