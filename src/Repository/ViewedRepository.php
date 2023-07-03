@@ -50,6 +50,18 @@ class ViewedRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    //get the number of view for all videos ordered desc (no parameter)
+    public function findAllViews(): array
+    {
+        return $this->createQueryBuilder('viewed')
+            ->select('video.id, COUNT(viewed.id) as viewCount')
+            ->leftJoin('viewed.video', 'video')
+            ->groupBy('video.id')
+            ->orderBy('viewCount', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
     //get the x most viewed videos (x set as parameter)
     public function findMostViewed(int $limit): array
     {
@@ -66,14 +78,25 @@ class ViewedRepository extends ServiceEntityRepository
     //get unique videos viewed by a user, sorted antichronologically (user_id as parameter)
     public function findVideosViewedByUser(int $userId): array
     {
-        $queryBuilder = $this->createQueryBuilder('viewed')
+        return $this->createQueryBuilder('viewed')
             ->select('video.id')
             ->join('viewed.video', 'video')
             ->andWhere('viewed.user = :userId')
             ->setParameter('userId', $userId)
             ->groupBy('video.id')
-            ->orderBy('MAX(viewed.viewDate)', 'DESC');
+            ->orderBy('MAX(viewed.viewDate)', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 
-        return $queryBuilder->getQuery()->getResult();
+    //clean viewed entity form user_id is null AND video_id is null
+    public function deleteNullUserAndNullVideo(): bool
+    {
+        return $this->createQueryBuilder('viewed')
+            ->delete()
+            ->where('viewed.user IS NULL')
+            ->andWhere('viewed.video IS NULL')
+            ->getQuery()
+            ->getResult();
     }
 }

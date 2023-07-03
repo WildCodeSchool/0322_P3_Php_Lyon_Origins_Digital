@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use DateTimeImmutable;
+use DateTimeZone;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class CommentController extends AbstractController
@@ -29,9 +30,10 @@ class CommentController extends AbstractController
         ;
         $commentRepository->save($newComment, true);
 
+        $timezone = new DateTimeZone('Europe/Paris');
         $datas = [
             'user' => $this->getUser()->getUsername(),
-            'date' => $newComment->getPostDate()->format('j M. Y, H:i'),
+            'date' => $newComment->getPostDate()->setTimezone($timezone)->format('j M. Y, H:i'),
             'comment' => $commentToSave
         ];
 
