@@ -52,7 +52,7 @@ class VideoRepository extends ServiceEntityRepository
             ->setParameter('today', $now, Types::DATETIME_IMMUTABLE)
             ->getQuery()
             ->getResult();
-        }
+    }
 
     public function findVideosBySearch(string $keyword): array
     {
@@ -63,10 +63,9 @@ class VideoRepository extends ServiceEntityRepository
             ->where('v.title LIKE :keyword')
             ->andWhere('v.postDate < :today')
             ->setParameter('today', $now, Types::DATETIME_IMMUTABLE)
-            ->setParameter('keyword', '%'.$keyword.'%')
+            ->setParameter('keyword', '%' . $keyword . '%')
             ->getQuery()
             ->getResult()
         ;
     }
-
 }
