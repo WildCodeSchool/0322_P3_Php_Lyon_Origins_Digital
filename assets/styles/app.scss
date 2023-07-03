@@ -604,18 +604,22 @@ $mbActiveItemBg: linear-gradient(180deg, $dark 0%, $primary 50%, $secondary 100%
 
         &:hover {
 
-            background-color: $dark!important;
-            box-shadow: inset 0 0 0 2px $secondary;
+            background-color: $secondary!important;
+            box-shadow: inset 0 0 0 2px $primary;
 
             .resultVideos-title {
-                color: $secondary!important;
+                color: $primary!important;
             }
             .resultVideos-tag {
-                background-color: $secondary!important;
+                background-color: $dark!important;
                 h2 {
-                    color: $primary!important;
+                    color: $secondary!important;
                 }
             }
         }
     }
+}
+
+.modal-body::-webkit-scrollbar {
+    display: none;
 }
