@@ -5,30 +5,34 @@ namespace App\Controller;
 use App\Entity\Comment;
 use App\Entity\Video;
 use App\Repository\CommentRepository;
-use App\Service\CommentManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use DateTimeImmutable;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class CommentController extends AbstractController
 {
     #[Route('/comment/{videoId<^[0-9]+$>}', methods: ['POST'], name: 'comment_video')]
     #[ParamConverter('video', class: 'App\Entity\Video', options: ['id' => 'videoId'])]
-    public function saveComment(Video $video, Request $request, CommentRepository $commentRepository): Response
+    public function saveComment(Video $video, Request $request, CommentRepository $commentRepository): JsonResponse
     {
-        $comment = $request->getContent();
+        $commentToSave = $request->getContent();
 
-        $comment = new Comment();
-        $comment
+        $newComment = new Comment();
+        $newComment
             ->setPostDate(new DateTimeImmutable())
             ->setUser($this->getUser())
+            ->setContent($commentToSave)
             ->setVideo($video)
         ;
-        $commentRepository->save($comment, true);
+        $commentRepository->save($newComment, true);
 
-        return new Response("200", Response::HTTP_OK);
+        $datas = ['user' => $this->getUser()->getUsername(),
+        'date' => $newComment->getPostDate()->format('j M. Y, H:i'),
+        'comment' => $commentToSave];
+
+        return $this->json($datas);
     }
 }
