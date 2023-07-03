@@ -14,7 +14,7 @@
 
 	<main class="col" aria-labelledby="nav-btn-{{ navItems.home['name'] }}" id="{{ navItems.home['name'] }}">
 
-		<div class="home-container">
+		{# <div class="home-container">
 
 			<div class="home-header-desktop d-sm-inline d-none ">
 				<div class="home-title ms-4 fs-4 text-secondary title-font d-flex d-lg-none justify-content-start align-items-center">
@@ -74,7 +74,12 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> #}
+
+		{% if headerVideo.isHeader %}
+			<img src="{{ asset('build/images/' ~ headerVideo.posterUrl) }}"/>
+		{% endif %}
+		
 
 		<section class="container-lg d-sm-flex d-none mx-auto">
 			{{ include('shared/tag/tag-list.html.twig', {

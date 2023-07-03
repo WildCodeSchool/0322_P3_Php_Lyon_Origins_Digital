@@ -55,6 +55,7 @@ class Video
 
     #[ORM\OneToMany(mappedBy: 'video', targetEntity: Viewed::class)]
     private Collection $vieweds;
+
     #[ORM\Column]
     private ?bool $isHeader = null;
 

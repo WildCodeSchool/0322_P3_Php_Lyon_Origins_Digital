@@ -8,8 +8,10 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 
 class VideoCrudController extends AbstractCrudController
 {
@@ -24,6 +26,7 @@ class VideoCrudController extends AbstractCrudController
         yield DateTimeField::new('postDate');
         yield TextField::new('videoUrl');
         yield TextField::new('posterUrl');
+        yield BooleanField::new('isHeader');
         yield AssociationField::new('tag');
     }
 
