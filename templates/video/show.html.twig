@@ -60,16 +60,6 @@
 												{% endif %}
 											</div>
 										</a>
-										<a class="like" href="{{ path('like_add', { idVideo: videoPlayed.id }) }}">
-											{% set isLiked = app.user.likedVideos|filter(video => video.id == videoPlayed.id )|first %}
-											<div class="bt-social-btn">
-												{% if isLiked %}
-													<i class='bt-like bi bi-hand-thumbs-up-fill text-secondary li{{ videoPlayed.id }}' title="ne pas liker"></i>
-												{% else %}
-													<i class='bt-like bi bi-hand-thumbs-up text-light li{{ videoPlayed.id }}' title="liker"></i>
-												{% endif %}
-											</div>
-										</a>
 									</div>
 								{% endif %}
 
