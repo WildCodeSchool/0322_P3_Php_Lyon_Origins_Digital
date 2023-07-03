@@ -74,7 +74,7 @@
 								<p>{{ videoPlayed.description }}</p>
 							</div>
 							{% if app.user %}
-								<button class="btn btn-secondary col-auto" id="add-comment">
+								<button class="btn btn-secondary col-auto" id="add-comment" data-info="{{ videoPlayed.id }}">
 									<i class='bi bi-chat-left-text-fill text-primary'></i>
 								</button>
 							{% else %}
@@ -88,7 +88,7 @@
 
 					{% if app.user %}
 
-						<div class="sh-add-comment d-none" id="comment-field">
+						<div class="sh-add-comment d-none" id="comment-field" >
 							<div class="mt-3">
 								{{ include('shared/comment/add.html.twig') }}
 							</div>

@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Video;
 use App\Entity\Viewed;
+use App\Form\CommentType;
 use App\Repository\CommentRepository;
 use App\Repository\TagRepository;
 use App\Repository\VideoRepository;
@@ -24,7 +26,7 @@ class VideoController extends AbstractController
         Video $video,
         VideoRepository $videoRepository,
         TagRepository $tagRepository,
-        CommentManager $commentManager,
+        Comment $comment,
         Request $request,
         CommentRepository $commentRepository
     ): Response {
@@ -32,7 +34,11 @@ class VideoController extends AbstractController
         $mobaVideos = $videoRepository->findLatestVideos();
         $tags = $tagRepository->findAll();
 
-        $commentForm = $commentManager->postComment($request, $commentRepository, $video);
+        $comment = new Comment();
+
+        $commentForm = $this->createForm(CommentType::class, $comment);
+        $commentForm->handleRequest($request);
+
         $comments = $commentRepository->findLatestComments($video);
 
         return $this->render('video/show.html.twig', [
@@ -57,20 +63,4 @@ class VideoController extends AbstractController
 
         return new Response(status: 200);
     }
-
-    // #[Route('/show/{id<^[0-9]+$>}/add-comment', methods: ['GET', 'POST'], name: 'add_comment')]
-    // public function insertComment(
-    //     Video $video,
-    //     CommentManager $commentManager,
-    //     Request $request,
-    //     CommentRepository $commentRepository
-    // ): JsonResponse {
-
-    //     $commentForm = $commentManager->postComment($request, $commentRepository, $video);
-    //     $comments = $commentRepository->findLatestComments($video);
-
-    //     return $this->json([
-    //         'commentForm' => $commentForm
-    //     ]);
-    // }
 }
