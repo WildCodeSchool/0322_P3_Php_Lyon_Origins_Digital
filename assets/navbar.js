@@ -1,5 +1,4 @@
 const activePage = document.querySelector('main');
-const activeBody = document.getElementById('all-bodies');
 
 (function setUpActivePage(){
     activePage.classList.add('ps-md-4')
@@ -41,7 +40,6 @@ const activeBody = document.getElementById('all-bodies');
     for (const navGroup of groups) {
         navGroup.classList.add('bg-secondary');
         const navItems = navGroup.getElementsByClassName('nav-item');
-        const modalOpener = navGroup.querySelector('[data-bs-toggle="modal"]');
 
         for (const navItem of navItems) {
 
