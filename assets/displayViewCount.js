@@ -40,9 +40,4 @@ if (videosId && videosId.length) {
                 });
             });
         })
-    /*         .catch(function (error) {
-            // Handle any errors that occurred during the fetch operation
-            alert(error);
-        }); */
-
 }

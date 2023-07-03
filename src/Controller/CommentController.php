@@ -29,9 +29,11 @@ class CommentController extends AbstractController
         ;
         $commentRepository->save($newComment, true);
 
-        $datas = ['user' => $this->getUser()->getUsername(),
-        'date' => $newComment->getPostDate()->format('j M. Y, H:i'),
-        'comment' => $commentToSave];
+        $datas = [
+            'user' => $this->getUser()->getUsername(),
+            'date' => $newComment->getPostDate()->format('j M. Y, H:i'),
+            'comment' => $commentToSave
+        ];
 
         return $this->json($datas);
     }
