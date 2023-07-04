@@ -1,42 +1,31 @@
 const inputSearch = document.getElementById('searchVideos');
 const searchModal = document.getElementById('videoSearchModal');
+// initié var de l'ul des resultats
+const resultVideos = document.getElementById('resultVideos');
 
 inputSearch.addEventListener('input', function(e){
     let search = e.target.value;
+    // vider les resutat
+    resultVideos.innerHTML = '';
 
-    fetch('/search-videos/'+ search)
-        .then(response => response.json())
-        .then(videos => {
-            const resultVideos = document.getElementById('resultVideos');
-            const resultInfo = document.getElementById('resultInfo');
-            const checkUser = document.getElementById('modalUser');
+    console.log(search)
 
-            resultVideos.innerHTML = '';
+    // if(search == '') checker si il y a plus de 3 char
+    if (search.length >= 3) {
 
-            resultInfo.innerHTML = videos.length + " resultats correspondants à votre recherche."
+fetch('/search-videos/'+ search)
+.then(response => response.text())
+.then(videos => {
 
-            for (const video of videos) {
+                let parser = new DOMParser();
+                let html = parser.parseFromString(videos, 'text/html');
+                let searchResult = html.body;
 
-                const poster = require("/assets/images/" + video.posterUrl);
+                resultVideos.innerHTML = searchResult.innerHTML;
+            })
+        }
 
-                resultVideos.innerHTML +=
-                "<li class='rounded-4 my-2 py-3 bg-primary border border-3 border-primary list-group-item'>"
-                    + "<a class='link-underline link-underline-opacity-0' href='/video/show/"+ video.id + "'>"
-                        + "<div class='row'>"
-                            + `<img src="${poster}" class="col-6 img-fluid rounded-4"/>`
-                            + "<div class='col-6 d-flex flex-column align-items-start justify-content-center'>"
-                                + "<h5 class='resultVideos-title title-font text-secondary text-decoration-none'>" + video.title + "</h5>"
-                                + "<div class='resultVideos-tag tag-item bg-secondary rounded-3 p-2 d-flex justify-content-center align-items-center m-1'>"
-                                    + "<h2 class='m-0 tag-list text-primary'>#" + video.tag + "</h2>"
-                                + "</div>"
-                            + "</div>"
-                        + "</div>"
-                    + "</a>"
-                + "</li>"
-            }
-        })
-})
-
-searchModal.addEventListener('hidden.bs.modal', function(){
-    inputSearch.value = '';
+    searchModal.addEventListener('hidden.bs.modal', function(){
+        inputSearch.value = '';
+    })
 })
