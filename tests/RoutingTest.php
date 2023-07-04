@@ -27,7 +27,7 @@ class RoutingTest extends WebTestCase
         yield ['/search/cs'];
         yield ['/search/overwatch'];
         yield ['/upload'];
-        yield ['/viewed/1'];
+        yield ['/viewed'];
         yield ['/fav/1'];
         yield ['/later/1'];
         yield ['/login'];
@@ -36,5 +36,7 @@ class RoutingTest extends WebTestCase
         yield ['/register'];
         yield ['/verify/email'];
         yield ['/user/dashboard'];
+        yield ['/delete/video/1'];
+        yield ['/delete/user/1'];
     }
 }
