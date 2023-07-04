@@ -1,4 +1,6 @@
-<div class="row">
+{% set dot = "<i class='bi bi-dot m-0'></i>" %}
+
+<div class="row mb-4" id="commentTemplate">
 
 	<div class="fs-3 col-auto text-info d-flex align-items-center border border-end-0 border-1 border-info rounded-start-3 position-relative">
 		<span class="position-absolute top-0 start-100 translate-middle">
@@ -26,7 +28,7 @@
 		<div class="text-font row">
 			<div class="col d-flex align-items-center">
 				<span class="mb-3">
-					{{ comment.content|slice(1, comment.content|length - 2)|raw }}
+					{{ comment.content|raw }}
 				</span>
 			</div>
 		</div>

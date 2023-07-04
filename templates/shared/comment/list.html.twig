@@ -1,34 +1,32 @@
-{% for comment in comments %}{% endfor %}
-
 <div id="{{ id }}-bt-gallery" class="d-flex flex-column justify-content-start align-items-start">
 
 	<div id="commentsPart">
-	{% for comment in contents |slice(0, startCount) %}
-		<div class="{{ id }}-0 bt-container mb-4">
-			{{ include('shared/comment/comment.html.twig') }}
-		</div>
-	{% else %}
+		{% for comment in contents |slice(0, startCount) %}
+			<div class="{{ id }}-0 bt-container">
+				{{ include('shared/comment/comment.html.twig') }}
+			</div>
+		{% else %}
 
-		{% if app.user %}
+			{% if app.user %}
 
-			<a class="text-font text-info px-5 link-underline-secondary" id="no-comment-found">
-				Soyez le premier à poster un commentaire !
-			</a>
+				<a class="text-font text-info px-5 link-underline-secondary" id="no-comment-found">
+					Soyez le premier à poster un commentaire !
+				</a>
 
-		{% endif %}
+			{% endif %}
 
-	{% endfor %}
+		{% endfor %}
 	</div>
 	{% for i in 1.. (contents|length / moreCount)|round(0, 'ceil') %}
 
 		{% for comment in contents |slice(i * startCount, moreCount) %}
-			<div class="d-none bt-hidden {{ id }}-{{i}} mb-4"> 
+			<div class="d-none bt-hidden {{ id }}-{{i}}">
 				{{ include('shared/comment/comment.html.twig') }}
 			</div>
 		{% endfor %}
 
 	{% endfor %}
-	
+
 	<div class="load-more-comments text-secondary bg-primary rounded-3 mx-1 px-2 py-1 d-flex justify-content-center align-items-center">
 
 		<div>

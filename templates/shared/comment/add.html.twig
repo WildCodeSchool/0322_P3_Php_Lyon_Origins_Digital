@@ -1,10 +1,10 @@
 <form name="comment">
-	<div id="comment">
-		<div class="mb-3">
-			<label for="comment_content" class="form-label required">Content</label>
+	<div id="comment" class="row">
+		<div class="mb-3 col-10">
+			<label for="comment_content" class="form-label text-secondary text-font required">Ajouter ton commentaire</label>
 			<textarea id="comment_content" name="comment[content]" required="required" class="form-control"></textarea>
 		</div>
-		<div class="mb-3">
+		<div class="mb-3 col-2 d-flex justify-content-end align-items-end">
 			<button type="submit" id="comment_save" name="comment[save]" class="btn-primary btn">Commenter</button>
 		</div>
 	</div>
