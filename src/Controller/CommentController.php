@@ -10,7 +10,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use DateTimeImmutable;
-use DateTimeZone;
 use Symfony\Component\HttpFoundation\Response;
 
 class CommentController extends AbstractController
@@ -21,26 +20,17 @@ class CommentController extends AbstractController
     {
         $commentToSave = $request->getContent();
 
-        dd($commentToSave);
-
-        $newComment = new Comment();
-        $newComment
+        $comment = new Comment();
+        $comment
             ->setPostDate(new DateTimeImmutable())
             ->setUser($this->getUser())
             ->setContent($commentToSave)
             ->setVideo($video)
         ;
-        $commentRepository->save($newComment, true);
-
-        $timezone = new DateTimeZone('Europe/Paris');
-        $datas = [
-            'user' => $this->getUser(),
-            'postDate' => $newComment->getPostDate()->setTimezone($timezone)->format('j M. Y, H:i'),
-            'content' => $commentToSave
-        ];
+        $commentRepository->save($comment, true);
 
         return $this->render('/shared/comment/comment.html.twig', [
-            'comment' => $datas,
+            'comment' => $comment,
         ]);
     }
 }

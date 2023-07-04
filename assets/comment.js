@@ -25,8 +25,10 @@ saveCommentBtn.addEventListener('click', function (event) {
 
     const url = '/comment/' + videoId;
     if (videoId && videoId.length && commentValue && commentValue.length) {
-        // fetch(url)
-        fetch(url, {method: "POST"})
+        fetch(url, {
+            method: "POST",
+            body: JSON.stringify(commentValue)
+        })
             .then(function (response) {
                 if (response.ok) {
                     // Request was successful
@@ -37,15 +39,12 @@ saveCommentBtn.addEventListener('click', function (event) {
                 }
             })
             .then(function (datas) {
-
+                commentArea.value = '';
                 let parser = new DOMParser();
                 let html = parser.parseFromString(datas, 'text/html');
                 const fetchedComments = html.getElementById('commentTemplate');
-
-                commentArea.value = '';
                 const divToAppend = document.getElementById('commentsPart');
-
-                divToAppend.parentNode.insertBefore(fetchedComments, divToAppend)
+                divToAppend.parentNode.insertBefore(fetchedComments, divToAppend);
             })
     }
 });

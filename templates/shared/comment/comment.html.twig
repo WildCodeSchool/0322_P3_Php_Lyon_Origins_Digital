@@ -28,7 +28,7 @@
 		<div class="text-font row">
 			<div class="col d-flex align-items-center">
 				<span class="mb-3">
-					{{ comment.content|raw }}
+					{{ comment.content|slice(1, comment.content|length - 2)|raw }}
 				</span>
 			</div>
 		</div>

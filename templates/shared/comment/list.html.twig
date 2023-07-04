@@ -1,6 +1,6 @@
 <div id="{{ id }}-bt-gallery" class="d-flex flex-column justify-content-start align-items-start">
 
-	<div id="commentsPart">
+	<div id="commentsPart"></div>
 		{% for comment in contents |slice(0, startCount) %}
 			<div class="{{ id }}-0 bt-container">
 				{{ include('shared/comment/comment.html.twig') }}
@@ -16,7 +16,7 @@
 			{% endif %}
 
 		{% endfor %}
-	</div>
+	
 	{% for i in 1.. (contents|length / moreCount)|round(0, 'ceil') %}
 
 		{% for comment in contents |slice(i * startCount, moreCount) %}
