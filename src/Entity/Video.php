@@ -6,10 +6,14 @@ use App\Repository\VideoRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Event\PostUpdateEventArgs;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: VideoRepository::class)]
+#[ORM\HasLifecycleCallbacks]
+
 class Video
 {
     #[ORM\Id]
@@ -57,7 +61,7 @@ class Video
     private Collection $vieweds;
 
     #[ORM\Column]
-    private ?bool $isHeader = null;
+    private ?bool $isHeader = false;
 
     public function __construct()
     {
@@ -231,6 +235,45 @@ class Video
 
         return $this;
     }
+
+
+    private array $videosToUpdate = [];
+
+    #[ORM\PreUpdate]
+    public function preUpdate(PreUpdateEventArgs $eventArgs): void
+    {
+        $entity = $eventArgs->getObject();
+
+        if ($entity !== null && $entity->isIsHeader() === true) {
+            $entityManager = $eventArgs->getObjectManager();
+            $videoRepository = $entityManager->getRepository(Video::class);
+
+            $videos = $videoRepository->findBy(['isHeader' => true]);
+
+            foreach ($videos as $video) {
+                if ($video !== $entity) {
+                    $video->setIsHeader(false);
+                    $this->videosToUpdate[] = $video;
+                }
+            }
+        }
+    }
+
+    #[ORM\PostUpdate]
+    public function postUpdate(PostUpdateEventArgs $eventArgs): void
+    {
+        $entityManager = $eventArgs->getObjectManager();
+
+        foreach ($this->videosToUpdate as $video) {
+            $entityManager->persist($video);
+        }
+
+        $entityManager->flush();
+
+        $this->videosToUpdate = [];
+    }
+
+
 
     public function isIsHeader(): ?bool
     {
