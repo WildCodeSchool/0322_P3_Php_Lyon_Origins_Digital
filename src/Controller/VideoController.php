@@ -27,7 +27,6 @@ class VideoController extends AbstractController
         $mobaVideos = $videoRepository->findLatestVideos();
         $comments = $commentRepository->findLatestComments($video);
         $tags = $tagRepository->findAll();
-
         return $this->render('video/show.html.twig', [
             'videoPlayed' => $video,
             'latestVideos' => $latestVideos,

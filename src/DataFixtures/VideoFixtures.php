@@ -272,7 +272,8 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
                 ->setDescription($clip['description'])
                 ->setPostDate($postDate)
                 ->setVideoUrl($clip['video_url'])
-                ->setPosterUrl($clip['poster_url']);
+                ->setPosterUrl($clip['poster_url'])
+                ->setIsPremium((bool)rand(0, 1));
 
                 $manager->persist($video);
                 $this->addReference('video_' . $videoCount, $video);
