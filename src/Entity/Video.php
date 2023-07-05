@@ -237,7 +237,7 @@ class Video
     }
 
 
-    private array $videosToUpdate = [];
+    private array $headerUpdate = [];
 
     #[ORM\PreUpdate]
     public function preUpdate(PreUpdateEventArgs $eventArgs): void
@@ -253,7 +253,7 @@ class Video
             foreach ($videos as $video) {
                 if ($video !== $entity) {
                     $video->setIsHeader(false);
-                    $this->videosToUpdate[] = $video;
+                    $this->headerUpdate[] = $video;
                 }
             }
         }
@@ -264,16 +264,14 @@ class Video
     {
         $entityManager = $eventArgs->getObjectManager();
 
-        foreach ($this->videosToUpdate as $video) {
+        foreach ($this->headerUpdate as $video) {
             $entityManager->persist($video);
         }
 
         $entityManager->flush();
 
-        $this->videosToUpdate = [];
+        $this->headerUpdate = [];
     }
-
-
 
     public function isIsHeader(): ?bool
     {

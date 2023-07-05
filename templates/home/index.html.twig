@@ -14,74 +14,50 @@
 
 	<main class="col" aria-labelledby="nav-btn-{{ navItems.home['name'] }}" id="{{ navItems.home['name'] }}">
 
-		{# <div class="home-container">
+	{% if headerVideo.isHeader %}
 
-			<div class="home-header-desktop d-sm-inline d-none ">
-				<div class="home-title ms-4 fs-4 text-secondary title-font d-flex d-lg-none justify-content-start align-items-center">
-					À LA UNE
-				</div>
-				<div class="home-image-desktop mt-lg-4 rounded-4 mx-auto text-center position-relative">
-					<div class="container">
-						<div class="row">
-
-							<div class="header-logo rounded-3 rounded-top-0 rounded-start-0 bg-dark title-font text-secondary col-3 d-lg-block d-none position-absolute top-0 start-0">
-								À LA UNE
-							</div>
-
-							<div class="col d-lg-block d-none"></div>
-
-							<div class="button-view-desktop mb-4 z-1 col-6 col-lg-6 d-flex justify-content-end align-items-end">
-								<a class="link-desktop bg-primary fs-3 p-1 text-decoration-none d-none d-sm-flex title-font text-secondary rounded-3 justify-content-center align-items-center" href="{{ path('video_show', { id: headerVideo[0].id }) }}">
-									<span class="">REGARDER</span>
-									<span class="fs-1">{{ playFill|raw }}</span>
-								</a>
-							</div>
-
-							<div class="header-infos mb-4 fs-4 z-1 d-none d-sm-flex title-font text-dark col-6 col-lg-3 justify-content-start align-items-end">
-								<div>{{headerVideo[0].title|u.truncate(30, '...')}}</div>
-							</div>
-						</div>
+		<div class="home-header-desktop d-md-flex d-none">
+  			<div class="container">
+    			<div class="row">
+      				<div class="position-relative mx-auto d-flex justify-content-center">
+      					<img src="{{ asset('build/images/' ~ headerVideo.posterUrl) }}" class="header-desktop-img col-10 rounded-4 mx-auto mt-4" />
+						<p class="header-logo-desktop rounded-3 rounded-top-0 rounded-start-0 bg-dark title-font text-secondary col-3 d-md-flex justify-content-center d-none position-absolute">
+						À LA UNE
+						</p>
+						<a class="link-desktop bg-primary fs-3 text-decoration-none d-none d-md-flex title-font text-secondary rounded-3 justify-content-center align-items-center position-absolute" href="{{ path('video_show', { id: headerVideo.id }) }}">
+							<span class="">REGARDER</span>
+							<span class="fs-1 mt-1">{{ playFill|raw }}</span>
+						</a>
 					</div>
 				</div>
 			</div>
+		</div>
 
-
-			<div class="home-header-mobile d-sm-inline d-sm-none">
-				<div class="home-title ms-4 fs-4 text-secondary title-font d-flex d-lg-none justify-content-start align-items-center">
-					À LA UNE
-				</div>
-				<div class="home-image-mobile mt-lg-4 mx-auto rounded-4 text-center position-relative">
-					<div class="container">
-						<div class="row">
-
-							<div class="header-logo rounded-3 rounded-top-0 rounded-start-0 bg-dark title-font text-secondary col-3 d-lg-block d-none position-absolute top-0 start-0">
-								À LA UNE
-							</div>
-
-							<div class="col d-lg-block d-none"></div>
-
-							<div class="button-view-mobile mb-4 z-1 col-6 col-lg-6 d-flex justify-content-end align-items-end">
-								<a class="link-mobile bg-primary fs-6 p-1 text-decoration-none title-font text-secondary rounded-3 d-flex d-sm-none justify-content-center align-items-center" href="{{ path('video_show', { id: headerVideo[0].id }) }}">
-									<span class="">REGARDER</span>
-									<span class="fs-2 ms-2 mt-1">{{ playFill|raw }}</span>
-								</a>
-							</div>
-
-							<div class="header-infos fs-5 z-1 d-flex d-sm-none title-font text-dark col-6 col-lg-3 justify-content-start align-items-end">
-								<div>{{headerVideo[0].title|u.truncate(30, '...')}}</div>
-							</div>
-						</div>
+		<div class="home-header-mobile d-inline d-md-none">
+			<div class="container">
+			<div class="row">
+			<div class="home-title col-10 fs-4 text-secondary title-font d-flex justify-content-start ms-4">À LA UNE</div>
+			</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="position-relative">
+						<img src="{{ asset('build/images/' ~ headerVideo.posterUrl) }}" class="header-mobile-img col-12 rounded-4 ms-2" />
+						<p class="header-logo-mobile rounded-3 rounded-top-0 rounded-start-0 bg-dark title-font text-secondary col-3 d-md-flex justify-content-center d-none position-absolute">
+						À LA UNE
+						</p>
+						<a class="link-mobile bg-primary fs-3 text-decoration-none d-flex d-md-none title-font text-secondary rounded-3 justify-content-center align-items-center position-absolute" href="{{ path('video_show', { id: headerVideo.id }) }}">
+							<span class="">REGARDER</span>
+							<span class="fs-1 mt-1">{{ playFill|raw }}</span>
+						</a>
 					</div>
 				</div>
 			</div>
-		</div> #}
+		</div>
 
-		{% if headerVideo.isHeader %}
-			<img src="{{ asset('build/images/' ~ headerVideo.posterUrl) }}"/>
-		{% endif %}
-		
+	{% endif %}		
 
-		<section class="container-lg d-sm-flex d-none mx-auto">
+		<section class="container-lg d-md-flex d-none mx-auto">
 			{{ include('shared/tag/tag-list.html.twig', {
             title: 'Les jeux du moment',
             startCount: 8,
@@ -92,7 +68,7 @@
         }) }}
 		</section>
 
-		<section class="container-lg d-sm-flex d-sm-none mx-auto">
+		<section class="container-lg d-md-flex d-md-none mx-auto">
 			{{ include('shared/tag/tag-list.html.twig', {
             title: 'Les jeux du moment',
             startCount: 5,
