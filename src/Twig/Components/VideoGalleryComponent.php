@@ -19,7 +19,7 @@ final class VideoGalleryComponent
     private VideoRepository $videoRepository;
     private ViewedRepository $viewedRepository;
 
-    public string $id;
+    public string $galleryId;
     public string $subtitle;
     private ?Collection $tags = null;
     private ?string $mainTag = null;
@@ -53,7 +53,7 @@ final class VideoGalleryComponent
                 break;
         }
 
-        $this->id = $source;
+        $this->galleryId = $source;
     }
 
     private function mountLatestVideos(): void
@@ -117,8 +117,8 @@ final class VideoGalleryComponent
         return $this->subtitle;
     }
 
-    public function getId(): string
+    public function getGalleryId(): string
     {
-        return $this->id;
+        return $this->galleryId;
     }
 }

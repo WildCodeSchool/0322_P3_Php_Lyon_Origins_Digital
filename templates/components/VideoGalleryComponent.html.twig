@@ -40,10 +40,10 @@
 
 		{% endif %}
 
-		<div class="d-flex justify-content-md-start justify-content-center align-items-center flex-wrap" id="{{id}}-bt-gallery">
+		<div class="d-flex justify-content-md-start justify-content-center align-items-center flex-wrap" id="{{galleryId}}-bt-gallery">
 
 			{% for video in this.videos |slice(0, count - 1) %}
-				<div class="{{id}}-0 bt-container">
+				<div class="{{galleryId}}-0 bt-container">
 					{{ include('shared/thumbnail/big-thumbnail.html.twig', {item: video}) }}
 				</div>
 			{% endfor %}
@@ -51,14 +51,14 @@
 			{% for i in 1.. (this.videos|length / count)|round(0, 'ceil') %}
 
 				{% for video in this.videos |slice(i * count, count) %}
-					<div class="d-none bt-hidden {{id}}-{{i}}">
+					<div class="d-none bt-hidden {{galleryId}}-{{i}}">
 						{{ include('shared/thumbnail/big-thumbnail.html.twig', {item: video}) }}
 					</div>
 				{% endfor %}
 
 			{% endfor %}
 
-			{{ include('shared/thumbnail/load-more.html.twig', {gallery: id}) }}
+			{{ include('shared/thumbnail/load-more.html.twig', {gallery: galleryId}) }}
 
 		</div>
 
