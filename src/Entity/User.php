@@ -57,6 +57,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comment::class, orphanRemoval: true)]
     private Collection $comments;
 
+    #[ORM\Column]
+    private ?bool $isAdmin = null;
+
     public function __construct()
     {
         $this->viewLaterVideos = new ArrayCollection();
@@ -100,6 +103,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
+        // add ROLE_ADMIN for users granted in EasyAdmin board
+        if ($this->isAdmin) {
+            $roles[] = 'ROLE_ADMIN';
+        }
 
         return array_unique($roles);
     }
@@ -257,6 +264,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $comment->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isIsAdmin(): ?bool
+    {
+        return $this->isAdmin;
+    }
+
+    public function setIsAdmin(bool $isAdmin): static
+    {
+        $this->isAdmin = $isAdmin;
 
         return $this;
     }
