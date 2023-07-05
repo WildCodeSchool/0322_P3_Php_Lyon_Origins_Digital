@@ -13,7 +13,6 @@ final class VideoGalleryComponent
     public ?string $title = null;
     public int $count;
     public ?string $source = null;
-    public ?int $userId = null;
 
     public ?int $videoPlayedId = null;
 
@@ -37,7 +36,6 @@ final class VideoGalleryComponent
     public function mount(
         ?int $videoPlayedId = null,
         string $source = null,
-        ?int $userId = null,
     ): void {
         $this->source = $source;
 
@@ -48,10 +46,6 @@ final class VideoGalleryComponent
 
             case 'most-viewed':
                 $this->mountMostViewedVideos();
-                break;
-
-            case 'most-viewed-by-user':
-                $this->mountMostViewedVideosByUser($userId);
                 break;
 
             case 'video-id':
@@ -76,17 +70,6 @@ final class VideoGalleryComponent
         $videoCollection = [];
         foreach ($videosFromVieweds as $videoFromViewed) {
             $videoCollection[] = $this->videoRepository->findOneBy(['id' => $videoFromViewed['id']]);
-        }
-        $this->updateVideoProperties($videoCollection);
-    }
-
-    private function mountMostViewedVideosByUser(?int $userId): void
-    {
-        $this->title = 'Ce que vous avez adoré !';
-        $videosFromVieweds = $this->viewedRepository->findVideosViewedByUser($userId);
-        $videoCollection = [];
-        foreach ($videosFromVieweds as $videoFromViewed) {
-            $videoCollection[] = $this->videoRepository->findBy(['id' => $videoFromViewed['id']]);
         }
         $this->updateVideoProperties($videoCollection);
     }
