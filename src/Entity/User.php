@@ -45,7 +45,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 100)]
     #[Assert\Length(
-        min: 5,
+        min: 3,
         max: 100,
         minMessage: 'Vous devez saisir au moins {{ limit }} caractères',
         maxMessage: 'Vous devez saisir au plus {{ limit }} caractères',
