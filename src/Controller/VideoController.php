@@ -4,8 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Video;
 use App\Entity\Viewed;
+use App\Repository\CommentRepository;
 use App\Repository\TagRepository;
-use App\Repository\VideoRepository;
 use App\Repository\ViewedRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,14 +18,16 @@ class VideoController extends AbstractController
     #[Route('/show/{id<^[0-9]+$>}', methods: ['GET'], name: 'show')]
     public function show(
         Video $video,
-        TagRepository $tagRepository
+        TagRepository $tagRepository,
+        CommentRepository $commentRepository
     ): Response {
-
+        $comments = $commentRepository->findLatestComments($video);
         $tags = $tagRepository->findAll();
 
         return $this->render('video/show.html.twig', [
             'videoPlayed' => $video,
             'tags' => $tags,
+            'comments' => $comments,
         ]);
     }
 

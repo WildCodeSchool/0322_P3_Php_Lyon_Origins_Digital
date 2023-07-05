@@ -9,6 +9,7 @@
 	{{ encore_entry_script_tags('addLater') }}
 	{{ encore_entry_script_tags('playAndCount') }}
 	{{ encore_entry_script_tags('displayViewCount') }}
+	{{ encore_entry_script_tags('comment') }}
 {% endblock %}
 
 {% set mobaTags = ['dota', 'smite', 'lol'] %}
@@ -19,7 +20,7 @@
 
 		<div class="container-lg mx-auto text-light sh-uptop row m-0">
 			{% if app.user %}
-				<div class="col-lg-9 col-12">
+				<div class="col-xl-9 col-12">
 				{% else %}
 					<div class="col-12">
 					{% endif %}
@@ -60,16 +61,6 @@
 												{% endif %}
 											</div>
 										</a>
-										<a class="like" href="{{ path('like_add', { idVideo: videoPlayed.id }) }}">
-											{% set isLiked = app.user.likedVideos|filter(video => video.id == videoPlayed.id )|first %}
-											<div class="bt-social-btn">
-												{% if isLiked %}
-													<i class='bt-like bi bi-hand-thumbs-up-fill text-secondary li{{ videoPlayed.id }}' title="ne pas liker"></i>
-												{% else %}
-													<i class='bt-like bi bi-hand-thumbs-up text-light li{{ videoPlayed.id }}' title="liker"></i>
-												{% endif %}
-											</div>
-										</a>
 									</div>
 								{% endif %}
 
@@ -82,46 +73,69 @@
 							<div class="sh-description col-xl col-12 text-info p-0 pb-4" id="sh-description">
 								<p>{{ videoPlayed.description }}</p>
 							</div>
+							{% if app.user %}
+								<button class="btn btn-secondary col-auto" id="add-comment" data-info="{{ videoPlayed.id }}">
+									<i class='bi bi-chat-left-text-fill text-primary'></i>
+								</button>
+							{% else %}
+								<a href="/login" class="btn btn-secondary col-auto" id="add-comment">
+									<i class='bi bi-chat-left-text-fill text-primary'></i>
+								</a>
+							{% endif %}
 						</div>
 
+					</div>
+
+					{% if app.user %}
+
+						<div class="sh-add-comment d-none" id="comment-field">
+							<div class="mt-3">
+								{{ include('shared/comment/add.html.twig') }}
+							</div>
+						</div>
+
+					{% endif %}
+
+					<div class="mt-3">
+						{{ include('shared/comment/list.html.twig', {
+							id: 'comment-list',
+							contents: comments,
+							startCount: 3,
+							moreCount: 3,
+						}) }}
 					</div>
 				</div>
 
 				{% if app.user %}
-					<div class="col-lg-3 d-none d-lg-flex justify-content-center align-items-center">
-						<div class="sh-favs bg-primary d-flex flex-column justify-content-start align-items-center m-3 p-4 rounded-5">
-							<h5 class="title-font text-secondary">MES FAVORIS</h5>
+					<div class="col-xl-3 d-none d-xl-flex flex-column justify-content-start align-items-end">
 
+						<div class="sh-favs bg-primary d-flex flex-column justify-content-start align-items-center m-3 p-4 rounded-5">
+							<h5 class="title-font text-secondary">MES VIDEOS A REGARDER</h5>
 							{% for video in app.user.favoriteVideos |slice(0, 4) %}
 								{{ include('shared/thumbnail/small-thumbnail.html.twig', {item: video}) }}
 							{% endfor %}
-							<h5 class="title-font d-none text-secondary mt-3">VOIR PLUS DE FAVORIS</h5>
+							<h5 class="title-font text-secondary mt-3">VOIR PLUS</h5>
 						</div>
-					</div>
-				</div>
 
-				<div class="container-lg mx-auto row">
-					<div class="col-lg-4 col d-lg-block d-none">
-						<div class="d-flex justify-content-end align-items-end flex-wrap">
+						<div class="d-xl-flex d-none justify-content-end align-items-end flex-wrap">
 							{% for tag in tags |slice(0,5) %}
 								<div>{{ include('shared/tag/category-tag.html.twig', {tag: tag.name, style: 'tag-list'}) }}</div>
 							{% endfor %}
 						</div>
+
 					</div>
-				</div>
-			{% endif %}
+				{% endif %}
 
-			{{ component('VideoGalleryComponent', {
-				videoPlayedId: videoPlayed.id,
-				count: 4,
-				id: 'testtwig',
-			}) }}
+				{{ component('VideoGalleryComponent', {
+					source: 'video-id',
+					videoPlayedId: videoPlayed.id,
+					count: 4,
+				}) }}
 
-			{{ component('VideoGalleryComponent', {
-				source: 'latest',
-				count: 4,
-				id: 'testtwig',
-			}) }}
+				{{ component('VideoGalleryComponent', {
+					source: 'latest',
+					count: 4,
+				}) }}
 
-		</main>
-	{% endblock %}
+			</main>
+		{% endblock %}

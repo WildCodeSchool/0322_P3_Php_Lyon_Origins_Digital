@@ -2,8 +2,8 @@
 
 namespace App\Twig\Components;
 
-use App\Repository\TagRepository;
 use App\Repository\VideoRepository;
+use App\Repository\ViewedRepository;
 use Doctrine\Common\Collections\Collection;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
@@ -12,64 +12,102 @@ final class VideoGalleryComponent
 {
     public ?string $title = null;
     public int $count;
-    public string $id;
     public ?string $source = null;
+    public ?int $userId = null;
 
     public ?int $videoPlayedId = null;
-    // public ?array $videoQuery = null;
 
-    private TagRepository $tagRepository;
     private VideoRepository $videoRepository;
+    private ViewedRepository $viewedRepository;
 
+    public string $id;
     public string $subtitle;
-    private Collection $tags;
-    private string $mainTag;
+    private ?Collection $tags = null;
+    private ?string $mainTag = null;
     private array $videos;
 
     public function __construct(
         VideoRepository $videoRepository,
-        TagRepository $tagRepository,
-        )
-    {
-        $this->tagRepository = $tagRepository;
+        ViewedRepository $viewedRepository
+    ) {
         $this->videoRepository = $videoRepository;
+        $this->viewedRepository = $viewedRepository;
     }
 
     public function mount(
         ?int $videoPlayedId = null,
-        string $source = null
-        )
-    {
+        string $source = null,
+        ?int $userId = null,
+    ): void {
         $this->source = $source;
 
         switch ($source) {
-            case 'videoId':
-            $video = $this->videoRepository->findOneBy(['id' => $videoPlayedId]);
-            $tagCollection = $video->getTag();
-            $firstTag = $tagCollection[0]->getName();
-            $videoCollection = $this->tagRepository->findOneBy(['name' => $firstTag])->getVideos();
-            break;
+            case 'latest':
+                $this->mountLatestVideos();
+                break;
 
-        case 'latest':
-            $this->title = 'Les videos les plus récentes';
-            $videoCollection = $this->videoRepository->findLatestVideos();
-            $tagCollection = $videoCollection[0]->getTag();
-            $firstTag = $tagCollection[0]->getName();
-            break;
+            case 'most-viewed':
+                $this->mountMostViewedVideos();
+                break;
 
-        case 'mostViewed':
-            $videoCollection = $this->videoRepository->findLatestVideos();
-            $tagCollection = $videoCollection[0]->getTag();
-            $firstTag = $tagCollection[0]->getName();
-            break;
+            case 'most-viewed-by-user':
+                $this->mountMostViewedVideosByUser($userId);
+                break;
 
-            default:
-            $videoCollection = $this->videoRepository->findAll();
-            $tagCollection = $videoCollection[0]->getTag();
-            $firstTag = $tagCollection[0]->getName();
-            break;
+            case 'video-id':
+                $this->mountVideosByVideoId($videoPlayedId);
+                break;
         }
 
+        $this->id = $source;
+    }
+
+    private function mountLatestVideos(): void
+    {
+        $this->title = 'Les plus récentes !';
+        $videoCollection = $this->videoRepository->findLatestVideos();
+        $this->updateVideoProperties($videoCollection);
+    }
+
+    private function mountMostViewedVideos(): void
+    {
+        $this->title = 'Les plus vues !';
+        $videosFromVieweds = $this->viewedRepository->findMostViewed(15);
+        $videoCollection = [];
+        foreach ($videosFromVieweds as $videoFromViewed) {
+            $videoCollection[] = $this->videoRepository->findOneBy(['id' => $videoFromViewed['id']]);
+        }
+        $this->updateVideoProperties($videoCollection);
+    }
+
+    private function mountMostViewedVideosByUser(?int $userId): void
+    {
+        $this->title = 'Ce que vous avez adoré !';
+        $videosFromVieweds = $this->viewedRepository->findVideosViewedByUser($userId);
+        $videoCollection = [];
+        foreach ($videosFromVieweds as $videoFromViewed) {
+            $videoCollection[] = $this->videoRepository->findBy(['id' => $videoFromViewed['id']]);
+        }
+        $this->updateVideoProperties($videoCollection);
+    }
+
+    private function mountVideosByVideoId(?int $videoPlayedId): void
+    {
+        $video = $this->videoRepository->findOneBy(['id' => $videoPlayedId]);
+        $tagCollection = $video->getTag();
+        $firstTag = $tagCollection[0]->getName();
+        $videoCollection = [];
+        foreach ($tagCollection[0]->getVideos() as $video) {
+            $videoCollection[] = $video;
+        }
+        $this->updateVideoProperties($videoCollection, $tagCollection, $firstTag);
+    }
+
+    private function updateVideoProperties(
+        array $videoCollection,
+        ?Collection $tagCollection = null,
+        ?string $firstTag = null
+    ): void {
         $this->subtitle = count($videoCollection) . ' videos';
         $this->tags = $tagCollection;
         $this->mainTag = $firstTag;
@@ -94,5 +132,10 @@ final class VideoGalleryComponent
     public function getSubtitle(): string
     {
         return $this->subtitle;
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 }
