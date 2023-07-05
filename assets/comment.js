@@ -39,12 +39,9 @@ saveCommentBtn.addEventListener('click', function (event) {
                 }
             })
             .then(function (datas) {
-                commentArea.value = '';
-                let parser = new DOMParser();
-                let html = parser.parseFromString(datas, 'text/html');
-                const fetchedComments = html.getElementById('commentTemplate');
+                commentArea.value = '';  
                 const divToAppend = document.getElementById('commentsPart');
-                divToAppend.parentNode.insertBefore(fetchedComments, divToAppend);
+                divToAppend.insertAdjacentHTML('afterbegin', datas);
             })
     }
 });
