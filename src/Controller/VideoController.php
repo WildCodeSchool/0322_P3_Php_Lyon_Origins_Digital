@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Video;
 use App\Entity\Viewed;
+use App\Repository\CommentRepository;
 use App\Repository\TagRepository;
 use App\Repository\VideoRepository;
 use App\Repository\ViewedRepository;
@@ -19,10 +20,12 @@ class VideoController extends AbstractController
     public function show(
         Video $video,
         VideoRepository $videoRepository,
-        TagRepository $tagRepository
+        TagRepository $tagRepository,
+        CommentRepository $commentRepository
     ): Response {
         $latestVideos = $videoRepository->findLatestVideos();
         $mobaVideos = $videoRepository->findLatestVideos();
+        $comments = $commentRepository->findLatestComments($video);
         $tags = $tagRepository->findAll();
 
         return $this->render('video/show.html.twig', [
@@ -30,6 +33,7 @@ class VideoController extends AbstractController
             'latestVideos' => $latestVideos,
             'mobaVideos' => $mobaVideos,
             'tags' => $tags,
+            'comments' => $comments,
         ]);
     }
 

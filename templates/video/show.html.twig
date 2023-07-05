@@ -9,6 +9,7 @@
 	{{ encore_entry_script_tags('addLater') }}
 	{{ encore_entry_script_tags('playAndCount') }}
 	{{ encore_entry_script_tags('displayViewCount') }}
+	{{ encore_entry_script_tags('comment') }}
 {% endblock %}
 
 {% set mobaTags = ['dota', 'smite', 'lol'] %}
@@ -72,25 +73,58 @@
 							<div class="sh-description col-xl col-12 text-info p-0 pb-4" id="sh-description">
 								<p>{{ videoPlayed.description }}</p>
 							</div>
+							{% if app.user %}
+								<button class="btn btn-secondary col-auto" id="add-comment" data-info="{{ videoPlayed.id }}">
+									<i class='bi bi-chat-left-text-fill text-primary'></i>
+								</button>
+							{% else %}
+								<a href="/login" class="btn btn-secondary col-auto" id="add-comment">
+									<i class='bi bi-chat-left-text-fill text-primary'></i>
+								</a>
+							{% endif %}
 						</div>
 
+					</div>
+
+					{% if app.user %}
+
+						<div class="sh-add-comment d-none" id="comment-field" >
+							<div class="mt-3">
+								{{ include('shared/comment/add.html.twig') }}
+							</div>
+						</div>
+
+					{% endif %}
+
+					<div class="mt-3">
+						{{ include('shared/comment/list.html.twig', {
+							id: 'comment-list',
+							contents: comments,
+							startCount: 3,
+							moreCount: 3,
+						}) }}
 					</div>
 				</div>
 
-				{% if app.user %}
-					<div class="col-lg-3 d-none d-lg-flex justify-content-center align-items-center">
-						<div class="sh-favs bg-primary d-flex flex-column justify-content-start align-items-center m-3 p-4 rounded-5">
-							<h5 class="title-font text-secondary">MES FAVORIS</h5>
+				<div class="col-lg-3 d-none d-lg-flex flex-column justify-content-center align-items-center">
+					{% if app.user %}
+						<div class="col-lg-3 d-none d-lg-flex justify-content-center align-items-center">
+							<div class="sh-favs bg-primary d-flex flex-column justify-content-start align-items-center m-3 p-4 rounded-5">
+								<h5 class="title-font text-secondary">MES FAVORIS</h5>
 
-							{% for video in app.user.favoriteVideos |slice(0, 4) %}
-								{{ include('shared/thumbnail/small-thumbnail.html.twig', {item: video}) }}
-							{% endfor %}
-							<h5 class="title-font d-none text-secondary mt-3">VOIR PLUS DE FAVORIS</h5>
+								{% for video in app.user.favoriteVideos |slice(0, 4) %}
+									{{ include('shared/thumbnail/small-thumbnail.html.twig', {item: video}) }}
+								{% endfor %}
+								<h5 class="title-font d-none text-secondary mt-3">VOIR PLUS DE FAVORIS</h5>
+							</div>
 						</div>
-					</div>
-				{% endif %}
+					{% endif %}
+				</div>
+
 
 			</div>
+
+			{# Common galleries content start here #}
 
 			<div class="container-lg mx-auto row">
 				<div class="col row d-flex justify-content-start align-items-end">
