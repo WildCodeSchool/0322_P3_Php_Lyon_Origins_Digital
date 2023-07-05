@@ -23,7 +23,6 @@ class VideoController extends AbstractController
     ): Response {
         $comments = $commentRepository->findLatestComments($video);
         $tags = $tagRepository->findAll();
-
         return $this->render('video/show.html.twig', [
             'videoPlayed' => $video,
             'tags' => $tags,
