@@ -98,47 +98,30 @@
 							<h5 class="title-font d-none text-secondary mt-3">VOIR PLUS DE FAVORIS</h5>
 						</div>
 					</div>
-				{% endif %}
-
-			</div>
-
-			<div class="container-lg mx-auto row">
-				<div class="col row d-flex justify-content-start align-items-end">
-
-					<div class="text-secondary col-md-auto d-flex justify-content-start align-items-center flex-wrap">
-						<span class="fs-1">{{ dot|raw }}</span>
-						<h3 class="title-font m-0">PLUS DE</h3>
-						<span class="ms-4">{{ include('shared/tag/category-tag.html.twig', {tag: 'lol', style: 'tag-list'}) }}</span>
-					</div>
-
-					<div class="text-secondary col-auto d-flex justify-content-start align-items-center flex-wrap">
-						<span class="fs-1">{{ dot|raw }}</span>
-						{% for mobaTag in mobaTags %}
-							<span>{{ include('shared/tag/category-tag.html.twig', {tag: mobaTag, style: 'tag-list'}) }}</span>
-						{% endfor %}
-					</div>
-
 				</div>
 
-				<div class="col-lg-4 col d-lg-block d-none">
-					<div class="d-flex justify-content-end align-items-end flex-wrap">
-						{% for tag in tags |slice(0,5) %}
-							<div>{{ include('shared/tag/category-tag.html.twig', {tag: tag.name, style: 'tag-list'}) }}</div>
-						{% endfor %}
+				<div class="container-lg mx-auto row">
+					<div class="col-lg-4 col d-lg-block d-none">
+						<div class="d-flex justify-content-end align-items-end flex-wrap">
+							{% for tag in tags |slice(0,5) %}
+								<div>{{ include('shared/tag/category-tag.html.twig', {tag: tag.name, style: 'tag-list'}) }}</div>
+							{% endfor %}
+						</div>
 					</div>
 				</div>
+			{% endif %}
 
-			</div>
+			{{ component('VideoGalleryComponent', {
+				videoPlayedId: videoPlayed.id,
+				count: 4,
+				id: 'testtwig',
+			}) }}
 
-			<div class="container-lg mx-auto d-flex justify-content-center">
-				{{ include('shared/gallery/bt-gallery.html.twig', {
-			title: false,
-			subtitle: 'Toutes les vidéos sur ' ~ videoPlayed.tag[0].name|upper ~ ' !',
-			count: 4,
-			contents: mobaVideos,
-			id: 'moba'
-		}) }}
-			</div>
+			{{ component('VideoGalleryComponent', {
+				source: 'latest',
+				count: 4,
+				id: 'testtwig',
+			}) }}
 
 		</main>
 	{% endblock %}
