@@ -173,6 +173,23 @@ $animMenuItemEaseOut: cubic-bezier(0,1,0,1);
     }
 }
 
+.load-more-comments {
+    cursor: pointer;
+    max-width: fit-content;
+
+    &:hover {
+        background-color: $secondary !important;
+        color: $primary !important;
+    }
+
+    &:active,
+    &:focus {
+        scale: 99%;
+        background-color: $light !important;
+        color: $dark !important;
+    }
+}
+
 body {
     background-color: $dark;
 }
@@ -596,4 +613,12 @@ $mbActiveItemBg: linear-gradient(180deg, $dark 0%, $primary 50%, $secondary 100%
             transform: translateY(-10px);
         }
     }
+}
+
+#add-comment {
+    height: fit-content!important;
+}
+
+#no-comment-found {
+    cursor: pointer;
 }
