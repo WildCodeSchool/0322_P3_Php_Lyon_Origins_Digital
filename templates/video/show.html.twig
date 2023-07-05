@@ -30,65 +30,78 @@
 							<div class="sh-title col-lg justify-content-start title-font text-secondary fs-2">{{ videoPlayed.title }}</div>
 							<div class="sh-hash d-lg-flex d-none col-lg-auto justify-content-end align-items-start">{{ include('shared/tag/category-tag.html.twig', {tag: videoPlayed.tag[0].name , style: 'tag-main'}) }}</div>
 						</div>
+						{% if videoPlayed.isPremium and not app.user %}
+							<div class="container bg-primary rounded-5 w-100 h-50 m-md-4 my-2 mx-0">
+								<div class="text-center my-4">
+									<p class="title-font fs-1 text-info">Ouppps !!!</p>
+									<p>Cette vidéo est reservée aux utilisateurs <a class="text-info" href="{{ path('app_register') }}">PREMIUM</a>.</p>
+									<p>Si tu veux pouvour profiter de la totalité des vidéos de Gaming Gurus</p>
+									<p class="fs-3">
+										<a class="title-font text-info" href="{{ path('app_register') }}">Pense à t'enregister ici !</a>
+									</p>
+								</div>
+							</div>
+						{% else %}
+							<div class="sh-player video-container rounded-5 w-100 h-50 m-md-4 my-2 mx-0">
+								<video id="player" data-info="{{ path('video_add', { videoId: videoPlayed.id }) }}" playsinline controls data-poster="{{ asset('build/images/' ~ videoPlayed.posterUrl) }}">
+									<source src="{{ asset('build/videos/' ~ videoPlayed.videoUrl) }}" type="video/mp4"/>
+								</video>
+							</div>
 
-						<div class="sh-player video-container rounded-5 w-100 h-50 m-md-4 my-2 mx-0">
-							<video id="player" data-info="{{ path('video_add', { videoId: videoPlayed.id }) }}" playsinline controls data-poster="{{ asset('build/images/' ~ videoPlayed.posterUrl) }}">
-								<source src="{{ asset('build/videos/' ~ videoPlayed.videoUrl) }}" type="video/mp4"/>
-							</video>
-						</div>
+							<div class="row px-4 w-100">
+								<div class="sh-creator col-xl-3 col-12">
+									{% if app.user %}
+										<div class="bt-socials row row-cols-4 fs-5">
+											<a class="favorite" href="{{ path('fav_add', { idVideo: videoPlayed.id }) }}">
+												{% set isFav = app.user.favoriteVideos|filter(video => video.id == videoPlayed.id )|first %}
+												<div class="bt-social-btn">
+													{% if isFav %}
+														<i class='bt-fav bi bi-heart-fill text-secondary fa{{ videoPlayed.id }}' title="enlever des favoris"></i>
+													{% else %}
+														<i class='bt-fav bi bi-heart text-light fa{{ videoPlayed.id }}' title="ajouter aux favoris"></i>
+													{% endif %}
+												</div>
+											</a>
+											<a class="later" href="{{ path('later_add', { idVideo: videoPlayed.id }) }}">
+												{% set isLater = app.user.viewLaterVideos|filter(video => video.id == videoPlayed.id )|first %}
+												<div class="bt-social-btn">
+													{% if isLater %}
+														<i class='bt-watch bi bi-clock-fill text-secondary la{{ videoPlayed.id }}' title="enlever de voir plus tard"></i>
+													{% else %}
+														<i class='bt-watch bi bi-clock text-light la{{ videoPlayed.id }}' title="ajouter à voir plus tard"></i>
+													{% endif %}
+												</div>
+											</a>
+										</div>
+									{% endif %}
 
-						<div class="row px-4 w-100">
-							<div class="sh-creator col-xl-3 col-12">
-								{% if app.user %}
-									<div class="bt-socials row row-cols-4 fs-5">
-										<a class="favorite" href="{{ path('fav_add', { idVideo: videoPlayed.id }) }}">
-											{% set isFav = app.user.favoriteVideos|filter(video => video.id == videoPlayed.id )|first %}
-											<div class="bt-social-btn">
-												{% if isFav %}
-													<i class='bt-fav bi bi-heart-fill text-secondary fa{{ videoPlayed.id }}' title="enlever des favoris"></i>
-												{% else %}
-													<i class='bt-fav bi bi-heart text-light fa{{ videoPlayed.id }}' title="ajouter aux favoris"></i>
-												{% endif %}
-											</div>
-										</a>
-										<a class="later" href="{{ path('later_add', { idVideo: videoPlayed.id }) }}">
-											{% set isLater = app.user.viewLaterVideos|filter(video => video.id == videoPlayed.id )|first %}
-											<div class="bt-social-btn">
-												{% if isLater %}
-													<i class='bt-watch bi bi-clock-fill text-secondary la{{ videoPlayed.id }}' title="enlever de voir plus tard"></i>
-												{% else %}
-													<i class='bt-watch bi bi-clock text-light la{{ videoPlayed.id }}' title="ajouter à voir plus tard"></i>
-												{% endif %}
-											</div>
-										</a>
+									<div class="bt-stats d-flex flex-column justify-content-center align-items-start text-info m-0" data-info="{{ videoPlayed.id }}">
+										<div class="bt-views m-0"></div>
+										<div class="bt-post-date m-0">{{ videoPlayed.postDate|format_datetime('medium', 'short', locale='fr', timezone='Europe/Paris') }}</div>
 									</div>
-								{% endif %}
 
-								<div class="bt-stats d-flex flex-column justify-content-center align-items-start text-info m-0" data-info="{{ videoPlayed.id }}">
-									<div class="bt-views m-0"></div>
-									<div class="bt-post-date m-0">{{ videoPlayed.postDate|format_datetime('medium', 'short', locale='fr', timezone='Europe/Paris') }}</div>
+								</div>
+								<div class="sh-description col-xl col-12 text-info p-0 pb-4" id="sh-description">
+									<p>{{ videoPlayed.description }}</p>
 								</div>
 
+								{% if app.user %}
+									<button class="btn btn-secondary col-auto" id="add-comment" data-info="{{ videoPlayed.id }}">
+										<i class='bi bi-chat-left-text-fill text-primary'></i>
+									</button>
+								{% else %}
+									<a href="{{ path('app_login') }}" class="btn btn-secondary col-auto" id="add-comment">
+										<i class='bi bi-chat-left-text-fill text-primary'></i>
+									</a>
+								{% endif %}
 							</div>
-							<div class="sh-description col-xl col-12 text-info p-0 pb-4" id="sh-description">
-								<p>{{ videoPlayed.description }}</p>
-							</div>
-							{% if app.user %}
-								<button class="btn btn-secondary col-auto" id="add-comment" data-info="{{ videoPlayed.id }}">
-									<i class='bi bi-chat-left-text-fill text-primary'></i>
-								</button>
-							{% else %}
-								<a href="/login" class="btn btn-secondary col-auto" id="add-comment">
-									<i class='bi bi-chat-left-text-fill text-primary'></i>
-								</a>
-							{% endif %}
-						</div>
+						{% endif %}
 
 					</div>
 
 					{% if app.user %}
 
-						<div class="sh-add-comment d-none" id="comment-field" >
+						<div class="sh-add-comment d-none" id="comment-field">
 							<div class="mt-3">
 								{{ include('shared/comment/add.html.twig') }}
 							</div>
