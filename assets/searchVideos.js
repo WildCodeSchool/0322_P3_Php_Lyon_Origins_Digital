@@ -13,11 +13,8 @@ inputSearch.addEventListener('input', function(e){
             .then(videos => {
                 resultVideos.innerHTML = '';
                 if (inputSearch.value.length >= 3) {
-                    let parser = new DOMParser();
-                    let html = parser.parseFromString(videos, 'text/html');
-                    let searchResult = html.body;
 
-                    resultVideos.innerHTML = searchResult.innerHTML;
+                    resultVideos.innerHTML = videos;
                 }
             })
     }
