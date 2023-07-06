@@ -32,7 +32,7 @@ if (videosId && videosId.length) {
 
                     let textForView = ' vue';
                     if (value > 1) textForView = ' vues';
-                    const matchingDataInfo = document.querySelectorAll('[data-info="' + key + '"]');
+                    const matchingDataInfo = document.querySelectorAll('div[data-info="' + key + '"]');
                     matchingDataInfo.forEach(function(thisDataInfo) {
                         const matchingBtViews = thisDataInfo.querySelector('.bt-views');
                         matchingBtViews.textContent = value + textForView;
