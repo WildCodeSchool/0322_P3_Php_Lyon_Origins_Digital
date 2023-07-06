@@ -12,14 +12,16 @@
 
 {% block body %}
 
-	<section class="ud-header container-lg p-4 m-auto">
-		<h1 class="title-font text-center text-secondary py-3">
-			Hello
-			{{ app.user.username }}
-		</h1>
-		<p class="text-info text-center">Voici vos stats</p>
+	<main class="col" aria-labelledby="nav-btn-{{ navItems.user['name'] }}" id="{{ navItems.user['name'] }}">
 
-		{% set userStats = [
+		<section class="ud-header container-lg p-4 m-auto">
+			<h1 class="title-font text-center text-secondary py-3">
+				Hello
+				{{ app.user.username }}
+			</h1>
+			<p class="text-info text-center">Voici vos stats</p>
+
+			{% set userStats = [
         {
             'title': 'Favorites',
             'stat': app.user.favoriteVideos,
@@ -30,61 +32,46 @@
             'stat': app.user.viewLaterVideos,
             'id': 'towatch',
         },
+        {
+            'title': 'Historique',
+            'stat': history,
+            'id': 'history',
+        },
     ] %}
 
-		{% set active = {
+			{% set active = {
         'tab': 'active',
         'content': 'show active'
     }%}
 
-		<div class="row text-dark m-auto">
+			<section class="user-dashboard container-lg mt-5">
+				<ul class="ud-menu nav nav-tabs justify-content-center" id="userDashboards" role="tablist">
 
-			{% for userStat in userStats %}
+					{% for userStat in userStats %}
 
-				<div class="col-md col-sm-6 col-12 p-2 rounded rounded-3 border border-primary border-2 bg-secondary">
+						<li class="nav-item fs-4" role="presentation">
 
-					<div class="title-font fs-2 text-center">
-						{{ userStat['title'] }}
-					</div>
+							<button class="nav-link mx-3 position-relative {% if userStat['id'] == 'fav' %} {{ active['tab'] }} {% endif %}" id="{{ userStat['id'] }}-tab" data-bs-toggle="tab" data-bs-target="#{{ userStat['id'] }}-tab-pane" type="button" role="tab" aria-controls="{{ userStat['id'] }}-tab-pane" aria-selected="true">
 
-					<div class="fs-1 text-font text-center">
-						{{ userStat['stat']|length }}
-					</div>
+								<span class="title-font">{{ userStat['title'] }}</span>
+								<span class="position-absolute z-3 top-0 start-100 translate-middle border border-1 border-secondary badge text-font rounded-pill bg-dark text-secondary">{{ userStat['stat']|length }}</span>
 
-				</div>
+							</button>
+						</li>
 
-			{% endfor %}
+					{% endfor %}
 
-		</div>
-	</section>
+				</ul>
 
-	<section class="user-dashboard container-lg mt-2">
-		<ul class="ud-menu nav nav-tabs justify-content-center" id="userDashboards" role="tablist">
+				<div class="tab-content" id="myTabContent">
 
-			{% for userStat in userStats %}
+					{% for userStat in userStats %}
 
-				<li class="nav-item title-font fs-4" role="presentation">
+						<div class="tab-pane fade {% if userStat['id'] == 'fav' %} {{ active['content'] }} {% endif %}" id="{{ userStat['id'] }}-tab-pane" role="tabpanel" aria-labelledby="{{ userStat['id'] }}-tab" tabindex="0">
 
-					<button class="nav-link {% if userStat['id'] == 'fav' %} {{ active['tab'] }} {% endif %}" id="{{ userStat['id'] }}-tab" data-bs-toggle="tab" data-bs-target="#{{ userStat['id'] }}-tab-pane" type="button" role="tab" aria-controls="{{ userStat['id'] }}-tab-pane" aria-selected="true">
+							<div class="container-lg m-auto d-flex justify-content-center align-items-start mt-3">
 
-						{{ userStat['title'] }}
-
-					</button>
-				</li>
-
-			{% endfor %}
-
-		</ul>
-
-		<div class="tab-content" id="myTabContent">
-
-			{% for userStat in userStats %}
-
-				<div class="tab-pane fade {% if userStat['id'] == 'fav' %} {{ active['content'] }} {% endif %}" id="{{ userStat['id'] }}-tab-pane" role="tabpanel" aria-labelledby="{{ userStat['id'] }}-tab" tabindex="0">
-
-					<div class="container-lg m-auto d-flex justify-content-center align-items-start mt-3">
-
-						{{ include('shared/gallery/bt-gallery.html.twig', {
+								{{ include('shared/gallery/bt-gallery.html.twig', {
                 title: false,
                 subtitle: false,
                 count: 7,
@@ -92,13 +79,14 @@
                 id: 'user' ~ userStat['id']
             }) }}
 
-					</div>
+							</div>
+						</div>
+
+					{% endfor %}
+
 				</div>
 
-			{% endfor %}
+			</section>
+		</main>
 
-		</div>
-
-	</section>
-
-{% endblock %}
+	{% endblock %}

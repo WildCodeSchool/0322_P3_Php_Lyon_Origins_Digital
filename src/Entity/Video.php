@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\HeaderTrait;
 use App\Repository\VideoRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -10,8 +11,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: VideoRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Video
 {
+    use HeaderTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -55,6 +59,13 @@ class Video
 
     #[ORM\OneToMany(mappedBy: 'video', targetEntity: Viewed::class)]
     private Collection $vieweds;
+    #[ORM\OneToMany(mappedBy: 'video', targetEntity: Comment::class, orphanRemoval: true)]
+    private Collection $comments;
+
+    #[ORM\Column]
+    private ?bool $isPremium = null;
+    #[ORM\Column]
+    private ?bool $isHeader = false;
 
     public function __construct()
     {
@@ -62,6 +73,7 @@ class Video
         $this->usersViewLater = new ArrayCollection();
         $this->usersFavorited = new ArrayCollection();
         $this->vieweds = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function __toString()
@@ -226,6 +238,58 @@ class Video
             }
         }
 
+        return $this;
+    }
+
+    public function isIsHeader(): ?bool
+    {
+        return $this->isHeader;
+    }
+
+    public function setIsHeader(bool $isHeader): static
+    {
+        $this->isHeader = $isHeader;
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): static
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setVideo($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): static
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getVideo() === $this) {
+                $comment->setVideo(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function isIsPremium(): ?bool
+    {
+        return $this->isPremium;
+    }
+
+    public function setIsPremium(bool $isPremium): static
+    {
+        $this->isPremium = $isPremium;
         return $this;
     }
 }

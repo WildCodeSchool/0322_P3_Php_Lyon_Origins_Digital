@@ -13,7 +13,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_ADMIN')]
 class DashboardController extends AbstractDashboardController
 {
     public function __construct(
@@ -85,7 +87,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa-solid fa-gear');
         yield MenuItem::linkToRoute('Back to the website', 'fa-solid fa-house', 'home_index');
         yield MenuItem::linkToCrud('Manage Videos', 'fa-solid fa-play', Video::class);
-        yield MenuItem::linkToRoute('Upload Videos', 'fa-solid fa-play', 'upload_video');
+        yield MenuItem::linkToRoute('Upload Videos', 'fa-solid fa-file-arrow-up', 'upload_video');
         yield MenuItem::linkToCrud('Manage Tags', 'fa-solid fa-hashtag', Tag::class);
         yield MenuItem::linkToCrud('Manage Users', 'fa-solid fa-user', User::class);
     }

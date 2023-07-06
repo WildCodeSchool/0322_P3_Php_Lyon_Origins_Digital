@@ -53,4 +53,19 @@ class VideoRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findVideosBySearch(string $keyword): array
+    {
+        $now = new DateTimeImmutable();
+
+        return $this->createQueryBuilder('v')
+            ->orderBy('v.title', 'ASC')
+            ->where('v.title LIKE :keyword')
+            ->andWhere('v.postDate < :today')
+            ->setParameter('today', $now, Types::DATETIME_IMMUTABLE)
+            ->setParameter('keyword', '%' . $keyword . '%')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

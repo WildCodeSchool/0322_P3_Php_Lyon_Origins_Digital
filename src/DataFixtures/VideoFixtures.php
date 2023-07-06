@@ -20,6 +20,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2023-06-04 00:00:00',
             'video_url' => 'video1-LOL.mp4',
             'poster_url' => 'poster1-LOL.jpg',
+            'is_header' => false,
         ],
 
         [
@@ -31,6 +32,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2023-05-31 00:00:00',
             'video_url' => 'video2-LOL.mp4',
             'poster_url' => 'poster2-LOL.jpg',
+            'is_header' => false,
         ],
 
         [
@@ -41,6 +43,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2023-02-01 00:00:00',
             'video_url' => 'video3-LOL.mp4',
             'poster_url' => 'poster3-LOL.jpg',
+            'is_header' => false,
         ],
 
         [
@@ -51,6 +54,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2022-12-19 00:00:00',
             'video_url' => 'video4-LOL.mp4',
             'poster_url' => 'poster4-LOL.jpg',
+            'is_header' => false,
         ],
 
         [
@@ -61,6 +65,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2022-09-18 00:00:00',
             'video_url' => 'video5-LOL.mp4',
             'poster_url' => 'poster5-LOL.jpg',
+            'is_header' => false,
         ],
 
         [
@@ -71,6 +76,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2023-05-12 00:00:00',
             'video_url' => 'video6-LOL.mp4',
             'poster_url' => 'poster6-LOL.jpg',
+            'is_header' => false,
         ],
 
         [
@@ -79,6 +85,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2023-03-25 00:00:00',
             'video_url' => 'video1-VALORANT.mp4',
             'poster_url' => 'poster1-VALORANT.jpg',
+            'is_header' => false,
         ],
 
         [
@@ -87,6 +94,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2023-01-23 00:00:00',
             'video_url' => 'video2-VALORANT.mp4',
             'poster_url' => 'poster2-VALORANT.jpg',
+            'is_header' => false,
         ],
 
         [
@@ -96,6 +104,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2022-07-07 00:00:00',
             'video_url' => 'video3-VALORANT.mp4',
             'poster_url' => 'poster3-VALORANT.jpg',
+            'is_header' => false,
         ],
 
         [
@@ -106,6 +115,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2023-05-28 00:00:00',
             'video_url' => 'video4-VALORANT.mp4',
             'poster_url' => 'poster4-VALORANT.jpg',
+            'is_header' => false,
         ],
 
         [
@@ -116,6 +126,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2023-05-24 00:00:00',
             'video_url' => 'video5-VALORANT.mp4',
             'poster_url' => 'poster5-VALORANT.jpg',
+            'is_header' => false,
         ],
 
         [
@@ -124,6 +135,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2022-07-22 00:00:00',
             'video_url' => 'video6-VALORANT.mp4',
             'poster_url' => 'poster6-VALORANT.jpg',
+            'is_header' => false,
         ],
 
         [
@@ -132,6 +144,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2021-08-10 00:00:00',
             'video_url' => 'video1-DOFUS.mp4',
             'poster_url' => 'poster1-DOFUS.jpg',
+            'is_header' => false,
         ],
 
         [
@@ -141,6 +154,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2023-02-13 00:00:00',
             'video_url' => 'video2-DOFUS.mp4',
             'poster_url' => 'poster2-DOFUS.jpg',
+            'is_header' => false,
         ],
 
         [
@@ -151,6 +165,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2022-04-14 00:00:00',
             'video_url' => 'video3-DOFUS.mp4',
             'poster_url' => 'poster3-DOFUS.jpg',
+            'is_header' => false,
         ],
 
         [
@@ -161,6 +176,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2023-05-14 00:00:00',
             'video_url' => 'video3-DOFUS.mp4',
             'poster_url' => 'poster1-FORTNITE.jpg',
+            'is_header' => false,
         ],
 
         [
@@ -172,6 +188,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2023-04-21 00:00:00',
             'video_url' => 'video3-DOFUS.mp4',
             'poster_url' => 'poster2-FORTNITE.jpg',
+            'is_header' => false,
         ],
 
         [
@@ -182,6 +199,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2023-05-20 00:00:00',
             'video_url' => 'video3-DOFUS.mp4',
             'poster_url' => 'poster3-FORTNITE.jpg',
+            'is_header' => false,
         ],
 
         [
@@ -191,6 +209,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2023-06-18 00:00:00',
             'video_url' => 'video3-DOFUS.mp4',
             'poster_url' => 'poster1-APEX.jpg',
+            'is_header' => false,
         ],
 
         [
@@ -200,6 +219,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2023-05-25 00:00:00',
             'video_url' => 'video3-DOFUS.mp4',
             'poster_url' => 'poster2-APEX.jpg',
+            'is_header' => false,
         ],
 
         [
@@ -209,6 +229,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2022-09-22 00:00:00',
             'video_url' => 'video3-DOFUS.mp4',
             'poster_url' => 'poster1-WOW.jpg',
+            'is_header' => false,
         ],
 
         [
@@ -218,6 +239,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2022-11-29 00:00:00',
             'video_url' => 'video3-DOFUS.mp4',
             'poster_url' => 'poster2-WOW.jpg',
+            'is_header' => false,
         ],
 
         [
@@ -227,6 +249,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2023-05-21 00:00:00',
             'video_url' => 'video3-DOFUS.mp4',
             'poster_url' => 'poster1-CS.jpg',
+            'is_header' => false,
         ],
 
         [
@@ -238,6 +261,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2023-05-22 00:00:00',
             'video_url' => 'video3-DOFUS.mp4',
             'poster_url' => 'poster2-CS.jpg',
+            'is_header' => false,
         ],
 
         [
@@ -248,6 +272,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2023-05-22 00:00:00',
             'video_url' => 'video3-DOFUS.mp4',
             'poster_url' => 'poster3-CS.jpg',
+            'is_header' => false,
         ],
 
         [
@@ -256,6 +281,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2023-07-14 00:00:00',
             'video_url' => 'video3-DOFUS.mp4',
             'poster_url' => 'poster2-CS.jpg',
+            'is_header' => false,
         ],
     ];
 
@@ -272,12 +298,13 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
                 ->setDescription($clip['description'])
                 ->setPostDate($postDate)
                 ->setVideoUrl($clip['video_url'])
-                ->setPosterUrl($clip['poster_url']);
-
-                $manager->persist($video);
-                $this->addReference('video_' . $videoCount, $video);
-                $videoCount++;
-                $persistedVideos[] = $video;
+                ->setPosterUrl($clip['poster_url'])
+                ->setIsHeader($clip['is_header'])
+                ->setIsPremium((bool)rand(0, 1));
+            $manager->persist($video);
+            $this->addReference('video_' . $videoCount, $video);
+            $videoCount++;
+            $persistedVideos[] = $video;
         }
 
 
