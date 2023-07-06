@@ -17,9 +17,9 @@ require('bootstrap');
 //boostrap css alert auto-close
 const alert = document.getElementById('alertMsg');
 //close the alert after 2 seconds (2000 milliseconds)
-setTimeout(() => {
-    alert.remove();
-}, 2000);
+// setTimeout(() => {
+//     alert.remove();
+// }, 2000);
 
 (function loadMore() {
 
@@ -29,14 +29,19 @@ setTimeout(() => {
     for (const loadMoreButton of loadMoreButtons) {
 
         const idName = loadMoreButton.id;
+        const gallery = document.getElementById(idName + "-bt-gallery");
+
         const loadMoreBtn = document.getElementById(idName);
-        let hiddenBts = document.getElementById(idName + "-bt-gallery").querySelectorAll('.bt-hidden');
+
+        let firstHiddenBts = gallery.querySelectorAll('.bt-hidden.'+ idName + '-1')
+        if (firstHiddenBts.length == 0) { loadMoreBtn.parentElement.parentElement.classList.add('d-none'); }
 
         let idNbr = 1;
 
         loadMoreBtn.addEventListener('click', function () {
-            let groupOfBts = document.getElementsByClassName(idName + '-' + idNbr);
-            for (const bt of groupOfBts) {
+            let hiddenBts = gallery.querySelectorAll('.bt-hidden.'+ idName + '-' + idNbr)
+            if (hiddenBts.length < 1) { loadMoreBtn.parentElement.parentElement.remove(); }
+            for (const bt of hiddenBts) {
                 bt.classList.remove('bt-hidden');
                 bt.classList.remove('d-none');
                 bt.classList.add('bt-container');
@@ -44,12 +49,9 @@ setTimeout(() => {
 
             idNbr++;
 
-            hiddenBts = document.getElementById(idName + "-bt-gallery").querySelectorAll('.bt-hidden');
-
-            if (hiddenBts.length == 0) { loadMoreBtn.parentElement.parentElement.remove(); }
+            hiddenBts = gallery.querySelectorAll('.bt-hidden.'+ idName + '-' + idNbr);
+            if (hiddenBts.length < 1) { loadMoreBtn.parentElement.parentElement.remove(); }
         })
-
-        if (hiddenBts.length == 0) { loadMoreBtn.parentElement.parentElement.remove(); }
     }
 })();
 

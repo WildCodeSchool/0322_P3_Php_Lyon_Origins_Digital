@@ -23,3 +23,8 @@ inputSearch.addEventListener('input', function(e){
         inputSearch.value = '';
     })
 })
+
+// event on shown shown.bs.modal
+searchModal.addEventListener('shown.bs.modal', function(){
+    inputSearch.focus();
+})
