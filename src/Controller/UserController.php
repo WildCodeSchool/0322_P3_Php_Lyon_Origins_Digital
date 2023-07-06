@@ -28,7 +28,7 @@ class UserController extends AbstractController
             $history[] = $videoRepository->findOneBy(['id' => $videoId]);
         }
 
-        if ($this->isGranted('ROLE_ADMIN') && $session->get('came_from_login')) {
+        if ($this->isGranted('ROLE_ADMIN') && $session->get('after_login')) {
             // Reset the session variable
             $session->set('after_login', false);
 
