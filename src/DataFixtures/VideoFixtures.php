@@ -188,7 +188,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'post_date' => '2023-04-21 00:00:00',
             'video_url' => 'video3-DOFUS.mp4',
             'poster_url' => 'poster2-FORTNITE.jpg',
-            'is_header' => false,
+            'is_header' => true,
         ],
 
         [
