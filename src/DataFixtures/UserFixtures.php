@@ -13,19 +13,38 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
     public const USERS = [
         [
             'email' => 'user1@user.fr',
-            'username' => 'Max'
+            'username' => 'Maxime',
+            'role' => 'ROLE_ADMIN'
         ],
         [
             'email' => 'user2@user.fr',
-            'username' => 'Fred'
+            'username' => 'Frederic',
+            'role' => 'ROLE_ADMIN'
         ],
         [
             'email' => 'user3@user.fr',
-            'username' => 'Valentin'
+            'username' => 'Valentin',
+            'role' => 'ROLE_ADMIN'
         ],
         [
             'email' => 'user4@user.fr',
-            'username' => 'Thomas'
+            'username' => 'Thomas',
+            'role' => ''
+        ],
+        [
+            'email' => 'user5@user.fr',
+            'username' => 'Robert',
+            'role' => ''
+        ],
+        [
+            'email' => 'user6@user.fr',
+            'username' => 'Ferdinand',
+            'role' => ''
+        ],
+        [
+            'email' => 'user7@user.fr',
+            'username' => 'Roland',
+            'role' => ''
         ],
     ];
 
@@ -44,7 +63,13 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
                 $user,
                 'password'
             ));
-            $user->setRoles([]);
+            $user->setRoles([$userItem['role']]);
+            if ($userItem['role'] == 'ROLE_ADMIN') {
+                $user->setIsAdmin(true);
+            } else {
+                $user->setIsAdmin(false);
+            }
+
             $user->setIsVerified(true);
 
             $maxValue = (count(VideoFixtures::VIDEOS)) - 1;

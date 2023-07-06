@@ -58,12 +58,19 @@
 			'iconClass':'hash',
 			'link': '',
 		},
-		admin: {
+	} %}
+
+	{% if is_granted('ROLE_ADMIN') %}
+		{% set navItemsAdmin = {
+			admin: {
 			'name':'admin',
 			'iconClass':'gear',
 			'link': 'admin_dashboard',
-		}
-	} %}
+		},} %}
+
+		{% set navItems = navItems|merge(navItemsAdmin) %}
+	
+	{% endif %}
 
 	<body class="row" id="all-bodies">
 
