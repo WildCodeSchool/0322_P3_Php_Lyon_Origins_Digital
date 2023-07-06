@@ -1,11 +1,21 @@
-<h1>Confirmation de votre adresse mail</h1>
+{% apply inline_css(source('@styles/email.css')) %}
+<body>
 
-<p>
-    Bonjour et bienvenue sur Gaming Gurus.<br>Merci de confirmer votre adresse mail en cliquant sur le lien ci-dessous: <br><br>
-    <a href="{{ signedUrl|raw }}">Confirmer mon adresse mail</a>.
-    Ce lien expirera dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+<h2>Bienvenue sur Gaming Gurus</h2>
+
+<p>Nous sommes ravis de vous accueillir sur Gaming Gurus, la communauté de passionnés de jeux vidéo.<br> 
+   <br>Pour finaliser votre inscription, veuillez confirmer votre adresse e-mail en cliquant sur le lien ci-dessous :<br>
+   <br><a href="{{ signedUrl|raw }}">Confirmer mon adresse mail</a>.<br>
+   <br>Votre lien de confirmation expirera dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle','fr') }}. 
+   Assurez-vous de cliquer sur le lien avant que celui-ci ne soit plus valide.
 </p>
 
-<p>
-    A très bientôt.
+
+<p>Nous vous remercions de votre confiance et de votre soutien. <br>
+   À très bientôt sur Gaming Gurus !<br>
+   <br>Bien cordialement,<br>  
 </p>
+
+<h3>L'équipe Gaming Gurus<h3>
+</body>
+{% endapply %}
