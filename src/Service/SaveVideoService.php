@@ -7,10 +7,7 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class SaveVideoService
 {
-    private RequestStack $requestStack;
-    private ParameterBagInterface $params;
-
-    public function __construct(RequestStack $requestStack, ParameterBagInterface $params)
+    public function __construct(private RequestStack $requestStack, private ParameterBagInterface $params)
     {
         $this->requestStack = $requestStack;
         $this->params = $params;

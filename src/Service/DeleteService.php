@@ -6,12 +6,14 @@ use App\Entity\User;
 use App\Entity\Video;
 use App\Repository\ViewedRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class DeleteService
 {
-    public function __construct(private EntityManagerInterface $entityManager)
+    public function __construct(private EntityManagerInterface $entityManager, private ParameterBagInterface $params)
     {
         $this->entityManager = $entityManager;
+        $this->params = $params;
     }
 
     public function deleteUser(User $user): void
@@ -31,8 +33,8 @@ class DeleteService
             $user->removeFavoriteVideo($favoriteVideo);
         }
 
-            $this->entityManager->remove($user);
-            $this->entityManager->flush();
+        $this->entityManager->remove($user);
+        $this->entityManager->flush();
     }
 
     public function deleteVideo(Video $video, ViewedRepository $viewedRepository): void
@@ -55,8 +57,18 @@ class DeleteService
             $favoriteVideo->removeFavoriteVideo($video);
         }
 
-            $this->entityManager->remove($video);
-            $this->entityManager->flush();
-            $viewedRepository->deleteNullUserAndNullVideo();
+        $videoFile = $this->params->get('video_directory') . '/' . $video->getVideoUrl();
+        $imageFile = $this->params->get('image_directory') . '/' . $video->getPosterUrl();
+
+        if (file_exists($videoFile)) {
+            unlink($videoFile);
+        }
+        if (file_exists($imageFile)) {
+            unlink($imageFile);
+        }
+
+        $this->entityManager->remove($video);
+        $this->entityManager->flush();
+        $viewedRepository->deleteNullUserAndNullVideo();
     }
 }
