@@ -8,11 +8,21 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class UserCrudController extends AbstractCrudController
 {
+    /**
+     * @var UrlGeneratorInterface
+     */
+    private $urlGenerator;
+
+    public function __construct(UrlGeneratorInterface $urlGenerator)
+    {
+        $this->urlGenerator = $urlGenerator;
+    }
+
     public static function getEntityFqcn(): string
     {
         return User::class;
@@ -24,7 +34,6 @@ class UserCrudController extends AbstractCrudController
         yield TextField::new('username');
         yield BooleanField::new('isVerified');
         yield BooleanField::new('isAdmin');
-        yield NumberField::new('id');
     }
 
     public function configureCrud(Crud $crud): Crud
@@ -34,8 +43,15 @@ class UserCrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
-        $deleteAction = Action::new('deleteUser', 'Delete')->linkToRoute('delete_user', ['idUser' => '366']);
-        // Remplacez "delete_user" par le nom de votre route pour supprimer un utilisateur
-        return $actions->add(Crud::PAGE_INDEX, $deleteAction);
+        $deleteAction = Action::new('deleteUser', 'Delete')
+            ->linkToUrl(function (User $user) {
+                $url = $this->urlGenerator->generate('delete_user', ['idUser' => $user->getId()]);
+                return $url;
+            })
+            ->addCssClass('text-danger');
+
+        return $actions->add(Crud::PAGE_INDEX, $deleteAction)
+        ->remove(Crud::PAGE_INDEX, Action::DELETE)
+        ->remove(Crud::PAGE_DETAIL, Action::DELETE);
     }
 }

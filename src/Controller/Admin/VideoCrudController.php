@@ -11,9 +11,20 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class VideoCrudController extends AbstractCrudController
 {
+    /**
+     * @var UrlGeneratorInterface
+     */
+    private $urlGenerator;
+
+    public function __construct(UrlGeneratorInterface $urlGenerator)
+    {
+        $this->urlGenerator = $urlGenerator;
+    }
+
     public static function getEntityFqcn(): string
     {
         return Video::class;
@@ -37,6 +48,15 @@ class VideoCrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
-        return $actions->remove(Crud::PAGE_INDEX, Action::NEW);
+        $deleteAction = Action::new('deleteVideo', 'Delete')
+            ->linkToUrl(function (Video $video) {
+                $url = $this->urlGenerator->generate('delete_video', ['idVideo' => $video->getId()]);
+                return $url;
+            })
+            ->addCssClass('text-danger');
+
+        return $actions->add(Crud::PAGE_INDEX, $deleteAction)
+        ->remove(Crud::PAGE_INDEX, Action::DELETE)
+        ->remove(Crud::PAGE_DETAIL, Action::DELETE);
     }
 }
