@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\HeaderTrait;
 use App\Repository\VideoRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -10,8 +11,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: VideoRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Video
 {
+    use HeaderTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -60,6 +64,8 @@ class Video
 
     #[ORM\Column]
     private ?bool $isPremium = null;
+    #[ORM\Column]
+    private ?bool $isHeader = false;
 
     public function __construct()
     {
@@ -235,6 +241,17 @@ class Video
         return $this;
     }
 
+    public function isIsHeader(): ?bool
+    {
+        return $this->isHeader;
+    }
+
+    public function setIsHeader(bool $isHeader): static
+    {
+        $this->isHeader = $isHeader;
+        return $this;
+    }
+
     /**
      * @return Collection<int, Comment>
      */
@@ -256,7 +273,7 @@ class Video
     public function removeComment(Comment $comment): static
     {
         if ($this->comments->removeElement($comment)) {
-// set the owning side to null (unless already changed)
+            // set the owning side to null (unless already changed)
             if ($comment->getVideo() === $this) {
                 $comment->setVideo(null);
             }
@@ -273,7 +290,6 @@ class Video
     public function setIsPremium(bool $isPremium): static
     {
         $this->isPremium = $isPremium;
-
         return $this;
     }
 }
