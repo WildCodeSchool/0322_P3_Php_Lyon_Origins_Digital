@@ -39,6 +39,56 @@ $animMenuItemEaseOut: cubic-bezier(0, 1, 0, 1);
 
 // header ---------------------------------------------------
 
+body {
+    overflow-x: hidden;
+}
+
+.home-image-mobile {
+    background-image: url("/assets/images/poster1-LOL.jpg");
+    background-size: cover;
+    width: 80vw;
+    min-width: 300px;
+    object-fit: cover;
+    background-position: center;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 25%;
+        background-image: linear-gradient(to bottom, transparent, $secondary);
+        border-radius: 10px;
+    }
+}
+
+.home-image-desktop {
+    background-image: url("/assets/images/poster1-LOL.jpg");
+    background-size: cover;
+    height: 500px;
+    width: 80vw;
+    object-fit: cover;
+    background-position: center;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 25%;
+        background-image: linear-gradient(to bottom, transparent, $secondary);
+        border-radius: 10px;
+    }
+}
+
+
+.home-title {
+    height: 40px;
+    width: 80vw;
+}
+
 .header-logo-desktop {
     font-size: 45px;
     top: 3%;
@@ -107,6 +157,23 @@ $animMenuItemEaseOut: cubic-bezier(0, 1, 0, 1);
     &:hover {
         background-color: $primary !important;
         color: $secondary !important;
+    }
+
+    &:active,
+    &:focus {
+        scale: 99%;
+        background-color: $light !important;
+        color: $dark !important;
+    }
+}
+
+.load-more-comments {
+    cursor: pointer;
+    max-width: fit-content;
+
+    &:hover {
+        background-color: $secondary !important;
+        color: $primary !important;
     }
 
     &:active,
@@ -547,4 +614,40 @@ $mbActiveItemBg: linear-gradient(180deg, $dark 0%, $primary 50%, $secondary 100%
             transform: translateY(-10px);
         }
     }
+}
+
+#add-comment {
+    height: fit-content !important;
+}
+
+#no-comment-found {
+    cursor: pointer;
+}
+
+#resultVideos {
+
+    li {
+
+        &:hover {
+
+            background-color: $secondary !important;
+            box-shadow: inset 0 0 0 2px $primary;
+
+            .resultVideos-title {
+                color: $primary !important;
+            }
+
+            .resultVideos-tag {
+                background-color: $dark !important;
+
+                h2 {
+                    color: $secondary !important;
+                }
+            }
+        }
+    }
+}
+
+.modal-body::-webkit-scrollbar {
+    display: none;
 }

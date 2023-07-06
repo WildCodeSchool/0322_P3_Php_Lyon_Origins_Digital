@@ -41,6 +41,8 @@ Encore
     .addEntry('playAndCount', './assets/playAndCount.js')
     .addEntry('displayViewCount', './assets/displayViewCount.js')
     .addEntry('navbar', './assets/navbar.js')
+    .addEntry('comment', './assets/comment.js')
+    .addEntry('searchVideos', './assets/searchVideos.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')

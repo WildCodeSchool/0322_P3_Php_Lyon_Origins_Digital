@@ -17,6 +17,7 @@
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
 			{{ encore_entry_script_tags('navbar') }}
+			{{ encore_entry_script_tags('searchVideos') }}
 		{% endblock %}
 	</head>
 
@@ -24,8 +25,6 @@
 
 	{% set fav = "<i class='bi fav'></i>" %}
 	{% set watchLater = "<i class='bi watchLater'></i>" %}
-	{% set like = "<i class='bi like'></i>" %}
-
 	{# to do show logout only when on /user/dashboard #}
 
 	{% set navItems = {
@@ -56,7 +55,7 @@
 		},
 		search: {
 			'name':'search',
-			'iconClass':'search',
+			'iconClass':'hash',
 			'link': '',
 		},
 		admin: {
@@ -67,6 +66,9 @@
 	} %}
 
 	<body class="row" id="all-bodies">
+
+		{{ include('shared/search-modal.html.twig') }}
+
 		{% for category, messages in app.flashes %}
 			{% for message in messages %}
 				<div class="alert alert-{{ category }}" id="alertMsg">
