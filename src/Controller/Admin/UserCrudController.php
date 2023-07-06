@@ -34,8 +34,7 @@ class UserCrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
-        $deleteAction = Action::new('deleteUser', 'Delete')->linkToRoute('delete_user', ['idUser' => '366']);
-        // Remplacez "delete_user" par le nom de votre route pour supprimer un utilisateur
-        return $actions->add(Crud::PAGE_INDEX, $deleteAction);
+        return $actions
+        ->remove(Crud::PAGE_INDEX, Action::NEW);
     }
 }
