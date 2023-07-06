@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits;
+use App\Entity\HeaderTrait;
 use App\Repository\VideoRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\HasLifecycleCallbacks]
 class Video
 {
-    use Traits;
+    use HeaderTrait;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]

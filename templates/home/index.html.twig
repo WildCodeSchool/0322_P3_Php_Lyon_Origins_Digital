@@ -33,6 +33,7 @@
 			</div>
 		</div>
 
+<<<<<<< HEAD
 		<div class="home-header-mobile d-inline d-md-none">
 			<div class="container">
 			<div class="row">
@@ -95,6 +96,43 @@
         id: 'mostViewed'
     }) }}
 
+=======
+		<section class="ms-5">
+
+			<section class="container-lg d-sm-flex d-none mx-auto">
+				{{ include('shared/tag/tag-list.html.twig', {
+					title: 'Les jeux du moment',
+					startCount: 8,
+					moreCount: 4,
+					contents: trendingTags,
+					styleClass: 'tag-list',
+					id: 'trending'
+				}) }}
+			</section>
+
+			<section class="container-lg d-sm-flex d-sm-none mx-auto">
+				{{ include('shared/tag/tag-list.html.twig', {
+					title: 'Les jeux du moment',
+					startCount: 5,
+					moreCount: 2,
+					contents: trendingTags,
+					styleClass: 'tag-list',
+					id: 'trending-mobile'
+				}) }}
+			</section>
+
+			{{ component('VideoGalleryComponent', {
+					source: 'latest',
+					count: 4,
+				}) }}
+
+			{{ component('VideoGalleryComponent', {
+					source: 'most-viewed',
+					count: 4,
+				}) }}
+
+		</section>
+>>>>>>> c3ec14ee8c46161ac1b9832dbe85840422b0e27c
 	</main>
 
 {% endblock %}

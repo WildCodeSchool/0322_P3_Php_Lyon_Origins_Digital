@@ -10,7 +10,7 @@ $btWidth: 280px;
 $btHeight: 240px;
 $btSizeFactor: 100%;
 
-$stWidth: 180px;
+$stWidth: 150px;
 $stSizeFactor: 100%;
 
 // -- fonts --
@@ -202,11 +202,6 @@ body#admin {
     }
 }
 
-
-.sh-favs {
-    width: fit-content;
-}
-
 .bt-container {
 
 
@@ -304,6 +299,10 @@ body#admin {
         }
 
     }
+}
+
+.sh-favs {
+    width: fit-content;
 }
 
 .st {
