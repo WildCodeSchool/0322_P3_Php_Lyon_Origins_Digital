@@ -38,18 +38,16 @@
 			<div class="home-header-mobile d-inline d-md-none">
 				<div class="container">
 					<div class="row">
-						<div class="home-title col-10 fs-4 text-secondary title-font d-flex justify-content-start ms-4">À LA UNE</div>
+						<div class="home-title col-10 fs-4 text-secondary title-font d-flex justify-content-start ms-4">
+							GAMING
+							{{ dot|raw }}
+							GURUS</div>
 					</div>
 				</div>
 				<div class="container">
 					<div class="row">
 						<div class="position-relative">
 							<img src="{{ asset('build/images/' ~ headerVideo.posterUrl) }}" class="header-mobile-img col-12 rounded-4 ms-2"/>
-							<p class="header-logo-desktop rounded-3 rounded-top-0 rounded-start-0 bg-dark title-font text-secondary col-3 d-md-flex justify-content-center d-none position-absolute">
-								GAMING
-								{{ dot|raw }}
-								GURUS
-							</p>
 							<a class="link-mobile bg-primary fs-3 text-decoration-none d-flex d-md-none title-font text-secondary rounded-3 justify-content-center align-items-center position-absolute" href="{{ path('video_show', { id: headerVideo.id }) }}">
 								<span class="">REGARDER</span>
 								<span class="fs-1 mt-1">{{ playFill|raw }}</span>
