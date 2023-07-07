@@ -1,6 +1,9 @@
 <div class="bt d-flex justify-content-center align-items-center">
 
-	<div class="bt-main rounded-4">
+	<div class="bt-main rounded-4 position-relative">
+		{% if item.isPremium %}
+			<span class="position-absolute top-0 start-0 badge rounded-pill bg-primary py-2 px-3 z-2 title-font text-secondary fs-6">PREMIUM</span>
+		{% endif %}
 		<div class="bt-main-mask bg-primary rounded-4 p-3 position-relative">
 			<div>
 				<a href="{{ path('video_show', { id: item.id }) }}">
