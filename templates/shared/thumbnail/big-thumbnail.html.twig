@@ -41,7 +41,7 @@
 			<div class="bt-stats d-flex justify-content-start align-items-center text-info m-0" data-info="{{ item.id }}">
 				<span class="bt-views m-0"></span>
 				<span>{{dot|raw}}</span>
-				<span class="bt-category m-0">#CAT</span>
+				<span class="bt-category m-0">#{{ item.tag[0]|upper }}</span>
 				<span>{{dot|raw}}</span>
 				<span class="bt-post-date m-0">{{ item.postDate|format_datetime('medium', 'short', locale='fr', timezone='Europe/Paris') }}</span>
 			</div>
@@ -49,7 +49,7 @@
 			<div class="bt-creator d-none text-info">CREATEUR</div>
 			<div class="bt-line d-block my-2"></div>
 
-			<div class="bt-description text-light">{{ item.description|u.truncate(60, '...', false) }}</div>
+			<div class="bt-description text-light">{{ item.description|u.truncate(50, '...', false) }}</div>
 		</div>
 	</div>
 </div>

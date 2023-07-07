@@ -50,7 +50,7 @@
 
 			{% for i in 1.. (this.videos|length / count)|round(0, 'ceil') %}
 
-				{% for video in this.videos |slice(i * count, count) %}
+				{% for video in this.videos |slice(i * count - 1, count) %}
 					<div class="d-none bt-hidden {{galleryId}}-{{i}}">
 						{{ include('shared/thumbnail/big-thumbnail.html.twig', {item: video}) }}
 					</div>
