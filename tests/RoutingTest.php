@@ -39,5 +39,6 @@ class RoutingTest extends WebTestCase
         yield ['/user/dashboard'];
         yield ['/delete/video/1'];
         yield ['/delete/user/1'];
+        yield ['/delete/comment/1'];
     }
 }

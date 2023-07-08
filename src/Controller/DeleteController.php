@@ -36,6 +36,11 @@ class DeleteController extends AbstractController
         DeleteService $deleteService,
         ViewedRepository $viewedRepository
     ): Response {
+        if ($video->isIsHeader()) {
+            $this->addFlash('danger', 'Cette vidéo est en header et ne peut pas être supprimée');
+            return $this->redirectToRoute('admin_dashboard');
+        }
+
         $deleteService->deleteVideo($video, $viewedRepository);
         $this->addFlash('success', 'Vidéo supprimée avec succès');
 
