@@ -13,6 +13,11 @@
 
 {% block body %}
 
+	{% if app.request.headers.has('referer') %}
+		{% set referer = app.request.headers.get('referer') %}
+		<p>Referer: {{ referer }}</p>
+	{% endif %}
+
 	<main class="col" aria-labelledby="nav-btn-{{ navItems.user['name'] }}" id="{{ navItems.user['name'] }}">
 
 		<section class="ud-header container-lg p-4 m-auto">

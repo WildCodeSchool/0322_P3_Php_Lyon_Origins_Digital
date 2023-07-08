@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\User;
 use App\Entity\Video;
 use App\Repository\ViewedRepository;
@@ -39,5 +40,16 @@ class DeleteController extends AbstractController
         $this->addFlash('success', 'Vidéo supprimée avec succès');
 
         return $this->redirectToRoute('admin_dashboard');
+    }
+
+    //route to delete a comment by id
+    #[Route('/comment/{commentId<^[0-9]+$>}', name: 'comment')]
+    #[ParamConverter('comment', class: 'App\Entity\Comment', options: ['id' => 'commentId'])]
+    public function deleteComment(Comment $comment, DeleteService $deleteService): Response
+    {
+        $video = $deleteService->deleteComment($comment);
+        $this->addFlash('success', 'Commentaire supprimé avec succès');
+
+        return $this->redirectToRoute('video_show', ['id' => $video->getId()]);
     }
 }
