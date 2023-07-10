@@ -28,6 +28,7 @@ class UploadService
             ->save($this->params->get('image_directory') . '/' . $fileNameThumb);
 
         //videoGif part
+        /** @var Video $videoGif */
         $videoGif = $ffmpeg->open($this->params->get('temp_directory') . '/' . $fileName);
         $fileNameGif = pathinfo($fileName, PATHINFO_FILENAME);
         $fileNameGif = $fileNameGif . '.gif';
