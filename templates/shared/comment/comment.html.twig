@@ -30,7 +30,12 @@
 				<span class="mb-3">
 					{{ comment.content|slice(1, comment.content|length - 2)|raw }}
 				</span>
-			</div>
-		</div>
+				</div>
+				{% if is_granted('ROLE_ADMIN') %}
+					<span class="mb-3">
+						<a href="{{ path('delete_comment', { commentId: comment.id }) }}" class="btn btn-primary">Supprimer</a>
+					</span>
+				{% endif %}
+				</div>
 	</div>
 </div>

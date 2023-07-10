@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\Comment;
 use App\Entity\User;
 use App\Entity\Video;
 use App\Repository\ViewedRepository;
@@ -70,5 +71,14 @@ class DeleteService
         $this->entityManager->remove($video);
         $this->entityManager->flush();
         $viewedRepository->deleteNullUserAndNullVideo();
+    }
+
+    public function deleteComment(Comment $comment): Video
+    {
+        $video = $comment->getVideo();
+        $video->removeComment($comment);
+        $this->entityManager->flush();
+
+        return $video;
     }
 }

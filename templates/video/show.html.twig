@@ -50,9 +50,9 @@
 								</video>
 							</div>
 
-							<div class="row px-4 w-100">
+							<div class="px-4 w-100 mb-3">
 								{% if app.user %}
-									<div class="bt-socials col-auto fs-5 d-flex align-items-center">
+									<div class="bt-socials fs-5 d-flex align-items-center">
 										<a class="favorite m-2" href="{{ path('fav_add', { idVideo: videoPlayed.id }) }}">
 											{% set isFav = app.user.favoriteVideos|filter(video => video.id == videoPlayed.id )|first %}
 											<div class="bt-social-btn">
@@ -75,19 +75,18 @@
 										</a>
 									{% endif %}
 									{% if app.user %}
-										<button class="btn btn-secondary col-auto ms-2" id="add-comment" data-info="{{ videoPlayed.id }}">
+										<button class="btn btn-secondary ms-2" id="add-comment" data-info="{{ videoPlayed.id }}">
 											<i class='bi bi-chat-left-text-fill text-primary'></i>
 										</button>
 									{% else %}
-										<a href="{{ path('app_login') }}" class="btn btn-secondary col-auto" id="add-comment">
+										<a href="{{ path('app_login') }}" class="btn btn-secondary" id="add-comment">
 											<i class='bi bi-chat-left-text-fill text-primary'></i>
 										</a>
 									{% endif %}
-								</div>
-
-								<div class="bt-stats col-auto d-flex justify-content-center align-items-center text-info mb-2 mb-sm-0" data-info="{{ videoPlayed.id }}">
-									<div class="bt-views me-2"></div>
-									<div class="bt-post-date mx-2">{{ videoPlayed.postDate|format_datetime('medium', 'short', locale='fr', timezone='Europe/Paris') }}</div>
+									<div class="text-info d-inline mb-2 mb-sm-0" data-info="{{ videoPlayed.id }}">
+										<span class="bt-views ms-3 me-2"></span>
+										<span class="bt-post-date mx-2">{{ videoPlayed.postDate|format_datetime('medium', 'short', locale='fr', timezone='Europe/Paris') }}</span>
+									</div>
 								</div>
 
 
