@@ -57,15 +57,11 @@ setTimeout(() => {
 
 //gif preview when mouseover Bt
 document.querySelectorAll('img.bt-poster').forEach(element => {
-    element.addEventListener('mouseenter', event => {
+    element.addEventListener('mouseenter', function() {
         element.src = element.src.replace(/\.jpg$/, '.gif')
     })
   
-    element.addEventListener('mouseleave', event => {
+    element.addEventListener('mouseleave', function() {
         element.src = element.src.replace(/\.gif$/, '.jpg')
     })
 })
-
-
-
-
