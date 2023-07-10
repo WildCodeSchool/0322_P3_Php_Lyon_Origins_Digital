@@ -3,13 +3,23 @@
 namespace App\DataFixtures;
 
 use DateTimeImmutable;
-use App\Entity\Video;
+use App\Entity\Video as VideoEntity;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use FFMpeg\FFMpeg;
+use FFMpeg\Coordinate\TimeCode;
+use FFMpeg\Coordinate\Dimension;
+use FFMpeg\Media\Video;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class VideoFixtures extends Fixture implements DependentFixtureInterface
 {
+    public function __construct(private ParameterBagInterface $params)
+    {
+        $this->params = $params;
+    }
+
     public const VIDEOS = [
         [
             'title' => '3 Minute Maokai Guide - A guide for League of Legends',
@@ -291,7 +301,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         $videoCount = 0;
 
         foreach (self::VIDEOS as $clip) {
-            $video = new Video();
+            $video = new VideoEntity();
             $postDate = new DateTimeImmutable($clip['post_date']);
             $video
                 ->setTitle($clip['title'])
@@ -305,6 +315,16 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             $this->addReference('video_' . $videoCount, $video);
             $videoCount++;
             $persistedVideos[] = $video;
+
+            $ffmpeg = FFMpeg::create();
+            /** @var Video $videoGif */
+            $videoGif = $ffmpeg->open($this->params->get('video_directory') . '/' . $clip['video_url']);
+            $fileNameGif = pathinfo($clip['poster_url'], PATHINFO_FILENAME);
+            $fileNameGif = $fileNameGif . '.gif';
+
+            $videoGif
+                ->gif(TimeCode::fromSeconds(20), new Dimension(280, 240), 4)
+                ->save($this->params->get('image_directory') . '/' . $fileNameGif);
         }
 
 

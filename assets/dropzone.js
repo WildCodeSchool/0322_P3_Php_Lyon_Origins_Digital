@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let maxVideoFileSize = 512; // en Mb
     let dropzone_default = new Dropzone("#mydropzone", {
         maxFiles: 1,
-        dictDefaultMessage: "Déposez votre vidéo ici ou cliquez pour en séléctionner une (taille max "+maxVideoFileSize+" Mb)",
+        dictDefaultMessage: "Déposez votre vidéo ici ou cliquez pour en séléctionner une (taille max "+maxVideoFileSize+" Mb, druée min 30sec)",
         dictMaxFilesExceeded: 'Vous ne pouvez ajouter qu\'une seule video à la fois',
         acceptedFiles: 'video/mp4',
         chunking: true,
