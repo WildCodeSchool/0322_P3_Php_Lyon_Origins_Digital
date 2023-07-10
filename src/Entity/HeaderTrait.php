@@ -15,7 +15,7 @@ trait HeaderTrait
     {
         $entity = $eventArgs->getObject();
 
-        if ($entity !== null && $entity->isIsHeader() === true) {
+        if ($entity->isIsHeader() === true) {
             $entityManager = $eventArgs->getObjectManager();
             $videoRepository = $entityManager->getRepository(Video::class);
 
