@@ -128,7 +128,7 @@
 							{% for video in app.user.favoriteVideos |slice(0, 4) %}
 								{{ include('shared/thumbnail/small-thumbnail.html.twig', {item: video}) }}
 							{% endfor %}
-							<a href="{{ path('user_dashboard') }}" class="title-font text-secondary mt-3">VOIR PLUS</a>
+							<a href="{{ path('user_dashboard') }}"><h5 class="title-font text-secondary mt-3">VOIR PLUS</h5></a>
 						</div>
 
 						<div class="d-xl-flex d-none justify-content-end align-items-end flex-wrap">

@@ -28,7 +28,7 @@ class VideoType extends AbstractType
                 'required' => true
             ])
             ->add('postDate', DateTimeType::class, [
-                 'widget' => 'single_text',
+                'widget' => 'single_text',
                 'label' => 'Date de publication:',
                 'input' => 'datetime_immutable',
                 'view_timezone' => 'Europe/Paris',
