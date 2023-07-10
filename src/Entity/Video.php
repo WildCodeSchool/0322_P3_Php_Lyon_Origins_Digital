@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\HeaderTrait;
 use App\Repository\VideoRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -248,7 +249,10 @@ class Video
 
     public function setIsHeader(bool $isHeader): static
     {
-        $this->isHeader = $isHeader;
+        $currentDate = new DateTime();
+        if ($this->postDate < $currentDate) {
+            $this->isHeader = $isHeader;
+        }
         return $this;
     }
 
