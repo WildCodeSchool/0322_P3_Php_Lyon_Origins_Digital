@@ -1,21 +1,78 @@
-{% apply inline_css(source('@styles/email.css')) %}
-<body>
+<head>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700;900&family=Staatliches&display=swap" rel="stylesheet">
+	<style>:root
+	{
+		--text-font: "Inter", sans-serif;
+		--title-font: "Staatliches", cursive;
+	}
 
-<h2>Bienvenue sur Gaming Gurus</h2>
+	* {
+		box-sizing: border-box;
+	}
 
-<p>Nous sommes ravis de vous accueillir sur Gaming Gurus, la communauté de passionnés de jeux vidéo.<br> 
-   <br>Pour finaliser votre inscription, veuillez confirmer votre adresse e-mail en cliquant sur le lien ci-dessous :<br>
-   <br><a href="{{ signedUrl|raw }}">Confirmer mon adresse mail</a>.<br>
-   <br>Votre lien de confirmation expirera dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle','fr') }}. 
-   Assurez-vous de cliquer sur le lien avant que celui-ci ne soit plus valide.
-</p>
+	body {
+		text-align: center;
+	}
 
+	h1 {
+		color: #ffe500;
+		font-family: var(--title-font);
+		font-size: 5vw;
+	}
 
-<p>Nous vous remercions de votre confiance et de votre soutien.<br>
-   À très bientôt sur Gaming Gurus !<br>
-   <br>Bien cordialement,<br>  
-</p>
+	h3 {
+		color: #ffe500;
+		font-family: var(--title-font);
+		font-size: 2vw;
+	}
 
-<h3>L'équipe Gaming Gurus<h3>
-</body>
-{% endapply %}
+	p {
+		color: #cea8ff;
+		font-family: var(--text-font);
+	}
+
+	body {
+		background-color: #241c52;
+	}
+
+	.confirm {
+		width: fit-content;
+		background-color: #ffe500;
+		margin: 50px auto;
+		padding: 20px 40px;
+		border-radius: 50px;
+	}
+
+	.confirm a {
+		text-decoration: none;
+		font-family: var(--text-font);
+		font-weight: bold;
+		color: #241c52;
+		word-wrap: normal;
+	}
+
+	.thx {
+		padding-top: 10px;
+	}
+</style></head><body>
+
+<h1>Bienvenue sur Gaming Gurus</h1>
+
+<p>Ravis de vous compter parmis les membres de GAMING GURUS,<br>
+	LA communauté de passionnés de jeux vidéo.</p>
+
+<p>Confirmez votre adresse e-mail en cliquant sur le bouton ci-dessous :</p>
+<div class="confirm">
+	<a href="{{ signedUrl|raw }}">Confirmer mon adresse mail</a>.
+</div>
+
+<p>Votre lien de confirmation expirera dans
+	{{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle','fr') }}.</p>
+<p>Assurez-vous de cliquer sur le lien avant que celui-ci ne soit plus valide.</p>
+<div class="thx">
+	<p>Nous vous remercions de votre confiance et de votre soutien.<br>
+		À très bientôt sur Gaming Gurus !</p>
+</div>
+<h3>L'équipe Gaming Gurus</h3></body>
