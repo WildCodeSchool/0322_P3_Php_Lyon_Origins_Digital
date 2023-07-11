@@ -611,3 +611,7 @@ $mbActiveItemBg: linear-gradient(180deg, $dark 0%, $primary 50%, $secondary 100%
 .modal-body::-webkit-scrollbar {
     display: none;
 }
+
+.avatar {
+    width: 100px;
+}

@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
@@ -15,7 +16,7 @@ class AvatarType extends AbstractType
     {
         $builder
             ->add('avatar', FileType::class, [
-                'label' => '',
+                'label' => false,
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
@@ -26,10 +27,11 @@ class AvatarType extends AbstractType
                             'image/jpg',
                             'image/png',
                         ],
-                        'mimeTypesMessage' => 'Merci d\'ajouter un fichier de type image',
+                        'mimeTypesMessage' => "Merci d'ajouter un fichier de type image",
                     ])
                 ],
             ])
+            ->add('Ajouter', SubmitType::class)
         ;
     }
 
