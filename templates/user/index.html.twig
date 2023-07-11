@@ -16,9 +16,9 @@
 	<main class="col" aria-labelledby="nav-btn-{{ navItems.user['name'] }}" id="{{ navItems.user['name'] }}">
 
 		<section class="ud-header container-lg p-4 m-auto">
-
-				<img src="{{ asset('build/avatars/' ~ app.user.avatar) }}" alt="{{app.user.avatar}}" class="text-primary">
-
+            {% if app.user.avatar %}
+				<img src="{{ asset('build/avatars/' ~ app.user.avatar) }}" alt="{{app.user.avatar}}" class="text-secondary">
+            {% endif %}
 			<h1 class="title-font text-center text-secondary py-3">
 				Hello
 				{{ app.user.username }}
