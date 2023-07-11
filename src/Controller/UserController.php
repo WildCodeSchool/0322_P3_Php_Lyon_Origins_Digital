@@ -13,8 +13,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
-use Symfony\Component\String\Slugger\SluggerInterface;
-use Symfony\Component\Filesystem\Filesystem;
 
 #[IsGranted('ROLE_USER')]
 #[Route('/user', name: 'user_')]
@@ -47,7 +45,9 @@ class UserController extends AbstractController
             $newFilename = $user->getId() . '.' . $avatarFile->guessExtension();
             if (!is_null($user->getAvatar())) {
                 $oldAvatar = $this->getParameter('avatar_directory') . '/' . $user->getAvatar();
-                unlink($oldAvatar);
+                if (file_exists($oldAvatar)) {
+                    unlink($oldAvatar);
+                }
             }
             $avatarFile->move($this->getParameter('avatar_directory'), $newFilename);
             $user->setAvatar($newFilename);
