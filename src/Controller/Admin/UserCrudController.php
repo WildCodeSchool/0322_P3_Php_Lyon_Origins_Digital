@@ -30,10 +30,10 @@ class UserCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield TextField::new('email');
-        yield TextField::new('username');
-        yield BooleanField::new('isVerified');
-        yield BooleanField::new('isAdmin');
+        yield TextField::new('email', 'E-mail');
+        yield TextField::new('username', 'nom d\'utilisateur');
+        yield BooleanField::new('isVerified', 'est vérifié');
+        yield BooleanField::new('isAdmin', 'est admin');
     }
 
     public function configureCrud(Crud $crud): Crud
@@ -43,7 +43,7 @@ class UserCrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
-        $deleteAction = Action::new('deleteUser', 'Delete')
+        $deleteAction = Action::new('deleteUser', 'Supprimer')
             ->linkToUrl(function (User $user) {
                 $url = $this->urlGenerator->generate('delete_user', ['idUser' => $user->getId()]);
                 return $url;

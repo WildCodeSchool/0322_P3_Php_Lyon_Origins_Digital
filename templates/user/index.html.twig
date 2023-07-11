@@ -16,10 +16,18 @@
 	<main class="col" aria-labelledby="nav-btn-{{ navItems.user['name'] }}" id="{{ navItems.user['name'] }}">
 
 		<section class="ud-header container-lg p-4 m-auto">
+
+				<img src="{{ asset('build/avatars/' ~ app.user.avatar) }}" alt="{{app.user.avatar}}" class="text-primary">
+
 			<h1 class="title-font text-center text-secondary py-3">
 				Hello
 				{{ app.user.username }}
 			</h1>
+
+			{{ form_start(form) }}
+			{{ form_row(form.avatar) }}
+			<button class="btn btn-light">{{ button|default('Envoyer') }}</button>
+			{{ form_end(form) }}
 
 			{% set userStats = [
         {
@@ -51,12 +59,11 @@
 
 						<li class="nav-item fs-4" role="presentation">
 
-							<button class="nav-link mx-3 position-relative {% if userStat['id'] == 'fav' %} {{ active['tab'] }} {% endif %}" id="{{ userStat['id'] }}-tab" data-bs-toggle="tab" data-bs-target="#{{ userStat['id'] }}-tab-pane" type="button" role="tab" aria-controls="{{ userStat['id'] }}-tab-pane" aria-selected="true">
+							<a href="#{{ userStat['id'] }}" class="nav-link mx-3 position-relative {% if userStat['id'] == 'fav' %} {{ active['tab'] }} {% endif %}" id="{{ userStat['id'] }}-tab" data-bs-toggle="tab" data-bs-target="#{{ userStat['id'] }}-tab-pane" type="button" role="tab" aria-controls="{{ userStat['id'] }}-tab-pane" aria-selected="true">
 
 								<span class="title-font">{{ userStat['title'] }}</span>
 								<span class="position-absolute z-3 top-0 start-100 translate-middle border border-1 border-secondary badge text-font rounded-pill bg-dark text-secondary">{{ userStat['stat']|length }}</span>
-
-							</button>
+							</a>
 						</li>
 
 					{% endfor %}
@@ -83,10 +90,9 @@
 						</div>
 
 					{% endfor %}
-
 				</div>
-
 			</section>
 		</main>
+
 
 	{% endblock %}

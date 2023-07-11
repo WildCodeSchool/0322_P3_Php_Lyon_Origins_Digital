@@ -17,15 +17,15 @@ class TagCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
+            ->setPageTitle('index', 'Gérer les Tags videos')
             ->setEntityLabelInSingular('Video Tag')
             ->setEntityLabelInPlural('Video Tags')
             ->setSearchFields(['name', 'videos'])
-            ->setDefaultSort(['name' => 'ASC'])
-        ;
+            ->setDefaultSort(['name' => 'ASC']);
     }
 
     public function configureFields(string $pageName): iterable
     {
-        yield TextField::new('name');
+        yield TextField::new('name', 'nom');
     }
 }

@@ -32,12 +32,12 @@ class VideoCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield TextField::new('title');
-        yield DateTimeField::new('postDate');
-        yield TextField::new('videoUrl');
-        yield TextField::new('posterUrl');
-        yield BooleanField::new('isPremium');
-        yield BooleanField::new('isHeader');
+        yield TextField::new('title', 'titre');
+        yield DateTimeField::new('postDate', 'date de publication');
+        yield TextField::new('videoUrl', 'fichier vidéo');
+        yield TextField::new('posterUrl', 'fichier image');
+        yield BooleanField::new('isPremium', 'vidéo premium');
+        yield BooleanField::new('isHeader', 'vidéo en Entête');
         yield AssociationField::new('tag');
     }
 
@@ -48,7 +48,7 @@ class VideoCrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
-        $deleteAction = Action::new('deleteVideo', 'Delete')
+        $deleteAction = Action::new('deleteVideo', 'Supprimer')
             ->linkToUrl(function (Video $video) {
                 $url = $this->urlGenerator->generate('delete_video', ['idVideo' => $video->getId()]);
                 return $url;
