@@ -77,12 +77,14 @@
 						{% if userStat['id'] == 'avatar' %}
 							<div class="tab-pane fade" id="{{ userStat['id'] }}-tab-pane" role="tabpanel" aria-labelledby="{{ userStat['id'] }}-tab" tabindex="0">
 
-								<div class="container-lg m-auto d-flex justify-content-center align-items-start mt-3">
+								<div class="container d-flex justify-content-center mt-3">
 									{{ form_start(form) }}
 									{{ form_row(form.avatar) }}
 									{{ form_end(form) }}
+								</div>
 
-									<img {% if app.user.avatar %} src="{{ asset('build/avatars/' ~ app.user.avatar) }}" {% else %} src="{{ asset('build/avatars/blank.png') }}" {% endif %} class="avatar rounded-circle" alt="Avatar">
+								<div class="container d-flex justify-content-center mt-3">
+                                    <img {% if app.user.avatar %} src="{{ asset('build/avatars/' ~ app.user.avatar) }}" {% else %} src="{{ asset('build/avatars/blank.png') }}" {% endif %} class="avatar rounded-circle" alt="Avatar">
 								</div>
 							</div>
 						{% else %}
