@@ -6,7 +6,9 @@ use App\Entity\Tag;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_ADMIN')]
 class TagCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
@@ -17,15 +19,15 @@ class TagCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInSingular('Video Tag')
-            ->setEntityLabelInPlural('Video Tags')
+            ->setPageTitle('index', 'Gérer les Tags des vidéos')
+            ->setEntityLabelInSingular('Tag Vidéos')
+            ->setEntityLabelInPlural('Tags Vidéos')
             ->setSearchFields(['name', 'videos'])
-            ->setDefaultSort(['name' => 'ASC'])
-        ;
+            ->setDefaultSort(['name' => 'ASC']);
     }
 
     public function configureFields(string $pageName): iterable
     {
-        yield TextField::new('name');
+        yield TextField::new('name', 'nom');
     }
 }

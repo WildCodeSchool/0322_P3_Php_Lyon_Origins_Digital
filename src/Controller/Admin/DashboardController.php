@@ -42,7 +42,7 @@ class DashboardController extends AbstractDashboardController
         }
 
         $chartVideosByTag = $this->chartManager->createBarChartBy(
-            'Videos by Tag',
+            'Vidéos par tag',
             $tagNames,
             $tagVideoCount,
         );
@@ -58,13 +58,13 @@ class DashboardController extends AbstractDashboardController
         }
 
         $chartFavsByVideo = $this->chartManager->createBarChartBy(
-            'Favorites by Video',
+            'Favoris par video',
             $videoTitles,
             $favCount,
         );
 
         $chartViewsByVideo = $this->chartManager->createBarChartBy(
-            'Views by Video',
+            'Vues par video',
             $videoTitles,
             $viewsCount,
         );
@@ -79,16 +79,16 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Gaming Gurus Dashboard');
+            ->setTitle('Admin Gaming Gurus');
     }
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Dashboard', 'fa-solid fa-gear');
-        yield MenuItem::linkToRoute('Back to the website', 'fa-solid fa-house', 'home_index');
-        yield MenuItem::linkToCrud('Manage Videos', 'fa-solid fa-play', Video::class);
-        yield MenuItem::linkToRoute('Upload Videos', 'fa-solid fa-file-arrow-up', 'upload_video');
-        yield MenuItem::linkToCrud('Manage Tags', 'fa-solid fa-hashtag', Tag::class);
-        yield MenuItem::linkToCrud('Manage Users', 'fa-solid fa-user', User::class);
+        yield MenuItem::linkToDashboard('Tableau de bord', 'fa-solid fa-gear');
+        yield MenuItem::linkToRoute('Retour au site', 'fa-solid fa-house', 'home_index');
+        yield MenuItem::linkToCrud('Gestion de vidéos', 'fa-solid fa-play', Video::class);
+        yield MenuItem::linkToRoute('Ajouter une vidéo', 'fa-solid fa-file-arrow-up', 'upload_video');
+        yield MenuItem::linkToCrud('Gestion des tags', 'fa-solid fa-hashtag', Tag::class);
+        yield MenuItem::linkToCrud('Gestion des utilisateurs', 'fa-solid fa-user', User::class);
     }
 }
