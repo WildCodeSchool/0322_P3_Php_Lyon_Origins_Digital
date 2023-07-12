@@ -44,12 +44,12 @@
         'content': 'show active'
     }%}
 
-			<section class="user-dashboard container-lg mt-5">
+			<section class="user-dashboard container-lg  mt-sm-3 mt-md-5">
 				<ul class="ud-menu nav nav-tabs justify-content-center" id="userDashboards" role="tablist">
 
 					{% for userStat in userStats %}
 
-						<li class="nav-item fs-4" role="presentation">
+						<li class="nav-item fs-4 mt-3" role="presentation">
 
 							<button class="nav-link mx-3 position-relative {% if userStat['id'] == 'fav' %} {{ active['tab'] }} {% endif %}" id="{{ userStat['id'] }}-tab" data-bs-toggle="tab" data-bs-target="#{{ userStat['id'] }}-tab-pane" type="button" role="tab" aria-controls="{{ userStat['id'] }}-tab-pane" aria-selected="true">
 
