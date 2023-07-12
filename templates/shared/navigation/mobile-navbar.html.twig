@@ -7,9 +7,9 @@
 				<a class="h-100" href="{{ path(navItem['link']) }}">
 				{% endif %}
 
-				<div class="nav-item text-dark text-center d-flex justify-content-center align-items-center" aria-selected="false" id="nav-btn-{{ navItem['name'] }}-mb" aria-controls="{{ navItem['name'] }}">
+				<div class="nav-item text-dark d-flex justify-content-center align-items-center p-0 m-0" aria-selected="false" id="nav-btn-{{ navItem['name'] }}-mb" aria-controls="{{ navItem['name'] }}">
 
-					<i class="bi bi-{{ navItem['iconClass'] }}" id="{{ navItem['iconClass'] }}"></i>
+					<i class="p-0 m-0 bi bi-{{ navItem['iconClass'] }}" id="{{ navItem['iconClass'] }}"></i>
 
 				</div>
 				{% if navItem['name'] == 'show' or navItem['name'] == 'search' %}

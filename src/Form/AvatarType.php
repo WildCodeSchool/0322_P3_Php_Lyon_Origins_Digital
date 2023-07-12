@@ -31,7 +31,6 @@ class AvatarType extends AbstractType
                     ])
                 ],
             ])
-            ->add('Ajouter', SubmitType::class)
         ;
     }
 
