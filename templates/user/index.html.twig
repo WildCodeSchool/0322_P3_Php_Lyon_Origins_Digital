@@ -10,20 +10,10 @@
 	{{ encore_entry_script_tags('addLater') }}
 	{{ encore_entry_script_tags('displayViewCount') }}
 	{{ encore_entry_script_tags('userDashboard') }}
+	{{ encore_entry_script_tags('avatar') }}
 {% endblock %}
 
-{% block body %}
-
-	<main class="col" aria-labelledby="nav-btn-{{ navItems.user['name'] }}" id="{{ navItems.user['name'] }}">
-
-		<section class="ud-header container-lg p-4 m-auto">
-
-			<h1 class="title-font text-center text-secondary py-3">
-				Hello
-				{{ app.user.username }}
-			</h1>
-
-			{% set userStats = [
+{% set userStats = [
         {
             'title': 'Favorites',
             'stat': app.user.favoriteVideos,
@@ -38,75 +28,84 @@
             'title': 'Historique',
             'stat': history,
             'id': 'history',
-        },
-        {
-            'title': 'Avatar',
-            'stat': null,
-            'id': 'avatar',
-        },
+        }
     ] %}
 
-			{% set active = {
+{% set active = {
         'tab': 'active',
         'content': 'show active'
     }%}
 
-			<section class="user-dashboard container-lg mt-5">
-				<ul class="ud-menu nav nav-tabs justify-content-center" id="userDashboards" role="tablist">
+{% block body %}
 
-					{% for userStat in userStats %}
+	<main class="col" aria-labelledby="nav-btn-{{ navItems.user['name'] }}" id="{{ navItems.user['name'] }}">
 
-						<li class="nav-item fs-4" role="presentation">
+		<section class="ud-header container mt-5">
 
-							<a href="#{{ userStat['id'] }}-tab" class="nav-link mx-3 position-relative {% if userStat['id'] == 'fav' %} {{ active['tab'] }} {% endif %}" id="{{ userStat['id'] }}-tab" data-bs-toggle="tab" data-bs-target="#{{ userStat['id'] }}-tab-pane" type="button" role="tab" aria-controls="{{ userStat['id'] }}-tab-pane" aria-selected="true">
+			<header class="bg-secondary position-relative overflow-hidden rounded-pill d-flex align-items-center mx-auto" id="userHeader">
 
-								<span class="title-font">{{ userStat['title'] }}</span>
-								<span class="position-absolute z-3 top-0 start-100 translate-middle border border-1 border-secondary badge text-font rounded-pill bg-dark text-secondary">{{ userStat['stat']|length }}</span>
+				<div class="rounded-circle overflow-hidden z-2" id="avatarImg-container">
+					<img class="avatar object-fit-cover img-fluid rounded-circle" {% if app.user.avatar %} src="{{ asset('build/avatars/' ~ app.user.avatar) }}" {% else %} src="{{ asset('build/avatars/blank.png') }}" {% endif %} id="avatarImg" alt="Avatar">
+				</div>
 
-							</a>
-						</li>
+				<h1 class="title-font text-primary fs-1 mx-auto py-0 my-0 px-3" id="userHeaderName">
+					{{ app.user.username }}
+				</h1>
+			</header>
 
-					{% endfor %}
+			<div class="d-none">
+				{{ form_start(form) }}
+				{{ form_row(form.avatar, { 'id': 'avatarInput' }) }}
+				<button id="avatarSubmit">{{ button|default('Envoyer') }}</button>
+				{{ form_end(form) }}
+			</div>
+		</section>
 
-				</ul>
+		<section class="user-dashboard container-lg mt-5">
+			<ul class="ud-menu nav nav-tabs justify-content-center" id="userDashboards" role="tablist">
 
-				<div class="tab-content" id="myTabContent">
+				{% for userStat in userStats %}
 
-					{% for userStat in userStats %}
+					<li class="nav-item fs-4" role="presentation">
 
-						{% if userStat['id'] == 'avatar' %}
-							<div class="tab-pane fade" id="{{ userStat['id'] }}-tab-pane" role="tabpanel" aria-labelledby="{{ userStat['id'] }}-tab" tabindex="0">
+						<a href="#{{ userStat['id'] }}-tab" class="nav-link mx-3 position-relative {% if userStat['id'] == 'fav' %} {{ active['tab'] }} {% endif %}" id="{{ userStat['id'] }}-tab" data-bs-toggle="tab" data-bs-target="#{{ userStat['id'] }}-tab-pane" type="button" role="tab" aria-controls="{{ userStat['id'] }}-tab-pane" aria-selected="true">
 
-								<div class="container d-flex justify-content-center mt-3">
-									{{ form_start(form) }}
-									{{ form_row(form.avatar) }}
-									{{ form_end(form) }}
-								</div>
+							<span class="title-font">{{ userStat['title'] }}</span>
+							<span class="position-absolute z-3 top-0 start-100 translate-middle border border-1 border-secondary badge text-font rounded-pill bg-dark text-secondary">{{ userStat['stat']|length }}</span>
 
-								<div class="container d-flex justify-content-center mt-3">
-                                    <img {% if app.user.avatar %} src="{{ asset('build/avatars/' ~ app.user.avatar) }}" {% else %} src="{{ asset('build/avatars/blank.png') }}" {% endif %} class="avatar rounded-circle" alt="Avatar">
-								</div>
-							</div>
-						{% else %}
+						</a>
+					</li>
 
-							<div class="tab-pane fade {% if userStat['id'] == 'fav' %} {{ active['content'] }} {% endif %}" id="{{ userStat['id'] }}-tab-pane" role="tabpanel" aria-labelledby="{{ userStat['id'] }}-tab" tabindex="0">
+				{% endfor %}
 
-								<div class="container-lg m-auto d-flex justify-content-center align-items-start mt-3">
+			</ul>
 
-									{{ include('shared/gallery/bt-gallery.html.twig', {
+			<div class="tab-content" id="myTabContent">
+
+				{% for userStat in userStats %}
+
+					{% if userStat['id'] == 'avatar' %}
+						<div class="tab-pane fade" id="{{ userStat['id'] }}-tab-pane" role="tabpanel" aria-labelledby="{{ userStat['id'] }}-tab" tabindex="0"></div>
+					{% else %}
+
+						<div class="tab-pane fade {% if userStat['id'] == 'fav' %} {{ active['content'] }} {% endif %}" id="{{ userStat['id'] }}-tab-pane" role="tabpanel" aria-labelledby="{{ userStat['id'] }}-tab" tabindex="0">
+
+							<div class="container-lg m-auto d-flex justify-content-center align-items-start mt-3">
+
+								{{ include('shared/gallery/bt-gallery.html.twig', {
                                             title: false,
                                             subtitle: false,
                                             count: 7,
                                             contents: userStat['stat'],
                                             id: 'user' ~ userStat['id']
                                         }) }}
-								</div>
 							</div>
-						{% endif %}
-					{% endfor %}
-				</div>
-			</section>
-		</main>
+						</div>
+					{% endif %}
+				{% endfor %}
+			</div>
+		</section>
+	</main>
 
 
-	{% endblock %}
+{% endblock %}
