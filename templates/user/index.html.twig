@@ -9,6 +9,7 @@
 	{{ encore_entry_script_tags('addFav') }}
 	{{ encore_entry_script_tags('addLater') }}
 	{{ encore_entry_script_tags('displayViewCount') }}
+	{{ encore_entry_script_tags('userDashboard') }}
 	{{ encore_entry_script_tags('avatar') }}
 {% endblock %}
 
@@ -39,19 +40,18 @@
 
 	<main class="col" aria-labelledby="nav-btn-{{ navItems.user['name'] }}" id="{{ navItems.user['name'] }}">
 
-		<section class="ud-header container mt-4">
+		<section class="ud-header container mt-5">
 
-			<header class="bg-secondary position-relative rounded-pill d-flex align-items-center w-50 mx-auto" id="userHeader">
+			<header class="bg-secondary position-relative overflow-hidden rounded-pill d-flex align-items-center mx-auto" id="userHeader">
 
-				<div class="w-50 rounded-circle overflow-hidden" id="avatarImg-container">
-					<img class="avatar object-fit-cover img-fluid" {% if app.user.avatar %} src="{{ asset('build/avatars/' ~ app.user.avatar) }}" {% else %} src="{{ asset('build/avatars/blank.png') }}" {% endif %} id="avatarImg" alt="Avatar">
+				<div class="rounded-circle overflow-hidden z-2" id="avatarImg-container">
+					<img class="avatar object-fit-cover img-fluid rounded-circle" {% if app.user.avatar %} src="{{ asset('build/avatars/' ~ app.user.avatar) }}" {% else %} src="{{ asset('build/avatars/blank.png') }}" {% endif %} id="avatarImg" alt="Avatar">
 				</div>
 
-				<h1 class="title-font text-primary fs-1 mx-auto py-0 my-0">
+				<h1 class="title-font text-primary fs-1 mx-auto py-0 my-0 px-3" id="userHeaderName">
 					{{ app.user.username }}
 				</h1>
 			</header>
-
 
 			<div class="d-none container d-flex justify-content-center mt-3">
 				{{ form_start(form) }}
@@ -67,12 +67,11 @@
 
 					<li class="nav-item fs-4" role="presentation">
 
-						<a href="#{{ userStat['id'] }}" class="nav-link mx-3 position-relative {% if userStat['id'] == 'fav' %} {{ active['tab'] }} {% endif %}" id="{{ userStat['id'] }}-tab" data-bs-toggle="tab" data-bs-target="#{{ userStat['id'] }}-tab-pane" type="button" role="tab" aria-controls="{{ userStat['id'] }}-tab-pane" aria-selected="true">
+						<a href="#{{ userStat['id'] }}-tab" class="nav-link mx-3 position-relative {% if userStat['id'] == 'fav' %} {{ active['tab'] }} {% endif %}" id="{{ userStat['id'] }}-tab" data-bs-toggle="tab" data-bs-target="#{{ userStat['id'] }}-tab-pane" type="button" role="tab" aria-controls="{{ userStat['id'] }}-tab-pane" aria-selected="true">
 
 							<span class="title-font">{{ userStat['title'] }}</span>
-							{% if userStat['stat'] %}
-								<span class="position-absolute z-3 top-0 start-100 translate-middle border border-1 border-secondary badge text-font rounded-pill bg-dark text-secondary">{{ userStat['stat']|length }}</span>
-							{% endif %}
+							<span class="position-absolute z-3 top-0 start-100 translate-middle border border-1 border-secondary badge text-font rounded-pill bg-dark text-secondary">{{ userStat['stat']|length }}</span>
+
 						</a>
 					</li>
 

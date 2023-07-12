@@ -10,7 +10,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_ADMIN')]
 class UserCrudController extends AbstractCrudController
 {
     /**
@@ -38,7 +40,9 @@ class UserCrudController extends AbstractCrudController
 
     public function configureCrud(Crud $crud): Crud
     {
-        return $crud->setDefaultSort(['id' => 'ASC']);
+        return $crud
+        ->setPageTitle('index', 'Gérer les utilisateurs')
+        ->setDefaultSort(['id' => 'ASC']);
     }
 
     public function configureActions(Actions $actions): Actions

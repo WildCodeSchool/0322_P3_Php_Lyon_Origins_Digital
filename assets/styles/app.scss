@@ -612,9 +612,11 @@ $mbActiveItemBg: linear-gradient(180deg, $dark 0%, $primary 50%, $secondary 100%
     display: none;
 }
 
+$userHeaderWidth: 30vw;
+
 @keyframes userHeaderLoad {
     0% {
-        transform: translateX(100%);
+        transform: translateX(calc($userHeaderWidth - 100%));
     }
 
     100% {
@@ -625,28 +627,44 @@ $mbActiveItemBg: linear-gradient(180deg, $dark 0%, $primary 50%, $secondary 100%
 #userHeader {
 
     cursor: pointer;
+    max-height: 15vh;
+    width: $userHeaderWidth;
+    background: linear-gradient(90deg, $primary 0%, $secondary 80%) !important;
 
     &:before {
         display: block;
-        content: "Modifier votre avatar";
+        content: "Modifier";
         position: absolute;
         width: 20%;
         font-family: $titleFont;
-        color: $primary;
+        color: $secondary;
         margin: auto;
-        left: 10%;
+        left: 15%;
         font-size: $h4-font-size;
         transform: translateX(100%);
-        transition: .7s cubic-bezier(.75, 0, .25, 1);
+        transition: .7s cubic-bezier(.5, 0, 0, 1);
         opacity: 0%;
+        text-decoration: underline;
+    }
+
+    #userHeaderName {
+        transition: .7s cubic-bezier(.5, 0, 0, 1);
+        opacity: 100%;
+        transform: translateX(0%);
     }
 
     #avatarImg-container {
-        transition: .7s cubic-bezier(.75, 0, .25, 1);
+
+        max-height: 15vh;
+
+        transition: .7s cubic-bezier(.5, 0, 0, 1);
         animation-name: userHeaderLoad;
         animation-duration: 2s;
         animation-timing-function: cubic-bezier(0.25,0,0,1);
 
+        #avatarImg {
+            max-height: 15vh;
+        }
     }
 
     &:hover {
@@ -657,8 +675,11 @@ $mbActiveItemBg: linear-gradient(180deg, $dark 0%, $primary 50%, $secondary 100%
         }
 
         #avatarImg-container {
+            transform: translateX(calc($userHeaderWidth - 100%));
+        }
 
-
+        #userHeaderName {
+            opacity: 0%;
             transform: translateX(100%);
         }
     }

@@ -12,7 +12,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_ADMIN')]
 class VideoCrudController extends AbstractCrudController
 {
     /**
@@ -43,7 +45,9 @@ class VideoCrudController extends AbstractCrudController
 
     public function configureCrud(Crud $crud): Crud
     {
-        return $crud->setDefaultSort(['postDate' => 'DESC']);
+        return $crud
+        ->setPageTitle('index', 'Gérer les vidéos')
+        ->setDefaultSort(['postDate' => 'DESC']);
     }
 
     public function configureActions(Actions $actions): Actions
