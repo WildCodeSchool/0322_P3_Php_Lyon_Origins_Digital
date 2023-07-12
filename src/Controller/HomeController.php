@@ -17,6 +17,10 @@ class HomeController extends AbstractController
         $latestVideos = $videoRepository->findLatestVideos();
         $trendingTags = $tagRepository->findAll();
         $headerVideo = $videoRepository->findOneBy(['isHeader' => true]);
+        if (is_null(($headerVideo))) {
+            $this->addFlash('danger', 'Cette vidéo n\'est pas encore publiée et ne peut pas être mise en entête.');
+            return $this->redirectToRoute('admin_dashboard');
+        }
 
         return $this->render('home/index.html.twig', [
             'trendingTags' => $trendingTags,
