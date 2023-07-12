@@ -14,6 +14,9 @@
 	<div class="col">
 		<div class="d-flex align-items-center justify-content-start">
 			<span class="title-font text-secondary fs-4">
+			<img {% if comment.user.avatar %} src="{{ asset('build/avatars/' ~ comment.user.avatar) }}" {% else %} src="{{ asset('build/avatars/blank.png') }}" {% endif %} class="avatar rounded-circle" alt="Avatar">
+			</span>
+			<span class="title-font text-secondary fs-4">
 				{{ dot|raw }}
 			</span>
 			<span class="title-font text-secondary fs-4 me-3">
