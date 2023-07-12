@@ -1,5 +1,5 @@
-const aSubmit = document.getElementById('avatar_Ajouter');
-const aBrowse = document.getElementById('avatar_avatar');
+const aSubmit = document.getElementById('avatarSubmit');
+const aBrowse = document.getElementById('avatarInput');
 const aTrigger = document.getElementById('userHeader');
 
 aTrigger.addEventListener('click', function(){

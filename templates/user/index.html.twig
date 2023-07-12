@@ -53,9 +53,10 @@
 				</h1>
 			</header>
 
-			<div class="d-none container d-flex justify-content-center mt-3">
+			<div class="d-none">
 				{{ form_start(form) }}
-				{{ form_row(form.avatar) }}
+				{{ form_row(form.avatar, { 'id': 'avatarInput' }) }}
+				<button id="avatarSubmit">{{ button|default('Envoyer') }}</button>
 				{{ form_end(form) }}
 			</div>
 		</section>
