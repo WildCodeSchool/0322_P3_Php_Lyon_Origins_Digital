@@ -47,6 +47,7 @@ Encore
     .addEntry('navbar', './assets/navbar.js')
     .addEntry('comment', './assets/comment.js')
     .addEntry('searchVideos', './assets/searchVideos.js')
+    .addEntry('userDashboard', './assets/userDashboard.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')

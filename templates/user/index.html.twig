@@ -9,6 +9,7 @@
 	{{ encore_entry_script_tags('addFav') }}
 	{{ encore_entry_script_tags('addLater') }}
 	{{ encore_entry_script_tags('displayViewCount') }}
+	{{ encore_entry_script_tags('userDashboard') }}
 {% endblock %}
 
 {% block body %}
@@ -57,12 +58,11 @@
 
 						<li class="nav-item fs-4" role="presentation">
 
-							<a href="#{{ userStat['id'] }}" class="nav-link mx-3 position-relative {% if userStat['id'] == 'fav' %} {{ active['tab'] }} {% endif %}" id="{{ userStat['id'] }}-tab" data-bs-toggle="tab" data-bs-target="#{{ userStat['id'] }}-tab-pane" type="button" role="tab" aria-controls="{{ userStat['id'] }}-tab-pane" aria-selected="true">
+							<a href="#{{ userStat['id'] }}-tab" class="nav-link mx-3 position-relative {% if userStat['id'] == 'fav' %} {{ active['tab'] }} {% endif %}" id="{{ userStat['id'] }}-tab" data-bs-toggle="tab" data-bs-target="#{{ userStat['id'] }}-tab-pane" type="button" role="tab" aria-controls="{{ userStat['id'] }}-tab-pane" aria-selected="true">
 
 								<span class="title-font">{{ userStat['title'] }}</span>
-								{% if userStat['stat'] %}
-									<span class="position-absolute z-3 top-0 start-100 translate-middle border border-1 border-secondary badge text-font rounded-pill bg-dark text-secondary">{{ userStat['stat']|length }}</span>
-								{% endif %}
+								<span class="position-absolute z-3 top-0 start-100 translate-middle border border-1 border-secondary badge text-font rounded-pill bg-dark text-secondary">{{ userStat['stat']|length }}</span>
+
 							</a>
 						</li>
 
