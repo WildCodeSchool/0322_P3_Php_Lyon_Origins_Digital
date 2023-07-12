@@ -28,6 +28,10 @@ Encore
         from: './assets/videos',
         to: 'videos/[path][name].[ext]',
     })
+    .copyFiles({
+        from: './assets/avatars',
+        to: 'avatars/[path][name].[ext]',
+    })
     /*
      * ENTRY CONFIG
      *

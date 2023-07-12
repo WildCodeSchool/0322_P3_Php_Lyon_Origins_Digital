@@ -11,9 +11,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use DateTimeImmutable;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class CommentController extends AbstractController
 {
+    #[IsGranted('ROLE_USER')]
     #[Route('/comment/{videoId<^[0-9]+$>}', methods: ['POST'], name: 'comment_video')]
     #[ParamConverter('video', class: 'App\Entity\Video', options: ['id' => 'videoId'])]
     public function saveComment(Video $video, Request $request, CommentRepository $commentRepository): Response

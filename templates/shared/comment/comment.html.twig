@@ -13,6 +13,9 @@
 
 	<div class="col">
 		<div class="d-flex align-items-center justify-content-start">
+			<span class="d-inline align-middle">
+				<img {% if comment.user.avatar %} src="{{ asset('build/avatars/' ~ comment.user.avatar) }}" {% else %} src="{{ asset('build/avatars/blank.png') }}" {% endif %} class="avatarSmall rounded-circle" alt="Avatar">
+			</span>
 			<span class="title-font text-secondary fs-4">
 				{{ dot|raw }}
 			</span>
@@ -30,12 +33,12 @@
 				<span class="mb-3">
 					{{ comment.content|slice(1, comment.content|length - 2)|raw }}
 				</span>
-				</div>
-				{% if is_granted('ROLE_ADMIN') %}
-					<span class="mb-3">
-						<a href="{{ path('delete_comment', { commentId: comment.id }) }}" class="btn btn-primary">Supprimer</a>
-					</span>
-				{% endif %}
-				</div>
+			</div>
+			{% if is_granted('ROLE_ADMIN') %}
+				<span class="mb-3">
+					<a href="{{ path('delete_comment', { commentId: comment.id }) }}" class="btn btn-primary">Supprimer</a>
+				</span>
+			{% endif %}
+		</div>
 	</div>
 </div>
