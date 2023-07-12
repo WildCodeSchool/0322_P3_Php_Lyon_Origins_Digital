@@ -443,7 +443,7 @@ body#admin {
 $dtNavWidth: 100px;
 $dtNavHeight: fit-content;
 
-$mbNavWidth: fit-content;
+$mbNavWidth: 100vw;
 $mbNavHeight: 100px;
 
 $RoundedFactor: 1.35;
@@ -524,7 +524,7 @@ $mbActiveItemBg: linear-gradient(180deg, $dark 0%, $primary 50%, $secondary 100%
 
     .nav-item {
         height: $mbNavHeight;
-        aspect-ratio: 1/1;
+        max-width: $mbNavHeight;
         font-size: calc($mbNavHeight / 3);
     }
 
@@ -534,6 +534,7 @@ $mbActiveItemBg: linear-gradient(180deg, $dark 0%, $primary 50%, $secondary 100%
         animation-duration: 1s;
         animation-timing-function: $animMenuItemEaseOut;
         background: $mbActiveItemBg;
+        min-width: $mbNavHeight;
 
         &::before,
         &::after {
@@ -564,6 +565,7 @@ $mbActiveItemBg: linear-gradient(180deg, $dark 0%, $primary 50%, $secondary 100%
         animation-duration: 1s;
         animation-timing-function: $animMenuItemEaseOut;
         transition: $animMenuItemEaseOut;
+        min-width: calc($mbNavHeight * .2);
 
         .nav-item {
             transform-origin: center;
