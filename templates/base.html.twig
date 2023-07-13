@@ -57,6 +57,11 @@
 			'iconClass':'hash',
 			'link': '',
 		},
+		contact: {
+			'name':'contact',
+			'iconClass':'chat-dots',
+			'link': 'contact_index',
+		}
 	} %}
 
 	{% if is_granted('ROLE_ADMIN') %}
@@ -68,18 +73,6 @@
 		},} %}
 
 		{% set navItems = navItems|merge(navItemsAdmin) %}
-
-	{% endif %}
-
-	{% if not is_granted('ROLE_ADMIN') %}
-		{% set navItemContact = {
-			contact: {
-			'name':'contact',
-			'iconClass':'chat-dots',
-			'link': 'contact_index',
-		},} %}
-
-		{% set navItems = navItems|merge(navItemContact) %}
 
 	{% endif %}
 
