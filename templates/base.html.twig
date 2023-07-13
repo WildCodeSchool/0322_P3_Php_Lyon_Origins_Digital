@@ -25,7 +25,6 @@
 
 	{% set fav = "<i class='bi fav'></i>" %}
 	{% set watchLater = "<i class='bi watchLater'></i>" %}
-	{# to do show logout only when on /user/dashboard #}
 
 	{% set navItems = {
 		home: {
@@ -69,7 +68,7 @@
 		},} %}
 
 		{% set navItems = navItems|merge(navItemsAdmin) %}
-	
+
 	{% endif %}
 
 	<body class="row" id="all-bodies">

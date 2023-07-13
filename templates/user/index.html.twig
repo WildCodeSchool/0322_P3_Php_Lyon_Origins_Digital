@@ -18,16 +18,19 @@
             'title': 'Favorites',
             'stat': app.user.favoriteVideos,
             'id': 'fav',
+			'icon': "<i class='bi bi-heart-fill' id='userFav'></i>"
         },
         {
             'title': 'À regarder',
             'stat': app.user.viewLaterVideos,
             'id': 'towatch',
+			'icon': "<i class='bi bi-clock-fill' id='userWatchLater'></i>"
         },
         {
             'title': 'Historique',
             'stat': history,
             'id': 'history',
+			'icon': "<i class='bi bi-calendar-range-fill' id='userHistory'></i>"
         }
     ] %}
 
@@ -70,7 +73,9 @@
 
 						<a href="#{{ userStat['id'] }}-tab" class="nav-link mx-3 position-relative {% if userStat['id'] == 'fav' %} {{ active['tab'] }} {% endif %}" id="{{ userStat['id'] }}-tab" data-bs-toggle="tab" data-bs-target="#{{ userStat['id'] }}-tab-pane" type="button" role="tab" aria-controls="{{ userStat['id'] }}-tab-pane" aria-selected="true">
 
-							<span class="title-font">{{ userStat['title'] }}</span>
+							<span class="title-font d-none d-sm-block">{{ userStat['title'] }}</span>
+							<span class="title-font d-sm-none d-block">{{ userStat['icon']|raw }}</span>
+
 							<span class="position-absolute z-3 top-0 start-100 translate-middle border border-1 border-secondary badge text-font rounded-pill bg-dark text-secondary">{{ userStat['stat']|length }}</span>
 
 						</a>
