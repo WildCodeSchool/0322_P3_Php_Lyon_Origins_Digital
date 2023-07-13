@@ -658,6 +658,7 @@ $userHeaderWidth: 30vw;
     #avatarImg-container {
 
         max-height: 15vh;
+        aspect-ratio: 1/1;
 
         transition: .7s cubic-bezier(.5, 0, 0, 1);
         animation-name: userHeaderLoad;
@@ -666,6 +667,7 @@ $userHeaderWidth: 30vw;
 
         #avatarImg {
             max-height: 15vh;
+            aspect-ratio: 1/1;
         }
     }
 
@@ -688,9 +690,12 @@ $userHeaderWidth: 30vw;
 
 }
 
-.avatarSmall {
-    width: 28px;
-    height: 28px;
+#commentAvatarContainer,
+#commentAvatar {
+
+    max-width: 30px;
+    aspect-ratio: 1/1;
+
 }
 
 .info-mobile {
