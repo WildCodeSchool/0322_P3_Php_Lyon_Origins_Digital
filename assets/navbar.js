@@ -70,6 +70,7 @@ const activePage = document.querySelector('main');
                 fillIcons(icon,'person-slash', 'person-fill-slash')
                 fillIcons(icon,'play', 'play-fill')
                 fillIcons(icon,'gear', 'gear-fill')
+                fillIcons(icon,'chat-dots', 'chat-dots-fill')
 
                 navItem.setAttribute('aria-selected', 'true')
             }
@@ -112,6 +113,7 @@ const activePage = document.querySelector('main');
                 fillIcons(icon,'play', 'play-fill')
                 fillIcons(icon,'gear', 'gear-fill')
                 fillIcons(icon,'search', 'search-heart-fill')
+                fillIcons(icon,'chat-dots', 'chat-dots-fill')
             })
 
             inactiveNavItem.addEventListener('mouseout', function(){
@@ -123,6 +125,7 @@ const activePage = document.querySelector('main');
                 emptyIcons(icon,'play', 'play-fill')
                 emptyIcons(icon,'gear', 'gear-fill')
                 emptyIcons(icon,'search', 'search-heart-fill')
+                emptyIcons(icon,'chat-dots', 'chat-dots-fill')
             })
         }
     }

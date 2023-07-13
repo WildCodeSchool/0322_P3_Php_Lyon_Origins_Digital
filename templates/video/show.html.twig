@@ -12,8 +12,6 @@
 	{{ encore_entry_script_tags('comment') }}
 {% endblock %}
 
-{% set mobaTags = ['dota', 'smite', 'lol'] %}
-
 {% block body %}
 
 	<main class="col" aria-labelledby="nav-btn-{{ navItems.show['name'] }}" id="{{ navItems.show['name'] }}">
@@ -85,17 +83,17 @@
 									{% endif %}
 
 									<div class="info-mobile d-inline d-sm-none">
-									<div class="text-info d-flex flex-column mb-2 mb-sm-0" data-info="{{ videoPlayed.id }}">
-										<span class="bt-views ms-3 me-2"></span>
-										<span class="bt-post-date mx-2">{{ videoPlayed.postDate|format_datetime('medium', 'short', locale='fr', timezone='Europe/Paris') }}</span>
-									</div>
+										<div class="text-info d-flex flex-column mb-2 mb-sm-0" data-info="{{ videoPlayed.id }}">
+											<span class="bt-views ms-3 me-2"></span>
+											<span class="bt-post-date mx-2">{{ videoPlayed.postDate|format_datetime('medium', 'short', locale='fr', timezone='Europe/Paris') }}</span>
+										</div>
 									</div>
 
 									<div class="d-sm-inline d-none">
-									<div class="view-mb text-info mb-2 mb-sm-0" data-info="{{ videoPlayed.id }}">
-										<span class="bt-views ms-3 me-2"></span>
-										<span class="bt-post-date mx-2">{{ videoPlayed.postDate|format_datetime('medium', 'short', locale='fr', timezone='Europe/Paris') }}</span>
-									</div>
+										<div class="view-mb text-info mb-2 mb-sm-0" data-info="{{ videoPlayed.id }}">
+											<span class="bt-views ms-3 me-2"></span>
+											<span class="bt-post-date mx-2">{{ videoPlayed.postDate|format_datetime('medium', 'short', locale='fr', timezone='Europe/Paris') }}</span>
+										</div>
 									</div>
 
 								</div>

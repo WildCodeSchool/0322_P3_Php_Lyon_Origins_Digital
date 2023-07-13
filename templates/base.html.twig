@@ -71,7 +71,19 @@
 
 	{% endif %}
 
-	<body class="row" id="all-bodies">
+	{% if not is_granted('ROLE_ADMIN') %}
+		{% set navItemContact = {
+			contact: {
+			'name':'contact',
+			'iconClass':'chat-dots',
+			'link': 'contact_index',
+		},} %}
+
+		{% set navItems = navItems|merge(navItemContact) %}
+
+	{% endif %}
+
+	<body class="row {% block bodyClass %}{% endblock %}" id="all-bodies">
 
 		{{ include('shared/search-modal.html.twig') }}
 
@@ -89,4 +101,4 @@
 		{% block body %}{% endblock %}
 
 	</body>
-</html>
+</html></html>
