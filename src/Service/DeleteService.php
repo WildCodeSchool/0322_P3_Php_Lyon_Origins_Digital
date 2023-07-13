@@ -60,12 +60,16 @@ class DeleteService
 
         $videoFile = $this->params->get('video_directory') . '/' . $video->getVideoUrl();
         $imageFile = $this->params->get('image_directory') . '/' . $video->getPosterUrl();
+        $previewFile = str_replace('.jpg', '.gif', $imageFile);
 
         if (file_exists($videoFile)) {
             unlink($videoFile);
         }
         if (file_exists($imageFile)) {
             unlink($imageFile);
+        }
+        if (file_exists($previewFile)) {
+            unlink($previewFile);
         }
 
         $this->entityManager->remove($video);

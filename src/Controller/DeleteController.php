@@ -22,6 +22,12 @@ class DeleteController extends AbstractController
     #[ParamConverter('user', class: 'App\Entity\User', options: ['id' => 'idUser'])]
     public function deleteUser(User $user, DeleteService $deleteService): Response
     {
+        if ($this->getUser() == $user) {
+            $this->addFlash('danger', 'Vous ne pouvez pas supprimer votre propre compte. 
+            Cela doit être fait par un autre administrateur');
+            return $this->redirectToRoute('admin_dashboard');
+        }
+
         $deleteService->deleteUser($user);
         $this->addFlash('success', 'Utilisateur supprimé avec succès');
 
