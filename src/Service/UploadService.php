@@ -34,8 +34,8 @@ class UploadService
         $fileNameGif = $fileNameGif . '.gif';
 
         $videoGif
-        ->gif(TimeCode::fromSeconds(20), new Dimension(280, 240), 4)
-        ->save($this->params->get('image_directory') . '/' . $fileNameGif);
+            ->gif(TimeCode::fromSeconds(20), new Dimension(280, 240), 4)
+            ->save($this->params->get('image_directory') . '/' . $fileNameGif);
 
         return $fileNameThumb;
     }

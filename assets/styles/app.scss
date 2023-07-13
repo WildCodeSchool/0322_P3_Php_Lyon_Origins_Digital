@@ -662,7 +662,7 @@ $userHeaderWidth: 30vw;
         transition: .7s cubic-bezier(.5, 0, 0, 1);
         animation-name: userHeaderLoad;
         animation-duration: 2s;
-        animation-timing-function: cubic-bezier(0.25,0,0,1);
+        animation-timing-function: cubic-bezier(0.25, 0, 0, 1);
 
         #avatarImg {
             max-height: 15vh;
@@ -691,4 +691,8 @@ $userHeaderWidth: 30vw;
 .avatarSmall {
     width: 28px;
     height: 28px;
+}
+
+.info-mobile {
+    font-size: 12px;
 }

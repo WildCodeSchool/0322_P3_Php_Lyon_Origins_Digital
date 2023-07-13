@@ -20,12 +20,14 @@
 				<div class="container">
 					<div class="row">
 						<div class="position-relative mx-auto d-flex justify-content-center">
+							<a href="{{ path('video_show', { id: headerVideo.id }) }}" class="d-flex">
 							<img src="{{ asset('build/images/' ~ headerVideo.posterUrl) }}" class="header-desktop-img col-10 rounded-4 mx-auto mt-4"/>
 							<p class="header-logo-desktop rounded-3 rounded-top-0 rounded-start-0 bg-dark title-font text-secondary col-3 d-md-flex justify-content-center d-none position-absolute">
 								GAMING
 								{{ dot|raw }}
 								GURUS
 							</p>
+							<a>
 							<a class="link-desktop bg-primary fs-3 text-decoration-none d-none d-md-flex title-font text-secondary rounded-3 justify-content-center align-items-center position-absolute" href="{{ path('video_show', { id: headerVideo.id }) }}">
 								<span class="">REGARDER</span>
 								<span class="fs-1 mt-1">{{ playFill|raw }}</span>
@@ -47,7 +49,9 @@
 				<div class="container">
 					<div class="row">
 						<div class="position-relative">
+							<a href="{{ path('video_show', { id: headerVideo.id }) }}" class="d-flex">
 							<img src="{{ asset('build/images/' ~ headerVideo.posterUrl) }}" class="header-mobile-img col-12 rounded-4 ms-2"/>
+							</a>
 							<a class="link-mobile bg-primary fs-3 text-decoration-none d-flex d-md-none title-font text-secondary rounded-3 justify-content-center align-items-center position-absolute" href="{{ path('video_show', { id: headerVideo.id }) }}">
 								<span class="">REGARDER</span>
 								<span class="fs-1 mt-1">{{ playFill|raw }}</span>
