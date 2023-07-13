@@ -31,6 +31,7 @@ class ContactController extends AbstractController
 
         if ($contactForm->isSubmitted() && $contactForm->isValid()) {
             $contactRepository->save($contact, true);
+            $this->addFlash('secondary', 'Message bien envoyé !');
             return $this->redirect($request->getUri());
         }
 

@@ -36,7 +36,12 @@
                             }
                     })}}
 
-					{{ form_row(contactForm.submit, { 'label': 'Envoyer' }) }}
+					{{ form_row(contactForm.submit, {
+                        'label': 'Envoyer',
+                        'attr': {
+                            'class': 'btn btn-secondary text-primary title-font fs-4 w-100 rounded-5'
+                        }
+                        }) }}
 
 					{{form_end(contactForm)}}
 
