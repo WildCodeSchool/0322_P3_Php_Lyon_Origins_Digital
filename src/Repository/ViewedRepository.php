@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Viewed;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use DateTimeImmutable;
+use Doctrine\DBAL\Types\Types;
 
 /**
  * @extends ServiceEntityRepository<Viewed>
@@ -14,6 +16,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Viewed[]    findAll()
  * @method Viewed[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
+
 class ViewedRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -65,12 +68,16 @@ class ViewedRepository extends ServiceEntityRepository
     //get the x most viewed videos (x set as parameter)
     public function findMostViewed(int $limit): array
     {
+        $now = new DateTimeImmutable();
+
         return $this->createQueryBuilder('viewed')
             ->select('video.id, COUNT(viewed.id) as viewCount')
             ->leftJoin('viewed.video', 'video')
+            ->andWhere('video.postDate < :today')
             ->groupBy('video.id')
             ->orderBy('viewCount', 'DESC')
             ->setMaxResults($limit)
+            ->setParameter('today', $now, Types::DATETIME_IMMUTABLE)
             ->getQuery()
             ->getResult();
     }

@@ -11,7 +11,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/video', name: 'video_')]
 class VideoController extends AbstractController
@@ -31,7 +30,6 @@ class VideoController extends AbstractController
         ]);
     }
 
-    #[IsGranted('ROLE_ADMIN')]
     #[Route('/add/{videoId<^[0-9]+$>}', name: 'add')]
     #[ParamConverter('video', class: 'App\Entity\Video', options: ['id' => 'videoId'])]
     public function add(Video $video, ViewedRepository $viewedRepository): Response

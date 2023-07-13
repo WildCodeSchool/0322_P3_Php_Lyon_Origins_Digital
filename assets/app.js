@@ -33,13 +33,13 @@ setTimeout(() => {
 
         const loadMoreBtn = document.getElementById(idName);
 
-        let firstHiddenBts = gallery.querySelectorAll('.bt-hidden.'+ idName + '-1')
+        let firstHiddenBts = gallery.querySelectorAll('.bt-hidden.' + idName + '-1')
         if (firstHiddenBts.length == 0) { loadMoreBtn.parentElement.parentElement.classList.add('d-none'); }
 
         let idNbr = 1;
 
         loadMoreBtn.addEventListener('click', function () {
-            let hiddenBts = gallery.querySelectorAll('.bt-hidden.'+ idName + '-' + idNbr)
+            let hiddenBts = gallery.querySelectorAll('.bt-hidden.' + idName + '-' + idNbr)
             if (hiddenBts.length < 1) { loadMoreBtn.parentElement.parentElement.remove(); }
             for (const bt of hiddenBts) {
                 bt.classList.remove('bt-hidden');
@@ -49,7 +49,7 @@ setTimeout(() => {
 
             idNbr++;
 
-            hiddenBts = gallery.querySelectorAll('.bt-hidden.'+ idName + '-' + idNbr);
+            hiddenBts = gallery.querySelectorAll('.bt-hidden.' + idName + '-' + idNbr);
             if (hiddenBts.length < 1) { loadMoreBtn.parentElement.parentElement.remove(); }
         })
     }
@@ -57,11 +57,11 @@ setTimeout(() => {
 
 //gif preview when mouseover Bt
 document.querySelectorAll('img.bt-poster').forEach(element => {
-    element.addEventListener('mouseenter', function() {
+    element.addEventListener('mouseenter', function () {
         element.src = element.src.replace(/\.jpg$/, '.gif')
     })
-  
-    element.addEventListener('mouseleave', function() {
+
+    element.addEventListener('mouseleave', function () {
         element.src = element.src.replace(/\.gif$/, '.jpg')
     })
 })
