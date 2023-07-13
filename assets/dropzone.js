@@ -3,7 +3,7 @@ import Dropzone from "dropzone";
 document.addEventListener("DOMContentLoaded", function () {
     //definisez ci-dessous la taille maxi d'une video à uploader (en Mb) 
     //FYI convertisseur ici: https://www.convertworld.com/fr/mesures-informatiques/megaoctet-megabyte.html
-    let maxVideoFileSize = 512; // en Mb
+    const maxVideoFileSize = 512; // en Mb
     let dropzone_default = new Dropzone("#mydropzone", {
         maxFiles: 1,
         dictDefaultMessage: "Déposez votre vidéo ici ou cliquez pour en séléctionner une (taille max "+maxVideoFileSize+" Mb, druée min 30sec)",
