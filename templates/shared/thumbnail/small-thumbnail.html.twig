@@ -1,6 +1,9 @@
 <div class="st d-flex justify-content-center align-items-center">
 
-    <div class="st-main rounded-4">
+    <div class="st-main rounded-4 position-relative">
+    		{% if item.isPremium %}
+			<span class="position-absolute top-0 start-0 badge rounded-pill bg-secondary py-2 px-3 z-2 title-font text-primary fs-6">PREMIUM</span>
+		{% endif %}
         <div class="st-main-mask rounded-4 p-1 position-relative">
 
             <div>
@@ -8,7 +11,7 @@
                     <img
                         src="{{ asset('build/images/' ~ item.posterUrl) }}"
                         alt=""
-                        class="st-poster rounded-4 position-absolute translate-start">
+                        class="st-poster gifable rounded-4 position-absolute translate-start">
                 </a>
             </div>
 
