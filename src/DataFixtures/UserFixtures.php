@@ -46,6 +46,26 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             'username' => 'Roland',
             'role' => ''
         ],
+        [
+            'email' => 'user8@user.fr',
+            'username' => 'Jocelyne',
+            'role' => ''
+        ],
+        [
+            'email' => 'user9@user.fr',
+            'username' => 'Marcelle',
+            'role' => ''
+        ],
+        [
+            'email' => 'user10@user.fr',
+            'username' => 'Brigitte',
+            'role' => ''
+        ],
+        [
+            'email' => 'user11@user.fr',
+            'username' => 'Yvette',
+            'role' => ''
+        ],
     ];
 
     public function __construct(private UserPasswordHasherInterface $userPasswordHasher)
@@ -73,7 +93,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $user->setIsVerified(true);
 
             $maxValue = (count(VideoFixtures::VIDEOS)) - 1;
-            for ($i = 0; $i < 5; $i++) {
+            for ($i = 0; $i < rand(5, 10); $i++) {
                 $user->addFavoriteVideo($this->getReference('video_' . rand(0, $maxValue)));
                 $user->addViewLaterVideo($this->getReference('video_' . rand(0, $maxValue)));
             }
