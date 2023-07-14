@@ -5,8 +5,8 @@
 
             <div>
                 <a href="{{ path('video_show', { id: item.id }) }}">
-                    <img 
-                        src="{{ asset('build/images/' ~ item.posterUrl) }}" 
+                    <img
+                        src="{{ asset('build/images/' ~ item.posterUrl) }}"
                         alt=""
                         class="st-poster rounded-4 position-absolute translate-start">
                 </a>
@@ -14,9 +14,9 @@
 
             <div class="st-spacer"></div>
 
-            <div class="st-title title-font text-secondary text-nowrap mt-1">{{ item.title|u.truncate(30, '...') }}</div>
+            <div class="st-title title-font text-secondary text-nowrap mt-1">{{ item.title|u.truncate(23, '...') }}</div>
 
         </div>
     </div>
-    
+
 </div>
