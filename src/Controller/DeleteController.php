@@ -9,8 +9,10 @@ use App\Repository\ViewedRepository;
 use App\Service\DeleteService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[IsGranted('ROLE_ADMIN')]
@@ -20,12 +22,18 @@ class DeleteController extends AbstractController
     //route to delete a user by id
     #[Route('/user/{idUser<^[0-9]+$>}', name: 'user')]
     #[ParamConverter('user', class: 'App\Entity\User', options: ['id' => 'idUser'])]
-    public function deleteUser(User $user, DeleteService $deleteService): Response
-    {
+    public function deleteUser(
+        User $user,
+        DeleteService $deleteService,
+        UrlGeneratorInterface $urlGenerator
+    ): Response {
         if ($this->getUser() == $user) {
             $this->addFlash('danger', 'Vous ne pouvez pas supprimer votre propre compte. 
             Cela doit être fait par un autre administrateur');
-            return $this->redirectToRoute('admin_dashboard');
+            $url = $urlGenerator->generate('admin_dashboard');
+            $url .= '?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CUserCrudController';
+
+            return new RedirectResponse($url);
         }
 
         $deleteService->deleteUser($user);
@@ -40,12 +48,16 @@ class DeleteController extends AbstractController
     public function deleteVideo(
         Video $video,
         DeleteService $deleteService,
-        ViewedRepository $viewedRepository
+        ViewedRepository $viewedRepository,
+        UrlGeneratorInterface $urlGenerator
     ): Response {
         if ($video->isIsHeader()) {
             $this->addFlash('danger', 'Cette vidéo est le header de la page d\'accueil.
             Sélectionnez une autre vidéo en header pour pouvoir supprimer celle-ci.');
-            return $this->redirectToRoute('admin_dashboard');
+            $url = $urlGenerator->generate('admin_dashboard');
+            $url .= '?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CVideoCrudController';
+
+            return new RedirectResponse($url);
         }
 
         $deleteService->deleteVideo($video, $viewedRepository);
