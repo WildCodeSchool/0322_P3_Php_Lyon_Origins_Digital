@@ -85,13 +85,17 @@ class ViewedRepository extends ServiceEntityRepository
     //get unique videos viewed by a user, sorted antichronologically (user_id as parameter)
     public function findVideosViewedByUser(int $userId): array
     {
+        $now = new DateTimeImmutable();
+
         return $this->createQueryBuilder('viewed')
             ->select('video.id')
             ->join('viewed.video', 'video')
             ->andWhere('viewed.user = :userId')
+            ->andWhere('video.postDate < :today')
             ->setParameter('userId', $userId)
             ->groupBy('video.id')
             ->orderBy('MAX(viewed.viewDate)', 'DESC')
+            ->setParameter('today', $now, Types::DATETIME_IMMUTABLE)
             ->getQuery()
             ->getResult();
     }
