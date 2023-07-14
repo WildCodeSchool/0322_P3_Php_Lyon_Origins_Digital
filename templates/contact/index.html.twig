@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gaming Gurus Contact
+{% endblock %}
+
+{% block body %}
+
+	<main class="col" aria-labelledby="nav-btn-{{ navItems.contact['name'] }}" id="{{ navItems.contact['name'] }}">
+		<section class="d-flex justify-content-center align-items-center" id="contact-form-container">
+			<div class="">
+				<div class="text-secondary title-font text-center">
+					{% if app.user %}
+						<h1>{{app.user.username}}, qu'avez vous à nous dire ?</h1>
+					{% else %}
+						<h1>Qu'avez vous à nous dire ?</h1>
+					{% endif %}
+				</div>
+				<div>
+					{{ form_start(contactForm) }}
+
+					{{ form_row(contactForm.email, {
+                        'attr': {
+                            'class': 'contact-form-email rounded-pill bg-primary text-secondary border border-3 border-secondary px-4 py-3 align-middle',
+                            'placeholder': 'Votre email'
+                            }
+                    }) }}
+
+					{{form_row(contactForm.message, {
+                        'attr': {
+                            'class': 'contact-form-message rounded-5 bg-primary text-secondary px-4 py-3 border border-3 border-secondary align-middle text-wrap',
+                            'placeholder': 'Votre message'
+                            }
+                    })}}
+
+					{{ form_row(contactForm.submit, {
+                        'label': 'Envoyer',
+                        'attr': {
+                            'class': 'btn btn-secondary text-primary title-font fs-4 w-100 rounded-5'
+                        }
+                        }) }}
+
+					{{form_end(contactForm)}}
+
+				</div>
+			</div>
+		</section>
+	</main>
+
+{% endblock %}

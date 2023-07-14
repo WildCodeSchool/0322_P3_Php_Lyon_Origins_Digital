@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Contact;
 use App\Entity\Tag;
 use App\Entity\User;
 use App\Entity\Video;
@@ -90,5 +91,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToRoute('Ajouter une vidéo', 'fa-solid fa-file-arrow-up', 'upload_video');
         yield MenuItem::linkToCrud('Gestion des tags', 'fa-solid fa-hashtag', Tag::class);
         yield MenuItem::linkToCrud('Gestion des utilisateurs', 'fa-solid fa-user', User::class);
+        yield MenuItem::linkToCrud('Gestion des messages', 'fa-solid fa-comment-dots', Contact::class);
     }
 }

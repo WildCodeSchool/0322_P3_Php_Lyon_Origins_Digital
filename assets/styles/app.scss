@@ -701,3 +701,24 @@ $userHeaderWidth: 30vw;
 .info-mobile {
     font-size: 12px;
 }
+
+#contact-form-container {
+    height: 100vh;
+
+    .contact-form-email {
+        &::placeholder {
+            font-family: $textFont;
+            color: $secondary;
+        }
+    }
+
+    .contact-form-message {
+        height: 20vh;
+
+        &::placeholder {
+            font-family: $textFont;
+            color: $secondary;
+        }
+    }
+
+}

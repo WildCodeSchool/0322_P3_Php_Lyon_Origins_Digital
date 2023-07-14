@@ -62,6 +62,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $avatar = null;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Contact::class)]
+    private Collection $contactMessages;
 
     public function __construct()
     {
@@ -69,6 +71,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->favoriteVideos = new ArrayCollection();
         $this->vieweds = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->contactMessages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -291,6 +294,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAvatar(?string $avatar): static
     {
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Contact>
+     */
+    public function getContactMessages(): Collection
+    {
+        return $this->contactMessages;
+    }
+
+    public function addContactMessage(Contact $contactMessage): static
+    {
+        if (!$this->contactMessages->contains($contactMessage)) {
+            $this->contactMessages->add($contactMessage);
+            $contactMessage->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContactMessage(Contact $contactMessage): static
+    {
+        if ($this->contactMessages->removeElement($contactMessage)) {
+// set the owning side to null (unless already changed)
+            if ($contactMessage->getUser() === $this) {
+                $contactMessage->setUser(null);
+            }
+        }
 
         return $this;
     }
