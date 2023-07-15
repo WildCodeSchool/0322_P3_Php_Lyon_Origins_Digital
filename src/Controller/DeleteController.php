@@ -30,8 +30,10 @@ class DeleteController extends AbstractController
         if ($this->getUser() == $user) {
             $this->addFlash('danger', 'Vous ne pouvez pas supprimer votre propre compte. 
             Cela doit être fait par un autre administrateur');
-            $url = $urlGenerator->generate('admin_dashboard');
-            $url .= '?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CUserCrudController';
+            $url = $urlGenerator->generate('admin_dashboard', [
+                'crudAction' => 'index',
+                'crudControllerFqcn' => 'App\Controller\Admin\UserCrudController',
+            ]);
 
             return new RedirectResponse($url);
         }
@@ -54,8 +56,10 @@ class DeleteController extends AbstractController
         if ($video->isIsHeader()) {
             $this->addFlash('danger', 'Cette vidéo est le header de la page d\'accueil.
             Sélectionnez une autre vidéo en header pour pouvoir supprimer celle-ci.');
-            $url = $urlGenerator->generate('admin_dashboard');
-            $url .= '?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CVideoCrudController';
+            $url = $urlGenerator->generate('admin_dashboard', [
+                'crudAction' => 'index',
+                'crudControllerFqcn' => 'App\Controller\Admin\VideoCrudController',
+            ]);
 
             return new RedirectResponse($url);
         }
