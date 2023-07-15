@@ -13,7 +13,7 @@ class CommentFixtures extends Fixture implements DependentFixtureInterface
 {
     public const COMMENTS = [
        "\"Super vidéo ! J'ai adoré le gameplay.\"",
-       "\"Les compétences des joueurs sont incroyables.\"\"",
+       "\"Les compétences des joueurs sont incroyables.\"",
        "\"Le match était très intense.\"",
        "\"Je suis fan de cette équipe. Vraiment impressionnant.\"",
        "\"Les commentateurs ont fait un excellent travail.\"",
