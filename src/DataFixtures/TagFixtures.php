@@ -9,24 +9,19 @@ use Doctrine\Persistence\ObjectManager;
 class TagFixtures extends Fixture
 {
     public const TAGS = [
-        'lol',
-        'DOTA',
+        'MMORPG',
+        'MOBA',
+        'FPS',
+        'SOLO',
+        'MULTIPLAYER',
+        'LOL',
         'FORTNITE',
         'CS',
-        'OVERWATCH',
-        'RAINBOWSIX',
         'VALORANT',
-        'HEARTHSTONE',
+        'DOFUS',
+        'APEX',
         'SMITE',
-        'APEXLEGENDS',
-        'STARCRAFT',
-        'CALLOFDUTY',
-        'MINECRAFT',
-        'CROSSFIRE',
-        'GEARSOFWAR',
-        'WORLDOFWARCRAFT',
-        'AGEOFEMPIRE',
-        'FIFA',
+        'WOW',
     ];
 
     public function load(ObjectManager $manager): void

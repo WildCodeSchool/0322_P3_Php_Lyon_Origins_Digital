@@ -31,6 +31,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'video_url' => 'video1-LOL.mp4',
             'poster_url' => 'poster1-LOL.jpg',
             'is_header' => false,
+            'tag' => ['tag_LOL', 'tag_MULTIPLAYER', 'tag_MOBA'],
         ],
 
         [
@@ -43,6 +44,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'video_url' => 'video2-LOL.mp4',
             'poster_url' => 'poster2-LOL.jpg',
             'is_header' => false,
+            'tag' => ['tag_LOL', 'tag_MULTIPLAYER', 'tag_MOBA'],
         ],
 
         [
@@ -54,6 +56,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'video_url' => 'video3-LOL.mp4',
             'poster_url' => 'poster3-LOL.jpg',
             'is_header' => false,
+            'tag' => ['tag_LOL', 'tag_MULTIPLAYER', 'tag_MOBA'],
         ],
 
         [
@@ -65,6 +68,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'video_url' => 'video4-LOL.mp4',
             'poster_url' => 'poster4-LOL.jpg',
             'is_header' => false,
+            'tag' => ['tag_LOL', 'tag_MULTIPLAYER', 'tag_MOBA'],
         ],
 
         [
@@ -76,6 +80,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'video_url' => 'video5-LOL.mp4',
             'poster_url' => 'poster5-LOL.jpg',
             'is_header' => false,
+            'tag' => ['tag_LOL', 'tag_MULTIPLAYER', 'tag_MOBA'],
         ],
 
         [
@@ -87,6 +92,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'video_url' => 'video6-LOL.mp4',
             'poster_url' => 'poster6-LOL.jpg',
             'is_header' => false,
+            'tag' => ['tag_LOL', 'tag_MULTIPLAYER', 'tag_MOBA'],
         ],
 
         [
@@ -96,6 +102,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'video_url' => 'video1-VALORANT.mp4',
             'poster_url' => 'poster1-VALORANT.jpg',
             'is_header' => false,
+            'tag' => ['tag_VALORANT', 'tag_MULTIPLAYER', 'tag_FPS'],
         ],
 
         [
@@ -105,6 +112,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'video_url' => 'video2-VALORANT.mp4',
             'poster_url' => 'poster2-VALORANT.jpg',
             'is_header' => false,
+            'tag' => ['tag_VALORANT', 'tag_MULTIPLAYER', 'tag_FPS'],
         ],
 
         [
@@ -115,6 +123,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'video_url' => 'video3-VALORANT.mp4',
             'poster_url' => 'poster3-VALORANT.jpg',
             'is_header' => false,
+            'tag' => ['tag_VALORANT', 'tag_MULTIPLAYER', 'tag_FPS'],
         ],
 
         [
@@ -126,6 +135,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'video_url' => 'video4-VALORANT.mp4',
             'poster_url' => 'poster4-VALORANT.jpg',
             'is_header' => false,
+            'tag' => ['tag_VALORANT', 'tag_MULTIPLAYER', 'tag_FPS'],
         ],
 
         [
@@ -137,6 +147,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'video_url' => 'video5-VALORANT.mp4',
             'poster_url' => 'poster5-VALORANT.jpg',
             'is_header' => false,
+            'tag' => ['tag_VALORANT', 'tag_MULTIPLAYER', 'tag_FPS'],
         ],
 
         [
@@ -146,6 +157,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'video_url' => 'video6-VALORANT.mp4',
             'poster_url' => 'poster6-VALORANT.jpg',
             'is_header' => false,
+            'tag' => ['tag_VALORANT', 'tag_MULTIPLAYER', 'tag_FPS'],
         ],
 
         [
@@ -155,6 +167,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'video_url' => 'video1-DOFUS.mp4',
             'poster_url' => 'poster1-DOFUS.jpg',
             'is_header' => false,
+            'tag' => ['tag_DOFUS', 'tag_MULTIPLAYER', 'tag_MMORPG', 'tag_SOLO'],
         ],
 
         [
@@ -165,6 +178,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'video_url' => 'video2-DOFUS.mp4',
             'poster_url' => 'poster2-DOFUS.jpg',
             'is_header' => false,
+            'tag' => ['tag_DOFUS', 'tag_MULTIPLAYER', 'tag_MMORPG', 'tag_SOLO'],
         ],
 
         [
@@ -176,6 +190,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'video_url' => 'video3-DOFUS.mp4',
             'poster_url' => 'poster3-DOFUS.jpg',
             'is_header' => false,
+            'tag' => ['tag_DOFUS', 'tag_MULTIPLAYER', 'tag_MMORPG', 'tag_SOLO'],
         ],
 
         [
@@ -184,9 +199,10 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
              each season rise to the top and claim the title of champion in their region. Any Duo who makes
              it to the Elite Division in their region can participate!',
             'post_date' => '2023-05-14 00:00:00',
-            'video_url' => 'video3-DOFUS.mp4',
+            'video_url' => 'video1-FORTNITE.mp4',
             'poster_url' => 'poster1-FORTNITE.jpg',
             'is_header' => false,
+            'tag' => ['tag_FORTNITE', 'tag_MULTIPLAYER', 'tag_FPS'],
         ],
 
         [
@@ -196,9 +212,10 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
              Ils doivent terminer dans le top 200 au terme de la soirée pour espérer se qualifier 
              pour les demis finales.',
             'post_date' => '2023-04-21 00:00:00',
-            'video_url' => 'video3-DOFUS.mp4',
+            'video_url' => 'video2-FORTNITE.mp4',
             'poster_url' => 'poster2-FORTNITE.jpg',
-            'is_header' => true,
+            'is_header' => false,
+            'tag' => ['tag_FORTNITE', 'tag_MULTIPLAYER', 'tag_FPS'],
         ],
 
         [
@@ -207,9 +224,10 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
              the FIRST Unreal Rank in Fortnite which is the #1 rank in Fortnite because of the NEW Ranked Mode! 
              The new ranked mode features so many different ranks that you have to climb in order to hit Unreal rank. ',
             'post_date' => '2023-05-20 00:00:00',
-            'video_url' => 'video3-DOFUS.mp4',
+            'video_url' => 'video3-FORTNITE.mp4',
             'poster_url' => 'poster3-FORTNITE.jpg',
             'is_header' => false,
+            'tag' => ['tag_FORTNITE', 'tag_MULTIPLAYER', 'tag_FPS'],
         ],
 
         [
@@ -217,9 +235,10 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'description' => 'JTolerance (me) showing what being a top 0.1% apex predator horizon main in apex 
              legends season 17 looks like. Best Controller Settings in season 17(Apex Legends Arsenal)',
             'post_date' => '2023-06-18 00:00:00',
-            'video_url' => 'video3-DOFUS.mp4',
+            'video_url' => 'video1-APEX.mp4',
             'poster_url' => 'poster1-APEX.jpg',
             'is_header' => false,
+            'tag' => ['tag_APEX', 'tag_MULTIPLAYER', 'tag_FPS'],
         ],
 
         [
@@ -227,29 +246,32 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'description' => 'Dropping 6,000 Damage while using Fuse...Dropping 6,000 Damage while using Fuse...
              Dropping 6,000 Damage while using Fuse...Dropping 6,000 Damage while using Fuse...',
             'post_date' => '2023-05-25 00:00:00',
-            'video_url' => 'video3-DOFUS.mp4',
+            'video_url' => 'video2-APEX.mp4',
             'poster_url' => 'poster2-APEX.jpg',
             'is_header' => false,
+            'tag' => ['tag_APEX', 'tag_MULTIPLAYER', 'tag_FPS'],
+        ],
+
+        [
+            'title' => 'Call of the Crusade – Champions Trailer| Wrath of the Lich King Classic | World of Warcraft',
+            'description' => 'In the wake of the Lich King’s destruction, the heroes of Azeroth gather to prove their 
+             worth for the final battle ahead. ',
+            'post_date' => '2023-06-15 00:00:00',
+            'video_url' => 'video1-WOW.mp4',
+            'poster_url' => 'poster1-WOW.jpg',
+            'is_header' => false,
+            'tag' => ['tag_WOW', 'tag_MULTIPLAYER', 'tag_MMORPG', 'tag_SOLO'],
         ],
 
         [
             'title' => 'Journey Trailer | Wrath of the Lich King Classic | World of Warcraft',
             'description' => 'See Northrend through the eyes of community content creator Hurricane in 
-             the official Wrath of the Lich King Classic™ Journey Trailer.',
-            'post_date' => '2022-09-22 00:00:00',
-            'video_url' => 'video3-DOFUS.mp4',
-            'poster_url' => 'poster1-WOW.jpg',
-            'is_header' => false,
-        ],
-
-        [
-            'title' => 'Journey Trailer | Wrath of the Lich King Classic | World of Warcraft',
-            'description' => 'Dans cette vidéo, je pars à la découverte de l extension DragonFlight sur le jeu
-             World of Waracraft ! ',
+            the official Wrath of the Lich King Classic™ Journey Trailer.',
             'post_date' => '2022-11-29 00:00:00',
-            'video_url' => 'video3-DOFUS.mp4',
+            'video_url' => 'video2-WOW.mp4',
             'poster_url' => 'poster2-WOW.jpg',
             'is_header' => false,
+            'tag' => ['tag_WOW', 'tag_MULTIPLAYER', 'tag_MMORPG', 'tag_SOLO'],
         ],
 
         [
@@ -257,9 +279,10 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'description' => 'We are crowning the WINNER of the BLAST.tv Paris Major, 
              the very last Major winners of CS:GO. Watch all the action in 4K and ad free on BLAST.tv!',
             'post_date' => '2023-05-21 00:00:00',
-            'video_url' => 'video3-DOFUS.mp4',
+            'video_url' => 'video1-CS.mp4',
             'poster_url' => 'poster1-CS.jpg',
             'is_header' => false,
+            'tag' => ['tag_CS', 'tag_MULTIPLAYER', 'tag_FPS'],
         ],
 
         [
@@ -269,9 +292,10 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
              ZywOo, Spinx et apEX depuis leur arrivée à Paris jusqu\'au trophée dans l\'Accor Arena dans ce vlog pré
              senté par Evnia',
             'post_date' => '2023-05-22 00:00:00',
-            'video_url' => 'video3-DOFUS.mp4',
+            'video_url' => 'video2-CS.mp4',
             'poster_url' => 'poster2-CS.jpg',
             'is_header' => false,
+            'tag' => ['tag_CS', 'tag_MULTIPLAYER', 'tag_FPS'],
         ],
 
         [
@@ -280,24 +304,39 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
              FREE 2$ for the first 100 people, prmo code "virre2" at the deposit page. 
              Also use my referal code "VIRRE" for 5% deposit bonus',
             'post_date' => '2023-05-22 00:00:00',
-            'video_url' => 'video3-DOFUS.mp4',
+            'video_url' => 'video3-CS.mp4',
             'poster_url' => 'poster3-CS.jpg',
-            'is_header' => false,
+            'is_header' => true,
+            'tag' => ['tag_CS', 'tag_MULTIPLAYER', 'tag_FPS'],
         ],
 
         [
-            'title' => 'video de juillet',
-            'description' => 'description de video de juillet',
-            'post_date' => '2023-07-14 00:00:00',
-            'video_url' => 'video3-DOFUS.mp4',
-            'poster_url' => 'poster2-CS.jpg',
+            'title' => 'The Supreme Windy Boi | Smite - Susano Rant',
+            'description' => 'As always, this is meant to be satirical and 100% does not reflect
+             the current performance of the God, hope you enjoyed nonetheless though, subscribe
+            for more rants, top 5s, guides and more on the channel twice a week!',
+            'post_date' => '2018-07-10 00:00:00',
+            'video_url' => 'video1-SMITE.mp4',
+            'poster_url' => 'poster1-SMITE.jpg',
             'is_header' => false,
+            'tag' => ['tag_SMITE', 'tag_MULTIPLAYER', 'tag_MOBA'],
         ],
+
+        [
+            'title' => 'This Item Can Solo Fire Giant at 14 Minutes... | Smite - Berserker\'s Shield RANT',
+            'description' => 'Freya\'s not great right now but she can still slap a bit
+            guides and more on the channel twice a week',
+            'post_date' => '2018-09-20 00:00:00',
+            'video_url' => 'video2-SMITE.mp4',
+            'poster_url' => 'poster2-SMITE.jpg',
+            'is_header' => false,
+            'tag' => ['tag_SMITE', 'tag_MULTIPLAYER', 'tag_MOBA'],
+        ],
+
     ];
 
     public function load(ObjectManager $manager): void
     {
-        $persistedVideos = [];
         $videoCount = 0;
 
         foreach (self::VIDEOS as $clip) {
@@ -311,10 +350,13 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
                 ->setPosterUrl($clip['poster_url'])
                 ->setIsHeader($clip['is_header'])
                 ->setIsPremium((bool)rand(0, 1));
-            $manager->persist($video);
             $this->addReference('video_' . $videoCount, $video);
             $videoCount++;
-            $persistedVideos[] = $video;
+            foreach ($clip['tag'] as $tag) {
+                $video
+                    ->addTag($this->getReference($tag));
+            }
+            $manager->persist($video);
 
             $ffmpeg = FFMpeg::create();
             /** @var Video $videoGif */
@@ -326,16 +368,6 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
                 ->gif(TimeCode::fromSeconds(20), new Dimension(280, 240), 4)
                 ->save($this->params->get('image_directory') . '/' . $fileNameGif);
         }
-
-
-        foreach ($persistedVideos as $persistedVideo) {
-            for ($i = 0; $i < 3; $i++) {
-                $persistedVideo
-                    ->addTag($this->getReference('tag_' . TagFixtures::TAGS[rand(0, count(TagFixtures::TAGS) - 1)]));
-            }
-            $manager->persist($video);
-        }
-
         $manager->flush();
     }
 
