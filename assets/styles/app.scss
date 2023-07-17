@@ -10,7 +10,7 @@ $btWidth: 280px;
 $btHeight: 240px;
 $btSizeFactor: 100%;
 
-$stWidth: 150px;
+$stWidth: 200px;
 $stSizeFactor: 100%;
 
 // -- fonts --
@@ -289,7 +289,7 @@ body#admin {
         }
 
         .st-title {
-            font-size: calc($stWidth * 0.08) !important;
+            font-size: calc($stWidth * 0.1) !important;
         }
 
         .st-poster {
@@ -325,7 +325,7 @@ body#admin {
     }
 }
 
-.load-more {
+.big-lm.load-more {
 
     width: $btWidth * 1.03;
     aspect-ratio: 1 / 1.02;
@@ -365,6 +365,67 @@ body#admin {
 
         .load-more-title {
             font-size: calc($btWidth * 0.1) !important;
+        }
+    }
+
+    &:active,
+    &:focus {
+        scale: 90%;
+    }
+}
+
+#small-btg-tag-title {
+    &::after {
+        display: block;
+        position: absolute;
+        z-index: -1;
+        content: '';
+        width: 90%;
+        height: 1px;
+        background-color: $secondary;
+    }
+}
+
+.small-lm.load-more {
+
+    width: $stWidth * 1.03;
+    aspect-ratio: 1 / 1.02;
+    scale: $stSizeFactor;
+    transition: .7s $animCurveEaseOut;
+    cursor: pointer;
+
+    .load-more-main {
+        width: $stWidth;
+        height: 81%;
+        transform: translateY(($stWidth * .1)/2);
+        background: linear-gradient(135deg, $primary 50%, $secondary) !important;
+        transform-origin: center;
+        transition: .7s $animCurveEaseOut;
+    }
+
+    .load-more-mask {
+        transform-origin: center;
+        transform: scale(99%);
+        width: $stWidth;
+        height: 100%;
+    }
+
+    .load-more-title {
+        font-size: calc($stWidth * 0.08) !important;
+        transition: .7s $animCurveEaseOut;
+    }
+
+    &:hover {
+
+        rotate: -2deg;
+        transform: translateY(5px);
+
+        .load-more-main {
+            scale: 96%;
+        }
+
+        .load-more-title {
+            font-size: calc($stWidth * 0.1) !important;
         }
     }
 
@@ -700,4 +761,25 @@ $userHeaderWidth: 30vw;
 
 .info-mobile {
     font-size: 12px;
+}
+
+#contact-form-container {
+    height: 100vh;
+
+    .contact-form-email {
+        &::placeholder {
+            font-family: $textFont;
+            color: $secondary;
+        }
+    }
+
+    .contact-form-message {
+        height: 20vh;
+
+        &::placeholder {
+            font-family: $textFont;
+            color: $secondary;
+        }
+    }
+
 }
