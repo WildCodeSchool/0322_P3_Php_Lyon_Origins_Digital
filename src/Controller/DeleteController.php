@@ -2,38 +2,45 @@
 
 namespace App\Controller;
 
+use App\Controller\Admin\UserCrudController;
+use App\Controller\Admin\VideoCrudController;
 use App\Entity\Comment;
 use App\Entity\User;
 use App\Entity\Video;
 use App\Repository\ViewedRepository;
 use App\Service\DeleteService;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[IsGranted('ROLE_ADMIN')]
 #[Route('/delete', name: 'delete_')]
 class DeleteController extends AbstractController
 {
+    public function __construct(private AdminUrlGenerator $adminUrlGenerator)
+    {
+    }
+
     //route to delete a user by id
     #[Route('/user/{idUser<^[0-9]+$>}', name: 'user')]
     #[ParamConverter('user', class: 'App\Entity\User', options: ['id' => 'idUser'])]
     public function deleteUser(
         User $user,
-        DeleteService $deleteService,
-        UrlGeneratorInterface $urlGenerator
+        DeleteService $deleteService
     ): Response {
+        $url = $this->adminUrlGenerator
+        ->setController(UserCrudController::class)
+        ->setAction(Action::INDEX)
+        ->generateUrl();
+
         if ($this->getUser() == $user) {
             $this->addFlash('danger', 'Vous ne pouvez pas supprimer votre propre compte. 
             Cela doit être fait par un autre administrateur');
-            $url = $urlGenerator->generate('admin_dashboard', [
-                'crudAction' => 'index',
-                'crudControllerFqcn' => 'App\Controller\Admin\UserCrudController',
-            ]);
 
             return new RedirectResponse($url);
         }
@@ -41,7 +48,7 @@ class DeleteController extends AbstractController
         $deleteService->deleteUser($user);
         $this->addFlash('success', 'Utilisateur supprimé avec succès');
 
-        return $this->redirectToRoute('admin_dashboard');
+        return new RedirectResponse($url);
     }
 
     //route to delete a video by id
@@ -51,15 +58,15 @@ class DeleteController extends AbstractController
         Video $video,
         DeleteService $deleteService,
         ViewedRepository $viewedRepository,
-        UrlGeneratorInterface $urlGenerator
     ): Response {
+        $url = $this->adminUrlGenerator
+        ->setController(VideoCrudController::class)
+        ->setAction(Action::INDEX)
+        ->generateUrl();
+
         if ($video->isIsHeader()) {
             $this->addFlash('danger', 'Cette vidéo est le header de la page d\'accueil.
             Sélectionnez une autre vidéo en header pour pouvoir supprimer celle-ci.');
-            $url = $urlGenerator->generate('admin_dashboard', [
-                'crudAction' => 'index',
-                'crudControllerFqcn' => 'App\Controller\Admin\VideoCrudController',
-            ]);
 
             return new RedirectResponse($url);
         }
@@ -67,7 +74,7 @@ class DeleteController extends AbstractController
         $deleteService->deleteVideo($video, $viewedRepository);
         $this->addFlash('success', 'Vidéo supprimée avec succès');
 
-        return $this->redirectToRoute('admin_dashboard');
+        return new RedirectResponse($url);
     }
 
     //route to delete a comment by id
