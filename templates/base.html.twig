@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="icon" type="image/png" href="{{ asset('build/images/favicon.png') }}" />
     <title>
       {% block title %}
         Gaming Gurus
@@ -19,6 +18,7 @@
       {{ encore_entry_script_tags('navbar') }}
       {{ encore_entry_script_tags('searchVideos') }}
     {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('build/favicon/gg-favicon-sm.png') }}" />
   </head>
 
   {% set dot = "<i class='bi bi-dot m-0'></i>" %}
@@ -51,6 +51,7 @@
     </nav>
 
     {% block body %}
+
     {% endblock %}
   </body>
 </html>
