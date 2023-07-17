@@ -19,16 +19,22 @@ class VideoSearchController extends AbstractController
         $searchResults = [];
 
         foreach ($searchVideos as $searchVideo) {
+            $firstTag = false;
+
             foreach ($searchVideo->getTag() as $videoTag) {
-                $searchResults[] = [
-                    'id' => $searchVideo->getId(),
-                    'title' => $searchVideo->getTitle(),
-                    'posterUrl' => $searchVideo->getPosterUrl(),
-                    'description' => $searchVideo->getDescription(),
-                    'tag' => $videoTag->getName(),
-                ];
+                if (!$firstTag) {
+                    $searchResults[] = [
+                        'id' => $searchVideo->getId(),
+                        'title' => $searchVideo->getTitle(),
+                        'posterUrl' => $searchVideo->getPosterUrl(),
+                        'description' => $searchVideo->getDescription(),
+                        'tag' => $videoTag->getName(),
+                    ];
+
+                    $firstTag = true;
+                }
             }
-        };
+        }
 
         return $this->render('video_search/search-result.html.twig', [
             'searchResults' => $searchResults
