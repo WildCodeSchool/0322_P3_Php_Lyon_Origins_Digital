@@ -129,12 +129,12 @@
 					</div>
 				</div>
 
-				{% if app.user %}
+				{% if app.user and app.user.viewLaterVideos|length > 0 %}
 					<div class="col-xl-3 d-none d-xl-flex flex-column justify-content-start align-items-end">
 
 						<div class="sh-favs bg-primary d-flex flex-column justify-content-start align-items-center m-3 p-4 rounded-5">
 							<h5 class="title-font text-secondary">MES VIDEOS A REGARDER</h5>
-							{% for video in app.user.favoriteVideos |slice(0, 4) %}
+							{% for video in app.user.viewLaterVideos |slice(0, 4) %}
 								{{ include('shared/thumbnail/small-thumbnail.html.twig', {item: video}) }}
 							{% endfor %}
 							<a href="{{ path('user_dashboard') }}#towatch-tab">
