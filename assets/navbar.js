@@ -26,7 +26,7 @@ const activePage = document.querySelector('main');
         removeWhenNotActive(navItemSearch)
         removeWhenNotActive(navItemRegister)
         removeWhenActive(navItemRegister, navItemLogin)
-        if (navItemUser == null) {navItemLogout.parentElement.remove()}
+        if (navItemUser == null) navItemLogout.parentElement.remove()
     }
 
 })();

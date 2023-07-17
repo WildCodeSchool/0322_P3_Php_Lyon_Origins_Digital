@@ -10,7 +10,7 @@ final class SmallVideoGalleryComponent
 {
     public ?string $title = null;
     public ?string $source = null;
-    public int $count;
+    public int $numberOfVideosToShow;
 
     private TagRepository $tagRepository;
 

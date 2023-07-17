@@ -64,14 +64,11 @@
 
       {{ component('VideoGalleryComponent', { source: 'most-viewed', count: 4 }) }}
 
-
-
       {% set countOfStG = 5 %}
-      <section class="row row-cols-xxl-{{countOfStG}} m-4">
-        {% for trendingTag in trendingTags |slice(0,countOfStG) %}
-          <div class="px-1 py-0 overflow-hidden">{{ component('SmallVideoGalleryComponent', { source: trendingTag, count: 8 }) }}</div>
+      <section class="row row-cols-xxl-{{ countOfStG }} m-4">
+        {% for trendingTag in trendingTags|slice(0, countOfStG) %}
+          <div class="px-1 py-0 overflow-hidden">{{ component('SmallVideoGalleryComponent', { source: trendingTag, numberOfVideosToShow: 8 }) }}</div>
         {% endfor %}
-
       </section>
     </section>
   </main>
