@@ -13,7 +13,7 @@
 
         {% for tag in contents |slice(0,startCount) %}
             <div class="{{id}}-0 bt-container">
-                {{ include('shared/tag/category-tag.html.twig', {tag: tag.name, style: styleClass}) }}
+                {{ include('shared/tag/category-tag.html.twig', {tag: tag, style: styleClass}) }}
             </div>
         {% endfor %}
 
@@ -21,7 +21,7 @@
 
             {% for tag in contents |slice(i * startCount, moreCount) %}
                 <div class="d-none bt-hidden {{id}}-{{i}}">
-                    {{ include('shared/tag/category-tag.html.twig', {tag: tag.name, style: styleClass}) }}
+                    {{ include('shared/tag/category-tag.html.twig', {tag: tag, style: styleClass}) }}
                 </div>
             {% endfor %}
 
