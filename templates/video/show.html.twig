@@ -129,7 +129,7 @@
 					</div>
 				</div>
 
-				{% if app.user %}
+				{% if app.user and app.user.viewLaterVideos|length > 0 %}
 					<div class="col-xl-3 d-none d-xl-flex flex-column justify-content-start align-items-end">
 
 						<div class="sh-favs bg-primary d-flex flex-column justify-content-start align-items-center m-3 p-4 rounded-5">
