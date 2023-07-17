@@ -3,17 +3,13 @@
 namespace App\Twig\Components;
 
 use App\Repository\TagRepository;
-use Doctrine\Common\Collections\Collection;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
 #[AsTwigComponent()]
 final class SmallVideoGalleryComponent
 {
     public ?string $title = null;
-    public int $count;
     public ?string $source = null;
-
-    public ?int $videoPlayedId = null;
 
     private TagRepository $tagRepository;
 
