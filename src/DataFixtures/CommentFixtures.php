@@ -134,7 +134,7 @@ class CommentFixtures extends Fixture implements DependentFixtureInterface
             $comment
                 ->setPostDate($dateTimeImmutable)
                 ->setUser($this->getReference('user_' . rand(0, $maxUsersValue)))
-                ->setContent('"' . $uniqComment . '"')
+                ->setContent($uniqComment)
                 ->setVideo($this->getReference('video_' . rand(0, $maxVideosValue)));
             $manager->persist($comment);
         }

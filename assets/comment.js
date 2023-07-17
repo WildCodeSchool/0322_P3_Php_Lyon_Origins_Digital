@@ -39,9 +39,30 @@ saveCommentBtn.addEventListener('click', function (event) {
                 }
             })
             .then(function (datas) {
-                commentArea.value = '';  
+                commentArea.value = '';
                 const divToAppend = document.getElementById('commentsPart');
                 divToAppend.insertAdjacentHTML('afterbegin', datas);
             })
     }
 });
+
+const commentContents = document.getElementsByClassName('comment-contents');
+
+for (const commentContent of commentContents) {
+
+    const commentId = commentContent.id;
+    const truncatedComment = document.getElementById('truncated-comment-' + commentId);
+    const fullComment = document.getElementById('full-comment-' + commentId);
+    const loadMoreCommentContent = document.getElementById('loadmore-comment-' + commentId);
+    const loadLessCommentContent = document.getElementById('loadless-comment-' + commentId);
+
+    loadMoreCommentContent.addEventListener('click', function(){
+        truncatedComment.classList.add('d-none');
+        fullComment.classList.remove('d-none');
+    })
+
+    loadLessCommentContent.addEventListener('click', function(){
+        truncatedComment.classList.remove('d-none');
+        fullComment.classList.add('d-none');
+    })
+}

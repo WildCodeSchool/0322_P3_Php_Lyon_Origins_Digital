@@ -21,6 +21,7 @@ class CommentController extends AbstractController
     public function saveComment(Video $video, Request $request, CommentRepository $commentRepository): Response
     {
         $commentToSave = $request->getContent();
+        $commentToSave = trim($commentToSave, '"');
 
         $comment = new Comment();
         $comment

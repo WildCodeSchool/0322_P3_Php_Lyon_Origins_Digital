@@ -32,12 +32,26 @@
 			</span>
 		</div>
 
-		<div class="text-font row">
-			<div class="col d-flex align-items-center">
-				<span class="mb-3">
-					{{ comment.content|slice(1, comment.content|length - 2)|raw }}
+		{% set loadmoreComment = "<div class='btn btn-sm btn-link ms-2 text-secondary mt-0 py-0 my-1 text-font' id='loadmore-comment-" ~ comment.id ~ "' >Plus...</div>" %}
+		{% set loadlessComment = "<div class='btn btn-sm btn-link ms-2 text-secondary mt-0 py-0 my-1 text-font' id='loadless-comment-" ~ comment.id ~ "' >Moins...</div>" %}
+
+		<div class="comment-contents text-font d-flex flex-column justify-content-start align-items-start" id="{{ comment.id }}">
+			<div class="d-flex align-items-center">
+			{% if comment.content|length > 650 %}
+				<span class="mb-3" id="truncated-comment-{{ comment.id }}">
+					{{ comment.content|u.truncate(650, '...' ~ loadmoreComment|raw)|raw }}
 				</span>
+				<span class="mb-3 d-none" id="full-comment-{{ comment.id }}">
+					{{ comment.content|raw }}
+					{{loadlessComment|raw}}
+				</span>
+				{% else %}
+				<span class="mb-3" id="regular-comment-{{ comment.id }}">
+					{{ comment.content|raw }}
+				</span>
+				{% endif %}
 			</div>
+
 			{% if is_granted('ROLE_ADMIN') %}
 				<span class="mb-3">
 					<a href="{{ path('delete_comment', { commentId: comment.id }) }}" class="btn btn-primary">Supprimer</a>
