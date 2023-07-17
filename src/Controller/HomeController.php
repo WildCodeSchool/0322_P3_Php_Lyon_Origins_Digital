@@ -19,8 +19,13 @@ class HomeController extends AbstractController
 
         $trendingTags = [];
         foreach ($mostVieweds as $mostViewed) {
-            $trendingTags[] = $videoRepository->findOneBy(['id' => $mostViewed['id']])->getTag()[0]->getName();
+            $listOfTagIds = $videoRepository->findOneBy(['id' => $mostViewed['id']])->getTag();
+
+            for ($i = 0; $i < sizeof($listOfTagIds); $i++) {
+                $trendingTags[] = $listOfTagIds[$i]->getName();
+            }
         }
+
         $trendingTags = array_unique($trendingTags);
 
         $headerVideo = $videoRepository->findOneBy(['isHeader' => true]);

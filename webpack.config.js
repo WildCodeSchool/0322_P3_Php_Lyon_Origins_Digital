@@ -32,6 +32,10 @@ Encore
         from: './assets/avatars',
         to: 'avatars/[path][name].[ext]',
     })
+    .copyFiles({
+        from: './assets/favicon',
+        to: 'favicon/[path][name].[ext]',
+    })
     /*
      * ENTRY CONFIG
      *
