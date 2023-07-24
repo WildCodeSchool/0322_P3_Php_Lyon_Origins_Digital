@@ -27,7 +27,7 @@ class ContactCrudController extends AbstractCrudController
     {
         return [
             EmailField::new('email'),
-            TextField::new('message'),
+            TextField::new('message')->setMaxLength(1024),
         ];
     }
 
