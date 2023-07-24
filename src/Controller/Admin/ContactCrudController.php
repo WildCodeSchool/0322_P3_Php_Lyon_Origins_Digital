@@ -20,14 +20,14 @@ class ContactCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-        ->setDefaultSort(['email' => 'ASC']);
+            ->setDefaultSort(['email' => 'ASC']);
     }
 
     public function configureFields(string $pageName): iterable
     {
         return [
             EmailField::new('email'),
-            TextField::new('message'),
+            TextField::new('message')->setMaxLength(1024),
         ];
     }
 
