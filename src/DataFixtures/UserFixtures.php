@@ -12,58 +12,68 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 {
     public const USERS = [
         [
-            'email' => 'user1@user.fr',
+            'email' => 'maxime@gmail.com',
             'username' => 'Maxime',
             'role' => 'ROLE_ADMIN'
         ],
         [
-            'email' => 'user2@user.fr',
+            'email' => 'frederic@gmail.com',
             'username' => 'Frederic',
             'role' => 'ROLE_ADMIN'
         ],
         [
-            'email' => 'user3@user.fr',
+            'email' => 'valentin@gmail.com',
             'username' => 'Valentin',
             'role' => 'ROLE_ADMIN'
         ],
         [
-            'email' => 'user4@user.fr',
+            'email' => 'thomas@gmail.com',
             'username' => 'Thomas',
             'role' => ''
         ],
         [
-            'email' => 'user5@user.fr',
-            'username' => 'Robert',
+            'email' => 'ludovic@gmail.com',
+            'username' => 'Ludovic',
             'role' => ''
         ],
         [
-            'email' => 'user6@user.fr',
-            'username' => 'Ferdinand',
+            'email' => 'anthony@gmail.com',
+            'username' => 'Anthony',
             'role' => ''
         ],
         [
-            'email' => 'user7@user.fr',
-            'username' => 'Roland',
+            'email' => 'aurelien@gmail.com',
+            'username' => 'Aurélien',
             'role' => ''
         ],
         [
-            'email' => 'user8@user.fr',
-            'username' => 'Jocelyne',
+            'email' => 'baptiste@gmail.com',
+            'username' => 'Baptiste',
             'role' => ''
         ],
         [
-            'email' => 'user9@user.fr',
-            'username' => 'Marcelle',
+            'email' => 'benjamin@gmail.com',
+            'username' => 'Benjamin',
             'role' => ''
         ],
         [
-            'email' => 'user10@user.fr',
-            'username' => 'Brigitte',
+            'email' => 'laetitia@gmail.com',
+            'username' => 'Laetitia',
             'role' => ''
         ],
         [
-            'email' => 'user11@user.fr',
-            'username' => 'Yvette',
+            'email' => 'mouhamed@gmail.com',
+            'username' => 'Mouhamed',
+            'role' => ''
+        ],
+        [
+            'email' => 'axel@gmail.com',
+            'username' => 'Axel',
+            'role' => ''
+        ],
+        [
+            'email' => 'zakaria@gmail.com',
+            'username' => 'Zakaria',
             'role' => ''
         ],
     ];
