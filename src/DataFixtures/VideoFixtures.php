@@ -22,11 +22,14 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
 
     public const VIDEOS = [
         [
-            'title' => '3 Minute Maokai Guide - A guide for League of Legends',
-            'description' => 'Got 3 minutes spare? Why not take a quick look at how to play Maokai Jungle!
-             As a tree the jungle is absolutely where Maokai belongs! Despite him being a beast at both 
-             supporting and top laning his recent buffs to his clear speed allows him to tear through the jungle 
-             and provide massive impact with his ganks and teamfights!',
+            'title' => 'Guide Maokai en 3 Minutes - Un guide pour League of Legends',
+            'description' => 'Vous avez 3 minutes de libre ? Pourquoi ne pas jeter un coup 
+            d\'œil rapide sur comment jouer Maokai Jungle !
+             En tant qu\'arbre, la jungle est absolument l\'endroit où Maokai excelle ! 
+             Malgré le fait qu\'il soit redoutable en tant que support
+             et sur la toplane, ses récents buffs en termes de vitesse de clear lui permettent 
+             de dévaster la jungle et d\'avoir un impact massif
+             avec ses ganks et ses combats en équipe !',
             'post_date' => '2023-06-04 00:00:00',
             'video_url' => 'video1-LOL.mp4',
             'poster_url' => 'poster1-LOL.jpg',
@@ -35,11 +38,15 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         ],
 
         [
-            'title' => '3 Minute Lux Guide - A guide for League of Legends',
-            'description' => 'Got 3 minutes spare? Why not take a quick look at how to play Lux Mid Lane? 
-             Lux is an easy to learn by complex to master champion who excels in controlling the map with 
-             her abilities, poking away while pushing her lane before full comboing a champion back to a grey screen! 
-             She\'s a threat as a support, but with the gold that mid grants she can be an absolute force!',
+            'title' => 'Guide Lux en 3 Minutes - Un guide pour League of Legends',
+            'description' => 'Vous avez 3 minutes de libre ? Pourquoi ne pas jeter un coup 
+            d\'œil rapide sur comment jouer Lux en Mid Lane ? 
+             Lux est un champion facile à apprendre mais complexe à maîtriser, qui excelle dans 
+             le contrôle de la carte avec ses capacités,
+             infligeant des dégâts à distance tout en poussant sa lane avant de combo complet 
+             un champion pour l\'envoyer au cimetière ! 
+             Elle est menaçante en tant que support, mais avec l\'or que la midlane octroie, 
+             elle peut être une véritable force !',
             'post_date' => '2023-05-31 00:00:00',
             'video_url' => 'video2-LOL.mp4',
             'poster_url' => 'poster2-LOL.jpg',
@@ -48,10 +55,12 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         ],
 
         [
-            'title' => '3 Minute Katarina Guide - A guide for League of Legends',
-            'description' => 'Got 3 minutes spare? Why not take a quick look at how to play Katarina Mid Lane!
-             Katarina is the original blender champion - The way she jumps on champions, spins and bursts them 
-             out is the true definition of a team fighting assassin!',
+            'title' => 'Guide Katarina en 3 Minutes - Un guide pour League of Legends',
+            'description' => 'Vous avez 3 minutes de libre ? Pourquoi ne pas jeter un coup 
+            d\'œil rapide sur comment jouer Katarina en Mid Lane !
+             Katarina est l\'assassin ultime qui saute sur les champions, tourbillonne et 
+             les élimine de manière spectaculaire. Elle est la vraie 
+             définition d\'un assassin de combat d\'équipe !',
             'post_date' => '2023-02-01 00:00:00',
             'video_url' => 'video3-LOL.mp4',
             'poster_url' => 'poster3-LOL.jpg',
@@ -60,10 +69,13 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         ],
 
         [
-            'title' => '3 Minute Samira Guide - A guide for League of Legends',
-            'description' => 'Got 3 minutes spare? Why not take a quick look at how to play Samira Bot Lane!
-             Samira is a truly unique carry where she relying on raw damage rather than attacking many times -
-             her combo system lets her build up a ton of movement speed before penta-killing the enemy team!',
+            'title' => 'Guide Samira en 3 Minutes - Un guide pour League of Legends',
+            'description' => 'Vous avez 3 minutes de libre ? Pourquoi ne pas jeter un coup 
+            d\'œil rapide sur comment jouer Samira en Bot Lane !
+             Samira est un carry vraiment unique qui compte sur des dégâts bruts plutôt que 
+             d\'attaquer de nombreuses fois - son système de combo 
+             lui permet de gagner énormément de vitesse de déplacement avant d\'éliminer 
+             toute l\'équipe ennemie !',
             'post_date' => '2022-12-19 00:00:00',
             'video_url' => 'video4-LOL.mp4',
             'poster_url' => 'poster4-LOL.jpg',
@@ -72,10 +84,11 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         ],
 
         [
-            'title' => '3 Minute Illaoi Guide - A guide for League of Legends',
-            'description' => 'Got 3 minutes spare? Why not take a quick look at how to play Illaoi Top! 
-             Illaoi is a beast in the top lane coming in as a huge bruiser who loves every 1v5 situation
-             she can find herself in!',
+            'title' => 'Guide Illaoi en 3 Minutes - Un guide pour League of Legends',
+            'description' => 'Vous avez 3 minutes de libre ? Pourquoi ne pas jeter un 
+            coup d\'œil rapide sur comment jouer Illaoi en Top Lane !
+             Illaoi est une bête en toplane, une énorme bruiser qui aime toutes les situations de 
+             1v5 dans lesquelles elle peut se retrouver !',
             'post_date' => '2022-09-18 00:00:00',
             'video_url' => 'video5-LOL.mp4',
             'poster_url' => 'poster5-LOL.jpg',
@@ -84,10 +97,12 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         ],
 
         [
-            'title' => '3 Minute Heimerdinger Guide - A guide for League of Legends',
-            'description' => 'Got 3 minutes spare? Why not take a quick look at how to play Heimerdinger Support!
-             Heimerdinger has recently found himself as a unique support pick offering a ton of pushing power, 
-             stuns and massaive burst damage!',
+            'title' => 'Guide Heimerdinger en 3 Minutes - Un guide pour League of Legends',
+            'description' => 'Vous avez 3 minutes de libre ? Pourquoi ne pas jeter un coup 
+            d\'œil rapide sur comment jouer Heimerdinger en Support !
+             Heimerdinger s\'est récemment imposé en tant que choix de support unique, offrant une 
+             puissance de push, des étourdissements 
+             et des dégâts explosifs massifs !',
             'post_date' => '2023-05-12 00:00:00',
             'video_url' => 'video6-LOL.mp4',
             'poster_url' => 'poster6-LOL.jpg',
@@ -96,8 +111,8 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         ],
 
         [
-            'title' => 'LE Guide *ULTIME* Pour AMELIORER son AIM en 2023 (Valorant)',
-            'description' => 'LE Guide ULTIME Pour AVOIR un AIM PARFAIT en 2023 sur Valorant',
+            'title' => 'Le Guide ULTIME Pour Améliorer son AIM en 2023 (Valorant)',
+            'description' => 'Le Guide ULTIME Pour AVOIR un AIM PARFAIT en 2023 sur Valorant',
             'post_date' => '2023-03-25 00:00:00',
             'video_url' => 'video1-VALORANT.mp4',
             'poster_url' => 'poster1-VALORANT.jpg',
@@ -106,8 +121,8 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         ],
 
         [
-            'title' => 'Comment s\'entrainer pour devenir meilleur et rank up sur valorant',
-            'description' => 'Comment s\'entrainer pour devenir meilleur et rank up sur valorant',
+            'title' => 'Comment s\'entraîner pour devenir meilleur et monter en rang sur Valorant',
+            'description' => 'Comment s\'entraîner pour devenir meilleur et monter en rang sur Valorant',
             'post_date' => '2023-01-23 00:00:00',
             'video_url' => 'video2-VALORANT.mp4',
             'poster_url' => 'poster2-VALORANT.jpg',
@@ -116,9 +131,9 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         ],
 
         [
-            'title' => 'Comment et pourquoi Bunny-hop sur Valorant',
-            'description' => 'Salut à tous, aujourd\'hui je vous explique dans un tuto pourquoi 
-             et comment bunny-hop sur Valorant !',
+            'title' => 'Comment et pourquoi faire du Bunny-hop sur Valorant',
+            'description' => 'Salut à tous, aujourd\'hui je vous explique dans un tuto pourquoi et 
+            comment faire du bunny-hop sur Valorant !',
             'post_date' => '2022-07-07 00:00:00',
             'video_url' => 'video3-VALORANT.mp4',
             'poster_url' => 'poster3-VALORANT.jpg',
@@ -128,9 +143,9 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
 
         [
             'title' => 'Avoir Le MEILLEUR Skin Changer Valorant en 2023 (Tutoriel Complet)',
-            'description' => 'Dans cette vidéo, je vais vous montrez comment télécharger un 
-             Changer Valorant en 2023 gratuitement ! C’est le premier skin changer Valorant legit.
-             Le skin changer fonctionne toujours en 2023.',
+            'description' => 'Dans cette vidéo, je vais vous montrer comment télécharger un Changer 
+            Valorant en 2023 gratuitement !
+             C’est le premier skin changer Valorant légitime. Le skin changer fonctionne toujours en 2023.',
             'post_date' => '2023-05-28 00:00:00',
             'video_url' => 'video4-VALORANT.mp4',
             'poster_url' => 'poster4-VALORANT.jpg',
@@ -139,10 +154,12 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         ],
 
         [
-            'title' => 'Vous DEVEZ Modifier ces Paramètres sur Valorant 2023! (Meilleurs Paramètres Valorant)',
-            'description' => 'Dans cette vidéo, je vais vous montrez les meilleurs paramètres de 
-             Valorant en 2023 que j\'utilise pour m\'aider à rank up. Vous DEVEZ modifier ces paramètres
-             si vous souhaitez améliorer votre niveaux sur Valorant et mieux viser pour rank up rapidement.',
+            'title' => 'Vous DEVEZ Modifier ces Paramètres sur Valorant 2023! (Meilleurs 
+            Paramètres Valorant)',
+            'description' => 'Dans cette vidéo, je vais vous montrer les meilleurs paramètres de 
+            Valorant en 2023 que j\'utilise pour m\'aider à rank up.
+             Vous DEVEZ modifier ces paramètres si vous souhaitez améliorer votre niveau sur Valorant 
+             et mieux viser pour monter rapidement en rang.',
             'post_date' => '2023-05-24 00:00:00',
             'video_url' => 'video5-VALORANT.mp4',
             'poster_url' => 'poster5-VALORANT.jpg',
@@ -152,7 +169,8 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
 
         [
             'title' => 'TUTO | GAGNER DES FPS SUR VALORANT',
-            'description' => 'Petit tuto sur Valorant, pour gagner en FPS et donc améliorer son niveau de jeu !',
+            'description' => 'Petit tuto sur Valorant, pour gagner en FPS et donc améliorer son niveau 
+            de jeu !',
             'post_date' => '2022-07-22 00:00:00',
             'video_url' => 'video6-VALORANT.mp4',
             'poster_url' => 'poster6-VALORANT.jpg',
@@ -172,8 +190,8 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
 
         [
             'title' => 'Comment apprendre à passer un donjon facilement ? Tuto Solotage Dofus',
-            'description' => 'Hello ! nouvelle vidéo concernant les Solotages et l\'apprentissage des 
-             donjons sur Dofus !',
+            'description' => 'Bonjour ! nouvelle vidéo concernant les Solotages et l\'apprentissage 
+            des donjons sur Dofus !',
             'post_date' => '2023-02-13 00:00:00',
             'video_url' => 'video2-DOFUS.mp4',
             'poster_url' => 'poster2-DOFUS.jpg',
@@ -182,10 +200,11 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         ],
 
         [
-            'title' => 'DOFUS - GUIDE ULTIME CHASSEUR - EPISODE 0',
-            'description' => 'Bonjour à tous bienvenue dans cette nouvelle série où je vous montre
-             comment up le métier de chasseur dans Dofus! Je vais vous expliquer chaque tranche de zones, 
-             où drop et comment rentabiliser le metier !',
+            'title' => 'DOFUS - GUIDE ULTIME CHASSEUR - ÉPISODE 0',
+            'description' => 'Bonjour à tous, bienvenue dans cette nouvelle série où je vous montre 
+            comment monter le métier de chasseur dans Dofus !
+             Je vais vous expliquer chaque tranche de zones, où dropper et comment rentabiliser le 
+             métier !',
             'post_date' => '2022-04-14 00:00:00',
             'video_url' => 'video3-DOFUS.mp4',
             'poster_url' => 'poster3-DOFUS.jpg',
@@ -195,9 +214,10 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
 
         [
             'title' => 'Fortnite Champion Series 2023 | Major 2 | Grand Finals | N. America | Day 1',
-            'description' => 'The Fortnite Champion Series is an open tournament in which the best players
-             each season rise to the top and claim the title of champion in their region. Any Duo who makes
-             it to the Elite Division in their region can participate!',
+            'description' => 'Le Fortnite Champion Series est un tournoi ouvert dans lequel les
+             meilleurs joueurs de chaque saison se hissent 
+             au sommet et revendiquent le titre de champion de leur région. Toute équipe qui atteint 
+             la division Élite dans sa région peut participer !',
             'post_date' => '2023-05-14 00:00:00',
             'video_url' => 'video1-FORTNITE.mp4',
             'poster_url' => 'poster1-FORTNITE.jpg',
@@ -207,8 +227,9 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
 
         [
             'title' => 'Les débuts des Gentle Mates sur Fortnite (FNCS Qualifier Day 1)',
-            'description' => 'Les pitchouns de Fortnite ont joué les FNCS pour la première fois sous nos couleurs
-             @Gotaga  et @nikof9274 étaient au cast pour vous faire vivre la compétition!
+            'description' => 'Les pitchouns de Fortnite ont joué les FNCS pour la première 
+            fois sous nos couleurs
+             @Gotaga et @nikof9274 étaient au cast pour vous faire vivre la compétition !
              Ils doivent terminer dans le top 200 au terme de la soirée pour espérer se qualifier 
              pour les demis finales.',
             'post_date' => '2023-04-21 00:00:00',
@@ -219,10 +240,13 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         ],
 
         [
-            'title' => 'I Reached Fortnite’s #1 Rank In 24 Hours! (Unreal)',
-            'description' => 'Today, I challenged myself again in the most intense Fortnite competition ever!
-             the FIRST Unreal Rank in Fortnite which is the #1 rank in Fortnite because of the NEW Ranked Mode! 
-             The new ranked mode features so many different ranks that you have to climb in order to hit Unreal rank. ',
+            'title' => 'J\'ai atteint le rang #1 de Fortnite en 24 heures ! (Incroyable)',
+            'description' => 'Aujourd\'hui, je me suis lancé dans la compétition la plus 
+            intense de Fortnite !
+             Le premier rang Unreal dans Fortnite est le rang #1 car il s\'agit du nouveau 
+             mode classé !
+             Le nouveau mode classé comporte de nombreux rangs différents que vous devez 
+             gravir pour atteindre le rang Unreal.',
             'post_date' => '2023-05-20 00:00:00',
             'video_url' => 'video3-FORTNITE.mp4',
             'poster_url' => 'poster3-FORTNITE.jpg',
@@ -231,9 +255,10 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         ],
 
         [
-            'title' => 'Being a TOP 0.1% Horizon Main (Apex Legends)',
-            'description' => 'JTolerance (me) showing what being a top 0.1% apex predator horizon main in apex 
-             legends season 17 looks like. Best Controller Settings in season 17(Apex Legends Arsenal)',
+            'title' => 'Être l\'un des 0,1% de joueurs les meilleurs sur Horizon (Apex Legends)',
+            'description' => 'JTolerance (moi) montre à quoi ressemble d\'être l\'un des 0,1%
+             des joueurs les meilleurs en tant que main d\'apex predator Horizon dans Apex Legends saison 17.
+             Les meilleures configurations de manettes en saison 17 (Arsenal Apex Legends)',
             'post_date' => '2023-06-18 00:00:00',
             'video_url' => 'video1-APEX.mp4',
             'poster_url' => 'poster1-APEX.jpg',
@@ -242,9 +267,11 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         ],
 
         [
-            'title' => 'Fuse, but I Drop 6,000 Damage',
-            'description' => 'Dropping 6,000 Damage while using Fuse...Dropping 6,000 Damage while using Fuse...
-             Dropping 6,000 Damage while using Fuse...Dropping 6,000 Damage while using Fuse...',
+            'title' => 'Fuse, mais je fais 6000 de dégâts',
+            'description' => 'Je fais 6000 de dégâts tout en utilisant Fuse... Je fais 6000 
+            de dégâts tout en utilisant Fuse...
+             Je fais 6000 de dégâts tout en utilisant Fuse... Je fais 6000 de dégâts tout 
+             en utilisant Fuse...',
             'post_date' => '2023-05-25 00:00:00',
             'video_url' => 'video2-APEX.mp4',
             'poster_url' => 'poster2-APEX.jpg',
@@ -253,9 +280,10 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         ],
 
         [
-            'title' => 'Call of the Crusade – Champions Trailer| Wrath of the Lich King Classic | World of Warcraft',
-            'description' => 'In the wake of the Lich King’s destruction, the heroes of Azeroth gather to prove their 
-             worth for the final battle ahead. ',
+            'title' => 'Appel des Croisades - Bande-annonce des champions | Wrath of 
+            the Lich King Classic | World of Warcraft',
+            'description' => 'À la suite de la destruction du Roi-Liche, les héros d\'Azeroth 
+            se rassemblent pour prouver leur valeur pour la bataille finale à venir.',
             'post_date' => '2023-06-15 00:00:00',
             'video_url' => 'video1-WOW.mp4',
             'poster_url' => 'poster1-WOW.jpg',
@@ -264,9 +292,11 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         ],
 
         [
-            'title' => 'Journey Trailer | Wrath of the Lich King Classic | World of Warcraft',
-            'description' => 'See Northrend through the eyes of community content creator Hurricane in 
-            the official Wrath of the Lich King Classic™ Journey Trailer.',
+            'title' => 'Bande-annonce du voyage | Wrath of the Lich King Classic | 
+            World of Warcraft',
+            'description' => 'Découvrez le Norfendre à travers les yeux du créateur de 
+            contenu de la communauté Hurricane dans la bande-annonce officielle du Voyage 
+            de Wrath of the Lich King Classic™.',
             'post_date' => '2022-11-29 00:00:00',
             'video_url' => 'video2-WOW.mp4',
             'poster_url' => 'poster2-WOW.jpg',
@@ -275,9 +305,10 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         ],
 
         [
-            'title' => 'BLAST.tv Major GRAND FINAL - Vitality vs GamerLegion',
-            'description' => 'We are crowning the WINNER of the BLAST.tv Paris Major, 
-             the very last Major winners of CS:GO. Watch all the action in 4K and ad free on BLAST.tv!',
+            'title' => 'GRANDE FINALE DU MAJOR BLAST.tv - Vitality contre GamerLegion',
+            'description' => 'Nous couronnons le VAINQUEUR du Major BLAST.tv à Paris, 
+            les tout derniers vainqueurs majeurs de CS:GO. 
+             Regardez toute l\'action en 4K et sans publicité sur BLAST.tv !',
             'post_date' => '2023-05-21 00:00:00',
             'video_url' => 'video1-CS.mp4',
             'poster_url' => 'poster1-CS.jpg',
@@ -286,11 +317,11 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         ],
 
         [
-            'title' => 'Nous avons gagné le dernier Major de CS:GO à Paris | Team Vitality vlog',
-            'description' => 'Nous sommes entrés dans l\'histoire de Vitality et de CS:GO en remportant le dernier
-             Major CS:GO devant nos fans et nos familles à Paris. Revivez le parcours légendaire de dupreeh, Magisk,
-             ZywOo, Spinx et apEX depuis leur arrivée à Paris jusqu\'au trophée dans l\'Accor Arena dans ce vlog pré
-             senté par Evnia',
+            'title' => 'Nous avons gagné le dernier Major de CS:GO à Paris | Vlog Team Vitality',
+            'description' => 'Nous avons écrit l\'histoire de Vitality et de CS:GO en 
+            remportant le dernier Major CS:GO devant nos fans et nos familles à Paris. 
+             Revivez le parcours légendaire de dupreeh, Magisk, ZywOo, Spinx et apEX depuis 
+             leur arrivée à Paris jusqu\'au trophée dans l\'Accor Arena dans ce vlog présenté par Evnia.',
             'post_date' => '2023-05-22 00:00:00',
             'video_url' => 'video2-CS.mp4',
             'poster_url' => 'poster2-CS.jpg',
@@ -299,10 +330,11 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         ],
 
         [
-            'title' => 'BLAST Paris MAJOR 2023 - CS:GO Fragmovie (BEST PLAYS)',
-            'description' => 'The best csgo plays from the major legends & champions stage
-             FREE 2$ for the first 100 people, prmo code "virre2" at the deposit page. 
-             Also use my referal code "VIRRE" for 5% deposit bonus',
+            'title' => 'BLAST Paris MAJOR 2023 - Fragmovie CS:GO (MEILLEURS PLAYS)',
+            'description' => 'Les meilleures actions de CS:GO de la phase des légendes
+             et des champions du Major, 
+             2 $ offerts aux 100 premières personnes, code promo "virre2" à la page de dépôt.
+             Utilisez également mon code de parrainage "VIRRE" pour un bonus de dépôt de 5 %.',
             'post_date' => '2023-05-22 00:00:00',
             'video_url' => 'video3-CS.mp4',
             'poster_url' => 'poster3-CS.jpg',
@@ -311,10 +343,11 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         ],
 
         [
-            'title' => 'The Supreme Windy Boi | Smite - Susano Rant',
-            'description' => 'As always, this is meant to be satirical and 100% does not reflect
-             the current performance of the God, hope you enjoyed nonetheless though, subscribe
-            for more rants, top 5s, guides and more on the channel twice a week!',
+            'title' => 'Le Suprême Ventoso | Smite - Rant sur Susano',
+            'description' => 'Comme toujours, ceci est destiné à être satirique et ne 
+            reflète en aucun cas les performances actuelles du Dieu,
+             j\'espère que vous avez quand même apprécié, abonnez-vous pour plus de rants, 
+             top 5, guides et plus sur la chaîne deux fois par semaine !',
             'post_date' => '2018-07-10 00:00:00',
             'video_url' => 'video1-SMITE.mp4',
             'poster_url' => 'poster1-SMITE.jpg',
@@ -323,10 +356,13 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         ],
 
         [
-            'title' => 'This Item Can Solo Fire Giant at 14 Minutes... | Smite - Berserker\'s Shield RANT',
-            'description' => 'Freya\'s not great right now but she can still slap a bit
-            guides and more on the channel twice a week',
-            'post_date' => '2018-09-20 00:00:00',
+            'title' => 'Cet objet peut tuer le Géant de la Faille - Smite - 
+            Ratatoskr Guide Solo',
+            'description' => 'Ratatoskr est un superbe champion et il peut accomplir de 
+            nombreuses choses différentes. 
+             L\'objectif de ce guide est de vous montrer comment jouez Ratatoskr comme un 
+             tank solo et ce que vous devez faire pour réussir en tant que tel.',
+            'post_date' => '2021-12-09 00:00:00',
             'video_url' => 'video2-SMITE.mp4',
             'poster_url' => 'poster2-SMITE.jpg',
             'is_header' => false,
@@ -334,6 +370,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         ],
 
     ];
+
 
     public function load(ObjectManager $manager): void
     {
