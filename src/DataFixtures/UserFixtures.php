@@ -15,79 +15,61 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             'email' => 'maxime@gmail.com',
             'username' => 'Maxime',
             'role' => 'ROLE_ADMIN',
-            'avatar' => 'avatar-maxime.png'
+            'avatar' => 'avatar-2.png'
         ],
         [
             'email' => 'frederic@gmail.com',
             'username' => 'Frederic',
             'role' => 'ROLE_ADMIN',
-            'avatar' => 'avatar-fred.png'
+            'avatar' => 'avatar-3.png'
         ],
         [
             'email' => 'valentin@gmail.com',
             'username' => 'Valentin',
             'role' => 'ROLE_ADMIN',
-            'avatar' => 'avatar-valentin.png'
+            'avatar' => 'avatar-1.png'
         ],
         [
             'email' => 'thomas@gmail.com',
             'username' => 'Thomas',
             'role' => '',
-            'avatar' => 'avatar-thomas.png'
+            'avatar' => 'avatar-4.png'
         ],
         [
             'email' => 'ludovic@gmail.com',
             'username' => 'Ludovic',
             'role' => '',
-            'avatar' => 'avatar-ludovic.png'
+            'avatar' => 'avatar-5.png'
         ],
         [
-            'email' => 'anthony@gmail.com',
-            'username' => 'Anthony',
+            'email' => 'Vince@gmail.com',
+            'username' => 'Vince',
             'role' => '',
-            'avatar' => 'avatar-anthony.png'
+            'avatar' => 'avatar-6.png'
         ],
         [
-            'email' => 'aurelien@gmail.com',
-            'username' => 'Aurélien',
+            'email' => 'Leia@gmail.com',
+            'username' => 'Leia',
             'role' => '',
-            'avatar' => 'avatar-aurelien.png'
+            'avatar' => 'avatar-7.png'
         ],
         [
-            'email' => 'baptiste@gmail.com',
-            'username' => 'Baptiste',
+            'email' => 'eva@gmail.com',
+            'username' => 'Eva',
             'role' => '',
-            'avatar' => 'avatar-baptiste.png'
+            'avatar' => 'avatar-8.png'
         ],
         [
-            'email' => 'benjamin@gmail.com',
-            'username' => 'Benjamin',
+            'email' => 'Jordan@gmail.com',
+            'username' => 'Jordan',
             'role' => '',
-            'avatar' => 'avatar-benjamin.png'
+            'avatar' => 'avatar-9.png'
         ],
         [
             'email' => 'laetitia@gmail.com',
             'username' => 'Laetitia',
             'role' => '',
-            'avatar' => 'avatar-laetitia.png'
-        ],
-        [
-            'email' => 'mouhamed@gmail.com',
-            'username' => 'Mouhamed',
-            'role' => '',
-            'avatar' => 'avatar-mouhamed.png'
-        ],
-        [
-            'email' => 'axel@gmail.com',
-            'username' => 'Axel',
-            'role' => '',
-            'avatar' => 'avatar-axel.png'
-        ],
-        [
-            'email' => 'zakaria@gmail.com',
-            'username' => 'Zakaria',
-            'role' => '',
-            'avatar' => 'avatar-zakaria.png'
+            'avatar' => 'avatar-10.png'
         ],
     ];
 
