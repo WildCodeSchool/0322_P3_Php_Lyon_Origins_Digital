@@ -1,75 +1,90 @@
 {% extends 'base.html.twig' %}
 {% block javascripts %}
-  {{ parent() }}
-  {{ encore_entry_script_tags('addFav') }}
-  {{ encore_entry_script_tags('addLater') }}
-  {{ encore_entry_script_tags('displayViewCount') }}
+	{{ parent() }}
+	{{ encore_entry_script_tags('addFav') }}
+	{{ encore_entry_script_tags('addLater') }}
+	{{ encore_entry_script_tags('displayViewCount') }}
 {% endblock %}
 
 {% block title %}
-  Gaming Gurus
+	Gaming Gurus
 {% endblock %}
 {% set playFill = "<i class='bi bi-play-fill'></i>" %}
 
 {% block body %}
-  <main class="col" aria-labelledby="nav-btn-{{ navItems.home['name'] }}" id="{{ navItems.home['name'] }}">
-    {% if headerVideo.isHeader %}
-      <div class="home-header-desktop d-md-flex d-none">
-        <div class="container">
-          <div class="row">
-            <div class="position-relative mx-auto d-flex justify-content-center">
-              <a href="{{ path('video_show', { id: headerVideo.id }) }}" class="d-flex">
-                <img src="{{ asset('build/images/' ~ headerVideo.posterUrl) }}" class="header-desktop-img col-10 rounded-4 mx-auto mt-4" />
-                <p class="header-logo-desktop rounded-3 rounded-top-0 rounded-start-0 bg-dark title-font text-secondary col-3 d-md-flex justify-content-center d-none position-absolute">GAMING
-                  {{ dot|raw }}
-                  GURUS</p>
-              </a>
-              <a class="link-desktop bg-primary fs-3 text-decoration-none d-none d-md-flex title-font text-secondary rounded-3 justify-content-center align-items-center position-absolute" href="{{ path('video_show', { id: headerVideo.id }) }}">
-                <span class="">REGARDER</span>
-                <span class="fs-1 mt-1">{{ playFill|raw }}</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+	<main class="col" aria-labelledby="nav-btn-{{ navItems.home['name'] }}" id="{{ navItems.home['name'] }}">
+		{% if headerVideo.isHeader %}
+			<div class="home-header-desktop d-md-flex d-none">
+				<div class="container">
+					<div class="row">
+						<div class="position-relative mx-auto d-flex justify-content-center">
+							<a href="{{ path('video_show', { id: headerVideo.id }) }}" class="d-flex">
+								<img src="{{ asset('build/images/' ~ headerVideo.posterUrl) }}" class="header-desktop-img col-10 rounded-4 mx-auto mt-4"/>
+								<p class="header-logo-desktop rounded-3 rounded-top-0 rounded-start-0 bg-dark title-font text-secondary col-3 d-md-flex justify-content-center d-none position-absolute">GAMING
+									{{ dot|raw }}
+									GURUS</p>
+							</a>
+							<a class="link-desktop bg-primary fs-3 text-decoration-none d-none d-md-flex title-font text-secondary rounded-3 justify-content-center align-items-center position-absolute" href="{{ path('video_show', { id: headerVideo.id }) }}">
+								<span class="">REGARDER</span>
+								<span class="fs-1 mt-1">{{ playFill|raw }}</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
 
-      <div class="home-header-mobile d-inline d-md-none">
-        <div class="container">
-          <div class="row">
-            <div class="home-title col-10 fs-4 text-secondary title-font d-flex justify-content-start ms-4">GAMING
-              {{ dot|raw }}
-              GURUS</div>
-          </div>
-        </div>
-        <div class="container">
-          <div class="row">
-            <div class="position-relative">
-              <a href="{{ path('video_show', { id: headerVideo.id }) }}" class="d-flex"><img src="{{ asset('build/images/' ~ headerVideo.posterUrl) }}" class="header-mobile-img col-12 rounded-4 ms-2" /></a>
-              <a class="link-mobile bg-primary fs-3 text-decoration-none d-flex d-md-none title-font text-secondary rounded-3 justify-content-center align-items-center position-absolute" href="{{ path('video_show', { id: headerVideo.id }) }}">
-                <span class="">REGARDER</span>
-                <span class="fs-1 mt-1">{{ playFill|raw }}</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    {% endif %}
+			<div class="home-header-mobile d-inline d-md-none">
+				<div class="container">
+					<div class="row">
+						<div class="home-title col-10 fs-4 text-secondary title-font d-flex justify-content-start ms-4">GAMING
+							{{ dot|raw }}
+							GURUS</div>
+					</div>
+				</div>
+				<div class="container">
+					<div class="row">
+						<div class="position-relative">
+							<a href="{{ path('video_show', { id: headerVideo.id }) }}" class="d-flex"><img src="{{ asset('build/images/' ~ headerVideo.posterUrl) }}" class="header-mobile-img col-12 rounded-4 ms-2"/></a>
+							<a class="link-mobile bg-primary fs-3 text-decoration-none d-flex d-md-none title-font text-secondary rounded-3 justify-content-center align-items-center position-absolute" href="{{ path('video_show', { id: headerVideo.id }) }}">
+								<span class="">REGARDER</span>
+								<span class="fs-1 mt-1">{{ playFill|raw }}</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endif %}
 
-    <section class="ms-5">
-      <section class="container-lg d-sm-flex d-none mx-auto">{{ include('shared/tag/tag-list.html.twig', { title: 'Les jeux du moment', startCount: 8, moreCount: 4, contents: trendingTags, styleClass: 'tag-list', id: 'trending' }) }}</section>
+		<section class="ms-5">
+			<section class="container-lg d-sm-flex d-none mx-auto">{{ include('shared/tag/tag-list.html.twig', { title: 'Les jeux du moment', startCount: 8, moreCount: 4, contents: trendingTags, styleClass: 'tag-list', id: 'trending' }) }}</section>
 
-      <section class="container-lg d-sm-flex d-sm-none mx-auto">{{ include('shared/tag/tag-list.html.twig', { title: 'Les jeux du moment', startCount: 5, moreCount: 2, contents: trendingTags, styleClass: 'tag-list', id: 'trending-mobile' }) }}</section>
+			<section class="container-lg d-sm-flex d-sm-none mx-auto">{{ include('shared/tag/tag-list.html.twig', { title: 'Les jeux du moment', startCount: 5, moreCount: 2, contents: trendingTags, styleClass: 'tag-list', id: 'trending-mobile' }) }}</section>
 
-      {{ component('VideoGalleryComponent', { source: 'latest', count: 4 }) }}
+			{{ component('VideoGalleryComponent', { source: 'latest', count: 4 }) }}
 
-      {{ component('VideoGalleryComponent', { source: 'most-viewed', count: 4 }) }}
+			{{ component('VideoGalleryComponent', { source: 'most-viewed', count: 4 }) }}
 
-      {% set countOfStG = 5 %}
-      <section class="row row-cols-xxl-{{ countOfStG }} m-4">
-        {% for trendingTag in trendingTags|slice(0, countOfStG) %}
-          <div class="px-1 py-0 overflow-hidden">{{ component('SmallVideoGalleryComponent', { source: trendingTag, numberOfVideosToShow: 8 }) }}</div>
-        {% endfor %}
-      </section>
-    </section>
-  </main>
+			{% set countOfStG = 5 %}
+			{% set gameNameTags = [
+        'lol',
+        'fortnite',
+        'cs',
+        'valorant',
+        'dofus',
+        'apex',
+        'smite',
+        'wow',
+      ] %}
+
+			<section class="row row-cols-xxl-{{ countOfStG }} m-4">
+				{% for gameNameTag in gameNameTags|slice(0, countOfStG) %}
+
+					<div class="px-1 py-0 overflow-hidden">
+						{{ component('SmallVideoGalleryComponent', { source: gameNameTag, numberOfVideosToShow: 4 }) }}
+					</div>
+
+				{% endfor %}
+			</section>
+		</section>
+	</main>
 {% endblock %}
