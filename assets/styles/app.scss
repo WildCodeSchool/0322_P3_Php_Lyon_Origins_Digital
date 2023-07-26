@@ -149,18 +149,18 @@ body {
     background-color: $dark;
 }
 
-body#admin {
+body.ea {
 
-    background-color: #222222;
+    background-color: #FFFFFF;
 
     a {
         text-decoration: none;
     }
 
-    section .content-header {
-        background-color: #222222;
-        color: #FFFFFF;
-    }
+    // .content-wrapper {
+    //     background-color: #FFFFFF;
+    //     color: #222222;
+    // }
 }
 
 .bt-container {

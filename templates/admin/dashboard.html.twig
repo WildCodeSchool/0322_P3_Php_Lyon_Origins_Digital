@@ -1,21 +1,22 @@
 {% extends '@!EasyAdmin/layout.html.twig' %}
 
 {% block head_stylesheets %}
-    {{ parent() }}
-    {{ encore_entry_link_tags('app') }}
+	{{ parent() }}
+	{{ encore_entry_link_tags('app') }}
 {% endblock %}
 
 {% block head_javascript %}
-    {{ parent() }}
-    {{ encore_entry_script_tags('app') }}
+	{{ parent() }}
+	{{ encore_entry_script_tags('app') }}
 {% endblock %}
 
-{% block content_title %}Tableau de bord{% endblock %}
-
-{% block page_actions %}
+{% block content_title %}Tableau de bord
 {% endblock %}
 
-{% block body_id %}admin{% endblock %}
+{% block page_actions %}{% endblock %}
+
+{% block body_id %}admin
+{% endblock %}
 
 {% set charts = [
     chartVideosByTag,
@@ -25,13 +26,13 @@
 
 {% block main %}
 
-    <section class="container-fluid row">
-        {% for chart in charts %}
-            <div class="col-xl-6 col-10 mb-5 mx-xl-auto">
-                {{ render_chart(chart) }}
-            </div>
-        {% endfor %}
-    </section>
+	<section class="container-fluid row">
+		{% for chart in charts %}
+			<div class="col-xl-6 col-10 mb-5 me-xl-auto">
+				{{ render_chart(chart) }}
+			</div>
+		{% endfor %}
+	</section>
 
 
 {% endblock %}

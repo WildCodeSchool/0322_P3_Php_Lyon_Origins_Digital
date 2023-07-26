@@ -1,66 +1,68 @@
 {% extends '@EasyAdmin/layout.html.twig' %}
 
 {% block head_stylesheets %}
-    {{ parent() }}
-    {{ encore_entry_link_tags('app') }}
+	{{ parent() }}
+	{{ encore_entry_link_tags('app') }}
 {% endblock %}
 
 {% block head_javascript %}
 
-    {{ parent() }}
-    {{ encore_entry_script_tags('app') }}
+	{{ parent() }}
+	{{ encore_entry_script_tags('app') }}
 	{{ encore_entry_script_tags('dropzone') }}
 
 {% endblock %}
 
-{% block content_title %}Poster une video{% endblock %}
+{% block content_title %}Poster une video
+{% endblock %}
 
 
-{% block body_id %}admin{% endblock %}
+{% block body_id %}admin
+{% endblock %}
 
 {% block main %}
 
-	<div class="container-fluid mt-5 text-font text-light">
+	<div class="container-fluid mt-5 text-font text-dark bg-light">
 
 		<div class="text-center mb-4">
-			<h1 class="title-font text-light">AJOUTER DU CONTENU</h1>
+			<h1 class="title-font text-dark">AJOUTER DU CONTENU</h1>
 		</div>
 
 		<div class="row justify-content-center">
 
 			<div class="col-xl-6 mb-4">
-				<p class="control-label mb-3 text-font text-light">1- Déposez votre video ici:</p>
-				<form action="{{ oneup_uploader_endpoint('gallery') }}" class='border border-2 rounded-3 border-light dropzone' id="mydropzone">
+				<p class="control-label mb-3 text-font text-dark">1- Déposez votre video ici:</p>
+				<form action="{{ oneup_uploader_endpoint('gallery') }}" class='border border-2 rounded-3 border-dark dropzone' id="mydropzone">
 					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 				</form>
 			</div>
 
 			<div class="col-xl-6">
-				<p class="control-label mb-3 text-font text-light">2- Données de la vidéo (obligatoire):</p>
+				<p class="control-label mb-3 text-font text-dark">2- Données de la vidéo (obligatoire):</p>
 
-				{{ form_start(form) }}		
-       				<div>
-      				      {{ form_row(form.title) }}
-       				</div>
+				{{ form_start(form) }}
+				<div>
+					{{ form_row(form.title) }}
+				</div>
 
-        			<div>
-          				{{ form_row(form.description) }}
-        			</div>
+				<div>
+					{{ form_row(form.description) }}
+				</div>
 
-					<div>
-						{{form_row(form.postDate)}}
-					</div>
-					
-					<div class="form-tag text-dark">
-						{{ form_row(form.tag) }}
-					</div>
+				<div>
+					{{form_row(form.postDate)}}
+				</div>
+
+				<div class="form-tag text-dark">
+					{{ form_row(form.tag) }}
+				</div>
 
 				<p class="text-danger">Attention: la vidéo doit être completement uploadée avant de cliquer sur Envoyer</p>
 				<button class="btn btn-light">{{ button|default('Envoyer') }}</button>
 				{{ form_end(form) }}
 			</div>
-				
-			
+
+
 		</div>
 	</div>
 

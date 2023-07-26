@@ -16,7 +16,7 @@ class ChartManager
         string $title,
         array $labels = [],
         array $data = [],
-        string $bgColor = '#9b9b9b',
+        string $bgColor = '#000000',
         int $yMax = null,
         int $yMin = null,
     ): Chart {
