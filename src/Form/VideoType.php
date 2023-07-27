@@ -7,6 +7,7 @@ use App\Entity\Video;
 use App\Repository\TagRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -43,7 +44,16 @@ class VideoType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'required' => true
-            ]);
+            ])
+            ->add('isHeader', CheckboxType::class, [
+                'label' => 'À la une',
+                'required' => false,
+            ])
+            ->add('isPremium', CheckboxType::class, [
+                'label' => 'Premium',
+                'required' => false,
+            ])
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

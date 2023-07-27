@@ -35,7 +35,7 @@ class UploadController extends AbstractController
                 $video = $form->getData();
                 $video->setVideoUrl($fileName);
                 $video->setPosterUrl($fileNameThumb);
-                $video->setIsPremium(false);
+                // $video->setIsPremium(false);
                 $saveVideoService->saveVideoFile($fileName);
                 $videoRepository->save($video, true);
                 $this->addFlash('success', 'Vidéo ajoutée avec succès');

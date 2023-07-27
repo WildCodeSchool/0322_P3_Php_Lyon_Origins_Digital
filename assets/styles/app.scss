@@ -454,10 +454,13 @@ body.ea {
 }
 
 .form-tag #video_tag {
-    overflow: scroll;
-    max-height: 100px;
+    // overflow: scroll;
+    max-height: 150px;
     text-transform: uppercase;
     color: $dark;
+    display: flex;
+flex-direction: column;
+flex-wrap: wrap;
 }
 
 @keyframes animateDesktopActiveMenuItem {

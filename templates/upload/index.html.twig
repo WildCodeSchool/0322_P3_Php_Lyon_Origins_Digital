@@ -41,6 +41,14 @@
 				<p class="control-label mb-3 text-font text-dark">2- Données de la vidéo (obligatoire):</p>
 
 				{{ form_start(form) }}
+				<div class="d-flex justify-content-start">
+					<div class="form-tag text-dark">
+						{{ form_row(form.isHeader) }}
+					</div>
+					<div class="form-tag text-dark ms-3">
+						{{ form_row(form.isPremium) }}
+					</div>
+				</div>
 				<div>
 					{{ form_row(form.title) }}
 				</div>
@@ -56,6 +64,7 @@
 				<div class="form-tag text-dark">
 					{{ form_row(form.tag) }}
 				</div>
+
 
 				<p class="text-danger">Attention: la vidéo doit être completement uploadée avant de cliquer sur Envoyer</p>
 				<button class="btn btn-light">{{ button|default('Envoyer') }}</button>
