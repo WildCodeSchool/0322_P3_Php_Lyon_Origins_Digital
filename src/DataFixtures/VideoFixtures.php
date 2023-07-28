@@ -153,19 +153,19 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'tag' => ['tag_VALORANT', 'tag_MULTIPLAYER', 'tag_FPS'],
         ],
 
-        // [
-        //     'title' => 'Vous DEVEZ Modifier ces Paramètres sur Valorant 2023! (Meilleurs
-        //     Paramètres Valorant)',
-        //     'description' => 'Dans cette vidéo, je vais vous montrer les meilleurs paramètres de
-        //     Valorant en 2023 que j\'utilise pour m\'aider à rank up.
-        //      Vous DEVEZ modifier ces paramètres si vous souhaitez améliorer votre niveau sur Valorant
-        //      et mieux viser pour monter rapidement en rang.',
-        //     'post_date' => '2023-05-24 00:00:00',
-        //     'video_url' => 'video5-VALORANT.mp4',
-        //     'poster_url' => 'poster5-VALORANT.jpg',
-        //     'is_header' => false,
-        //     'tag' => ['tag_VALORANT', 'tag_MULTIPLAYER', 'tag_FPS'],
-        // ],
+        [
+            'title' => 'Vous DEVEZ Modifier ces Paramètres sur Valorant 2023! (Meilleurs
+            Paramètres Valorant)',
+            'description' => 'Dans cette vidéo, je vais vous montrer les meilleurs paramètres de
+            Valorant en 2023 que j\'utilise pour m\'aider à rank up.
+            Vous DEVEZ modifier ces paramètres si vous souhaitez améliorer votre niveau sur Valorant
+            et mieux viser pour monter rapidement en rang.',
+            'post_date' => '2023-05-24 00:00:00',
+            'video_url' => 'video5-VALORANT.mp4',
+            'poster_url' => 'poster5-VALORANT.jpg',
+            'is_header' => false,
+            'tag' => ['tag_VALORANT', 'tag_MULTIPLAYER', 'tag_FPS'],
+        ],
 
         [
             'title' => 'TUTO | GAGNER DES FPS SUR VALORANT',
