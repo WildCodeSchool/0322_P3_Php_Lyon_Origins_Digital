@@ -45,7 +45,12 @@ class UploadService
     {
         //VideoDuration
         $ffprobe = FFProbe::create();
-        $duration = $ffprobe->format($this->params->get('temp_directory') . '/' . $fileName)->get('duration');
+        $durationInSeconds = $ffprobe->format($this->params->get('temp_directory') . '/' . $fileName)->get('duration');
+        if ($durationInSeconds < 3600) {
+            $duration = gmdate("i:s", $durationInSeconds);
+        } else {
+            $duration = gmdate("H:i:s", $durationInSeconds);
+        }
 
         return $duration;
     }

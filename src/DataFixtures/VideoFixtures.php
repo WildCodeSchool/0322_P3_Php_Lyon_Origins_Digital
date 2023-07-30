@@ -381,6 +381,14 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         foreach (self::VIDEOS as $clip) {
             $video = new VideoEntity();
             $postDate = new DateTimeImmutable($clip['post_date']);
+            $durationInSeconds = $ffprobe->format(
+                $this->params->get('video_directory') . '/' . $clip['video_url']
+            )->get('duration');
+            if ($durationInSeconds < 3600) {
+                $duration = gmdate("i:s", $durationInSeconds);
+            } else {
+                $duration = gmdate("H:i:s", $durationInSeconds);
+            }
             $video
                 ->setTitle($clip['title'])
                 ->setDescription($clip['description'])
@@ -389,9 +397,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
                 ->setPosterUrl($clip['poster_url'])
                 ->setIsHeader($clip['is_header'])
                 ->setIsPremium((bool)rand(0, 1))
-                ->setDuration($ffprobe->format(
-                    $this->params->get('video_directory') . '/' . $clip['video_url']
-                )->get('duration'));
+                ->setDuration($duration);
             $this->addReference('video_' . $videoCount, $video);
             $videoCount++;
             foreach ($clip['tag'] as $tag) {
