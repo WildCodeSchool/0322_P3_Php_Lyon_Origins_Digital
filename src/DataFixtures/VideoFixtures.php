@@ -8,6 +8,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use FFMpeg\FFMpeg;
+use FFMpeg\FFProbe;
 use FFMpeg\Coordinate\TimeCode;
 use FFMpeg\Coordinate\Dimension;
 use FFMpeg\Media\Video;
@@ -375,6 +376,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $videoCount = 0;
+        $ffprobe = FFProbe::create();
 
         foreach (self::VIDEOS as $clip) {
             $video = new VideoEntity();
@@ -386,7 +388,10 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
                 ->setVideoUrl($clip['video_url'])
                 ->setPosterUrl($clip['poster_url'])
                 ->setIsHeader($clip['is_header'])
-                ->setIsPremium((bool)rand(0, 1));
+                ->setIsPremium((bool)rand(0, 1))
+                ->setDuration($ffprobe->format(
+                    $this->params->get('video_directory') . '/' . $clip['video_url']
+                )->get('duration'));
             $this->addReference('video_' . $videoCount, $video);
             $videoCount++;
             foreach ($clip['tag'] as $tag) {
