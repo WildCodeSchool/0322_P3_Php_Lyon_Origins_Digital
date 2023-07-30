@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use FFMpeg\FFMpeg;
+use FFMpeg\FFProbe;
 use FFMpeg\Coordinate\TimeCode;
 use FFMpeg\Coordinate\Dimension;
 use FFMpeg\Media\Video;
@@ -38,5 +39,14 @@ class UploadService
             ->save($this->params->get('image_directory') . '/' . $fileNameGif);
 
         return $fileNameThumb;
+    }
+
+    public function extractDuration(string $fileName): string
+    {
+        //VideoDuration
+        $ffprobe = FFProbe::create();
+        $duration = $ffprobe->format($this->params->get('temp_directory') . '/' . $fileName)->get('duration');
+
+        return $duration;
     }
 }

@@ -32,10 +32,11 @@ class UploadController extends AbstractController
             $fileName = $saveVideoService->getVideoName();
             if (!empty($fileName)) {
                 $fileNameThumb = $uploadService->extractThumbnail($fileName);
+                $videoDuration = $uploadService->extractDuration($fileName);
                 $video = $form->getData();
                 $video->setVideoUrl($fileName);
                 $video->setPosterUrl($fileNameThumb);
-                // $video->setIsPremium(false);
+                $video->setDuration($videoDuration);
                 $saveVideoService->saveVideoFile($fileName);
                 $videoRepository->save($video, true);
                 $this->addFlash('success', 'Vidéo ajoutée avec succès');

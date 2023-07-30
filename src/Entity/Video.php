@@ -68,6 +68,9 @@ class Video
     #[ORM\Column]
     private ?bool $isHeader = false;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $duration = null;
+
     public function __construct()
     {
         $this->tag = new ArrayCollection();
@@ -294,6 +297,18 @@ class Video
     public function setIsPremium(bool $isPremium): static
     {
         $this->isPremium = $isPremium;
+        return $this;
+    }
+
+    public function getDuration(): ?string
+    {
+        return $this->duration;
+    }
+
+    public function setDuration(?string $duration): static
+    {
+        $this->duration = $duration;
+
         return $this;
     }
 }
