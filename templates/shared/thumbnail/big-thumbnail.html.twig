@@ -1,0 +1,58 @@
+<div class="bt d-flex justify-content-center align-items-center">
+
+	<div class="bt-main rounded-4 position-relative">
+		{% if item.isPremium %}
+			<span class="position-absolute top-0 start-0 badge rounded-pill bg-secondary py-2 px-3 z-2 title-font text-primary fs-6">PREMIUM</span>
+		{% endif %}
+		<div class="bt-main-mask bg-primary rounded-4 p-3 position-relative">
+			<div>
+				<a href="{{ path('video_show', { id: item.id }) }}">
+					<img src="{{ asset('build/images/' ~ item.posterUrl) }}" alt="" class="bt-poster gifable rounded-4 position-absolute translate-start">
+				</a>
+			</div>
+			<div class="d-flex justify-content-between align-items-start">
+				<div class="bt-spacer"></div>
+				{% if app.user %}
+
+					<div class="bt-socials flex-column justify-content-center fs-5">
+						<a class="favorite" href="{{ path('fav_add', { idVideo: item.id }) }}">
+							{% set isFav = app.user.favoriteVideos|filter(video => video.id == item.id )|first %}
+							<div class="bt-social-btn">
+								{% if isFav %}
+									<i class='bt-fav bi bi-heart-fill text-secondary fa{{ item.id }}' title="enlever des favoris"></i>
+								{% else %}
+									<i class='bt-fav bi bi-heart text-light fa{{ item.id }}' title="ajouter aux favoris"></i>
+								{% endif %}
+							</div>
+						</a>
+						<a class="later" href="{{ path('later_add', { idVideo: item.id }) }}">
+							{% set isLater = app.user.viewLaterVideos|filter(video => video.id == item.id )|first %}
+							<div class="bt-social-btn">
+								{% if isLater %}
+									<i class='bt-watch bi bi-clock-fill text-secondary la{{ item.id }}' title="enlever de voir plus tard"></i>
+								{% else %}
+									<i class='bt-watch bi bi-clock text-light la{{ item.id }}' title="ajouter à voir plus tard"></i>
+								{% endif %}
+							</div>
+						</a>
+					</div>
+				{% endif %}
+			</div>
+
+			<div class="bt-title title-font text-secondary text-nowrap">{{ item.title|u.truncate(30, '...') }}</div>
+
+			<div class="bt-stats d-flex justify-content-start align-items-center text-info m-0" data-info="{{ item.id }}">
+				<span class="bt-views m-0"></span>
+				<span>{{dot|raw}}</span>
+				<span class="bt-category m-0">#{{ item.tag[0]|upper }}</span>
+				<span>{{dot|raw}}</span>
+				<span class="bt-post-date m-0">{{ item.postDate|format_datetime('medium', 'short', locale='fr', timezone='Europe/Paris') }}</span>
+			</div>
+
+			<div class="bt-creator d-none text-info">CREATEUR</div>
+			<div class="bt-line d-block my-2"></div>
+
+			<div class="bt-description text-light">{{ item.description|u.truncate(50, '...', false) }}</div>
+		</div>
+	</div>
+</div>

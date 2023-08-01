@@ -2,9 +2,12 @@
 .vscode/
 .DS_Store
 /public/uploads
+/public/adminer.php
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
+/.env.test
+/.env.test.local
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/

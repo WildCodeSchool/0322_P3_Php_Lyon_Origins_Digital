@@ -1,22 +1,57 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="icon" type="image/png" href="{{ asset('build/images/favicon.png') }}"/>
-        <title>
-            {% block title %}Projet 3 Name{% endblock %}
-        </title>
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>
+      {% block title %}
+        Gaming Gurus
+      {% endblock %}
+    </title>
+    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+    {% block stylesheets %}
+      {{ encore_entry_link_tags('app') }}
+    {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    {% block javascripts %}
+      {{ encore_entry_script_tags('app') }}
+      {{ encore_entry_script_tags('navbar') }}
+      {{ encore_entry_script_tags('searchVideos') }}
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('build/favicon/gg-favicon-sm.png') }}" />
+  </head>
+
+  {% set dot = "<i class='bi bi-dot m-0'></i>" %}
+
+  {% set fav = "<i class='bi fav'></i>" %}
+  {% set watchLater = "<i class='bi watchLater'></i>" %}
+
+  {% set navItems = { home: { name: 'home', iconClass: 'house', link: 'home_index' }, user: { name: app.user ? 'user' : 'login', iconClass: app.user ? 'person-check' : 'person-up', link: app.user ? 'user_dashboard' : 'app_login' }, logout: { name: 'logout', iconClass: 'person-slash', link: 'app_logout' }, register: { name: 'register', iconClass: 'person-add', link: 'app_register' }, show: { name: 'show', iconClass: 'play', link: '' }, search: { name: 'search', iconClass: 'hash', link: '' }, contact: { name: 'contact', iconClass: 'chat-dots', link: 'contact_index' } } %}
+
+  {% if is_granted('ROLE_ADMIN') %}
+    {% set navItemsAdmin = { admin: { name: 'admin', iconClass: 'gear', link: 'admin_dashboard' } } %}
+
+    {% set navItems = navItems|merge(navItemsAdmin) %}
+  {% endif %}
+
+  <body class="row" id="all-bodies">
+    {{ include('shared/search-modal.html.twig') }}
+
+    {% for category, messages in app.flashes %}
+      {% for message in messages %}
+        <div class="alert alert-{{ category }}" id="alertMsg">{{ message }}</div>
+      {% endfor %}
+    {% endfor %}
+
+    <nav class="col-1 d-md-block d-none" id="desktop-navbar">
+      {% include 'shared/navigation/desktop-navbar.html.twig' %}
+    </nav>
+    <nav class="d-flex justify-content-center d-md-none fixed-bottom" id="mobile-navbar">
+      {% include 'shared/navigation/mobile-navbar.html.twig' %}
+    </nav>
+
+    {% block body %}
+
+    {% endblock %}
+  </body>
 </html>

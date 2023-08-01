@@ -1,0 +1,62 @@
+{% set dot = "<i class='bi bi-dot m-0'></i>" %}
+
+<div class="row mb-4" id="commentTemplate">
+
+	<div class="fs-3 ms-1 ms-sm-5 col-auto text-info d-flex align-items-center border border-end-0 border-1 border-info rounded-start-3 position-relative">
+		<span class="position-absolute top-0 start-100 translate-middle">
+			{{ dot|raw }}
+		</span>
+		<span class="position-absolute top-100 start-100 translate-middle">
+			{{ dot|raw }}
+		</span>
+	</div>
+
+	<div class="col">
+		<div class="d-flex align-items-center justify-content-start">
+			<span class="d-flex justify-content-center align-items-center align-middle overflow-hidden rounded-circle" id="commentAvatarContainer">
+				<img {% if comment.user.avatar %} src="{{ asset('build/avatars/' ~ comment.user.avatar) }}" {% else %} src="{{ asset('build/avatars/blank.png') }}" {% endif %} class="avatarSmall object-fit-cover rounded-circle img-fluid" id="commentAvatar" alt="Avatar">
+			</span>
+			<span class="title-font text-secondary fs-4">
+				{{ dot|raw }}
+			</span>
+			<span class="title-font text-secondary fs-4 me-3">
+				{{ comment.user.username }}
+			</span>
+			<span class="text-font text-info align-middle d-inline d-sm-none">
+				{{ dot|raw }}
+				{{ comment.postDate|format_datetime('short', 'short', locale='fr', timezone='Europe/Paris') }}
+			</span>
+			<span class="text-font text-info align-middle d-none d-sm-inline">
+				{{ dot|raw }}
+				{{ comment.postDate|format_datetime('medium', 'short', locale='fr', timezone='Europe/Paris') }}
+			</span>
+		</div>
+
+		{% set loadmoreComment = "<div class='btn btn-sm btn-link ms-2 text-secondary mt-0 py-0 my-1 text-font' id='loadmore-comment-" ~ comment.id ~ "' >Plus...</div>" %}
+		{% set loadlessComment = "<div class='btn btn-sm btn-link ms-2 text-secondary mt-0 py-0 my-1 text-font' id='loadless-comment-" ~ comment.id ~ "' >Moins...</div>" %}
+
+		<div class="comment-contents text-font d-flex flex-column justify-content-start align-items-start" id="{{ comment.id }}">
+			<div class="d-flex align-items-center">
+			{% if comment.content|length > 650 %}
+				<span class="mb-3" id="truncated-comment-{{ comment.id }}">
+					{{ comment.content|u.truncate(650, '...' ~ loadmoreComment|raw)|raw }}
+				</span>
+				<span class="mb-3 d-none" id="full-comment-{{ comment.id }}">
+					{{ comment.content|raw }}
+					{{loadlessComment|raw}}
+				</span>
+				{% else %}
+				<span class="mb-3" id="regular-comment-{{ comment.id }}">
+					{{ comment.content|raw }}
+				</span>
+				{% endif %}
+			</div>
+
+			{% if is_granted('ROLE_ADMIN') %}
+				<span class="mb-3">
+					<a href="{{ path('delete_comment', { commentId: comment.id }) }}" class="btn btn-primary">Supprimer</a>
+				</span>
+			{% endif %}
+		</div>
+	</div>
+</div>

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion
+{% endblock %}
+
+{% block body %}
+
+	<main class="col" aria-labelledby="nav-btn-{{ navItems.user['name'] }}" id="{{ navItems.user['name'] }}">
+
+		<div class="container mt-5 text-secondary">
+			{% if error %}
+				<div>{{ error.messageKey|trans(error.messageData, 'security', 'fr') }}</div>
+			{% endif %}
+			<div class="row justify-content-center">
+				<div class="text-center">
+					<h1>Connexion</h1>
+				</div>
+				<div class="col-8">
+					<form action="{{ path('app_login') }}" method="post">
+						<label class="form-label" for="username">Votre email:</label>
+						<input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}">
+						<div class="mt-3">
+							<label class="form-label" for="password">Votre mot de passe:</label>
+							<input class="form-control" type="password" id="password" name="_password">
+						</div>
+						<input
+						type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+						{# URL the user is redirected to on success #}
+						<input type="hidden" name="home_index" value="/">
+						<div class="row px-3 mt-4">
+							<button class="col-md-auto mt-3 btn btn-secondary" type="submit">Se connecter</button>
+							<a href="{{ path('app_register') }}" class="col mt-3 btn btn-link text-secondary">Vous n'avez pas de compte ?</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</main>
+{% endblock %}

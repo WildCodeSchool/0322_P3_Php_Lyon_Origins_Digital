@@ -1,0 +1,165 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ videoPlayed.title }}
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('addFav') }}
+	{{ encore_entry_script_tags('addLater') }}
+	{{ encore_entry_script_tags('playAndCount') }}
+	{{ encore_entry_script_tags('displayViewCount') }}
+	{{ encore_entry_script_tags('comment') }}
+{% endblock %}
+
+{% block body %}
+
+	<main class="col" aria-labelledby="nav-btn-{{ navItems.show['name'] }}" id="{{ navItems.show['name'] }}">
+
+		<div class="container-lg mx-auto text-light sh-uptop row m-0">
+			{% if app.user %}
+				<div class="col-xl-9 col-12">
+				{% else %}
+					<div class="col-12">
+					{% endif %}
+					<div class="sh-video d-flex flex-column justify-content-start align-items-center m-0">
+
+						<div class="sh-title-hash row px-4 mt-4 w-100">
+							<div class="sh-title col-lg justify-content-start title-font text-secondary fs-2">{{ videoPlayed.title }}</div>
+							<div class="sh-hash d-lg-flex d-none col-lg-auto justify-content-end align-items-start">{{ include('shared/tag/category-tag.html.twig', {tag: videoPlayed.tag[0].name , style: 'tag-main'}) }}</div>
+						</div>
+						{% if videoPlayed.isPremium and not app.user %}
+							<div class="container bg-primary rounded-5 border border-2 border-secondary w-100 h-50 m-md-4 my-2 mx-0">
+								<div class="text-center my-4">
+									<i class="bi bi-lock-fill fs-1 text-secondary"></i>
+									<p class="title-font text-info fs-1 mb-0">Vidéo reservée aux membres</p>
+									<div>
+										<i class="bi bi-caret-right-fill fs-1 text-secondary"></i>
+										<a class="text-secondary title-font fs-1" href="{{ path('app_register') }}">Inscris toi</a>
+										<i class="bi bi-caret-left-fill fs-1 text-secondary"></i>
+									</div>
+									<p class="text-info text-font">Et accède au contenu Gaming Gurus dans sa totalité</p>
+								</div>
+							</div>
+						{% else %}
+							<div class="sh-player video-container rounded-5 w-100 h-50 m-md-4 my-2 mx-0">
+								<video id="player" data-info="{{ path('video_add', { videoId: videoPlayed.id }) }}" playsinline controls data-poster="{{ asset('build/images/' ~ videoPlayed.posterUrl) }}">
+									<source src="{{ asset('build/videos/' ~ videoPlayed.videoUrl) }}" type="video/mp4"/>
+								</video>
+							</div>
+
+							<div class="px-4 w-100 mb-3">
+								{% if app.user %}
+									<div class="bt-socials fs-5 d-flex align-items-center">
+										<a class="favorite m-2" href="{{ path('fav_add', { idVideo: videoPlayed.id }) }}">
+											{% set isFav = app.user.favoriteVideos|filter(video => video.id == videoPlayed.id )|first %}
+											<div class="bt-social-btn">
+												{% if isFav %}
+													<i class='bt-fav bi bi-heart-fill text-secondary fa{{ videoPlayed.id }}' title="enlever des favoris"></i>
+												{% else %}
+													<i class='bt-fav bi bi-heart text-light fa{{ videoPlayed.id }}' title="ajouter aux favoris"></i>
+												{% endif %}
+											</div>
+										</a>
+										<a class="later m-2" href="{{ path('later_add', { idVideo: videoPlayed.id }) }}">
+											{% set isLater = app.user.viewLaterVideos|filter(video => video.id == videoPlayed.id )|first %}
+											<div class="bt-social-btn">
+												{% if isLater %}
+													<i class='bt-watch bi bi-clock-fill text-secondary la{{ videoPlayed.id }}' title="enlever de voir plus tard"></i>
+												{% else %}
+													<i class='bt-watch bi bi-clock text-light la{{ videoPlayed.id }}' title="ajouter à voir plus tard"></i>
+												{% endif %}
+											</div>
+										</a>
+									{% endif %}
+									{% if app.user %}
+										<button class="btn btn-secondary ms-2" id="add-comment" title="Ajouter un commentaire" data-info="{{ videoPlayed.id }}">
+											<i class='bi bi-chat-left-text-fill text-primary'></i>
+										</button>
+									{% else %}
+										<a href="{{ path('app_login') }}" class="btn btn-secondary" id="add-comment" title="Ajouter un commentaire">
+											<i class='bi bi-chat-left-text-fill text-primary'></i>
+										</a>
+									{% endif %}
+
+									<div class="info-mobile d-inline d-sm-none">
+										<div class="text-info d-flex flex-column mb-2 mb-sm-0" data-info="{{ videoPlayed.id }}">
+											<span class="bt-views ms-3 me-2"></span>
+											<span class="bt-post-date mx-2">{{ videoPlayed.postDate|format_datetime('medium', 'short', locale='fr', timezone='Europe/Paris') }}</span>
+										</div>
+									</div>
+
+									<div class="d-sm-inline d-none">
+										<div class="view-mb text-info mb-2 mb-sm-0" data-info="{{ videoPlayed.id }}">
+											<span class="bt-views ms-3 me-2"></span>
+											<span class="bt-post-date mx-2">{{ videoPlayed.postDate|format_datetime('medium', 'short', locale='fr', timezone='Europe/Paris') }}</span>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="sh-description text-info p-0 pb-4" id="sh-description">
+									<p>{{ videoPlayed.description }}</p>
+								</div>
+
+
+							</div>
+						{% endif %}
+
+					</div>
+
+					{% if app.user %}
+
+						<div class="sh-add-comment d-none" id="comment-field">
+							<div class="mt-3">
+								{{ include('shared/comment/add.html.twig') }}
+							</div>
+						</div>
+
+						<div class="mt-3">
+							{{ include('shared/comment/list.html.twig', {
+							id: 'comment-list',
+							contents: comments,
+							startCount: 3,
+							moreCount: 3,
+						}) }}
+						</div>
+					{% endif %}
+				</div>
+
+				{% if app.user and app.user.viewLaterVideos|length > 0 %}
+					<div class="col-xl-3 d-none d-xl-flex flex-column justify-content-start align-items-end">
+
+						<div class="sh-favs bg-primary d-flex flex-column justify-content-start align-items-center m-3 p-4 rounded-5">
+							<h5 class="title-font text-secondary">MES VIDEOS A REGARDER</h5>
+							{% for video in app.user.viewLaterVideos |slice(0, 4) %}
+								{{ include('shared/thumbnail/small-thumbnail.html.twig', {item: video}) }}
+							{% endfor %}
+							<a href="{{ path('user_dashboard') }}#towatch-tab">
+								<h5 class="title-font btn-link text-secondary mt-3">VOIR PLUS</h5>
+							</a>
+						</div>
+
+						<div class="d-xl-flex d-none justify-content-end align-items-end flex-wrap">
+							{% for tag in tags |slice(0,5) %}
+								<div>{{ include('shared/tag/category-tag.html.twig', {tag: tag.name, style: 'tag-list'}) }}</div>
+							{% endfor %}
+						</div>
+
+					</div>
+				{% endif %}
+
+				{{ component('VideoGalleryComponent', {
+					source: 'video-id',
+					videoPlayedId: videoPlayed.id,
+					count: 4,
+				}) }}
+
+				{{ component('VideoGalleryComponent', {
+					source: 'latest',
+					count: 4,
+				}) }}
+
+			</main>
+		{% endblock %}

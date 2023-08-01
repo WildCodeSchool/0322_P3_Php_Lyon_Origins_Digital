@@ -1,2 +1,784 @@
-//start coding by removing this file and adding yours ;)
-@import "wcs";
+$primary: #581EA3; // purple
+$info: #CEA8FF; // light purple
+$secondary: #FFE500; // yellow
+$dark: #241C52; // dark blue
+$light: #FFFFFF; // whites
+// custom variables ----------------------------------------
+
+// -- spacing/sizing --
+$btWidth: 280px;
+$btHeight: 240px;
+$btSizeFactor: 100%;
+
+$stWidth: 200px;
+$stSizeFactor: 100%;
+
+// -- fonts --
+$titleFont: 'Staatliches', cursive;
+$textFont: 'Inter', sans-serif;
+
+// -- animations --
+$animCurveEaseOut: cubic-bezier(.1, 1, .8, .8);
+$animMenuItemEaseOut: cubic-bezier(0, 1, 0, 1);
+
+// ---------------------------------------------------------
+
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-icons/font/bootstrap-icons";
+@import "~plyr/src/sass/plyr.scss";
+@import "~dropzone/dist/dropzone.css";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;900&family=Staatliches&display=swap');
+
+:root {
+    --plyr-color-main: #581EA3;
+    --plyr-range-thumb-background: #FFFFFF;
+    --plyr-control-icon-size: 20px;
+    --plyr-video-control-color: #FFFFFF;
+    --plyr-video-control-color-hover: #FFE500;
+}
+
+// header ---------------------------------------------------
+
+body {
+    overflow-x: hidden;
+}
+
+
+.home-title {
+    height: 40px;
+    width: 80vw;
+}
+
+.header-logo-desktop {
+    width: 300px;
+    font-size: 45px;
+    top: 3%;
+    left: 9%;
+}
+
+.link-desktop {
+    width: 200px;
+    bottom: 8%;
+    left: 60%;
+}
+
+.link-mobile {
+    width: 160px;
+    bottom: 8%;
+    left: 35%;
+}
+
+.video-container {
+    overflow: hidden;
+}
+
+
+.title-font {
+    font-family: $titleFont;
+}
+
+.text-font {
+    font-family: $textFont;
+}
+
+.tag-item {
+    max-width: fit-content;
+    cursor: pointer;
+
+    .tag-list {
+        font-family: $textFont;
+        font-size: $h6-font-size;
+        font-weight: 900;
+    }
+
+    .tag-main {
+        font-family: $textFont;
+        font-size: $h5-font-size;
+        font-weight: 900;
+    }
+
+    &:hover {
+        background-color: $primary !important;
+        color: $secondary !important;
+    }
+
+    &:active,
+    &:focus {
+        scale: 99%;
+        background-color: $light !important;
+        color: $dark !important;
+    }
+}
+
+.load-more-tag {
+    font-weight: 900;
+    cursor: pointer;
+    max-width: fit-content;
+
+    &:hover {
+        background-color: $primary !important;
+        color: $secondary !important;
+    }
+
+    &:active,
+    &:focus {
+        scale: 99%;
+        background-color: $light !important;
+        color: $dark !important;
+    }
+}
+
+.load-more-comments {
+    cursor: pointer;
+    max-width: fit-content;
+
+    &:hover {
+        background-color: $secondary !important;
+        color: $primary !important;
+    }
+
+    &:active,
+    &:focus {
+        scale: 99%;
+        background-color: $light !important;
+        color: $dark !important;
+    }
+}
+
+body {
+    background-color: $dark;
+}
+
+body#admin {
+
+    background-color: #222222;
+
+    a {
+        text-decoration: none;
+    }
+
+    section .content-header {
+        background-color: #222222;
+        color: #FFFFFF;
+    }
+}
+
+.bt-container {
+
+
+    .bt {
+
+        width: $btWidth * 1.03;
+        aspect-ratio: 1 / 1.02;
+        scale: $btSizeFactor;
+        transition: .7s $animCurveEaseOut;
+
+
+        .bt-main {
+            width: $btWidth;
+            height: $btHeight;
+            transform: translateY(($btWidth * .1)/2);
+            background: linear-gradient(135deg, $primary 50%, $secondary) !important;
+            transform-origin: center;
+            transition: .7s $animCurveEaseOut;
+
+            .bt-title {
+                font-size: calc($btWidth * 0.08) !important;
+            }
+
+            .bt-main-mask {
+                transform-origin: center;
+                transform: scale(99%);
+                width: $btWidth;
+                height: $btHeight;
+            }
+
+
+            .bt-line {
+                width: calc($btWidth * 0.75);
+                height: 1px;
+                background-color: $info;
+                transition: .7s $animCurveEaseOut;
+            }
+
+            .bt-poster {
+                width: calc($btWidth * 0.8);
+                aspect-ratio: 16 / 10;
+                top: calc($btWidth * -.1);
+                left: calc($btWidth * .04);
+                transform-origin: center;
+                border: 0px solid $secondary;
+                transition: .7s $animCurveEaseOut;
+            }
+
+            .bt-socials {
+                div:hover {
+                    cursor: pointer;
+                    color: $secondary !important;
+                }
+            }
+
+            .bt-spacer {
+                width: calc($btWidth * 0.75 + $btWidth * .04 + 1rem);
+                height: calc(($btWidth * 0.8 / 16 * 10) - $btWidth * .1 - 1rem);
+            }
+
+            .bt-stats,
+            .bt-creator {
+                font-size: calc($btWidth * .04);
+                font-family: $textFont;
+            }
+
+            .bt-description {
+                font-size: calc($btWidth * .05);
+                font-family: $textFont;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+
+    &:hover {
+
+        .bt {
+            rotate: -2deg;
+            transform: translateY(5px);
+
+            .bt-main {
+                scale: 96%;
+            }
+
+            .bt-line {
+                width: calc($btWidth * 0.60);
+            }
+
+            .bt-poster {
+                top: calc($btWidth * -.13);
+                transform: rotate(4deg);
+                border: 5px solid $secondary;
+            }
+        }
+
+    }
+}
+
+.sh-favs {
+    width: fit-content;
+}
+
+.st {
+
+    width: $stWidth * 1.03;
+    aspect-ratio: 1 / 0.8;
+    scale: $stSizeFactor;
+    transition: .7s $animCurveEaseOut;
+
+    .st-main {
+        width: $stWidth;
+        transform: translateY(($stWidth * .1)/2);
+        background: linear-gradient(135deg, $primary 50%, $secondary) !important;
+        transform-origin: center;
+        transition: .7s $animCurveEaseOut;
+
+        .st-main-mask {
+            transform-origin: center;
+            transform: scale(99%);
+            width: 100%;
+
+            background: linear-gradient(135deg, $primary 50%, $dark) !important;
+        }
+
+        .st-title {
+            font-size: calc($stWidth * 0.1) !important;
+        }
+
+        .st-poster {
+            width: calc($stWidth * 1);
+            aspect-ratio: 16 / 10;
+            top: calc($stWidth * -.05);
+            left: calc($stWidth * -.02);
+            transform-origin: center;
+            border: 0px solid $secondary;
+            transition: .7s $animCurveEaseOut;
+        }
+
+        .st-spacer {
+            width: calc($stWidth * 0.75 + $stWidth * .04 + 1rem);
+            height: calc(($stWidth * 0.9 / 16 * 10) - $stWidth * .02);
+        }
+    }
+
+    &:hover {
+
+        rotate: -2deg;
+        transform: translateY(5px);
+
+        .st-main {
+            scale: 96%;
+        }
+
+        .st-poster {
+            top: calc($stWidth * -.13);
+            transform: rotate(4deg);
+            border: 5px solid $secondary;
+        }
+    }
+}
+
+.big-lm.load-more {
+
+    width: $btWidth * 1.03;
+    aspect-ratio: 1 / 1.02;
+    scale: $btSizeFactor;
+    transition: .7s $animCurveEaseOut;
+    cursor: pointer;
+
+    .load-more-main {
+        width: $btWidth;
+        height: 81%;
+        transform: translateY(($btWidth * .1)/2);
+        background: linear-gradient(135deg, $primary 50%, $secondary) !important;
+        transform-origin: center;
+        transition: .7s $animCurveEaseOut;
+    }
+
+    .load-more-mask {
+        transform-origin: center;
+        transform: scale(99%);
+        width: $btWidth;
+        height: 100%;
+    }
+
+    .load-more-title {
+        font-size: calc($btWidth * 0.08) !important;
+        transition: .7s $animCurveEaseOut;
+    }
+
+    &:hover {
+
+        rotate: -2deg;
+        transform: translateY(5px);
+
+        .load-more-main {
+            scale: 96%;
+        }
+
+        .load-more-title {
+            font-size: calc($btWidth * 0.1) !important;
+        }
+    }
+
+    &:active,
+    &:focus {
+        scale: 90%;
+    }
+}
+
+#small-btg-tag-title {
+    &::after {
+        display: block;
+        position: absolute;
+        z-index: -1;
+        content: '';
+        width: 90%;
+        height: 1px;
+        background-color: $secondary;
+    }
+}
+
+.small-lm.load-more {
+
+    width: $stWidth * 1.03;
+    aspect-ratio: 1 / 1.02;
+    scale: $stSizeFactor;
+    transition: .7s $animCurveEaseOut;
+    cursor: pointer;
+
+    .load-more-main {
+        width: $stWidth;
+        height: 81%;
+        transform: translateY(($stWidth * .1)/2);
+        background: linear-gradient(135deg, $primary 50%, $secondary) !important;
+        transform-origin: center;
+        transition: .7s $animCurveEaseOut;
+    }
+
+    .load-more-mask {
+        transform-origin: center;
+        transform: scale(99%);
+        width: $stWidth;
+        height: 100%;
+    }
+
+    .load-more-title {
+        font-size: calc($stWidth * 0.08) !important;
+        transition: .7s $animCurveEaseOut;
+    }
+
+    &:hover {
+
+        rotate: -2deg;
+        transform: translateY(5px);
+
+        .load-more-main {
+            scale: 96%;
+        }
+
+        .load-more-title {
+            font-size: calc($stWidth * 0.1) !important;
+        }
+    }
+
+    &:active,
+    &:focus {
+        scale: 90%;
+    }
+}
+
+#mydropzone {
+    min-height: 325px;
+    border-style: dashed !important;
+}
+
+#userDashboards {
+
+    [aria-selected=true] {
+        background-color: $secondary;
+        color: $primary;
+    }
+
+    [aria-selected=false] {
+        background-color: $primary;
+        color: $secondary;
+    }
+}
+
+.form-tag #video_tag {
+    overflow: scroll;
+    max-height: 100px;
+    text-transform: uppercase;
+    color: $dark;
+}
+
+@keyframes animateDesktopActiveMenuItem {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes animateDesktopInactiveMenuItem {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes animateMobileActiveMenuItem {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+@keyframes animateMobileInactiveMenuItem {
+    0% {
+        transform: translateY(50%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+
+$dtNavWidth: 100px;
+$dtNavHeight: fit-content;
+
+$mbNavWidth: 100vw;
+$mbNavHeight: 100px;
+
+$RoundedFactor: 1.35;
+$dtActiveItemBg: linear-gradient(270deg, $dark 0%, $primary 50%, $secondary 100%) !important;
+$mbActiveItemBg: linear-gradient(180deg, $dark 0%, $primary 50%, $secondary 100%) !important;
+
+#nav-group {
+
+    position: relative;
+    height: $dtNavHeight;
+    width: $dtNavWidth;
+
+    .nav-item {
+        width: $dtNavWidth;
+        aspect-ratio: 1/1;
+        font-size: calc($dtNavWidth / 3);
+    }
+
+    .nav-item-link-active {
+
+        animation-name: animateDesktopActiveMenuItem;
+        animation-duration: 1s;
+        animation-timing-function: $animMenuItemEaseOut;
+        background: $dtActiveItemBg;
+
+        &::before,
+        &::after {
+            display: block;
+            position: absolute;
+            content: '';
+            width: calc($dtNavWidth / $RoundedFactor);
+            aspect-ratio: 1/1;
+            background-color: transparent;
+            left: 100%;
+            border-radius: 100%;
+        }
+
+        &::before {
+            translate: -100% -100%;
+            box-shadow: calc($dtNavWidth / ($RoundedFactor * 2)) calc($dtNavWidth / ($RoundedFactor * 2)) 0px $dark;
+        }
+
+        &::after {
+            translate: -100% 0%;
+            box-shadow: calc($dtNavWidth / ($RoundedFactor * 2)) calc($dtNavWidth / ($RoundedFactor * -2)) 0px $dark;
+        }
+    }
+
+    .nav-item-link-inactive {
+        animation-name: animateDesktopInactiveMenuItem;
+        animation-duration: 1s;
+        animation-timing-function: $animMenuItemEaseOut;
+        transition: $animCurveEaseOut;
+
+        .nav-item {
+
+            transition: .5s $animMenuItemEaseOut;
+            transform-origin: center;
+        }
+
+        &:hover .nav-item {
+            transform: translateX(10px);
+        }
+
+        &:focus {
+            .nav-item {
+                scale: 90%;
+            }
+        }
+    }
+}
+
+#nav-group-mb {
+
+    position: relative;
+    height: $mbNavHeight;
+    width: $mbNavWidth;
+
+    .nav-item {
+        height: $mbNavHeight;
+        max-width: $mbNavHeight;
+        font-size: calc($mbNavHeight / 3);
+    }
+
+    .nav-item-link-active {
+
+        animation-name: animateMobileActiveMenuItem;
+        animation-duration: 1s;
+        animation-timing-function: $animMenuItemEaseOut;
+        background: $mbActiveItemBg;
+        min-width: $mbNavHeight;
+
+        &::before,
+        &::after {
+            display: block;
+            position: absolute;
+            content: '';
+            height: calc($mbNavHeight / $RoundedFactor);
+            aspect-ratio: 1/1;
+            border-radius: 100%;
+            top: 0%;
+        }
+
+        &::before {
+            translate: -100% 0%;
+            left: 0%;
+            box-shadow: calc($mbNavHeight / ($RoundedFactor * 2)) calc($mbNavHeight / ($RoundedFactor * -2)) 0px $dark;
+        }
+
+        &::after {
+            left: 100%;
+            translate: 0% 0%;
+            box-shadow: calc($mbNavHeight / ($RoundedFactor * -2)) calc($mbNavHeight / ($RoundedFactor * -2)) 0px $dark;
+        }
+    }
+
+    .nav-item-link-inactive {
+        animation-name: animateMobileInactiveMenuItem;
+        animation-duration: 1s;
+        animation-timing-function: $animMenuItemEaseOut;
+        transition: $animMenuItemEaseOut;
+        min-width: calc($mbNavHeight * .2);
+
+        .nav-item {
+            transform-origin: center;
+            transition: .5s $animMenuItemEaseOut;
+        }
+
+        &:hover .nav-item {
+            transform: translateY(-10px);
+        }
+    }
+}
+
+#add-comment {
+    height: fit-content !important;
+}
+
+#no-comment-found {
+    cursor: pointer;
+}
+
+#resultVideos {
+
+    li {
+
+        &:hover {
+
+            background-color: $secondary !important;
+            box-shadow: inset 0 0 0 2px $primary;
+
+            .resultVideos-title {
+                color: $primary !important;
+            }
+
+            .resultVideos-tag {
+                background-color: $dark !important;
+
+                h2 {
+                    color: $secondary !important;
+                }
+            }
+        }
+    }
+}
+
+.modal-body::-webkit-scrollbar {
+    display: none;
+}
+
+$userHeaderWidth: 30vw;
+
+@keyframes userHeaderLoad {
+    0% {
+        transform: translateX(calc($userHeaderWidth - 100%));
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+#userHeader {
+
+    cursor: pointer;
+    max-height: 15vh;
+    width: $userHeaderWidth;
+    background: linear-gradient(90deg, $primary 0%, $secondary 80%) !important;
+
+    &:before {
+        display: block;
+        content: "Modifier";
+        position: absolute;
+        width: 20%;
+        font-family: $titleFont;
+        color: $secondary;
+        margin: auto;
+        left: 15%;
+        font-size: $h4-font-size;
+        transform: translateX(100%);
+        transition: .7s cubic-bezier(.5, 0, 0, 1);
+        opacity: 0%;
+    }
+
+    #userHeaderName {
+        transition: .7s cubic-bezier(.5, 0, 0, 1);
+        opacity: 100%;
+        transform: translateX(0%);
+    }
+
+    #avatarImg-container {
+
+        max-height: 15vh;
+        aspect-ratio: 1/1;
+
+        transition: .7s cubic-bezier(.5, 0, 0, 1);
+        animation-name: userHeaderLoad;
+        animation-duration: 2s;
+        animation-timing-function: cubic-bezier(0.25, 0, 0, 1);
+
+        #avatarImg {
+            max-height: 15vh;
+            aspect-ratio: 1/1;
+        }
+    }
+
+    &:hover {
+
+        &:before {
+            opacity: 100%;
+            transform: translateX(0%);
+        }
+
+        #avatarImg-container {
+            transform: translateX(calc($userHeaderWidth - 100%));
+        }
+
+        #userHeaderName {
+            opacity: 0%;
+            transform: translateX(100%);
+        }
+    }
+
+}
+
+#commentAvatarContainer,
+#commentAvatar {
+
+    max-width: 30px;
+    aspect-ratio: 1/1;
+
+}
+
+.info-mobile {
+    font-size: 12px;
+}
+
+#contact-form-container {
+    height: 100vh;
+
+    .contact-form-email {
+        &::placeholder {
+            font-family: $textFont;
+            color: $secondary;
+        }
+    }
+
+    .contact-form-message {
+        height: 20vh;
+
+        &::placeholder {
+            font-family: $textFont;
+            color: $secondary;
+        }
+    }
+
+}

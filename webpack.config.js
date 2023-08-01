@@ -15,15 +15,26 @@ Encore
     // .setManifestKeyPrefix('build/')
     .copyFiles({
         from: './assets/images',
-
         // optional target path, relative to the output dir
-        // to: 'images/[path][name].[ext]',
-
+        to: 'images/[path][name].[ext]',
         // if versioning is enabled, add the file hash too
-        to: 'images/[path][name].[hash:8].[ext]',
+        //to: 'images/[path][name].[hash:8].[ext]',
 
         // only copy files matching this pattern
-        // pattern: /\.(png|jpg|jpeg)$/
+        //pattern: /\.(png|jpg|jpeg)$/
+        // optional target path, relative to the output dir
+    })
+    .copyFiles({
+        from: './assets/videos',
+        to: 'videos/[path][name].[ext]',
+    })
+    .copyFiles({
+        from: './assets/avatars',
+        to: 'avatars/[path][name].[ext]',
+    })
+    .copyFiles({
+        from: './assets/favicon',
+        to: 'favicon/[path][name].[ext]',
     })
     /*
      * ENTRY CONFIG
@@ -32,6 +43,16 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+    .addEntry('dropzone', './assets/dropzone.js')
+    .addEntry('addFav', './assets/addFav.js')
+    .addEntry('addLater', './assets/addLater.js')
+    .addEntry('playAndCount', './assets/playAndCount.js')
+    .addEntry('displayViewCount', './assets/displayViewCount.js')
+    .addEntry('navbar', './assets/navbar.js')
+    .addEntry('comment', './assets/comment.js')
+    .addEntry('searchVideos', './assets/searchVideos.js')
+    .addEntry('avatar', './assets/avatar.js')
+    .addEntry('userDashboard', './assets/userDashboard.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')

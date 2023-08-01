@@ -4,21 +4,34 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    temp_directory: "%kernel.project_dir%/assets/temp"
+    video_directory: "%kernel.project_dir%/assets/videos"
+    image_directory: "%kernel.project_dir%/assets/images"
+    avatar_directory: "%kernel.project_dir%/assets/avatars"
 
 services:
     # default configuration for services in *this* file
     _defaults:
-        autowire: true      # Automatically injects dependencies in your services.
+        autowire: true # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
-        resource: '../src/'
+        resource: "../src/"
         exclude:
-            - '../src/DependencyInjection/'
-            - '../src/Entity/'
-            - '../src/Kernel.php'
+            - "../src/DependencyInjection/"
+            - "../src/Entity/"
+            - "../src/Kernel.php"
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    app.upload_listener:
+        class: App\EventListener\UploadFormDropzoneListener
+        arguments: ["@request_stack"]
+        tags:
+            - {
+                  name: kernel.event_listener,
+                  event: oneup_uploader.post_upload,
+                  method: onUpload,
+              }
